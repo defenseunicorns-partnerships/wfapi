@@ -64,3 +64,11 @@ C# .NET Core Web API
 ### Will you ever support other workflow orchestrators?
 
 Maybe. If you have a use case for this, please let us know.
+
+### Who maintains this thing?
+
+Defense Unicorns -> Delivery -> Navy Domain -> Task Force Narwhal -> DUDES
+
+### I want to use this for some other project. Can I?
+
+Yes, but your use case may not be supported by the maintainers. If this catches on and other teams want to use it, we'll look into transferring ownership to Product or some other more appropriate department.
