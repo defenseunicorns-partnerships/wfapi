@@ -1,0 +1,6 @@
+@wfapi_HostAddress = http://localhost:5254
+
+GET {{wfapi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

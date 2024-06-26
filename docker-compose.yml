@@ -1,0 +1,6 @@
+﻿services:
+  wfapi:
+    image: wfapi
+    build:
+      context: .
+      dockerfile: wfapi/Dockerfile
