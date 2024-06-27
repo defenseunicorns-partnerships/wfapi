@@ -1,4 +1,4 @@
-﻿services:
+services:
   wfapi:
     image: wfapi
     build:
