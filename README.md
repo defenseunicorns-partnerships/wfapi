@@ -25,7 +25,7 @@ This project is a REST API for interacting with Argo Workflows. You'll want to u
 - We didn't catch that it supports SSO initially, but after looking at it, we still prefer this approach.
 - We have already explored how to integrate with UDS Core's Keycloak/Authservice from a REST API and are confident that there aren't any unknown gotchas.
 - If we handle auth using this API we can keep Argo Workflows Server API in "dumb mode" and not have to deal with integrating it with Keycloak/Authservice.
-- If we want to expose the workflow orchestration functionality to other clusters or the internet, we can do so without exposing Argo Server, which would be a much larger thing to have to STIG/vet/approve. 
+- If we want to expose the workflow orchestration functionality to other clusters or the internet, we can do so without exposing Argo Server, which would be a much larger thing to have to STIG/vet/approve.
 
 ![C4 Container Diagram](docs/diagrams/c4_container-0.png)
 
