@@ -20,19 +20,18 @@ repos:
     rev: 0.2.0
     hooks:
       - id: fix-smartquotes
-#  - # noinspection YAMLSchemaValidation
-#    # TODO: uncomment this once the chart is added
-#    repo: local
-#    hooks:
-#      - id: helm-schema
-#        name: helm-schema
-#        entry: scripts/helm_schema.sh
-#        language: script
-#        files: chart/values.yaml
-#        types: [yaml]
-#      - id: jsonschema2md
-#        name: jsonschema2md
-#        entry: scripts/jsonschema2md.sh
-#        language: script
-#        files: chart/values.schema.json
-#        types: [json]
+  - # noinspection YAMLSchemaValidation
+    repo: local
+    hooks:
+      - id: helm-schema
+        name: helm-schema
+        entry: scripts/helm_schema.sh
+        language: script
+        files: chart/values.yaml
+        types: [yaml]
+      - id: jsonschema2md
+        name: jsonschema2md
+        entry: scripts/jsonschema2md.sh
+        language: script
+        files: chart/values.schema.json
+        types: [json]
