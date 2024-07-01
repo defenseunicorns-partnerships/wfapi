@@ -43,7 +43,7 @@ runs:
 
     - name: Run tests
       shell: bash
-      run: uds run test
+      run: uds run test --no--progress
 
     - name: Update GitHub Status for success
       if: ${{ success() }}
