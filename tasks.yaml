@@ -1,0 +1,34 @@
+tasks:
+  - name: compose-up
+    description: Use Docker Compose to bring up a lightweight version of the stack locally
+    actions:
+      - cmd: docker compose -f test/docker-compose.yml -p wfapi up --remove-orphans -d --build
+  - name: compose-down
+    description: Bring down the Docker Compose stack
+    actions:
+      - cmd: docker compose -f test/docker-compose.yml -p wfapi down --remove-orphans --volumes
+  - name: build-docker
+    description: Build the Docker image for the app
+    actions:
+      - cmd: |
+          docker buildx build -f wfapi/Dockerfile -t ghcr.io/defenseunicorns/wfapi/wfapi:$(yq e '.metadata.version' zarf/zarf.yaml) .
+  - name: build-zarf-package
+    description: Build the Zarf package in a way that only uses what is present in the local docker daemon
+    actions:
+      - cmd: scripts/build_zarf_package.sh
+  - name: build
+    description: Build all the things
+    actions:
+      - task: build-docker
+      - task: build-zarf-package
+  - name: test-platform-up
+    description: Bring up the test cluster. Requires Docker, k3d.
+    actions:
+      - cmd: |
+          ./uds deploy k3d-core-slim-dev:0.22.0 --confirm --no-progress
+  - name: test-app-up
+    description: Bring up the app on the test cluster.
+    actions:
+      - dir: zarf
+        cmd: |
+          ./uds zarf package deploy zarf-package-*-$(../scripts/get_arch.sh)-*.tar.zst --confirm --no-progress -l debug
