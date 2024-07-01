@@ -26,9 +26,28 @@ tasks:
     actions:
       - cmd: |
           ./uds deploy k3d-core-slim-dev:0.22.0 --confirm --no-progress
+  - name: test-platform-down
+    description: Bring down the test cluster
+    actions:
+      - cmd: |
+          k3d cluster delete uds
   - name: test-app-up
     description: Bring up the app on the test cluster.
     actions:
       - dir: zarf
         cmd: |
           ./uds zarf package deploy zarf-package-*-$(../scripts/get_arch.sh)-*.tar.zst --confirm --no-progress -l debug
+  - name: test-app-test
+    description: Run tests against the app
+    actions:
+      - cmd: |
+          echo "TODO: Implement tests"
+  - name: test
+    description: Full end-to-end test suite as a single command for CI
+    actions:
+      - task: test-platform-down
+      - task: test-platform-up
+      - task: build
+      - task: test-app-up
+      - task: test-app-test
+      - task: test-platform-down
