@@ -41,10 +41,13 @@ runs:
       # renovate: datasource=github-tags depName=defenseunicorns/uds-cli versioning=semver
       run: brew install defenseunicorns/tap/uds@0.11.2
 
+    - name: Install yq
+      shell: bash
+      run: brew install yq
+
     - name: Run tests
       shell: bash
-#      run: uds run test --no--progress
-      run: uds deploy k3d-core-slim-dev:0.22.0 --confirm --no-progress -l debug
+      run: uds run test --no-progress
 
     - name: Update GitHub Status for success
       if: ${{ success() }}
