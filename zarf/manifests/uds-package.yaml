@@ -1,0 +1,22 @@
+apiVersion: uds.dev/v1alpha1
+kind: Package
+metadata:
+  name: wfapi
+  namespace: argo
+spec:
+  network:
+    expose:
+      - description: Expose WF API
+        service: wfapi
+        selector:
+          app.kubernetes.io/name: wfapi
+        host: wfapi
+        gateway: tenant
+        port: 80
+    allow:
+      - direction: Egress
+        selector: {}
+        remoteGenerated: Anywhere
+      - direction: Ingress
+        selector: {}
+        remoteGenerated: Anywhere

@@ -1,0 +1,36 @@
+kind: ZarfPackageConfig
+metadata:
+  name: wfapi
+  description: Deploy WF API
+  version: 0.0.1
+components:
+  - name: wfapi-namespace
+    required: false
+    manifests:
+      - name: wfapi-namespace
+        namespace: zarf
+        files:
+          - manifests/namespace.yaml
+  - name: wfapi-uds-package
+    required: true
+    manifests:
+      - name: wfapi-uds-package
+        namespace: argo
+        files:
+          - manifests/uds-package.yaml
+  - name: wfapi
+    required: true
+    charts:
+      - name: wfapi
+        localPath: ../chart
+        namespace: argo
+        version: 0.0.1
+        valuesFiles:
+          - values.yaml
+    actions:
+      onDeploy:
+        onSuccess:
+          - description: Restart the deployment
+            cmd: ./zarf tools kubectl rollout restart deployment wfapi -n argo
+    images:
+      - ghcr.io/defenseunicorns/wfapi/wfapi:0.0.1

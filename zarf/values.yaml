@@ -1,0 +1,86 @@
+wfapi:
+  replicaCount: 1
+
+  image:
+    repository: ghcr.io/defenseunicorns/wfapi/wfapi
+    pullPolicy: Always
+    tag: ""
+
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: ""
+
+  env:
+    ASPNETCORE_ENVIRONMENT: "Development"
+    Serilog__MinimumLevel__Default: "Information"
+    Auth__Jwt__WellKnownConfig: "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
+    Auth__Jwt__Authority: "https://sso.uds.dev/realms/uds"
+    Auth__Jwt__Audience: wfapi
+    Auth__Jwt__RequireHttpsMetadata: "true"
+    Auth__Jwt__ValidateIssuer: "true"
+    Swagger__Enable: "true"
+
+  serviceAccount:
+    create: true
+    automount: true
+    annotations: {}
+    name: ""
+
+  podAnnotations: {}
+  podLabels: {}
+
+  podSecurityContext:
+    fsGroup: 1654
+    fsGroupChangePolicy: Always
+    supplementalGroups: []
+    sysctls: []
+
+  securityContext:
+    allowPrivilegeEscalation: false
+    appArmorProfile: {}
+    capabilities:
+      add: []
+      drop: [ALL]
+    privileged: false
+    readOnlyRootFilesystem: true
+    runAsGroup: 1654
+    runAsNonRoot: true
+    runAsUser: 1654
+    seLinuxOptions: {}
+    seccompProfile: null
+
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 8080
+
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "512Mi"
+    limits:
+      cpu: "100"
+      memory: "100Gi"
+
+  startupProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+  livenessProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+  readinessProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+
+  volumes: []
+
+  volumeMounts: []
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
