@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Serilog;
 using Serilog.Templates;
@@ -40,7 +41,11 @@ try
     builder.Services.AddControllers(options =>
     {
         options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
-    }).AddNewtonsoftJson();
+    }).AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.Converters.Add(new StringEnumConverter());
+    });
+    builder.Services.AddSwaggerGenNewtonsoftSupport();
     builder.Services.AddProblemDetails();
     builder.Services.AddApiVersioning(options =>
         {
@@ -59,7 +64,6 @@ try
         var fileName = typeof( Program ).Assembly.GetName().Name + ".xml";
         var filePath = Path.Combine( AppContext.BaseDirectory, fileName );
 
-        // integrate xml comments
         options.IncludeXmlComments( filePath );
         options.EnableAnnotations();
     });
