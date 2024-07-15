@@ -11,7 +11,7 @@ tasks:
       - task: uds-down
   - name: uds-up
     description: Brings up uds-slim-dev
-    envPath: .env
+    envPath: ../../.env
     actions:
       - dir: test
         cmd: ./uds deploy k3d-core-slim-dev:${UDS_CORE_VERSION} --confirm
