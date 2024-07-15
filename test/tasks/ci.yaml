@@ -11,26 +11,29 @@ tasks:
       - task: uds-down
   - name: uds-up
     description: Brings up uds-slim-dev
-    envPath: ../../.env
     actions:
       - dir: test
-        cmd: ./uds deploy k3d-core-slim-dev:${UDS_CORE_VERSION} --confirm
+        cmd: |
+          set -a; source ../.env; set +a
+          ./uds deploy k3d-core-slim-dev:${UDS_CORE_VERSION} --confirm
   - name: uds-down
     description: Brings down uds-slim-dev
     actions:
       - cmd: k3d cluster delete uds
   - name: argo-up
     description: Deploy a test instance of Argo Workflows
-    envPath: ../../.env
     actions:
       - dir: test/argo-workflows
-        cmd: ./uds zarf package deploy -l debug oci://ghcr.io/defenseunicorns/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm
+        cmd: |
+            set -a; source ../../.env; set +a
+            ./uds zarf package deploy -l debug oci://ghcr.io/defenseunicorns/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm
   - name: argo-down
     description: Bring down the test instance of Argo Workflows
-    envPath: ../../.env
     actions:
       - dir: test/argo-workflows
-        cmd: ./uds zarf package remove -l debug oci://ghcr.io/defenseunicorns/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm
+        cmd: |
+            set -a; source ../../.env; set +a
+            ./uds zarf package remove -l debug oci://ghcr.io/defenseunicorns/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm
   - name: package-up
     description: Build and deploy the zarf package
     actions:
