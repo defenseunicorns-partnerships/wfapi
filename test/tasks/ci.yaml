@@ -39,4 +39,4 @@ tasks:
   - name: package-down
     description: Remove the zarf package
     actions:
-      - cmd: ./uds zarf package remove ../../zarf/zarf-package-*.tar.zst --confirm
+      - cmd: ./uds zarf package remove zarf/zarf-package-*.tar.zst --confirm
