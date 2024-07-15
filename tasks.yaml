@@ -1,13 +1,14 @@
 includes:
   - ci: test/tasks/ci.yaml
+  - tests: test/tasks/tests.yaml
 
 tasks:
   - name: clean
     description: Clean the repo of all build/test artifacts
     actions:
-      - cmd: rm -f zarf-config.yaml
       - cmd: rm -rf zarf/*.tar.zst
       - cmd: rm -rf zarf/zarf-sbom
+      - cmd: rm -rf test/zarf-sbom
   - name: build-package
     description: 'Builds the production-level zarf package from all locally-built artifacts. Does not require the docker image to be pushed to the registry.'
     actions:
@@ -30,7 +31,8 @@ tasks:
     description: Run the full end-to-end test suite
     actions:
       - task: clean
+      - task: ci:down
       - task: ci:up
-      - task: test:e2e
+      - task: tests:e2e
       - task: ci:down
       - task: clean

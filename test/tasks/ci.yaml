@@ -42,3 +42,8 @@ tasks:
     description: Remove the zarf package
     actions:
       - cmd: ./uds zarf package remove zarf/zarf-package-*.tar.zst --confirm
+  - name: package-recycle
+    description: Remove and redeploy the zarf package
+    actions:
+      - task: package-down
+      - task: package-up
