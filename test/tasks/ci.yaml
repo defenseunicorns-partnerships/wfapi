@@ -24,7 +24,7 @@ tasks:
   - name: package-up
     description: Build and deploy the zarf package
     actions:
-      - dir: zarf
-        cmd: ./uds zarf -l debug package create --skip-sbom --confirm -o ../test/wfapi
+      - cmd: docker buildx build -f wfapi/Dockerfile -t ghcr.io/defenseunicorns/wfapi/wfapi:$(yq e '.metadata.version' zarf/zarf.yaml) .
+      - cmd: scripts/build_zarf_package.sh
       - dir: test/wfapi
-        cmd: ./uds zarf -l debug package deploy zarf-package-*.tar.zst --confirm
+        cmd: ./uds zarf -l debug package deploy ../../zarf/zarf-package-*.tar.zst --confirm
