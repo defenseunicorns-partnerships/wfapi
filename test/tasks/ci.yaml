@@ -27,8 +27,10 @@ tasks:
         cmd: ./uds zarf package deploy -l debug oci://ghcr.io/defenseunicorns/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm
   - name: argo-down
     description: Bring down the test instance of Argo Workflows
+    envPath: ../../.env
     actions:
-      - cmd: ./uds zarf package remove -l debug oci://ghcr.io/defenseunicorns/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm
+      - dir: test/argo-workflows
+        cmd: ./uds zarf package remove -l debug oci://ghcr.io/defenseunicorns/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm
   - name: package-up
     description: Build and deploy the zarf package
     actions:
