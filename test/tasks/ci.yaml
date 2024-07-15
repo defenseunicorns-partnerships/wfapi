@@ -1,0 +1,30 @@
+tasks:
+  - name: up
+    description: Bring up everything from scratch (uds-slim-dev included)
+    actions:
+      - task: uds-up
+      - task: argo-up
+      - task: package-up
+  - name: down
+    description: Bring everything down
+    actions:
+      - cmd: k3d cluster delete uds
+  - name: uds-up
+    description: Brings up uds-slim-dev
+    envPath: ../../.env
+    actions:
+      - dir: test
+        cmd: ./uds deploy k3d-core-slim-dev:${UDS_CORE_VERSION} --confirm
+  - name: argo-up
+    description: Deploy a test instance of Argo Workflows
+    envPath: ../../.env
+    actions:
+      - dir: test/argo-workflows
+        cmd: ./uds zarf package deploy -l debug oci://ghcr.io/defenseunicorns/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm
+  - name: package-up
+    description: Build and deploy the zarf package
+    actions:
+      - dir: test/wfapi
+        cmd: ./uds zarf package create --skip-sbom --confirm
+      - dir: test/wfapi
+        cmd: ./uds zarf package deploy zarf-package-*.tar.zst --confirm
