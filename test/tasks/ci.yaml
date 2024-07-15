@@ -24,7 +24,6 @@ tasks:
   - name: package-up
     description: Build and deploy the zarf package
     actions:
-      - cmd: pwd
-#      - cmd: ./uds zarf package create --skip-sbom --confirm -o test/wfapi
-#      - dir: test/wfapi
-#        cmd: ./uds zarf package deploy zarf-package-*.tar.zst --confirm
+      - cmd: ./uds zarf -l debug package create --skip-sbom --confirm -o test/wfapi
+      - dir: test/wfapi
+        cmd: ./uds zarf -l debug package deploy zarf-package-*.tar.zst --confirm
