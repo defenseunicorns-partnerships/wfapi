@@ -31,12 +31,8 @@ tasks:
     description: Run the full end-to-end test suite
     actions:
       - task: clean
-      - dir: test/tasks
-        task: ci:down
-      - dir: test/tasks
-        task: ci:up
-      - dir: test/tasks
-        task: tests:e2e
-      - dir: test/tasks
-        task: ci:down
+      - task: ci:down
+      - task: ci:up
+      - task: tests:e2e
+      - task: ci:down
       - task: clean
