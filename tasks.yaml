@@ -1,53 +1,39 @@
+includes:
+  - ci: test/tasks/ci.yaml
+  - tests: test/tasks/tests.yaml
+  - local: test/tasks/local.yaml
+
 tasks:
-  - name: compose-up
-    description: Use Docker Compose to bring up a lightweight version of the stack locally
+  - name: clean
+    description: Clean the repo of all build/test artifacts
     actions:
-      - cmd: docker compose -f test/docker-compose.yml -p wfapi up --remove-orphans -d --build
-  - name: compose-down
-    description: Bring down the Docker Compose stack
+      - cmd: rm -rf zarf/*.tar.zst
+      - cmd: rm -rf zarf/zarf-sbom
+      - cmd: rm -rf test/zarf-sbom
+  - name: build-package
+    description: 'Builds the production-level zarf package from all locally-built artifacts. Does not require the docker image to be pushed to the registry.'
     actions:
-      - cmd: docker compose -f test/docker-compose.yml -p wfapi down --remove-orphans --volumes
-  - name: build-docker
-    description: Build the Docker image for the app
-    actions:
-      - cmd: |
-          docker buildx build -f wfapi/Dockerfile -t ghcr.io/defenseunicorns/wfapi/wfapi:$(yq e '.metadata.version' zarf/zarf.yaml) .
-  - name: build-zarf-package
-    description: Build the Zarf package in a way that only uses what is present in the local docker daemon
-    actions:
+      - cmd: docker buildx build -f wfapi/Dockerfile -t ghcr.io/defenseunicorns/wfapi/wfapi:$(yq e '.metadata.version' zarf/zarf.yaml) .
       - cmd: scripts/build_zarf_package.sh
-  - name: build
-    description: Build all the things
-    actions:
-      - task: build-docker
-      - task: build-zarf-package
-  - name: test-platform-up
-    description: Bring up the test cluster. Requires Docker, k3d.
-    actions:
-      - cmd: |
-          ./uds deploy k3d-core-slim-dev:0.22.0 --confirm --no-progress
-  - name: test-platform-down
-    description: Bring down the test cluster
-    actions:
-      - cmd: |
-          k3d cluster delete uds
-  - name: test-app-up
-    description: Bring up the app on the test cluster.
+  - name: deploy-package
+    description: 'Deploys the zarf package to the currently configured K8s cluster.'
     actions:
       - dir: zarf
         cmd: |
-          ./uds zarf package deploy zarf-package-*-$(../scripts/get_arch.sh)-*.tar.zst --confirm --no-progress -l debug
-  - name: test-app-test
-    description: Run tests against the app
-    actions:
-      - cmd: |
-          echo "TODO: Implement tests"
+          if [ ! -f zarf-config.yaml ]; then \
+            echo "No zarf-config.yaml found, exiting!"; \
+            exit 1; \
+          fi
+      - dir: zarf
+        cmd: |
+          ./uds zarf -l debug --no-log-file --no-progress package deploy \
+          zarf-package-*-$(../scripts/get_arch.sh)-*.tar.zst --confirm
   - name: test
-    description: Full end-to-end test suite as a single command for CI
+    description: Run the full end-to-end test suite
     actions:
-      - task: test-platform-down
-      - task: test-platform-up
-      - task: build
-      - task: test-app-up
-      - task: test-app-test
-      - task: test-platform-down
+      - task: clean
+      - task: ci:down
+      - task: ci:up
+      - task: tests:e2e
+      - task: ci:down
+      - task: clean

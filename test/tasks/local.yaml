@@ -1,0 +1,9 @@
+tasks:
+  - name: compose-up
+    description: Use Docker Compose to bring up a lightweight version of the stack locally
+    actions:
+      - cmd: docker compose -f test/docker-compose.yml -p wfapi up --remove-orphans -d --build
+  - name: compose-down
+    description: Bring down the Docker Compose stack
+    actions:
+      - cmd: docker compose -f test/docker-compose.yml -p wfapi down --remove-orphans --volumes
