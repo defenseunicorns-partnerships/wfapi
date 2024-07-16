@@ -29,12 +29,19 @@ runs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Get token
+      id: get_installation_token
+      uses: peter-murray/workflow-application-token-action@v3
+      with:
+        application_id: ${{ inputs.application_id }}
+        application_private_key: ${{ inputs.application_private_key }}
+
     - name: Log in to GHCR
       uses: docker/login-action@v3
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ steps.get_installation_token.outputs.token }}
 
     - name: Install k3d
       shell: bash
