@@ -26,8 +26,8 @@ runs:
         status: pending
         description: "started by @${{ github.event.client_payload.github.actor || github.actor }}"
 
-    - name: Checkout
-      uses: actions/checkout@v4
+#    - name: Checkout
+#      uses: actions/checkout@v4
 
 #    - name: Get token
 #      id: get_installation_token
