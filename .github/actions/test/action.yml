@@ -26,17 +26,9 @@ runs:
         status: pending
         description: "started by @${{ github.event.client_payload.github.actor || github.actor }}"
 
-#    - name: Get token
-#      id: get_installation_token
-#      uses: peter-murray/workflow-application-token-action@v3
-#      with:
-#        application_id: ${{ inputs.application_id }}
-#        application_private_key: ${{ inputs.application_private_key }}
-
     - name: Install k3d
       shell: bash
       run: |
-        ls -la
         set -a; source .env; set +a
         curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | TAG=${K3D_VERSION} bash
 
