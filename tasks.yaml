@@ -1,6 +1,7 @@
 includes:
   - ci: test/tasks/ci.yaml
   - tests: test/tasks/tests.yaml
+  - local: test/tasks/local.yaml
 
 tasks:
   - name: clean
