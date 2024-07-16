@@ -13,6 +13,9 @@ tasks:
     description: Brings up uds-slim-dev
     actions:
       - dir: test
+        shell:
+          darwin: bash
+          linux: bash
         cmd: |
           set -a; source ../.env; set +a
           ./uds deploy k3d-core-slim-dev:${UDS_CORE_VERSION} --confirm
@@ -24,6 +27,9 @@ tasks:
     description: Deploy a test instance of Argo Workflows
     actions:
       - dir: test/argo-workflows
+        shell:
+          darwin: bash
+          linux: bash
         cmd: |
             set -a; source ../../.env; set +a
             ./uds zarf package deploy -l debug oci://ghcr.io/defenseunicorns/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm
@@ -31,6 +37,9 @@ tasks:
     description: Bring down the test instance of Argo Workflows
     actions:
       - dir: test/argo-workflows
+        shell:
+          darwin: bash
+          linux: bash
         cmd: |
             set -a; source ../../.env; set +a
             ./uds zarf package remove -l debug oci://ghcr.io/defenseunicorns/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm
