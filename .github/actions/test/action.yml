@@ -39,6 +39,7 @@ runs:
     - name: Install k3d
       shell: bash
       run: |
+        ls -la
         set -a; source .env; set +a
         curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | TAG=${K3D_VERSION} bash
 
