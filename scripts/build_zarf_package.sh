@@ -57,6 +57,9 @@ echo "Using port $unused_port for Docker registry."
 # Run Docker registry
 docker run -d -p ${unused_port}:5000 --restart=always --name registry registry:2
 
+# Sleep for a couple of seconds to allow the registry to start
+sleep 3
+
 # Check if docker run succeeded
 if [ $? -ne 0 ]; then
   echo "Failed to start Docker registry."
