@@ -39,7 +39,7 @@ trap cleanup EXIT
 find_unused_port() {
   local port
   while : ; do
-    port=$(shuf -i 40000-65535 -n 1)
+    port=$(shuf -i 40000-45000 -n 1)
     (echo "" > /dev/tcp/127.0.0.1/$port) >/dev/null 2>&1
     if [ $? -ne 0 ]; then
       echo $port
