@@ -29,28 +29,31 @@ runs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Get token
-      id: get_installation_token
-      uses: peter-murray/workflow-application-token-action@v3
-      with:
-        application_id: ${{ inputs.application_id }}
-        application_private_key: ${{ inputs.application_private_key }}
+#    - name: Get token
+#      id: get_installation_token
+#      uses: peter-murray/workflow-application-token-action@v3
+#      with:
+#        application_id: ${{ inputs.application_id }}
+#        application_private_key: ${{ inputs.application_private_key }}
 
     - name: Install k3d
       shell: bash
-      run: curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | TAG=v5.6.0 bash
+      run: |
+        set -a; source .env; set +a
+        curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | TAG=${K3D_VERSION} bash
 
     - name: Set up Homebrew
       uses: Homebrew/actions/setup-homebrew@master
 
     - name: Install UDS CLI
       shell: bash
-      # renovate: datasource=github-tags depName=defenseunicorns/uds-cli versioning=semver
-      run: brew install defenseunicorns/tap/uds@0.11.2
+      run: |
+        set -a; source .env; set +a
+        brew install defenseunicorns/tap/uds@${UDS_CLI_VERSION}
 
     - name: Log in to GHCR
       shell: bash
-      run: uds zarf tools registry login ghcr.io -u ${{ github.actor }} -p ${{ steps.get_installation_token.outputs.token }}
+      run: uds zarf tools registry login ghcr.io -u ${{ github.actor }} -p ${{ github.token }}
 
     - name: Install yq
       shell: bash
