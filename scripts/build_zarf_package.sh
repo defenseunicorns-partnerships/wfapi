@@ -35,17 +35,19 @@ cleanup() {
 # Set up trap to call cleanup function on script exit
 trap cleanup EXIT
 
-# Function to find a random unused port
+# Function to find an unused port
 find_unused_port() {
-  local port
-  while : ; do
-    port=$(shuf -i 40000-45000 -n 1)
+  local port=40000
+  while [ $port -le 50000 ]; do
     (echo "" > /dev/tcp/127.0.0.1/$port) >/dev/null 2>&1
     if [ $? -ne 0 ]; then
       echo $port
       return
     fi
+    port=$((port + 1))
   done
+  echo "No unused port found in the range 40000-50000" >&2
+  return 1
 }
 
 # Find an unused port
