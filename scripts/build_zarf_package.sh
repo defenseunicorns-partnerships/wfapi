@@ -64,7 +64,10 @@ REMOTE_IMAGE_FULL_NAME="${REMOTE_DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
 LOCAL_IMAGE_FULL_NAME="${LOCAL_DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
 
 # Build the image
-docker buildx build -f wfapi/Dockerfile -t "${REMOTE_DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}" .
+if ! docker buildx build -f wfapi/Dockerfile -t "${REMOTE_DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}" .; then
+  echo "Failed to build the image."
+  exit 1
+fi
 
 # Run Docker registry
 if ! docker run -d -p "${UNUSED_PORT}:5000" --restart=always --name registry registry:2; then
