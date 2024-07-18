@@ -13,7 +13,6 @@ tasks:
   - name: build-package
     description: 'Builds the production-level zarf package from all locally-built artifacts. Does not require the docker image to be pushed to the registry.'
     actions:
-      - cmd: docker buildx build -f wfapi/Dockerfile -t ghcr.io/defenseunicorns/wfapi/wfapi:$(yq e '.metadata.version' zarf/zarf.yaml) .
       - cmd: scripts/build_zarf_package.sh
   - name: deploy-package
     description: 'Deploys the zarf package to the currently configured K8s cluster.'

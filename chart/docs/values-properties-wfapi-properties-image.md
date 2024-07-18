@@ -81,7 +81,7 @@ Container image repository.
 The default value is:
 
 ```json
-"ghcr.io/defenseunicorns/wfapi/wfapi"
+"ghcr.io/defenseunicorns/wfapi/containers/wfapi"
 ```
 
 ## tag

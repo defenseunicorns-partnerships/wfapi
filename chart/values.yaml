@@ -2,7 +2,7 @@ wfapi: # @schema title: wfapi; type: [object]; description: wfapi chart settings
   replicaCount: 1 # @schema title: replicaCount; type: [number]; description: Number of replicas to deploy. Currently, '1' is the only supported value.; minimum: 1; maximum: 1; required: true; default: 1;
 
   image: # @schema title: image; type: [object]; description: Container image settings; additionalProperties: false; required: true
-    repository: ghcr.io/defenseunicorns/wfapi/wfapi # @schema title: repository; type: [string]; description: Container image repository.; required: true; default: "ghcr.io/defenseunicorns/wfapi/wfapi"
+    repository: ghcr.io/defenseunicorns/wfapi/containers/wfapi # @schema title: repository; type: [string]; description: Container image repository.; required: true; default: "ghcr.io/defenseunicorns/wfapi/containers/wfapi"
     pullPolicy: Always # @schema title: pullPolicy; type: [string]; description: Container image pull policy.; enum: [Always, IfNotPresent, Never]; required: true; default: "Always"
     tag: "" # @schema title: tag; type: [string]; description: Container image tag. If the value is "" it will use the chart's appVersion. Default is "".; required: true; default: ""
 

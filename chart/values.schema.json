@@ -131,7 +131,7 @@
               ]
             },
             "repository": {
-              "default": "ghcr.io/defenseunicorns/wfapi/wfapi",
+              "default": "ghcr.io/defenseunicorns/wfapi/containers/wfapi",
               "description": "Container image repository.",
               "title": "repository",
               "type": [
