@@ -31,7 +31,7 @@
       "separate-pull-requests": false,
       "skip-github-release": false,
       "versioning": "default",
-      "extra-file": [
+      "extra-files": [
         {
           "type": "generic",
           "path": "chart/Chart.yaml"
