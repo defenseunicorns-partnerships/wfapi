@@ -20,7 +20,8 @@ jobs:
           application_id: ${{ secrets.NARWHAL_BOT_APP_ID }}
           application_private_key: ${{ secrets.NARWHAL_BOT_SECRET }}
 
-      - uses: google-github-actions/release-please-action@v4
+      - uses: googleapis/release-please-action@v4
         with:
           token: ${{ steps.get_installation_token.outputs.token }}
-          command: manifest
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
