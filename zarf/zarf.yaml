@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: wfapi
   description: Deploy WF API
-  version: 0.0.1
+  version: 0.0.1 # x-release-please-version
 components:
   - name: wfapi-namespace
     required: false
@@ -24,7 +24,7 @@ components:
       - name: wfapi
         localPath: ../chart
         namespace: argo
-        version: 0.0.1
+        version: 0.0.1 # x-release-please-version
         valuesFiles:
           - values.yaml
     actions:
@@ -33,4 +33,4 @@ components:
           - description: Restart the deployment
             cmd: ./zarf tools kubectl rollout restart deployment wfapi -n argo
     images:
-      - ghcr.io/defenseunicorns/wfapi/wfapi:0.0.1
+      - ghcr.io/defenseunicorns/wfapi/containers/wfapi:0.0.1 # x-release-please-version
