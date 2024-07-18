@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.7](https://github.com/defenseunicorns/wfapi/compare/0.0.6...0.0.7) (2024-07-18)
+
+
+### Continuous Integration
+
+* fix tag-push workflow ([9b6b08e](https://github.com/defenseunicorns/wfapi/commit/9b6b08e5981ff6fd5c1cde39ee2bfd35b0aa70c0))
+
 ## [0.0.6](https://github.com/defenseunicorns/wfapi/compare/0.0.5...0.0.6) (2024-07-18)
 
 
