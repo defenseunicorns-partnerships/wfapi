@@ -35,6 +35,12 @@ jobs:
       - name: Install yq
         run: brew install yq
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Build the Docker image
         run: docker buildx build --platform "linux/amd64,linux/arm64" -f "wfapi/Dockerfile" -t "${{env.REGISTRY}}/${{env.IMAGE_NAME}}:$(yq e '.metadata.version' zarf/zarf.yaml)" --push .
 
