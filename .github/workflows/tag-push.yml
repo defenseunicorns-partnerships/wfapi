@@ -32,6 +32,9 @@ jobs:
           set -a; source .env; set +a
           brew install defenseunicorns/tap/uds@${UDS_CLI_VERSION}
 
+      - name: Install yq
+        run: brew install yq
+
       - name: Build the Docker image
         run: docker buildx build --platform linux/amd64,linux/arm64 -f wfapi/Dockerfile -t "${env.REGISTRY}/${env.IMAGE_NAME}:$(yq e '.metadata.version' zarf/zarf.yaml)" --push .
 
