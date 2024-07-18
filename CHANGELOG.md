@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.0.2](https://github.com/defenseunicorns/wfapi/compare/0.0.1...0.0.2) (2024-07-18)
+
+
+### Miscellaneous Chores
+
+* add packages:read permission for workflows ([#29](https://github.com/defenseunicorns/wfapi/issues/29)) ([223c783](https://github.com/defenseunicorns/wfapi/commit/223c78315bf600ef2442875c3fc2106c90d4e9db))
+* docs, port, tasks ([#28](https://github.com/defenseunicorns/wfapi/issues/28)) ([285b9b0](https://github.com/defenseunicorns/wfapi/commit/285b9b05543b82d5e786960f0e8ababc75033179))
+* stub real endpoints ([#25](https://github.com/defenseunicorns/wfapi/issues/25)) ([2cd4055](https://github.com/defenseunicorns/wfapi/commit/2cd4055a7b19de81226bfff2b71b49ccfadceac9))
+
+
+### Continuous Integration
+
+* fix release-please ([54db43a](https://github.com/defenseunicorns/wfapi/commit/54db43a71b37dcc80c5e4ee1fc6fb18794b7012f))
+* fix release-please ([13bd477](https://github.com/defenseunicorns/wfapi/commit/13bd4776de2ebbc0edb6c5da7456594d42ae75ae))
+* fix release-please ([#34](https://github.com/defenseunicorns/wfapi/issues/34)) ([1d51318](https://github.com/defenseunicorns/wfapi/commit/1d51318769e2d6cb35282691d4b0938bb92ea8bf))
+* tag-push workflow, renovate updates, rename zarf package namespace ([#33](https://github.com/defenseunicorns/wfapi/issues/33)) ([bd13e2b](https://github.com/defenseunicorns/wfapi/commit/bd13e2bf59f81ef5f4efe6f60619ff523ca7fcdc))
+
 ## 0.0.1 (2024-07-01)
 
 
