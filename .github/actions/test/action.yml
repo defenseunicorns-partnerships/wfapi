@@ -30,7 +30,7 @@ runs:
       shell: bash
       run: |
         set -a; source .env; set +a
-        curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | TAG=${K3D_VERSION} bash
+        curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | TAG=v${K3D_VERSION} bash
 
     - name: Set up Homebrew
       uses: Homebrew/actions/setup-homebrew@master
