@@ -31,9 +31,15 @@
       "separate-pull-requests": false,
       "skip-github-release": false,
       "versioning": "default",
-      "extra-files": [
-        "chart/Chart.yaml",
-        "zarf/zarf.yaml"
+      "extra-file": [
+        {
+          "type": "generic",
+          "path": "chart/Chart.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "zarf/zarf.yaml"
+        }
       ]
     }
   }
