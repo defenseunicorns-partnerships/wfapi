@@ -60,14 +60,6 @@ REMOTE_DOCKER_REGISTRY="ghcr.io"
 LOCAL_DOCKER_REGISTRY="localhost:${UNUSED_PORT}"
 IMAGE_NAME="defenseunicorns/wfapi/containers/wfapi"
 IMAGE_TAG=$(yq e '.metadata.version' zarf/zarf.yaml)
-REMOTE_IMAGE_FULL_NAME="${REMOTE_DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
-LOCAL_IMAGE_FULL_NAME="${LOCAL_DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
-
-# Build the image
-if ! docker buildx build -f wfapi/Dockerfile -t "${REMOTE_DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}" .; then
-  echo "Failed to build the image."
-  exit 1
-fi
 
 # Run Docker registry
 if ! docker run -d -p "${UNUSED_PORT}:5000" --restart=always --name registry registry:2; then
@@ -78,17 +70,9 @@ fi
 # Sleep for a couple of seconds to allow the registry to start
 sleep 3
 
-
-
-# Tagging the image
-if ! docker tag "${REMOTE_IMAGE_FULL_NAME}" "${LOCAL_IMAGE_FULL_NAME}"; then
-  echo "Failed to tag the image."
-  exit 1
-fi
-
-# Pushing the image
-if ! docker push "${LOCAL_IMAGE_FULL_NAME}"; then
-  echo "Failed to push the image."
+# Build and push the image
+if ! docker buildx build -f wfapi/Dockerfile -t "${LOCAL_DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}" --push .; then
+  echo "Failed to build and push the image."
   exit 1
 fi
 
