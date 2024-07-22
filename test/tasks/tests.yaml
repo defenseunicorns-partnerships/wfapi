@@ -3,6 +3,4 @@ tasks:
     description: Run the full end-to-end test suite
     actions:
       - cmd: |
-          echo "TODO: Implement tests"
-  - name: package-up
-    description: Build and deploy a test package that contains a workflow template and a test pod
+          ./uds zarf tools kubectl apply -f test/hello-world-template.yaml

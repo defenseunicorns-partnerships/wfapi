@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: hello-world-template
+  namespace: argo
+  labels:
+    workflows.argoproj.io/archive-strategy: "false"
+  annotations:
+    workflows.argoproj.io/description: |
+      This is a simple hello world example.
+spec:
+  entrypoint: whalesay
+  serviceAccountName: argo-workflow
+  templates:
+    - name: whalesay
+      container:
+        envFrom:
+          - secretRef:
+              name: minio-tokens
+        image: bitnami/postgresql:15.6.0
+        command: ["/bin/bash", "-c"]
+        args:
+          - |
+            echo "$secretkey"
+            echo "$accesskey"
+            echo "this is an artifact test" > /tmp/artifact.txt
+            echo "$(ls /tmp)"
+            cat "/tmp/artifact.txt"
+      outputs:
+        artifacts:
+          - name: temp-artifact
+            path: /tmp/artifact.txt
+            s3:
+              key: tmp/artifact.txt
+      metadata:
+        annotations:
+          proxy.istio.io/config: '{ "holdApplicationUntilProxyStarts": true }'
+  podMetadata:
+    annotations:
+      workflows.argoproj.io/kill-cmd-istio-proxy: '["pilot-agent", "request", "POST", "quitquitquit"]'
