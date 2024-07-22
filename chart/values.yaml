@@ -26,6 +26,10 @@ wfapi: # @schema title: wfapi; type: [object]; description: wfapi chart settings
     annotations: {} # @schema title: annotations; type: object; description: Annotations to add to the service account. Ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/; required: true; default: {}
     name: "" # @schema title: name; type: [string]; description: The name of the service account to use. If not set and create is true, a name is generated using the fullname template. Default is "".; required: true; default: ""
 
+  roleBinding: # @schema title: roleBinding; type: [object]; description: Role binding settings; additionalProperties: false; required: true
+    create: true # @schema title: create; type: [boolean]; description: Specifies whether a role binding should be created; required: true; default: true
+    roleName: server-role # @schema title: roleName; type: [string]; description: The name of the role to bind to the service account; required: true; default: "server-role"
+
   podAnnotations: {} # @schema title: podAnnotations; type: [object]; description: Annotations to add to the pod. Ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/; required: true; default: {}
   podLabels: {} # @schema title: podLabels; description: Labels to add to the pod. Ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/; type: [object]; required: true; default: {}
 

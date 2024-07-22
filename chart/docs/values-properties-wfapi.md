@@ -32,6 +32,7 @@ wfapi chart settings
 | [readinessProbe](#readinessprobe)         | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-readinessprobe.md "values.yaml#/properties/wfapi/properties/readinessProbe")         |
 | [replicaCount](#replicacount)             | `number` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-replicacount.md "values.yaml#/properties/wfapi/properties/replicaCount")             |
 | [resources](#resources)                   | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-resources.md "values.yaml#/properties/wfapi/properties/resources")                   |
+| [roleBinding](#rolebinding)               | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-rolebinding.md "values.yaml#/properties/wfapi/properties/roleBinding")               |
 | [securityContext](#securitycontext)       | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-securitycontext.md "values.yaml#/properties/wfapi/properties/securityContext")       |
 | [service](#service)                       | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-service.md "values.yaml#/properties/wfapi/properties/service")                       |
 | [serviceAccount](#serviceaccount)         | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-serviceaccount.md "values.yaml#/properties/wfapi/properties/serviceAccount")         |
@@ -349,6 +350,24 @@ Resource requests and limits
 ### resources Type
 
 `object` ([resources](values-properties-wfapi-properties-resources.md))
+
+## roleBinding
+
+Role binding settings
+
+`roleBinding`
+
+* is required
+
+* Type: `object` ([roleBinding](values-properties-wfapi-properties-rolebinding.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-rolebinding.md "values.yaml#/properties/wfapi/properties/roleBinding")
+
+### roleBinding Type
+
+`object` ([roleBinding](values-properties-wfapi-properties-rolebinding.md))
 
 ## securityContext
 

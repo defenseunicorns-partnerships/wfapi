@@ -3,6 +3,22 @@ metadata:
   name: wfapi
   description: Deploy WF API
   version: 0.0.7 # x-release-please-version
+
+variables:
+  - name: IRSA_ROLE_ARN
+    description: The ARN of the IAM role to associate with the service account for IRSA.
+    default: ""
+    sensitive: true
+  - name: CREATE_ROLE_BINDING
+    description: Whether to create a role binding for the service account. f this is set to true
+    default: "true"
+    sensitive: false
+    pattern: "^(true|false)$"
+  - name: EXISTING_ROLE_NAME
+    description: The name of an existing role to bind to the service account.
+    default: "server-role"
+    sensitive: false
+
 components:
   - name: wfapi-namespace
     required: false
