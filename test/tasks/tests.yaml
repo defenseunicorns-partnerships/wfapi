@@ -4,3 +4,5 @@ tasks:
     actions:
       - cmd: |
           echo "TODO: Implement tests"
+  - name: package-up
+    description: Build and deploy a test package that contains a workflow template and a test pod

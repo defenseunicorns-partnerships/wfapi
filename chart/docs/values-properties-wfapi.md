@@ -38,6 +38,7 @@ wfapi chart settings
 | [serviceAccount](#serviceaccount)         | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-serviceaccount.md "values.yaml#/properties/wfapi/properties/serviceAccount")         |
 | [startupProbe](#startupprobe)             | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-startupprobe.md "values.yaml#/properties/wfapi/properties/startupProbe")             |
 | [tolerations](#tolerations)               | `array`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-tolerations.md "values.yaml#/properties/wfapi/properties/tolerations")               |
+| [udsPackage](#udspackage)                 | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-udspackage.md "values.yaml#/properties/wfapi/properties/udsPackage")                 |
 | [volumeMounts](#volumemounts)             | `array`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-volumemounts.md "values.yaml#/properties/wfapi/properties/volumeMounts")             |
 | [volumes](#volumes)                       | `array`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-volumes.md "values.yaml#/properties/wfapi/properties/volumes")                       |
 
@@ -470,6 +471,24 @@ The default value is:
 ```json
 []
 ```
+
+## udsPackage
+
+UDS package settings
+
+`udsPackage`
+
+* is required
+
+* Type: `object` ([udsPackage](values-properties-wfapi-properties-udspackage.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-udspackage.md "values.yaml#/properties/wfapi/properties/udsPackage")
+
+### udsPackage Type
+
+`object` ([udsPackage](values-properties-wfapi-properties-udspackage.md))
 
 ## volumeMounts
 

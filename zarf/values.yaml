@@ -27,10 +27,14 @@ wfapi:
       eks.amazonaws.com/role-arn: "###ZARF_VAR_IRSA_ROLE_ARN###"
     name: ""
 
-  # noinspection YAMLSchemaValidation
   roleBinding:
     create: ###ZARF_VAR_CREATE_ROLE_BINDING###
     roleName: "###ZARF_VAR_EXISTING_ROLE_NAME###"
+
+  udsPackage:
+    enabled: ###ZARF_VAR_UDS_PACKAGE_ENABLED###
+    expose:
+      host: "###ZARF_VAR_UDS_PACKAGE_EXPOSE_HOST###"
 
   podAnnotations: {}
   podLabels: {}
