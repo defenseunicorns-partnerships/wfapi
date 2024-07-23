@@ -138,7 +138,7 @@ try
         BasePath = builder.Configuration.GetValue<string>("Argo:ApiUrl") ?? throw new InvalidOperationException()
     };
     var token = builder.Configuration.GetValue<string>("Argo:Token");
-    if (token == null)
+    if (String.IsNullOrWhiteSpace(token))
     {
         token = File.ReadAllText("/var/run/secrets/kubernetes.io/serviceaccount/token");
         Log.Information("Using service account token from file");
