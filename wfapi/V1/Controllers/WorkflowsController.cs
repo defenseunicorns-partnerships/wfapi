@@ -71,7 +71,7 @@ public class WorkflowsController(ILogger<WorkflowsController> log) : ControllerB
             )
         );
         IoArgoprojWorkflowV1alpha1Workflow result = apiInstance.WorkflowServiceCreateWorkflow(varNamespace, body);
-        log.LogDebug(JsonConvert.SerializeObject(result));
+        log.LogInformation(JsonConvert.SerializeObject(result));
         var retval = new WorkflowInfo
         {
             Created = result.Metadata.CreationTimestamp,
