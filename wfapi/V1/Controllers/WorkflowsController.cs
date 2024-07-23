@@ -48,9 +48,24 @@ public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsControl
             body.SubmitOptions.Parameters.Add(parameter.Name + "=" + parameter.Value);
         }
         var submitResult = argoClient.WorkflowServiceApi.WorkflowServiceSubmitWorkflow(argoClient.Namespace, body);
-        Thread.Sleep(1000);
         var getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
-        log.LogInformation(JsonConvert.SerializeObject(getResult));
+        // Initialize the start time for timeout
+        var startTime = DateTime.Now;
+        var timeout = TimeSpan.FromSeconds(2);
+        // Loop until the status phase is not null or timeout is reached
+        while (getResult.Status?.Phase == null && (DateTime.Now - startTime) < timeout)
+        {
+            // Wait for 50 milliseconds
+            Thread.Sleep(50);
+
+            // Fetch the workflow status again
+            getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
+        }
+        if (getResult.Status?.Phase == null)
+        {
+            // Handle the timeout scenario
+            throw new TimeoutException("Timeout occurred while waiting for the workflow status phase to be populated.");
+        }
         var retval = new WorkflowInfo
         {
             Created = getResult.Metadata.CreationTimestamp ?? throw new ArgumentNullException(nameof(getResult.Metadata.CreationTimestamp), "Mandatory parameter"),
