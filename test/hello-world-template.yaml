@@ -3,16 +3,16 @@ kind: WorkflowTemplate
 metadata:
   name: hello-world-template
   namespace: argo
-  labels:
-    workflows.argoproj.io/archive-strategy: "false"
   annotations:
     workflows.argoproj.io/description: |
       This is a simple hello world example.
 spec:
+  archiveLogs: true
   entrypoint: whalesay
   serviceAccountName: argo-workflow
   executor:
     serviceAccountName: argo-workflow
+  automountServiceAccountToken: false
   templates:
     - name: whalesay
       container:

@@ -50,20 +50,20 @@ public class WorkflowsController(ILogger<WorkflowsController> log) : ControllerB
                 generateName: submission.GenerateName
             ),
             spec: new IoArgoprojWorkflowV1alpha1WorkflowSpec(
-                archiveLogs: true,
+                // archiveLogs: true,
                 workflowTemplateRef: new IoArgoprojWorkflowV1alpha1WorkflowTemplateRef(
                     name: submission.TemplateName
-                ),
-                podMetadata: new IoArgoprojWorkflowV1alpha1Metadata(
-                    annotations: new Dictionary<string, string>()
-                    {
-                        {
-                            "workflows.argoproj.io/kill-cmd-istio-proxy",
-                            """["pilot-agent", "request", "POST", "quitquitquit"]"""
-                        }
-                    }
-                ),
-                automountServiceAccountToken: false
+                )
+                // podMetadata: new IoArgoprojWorkflowV1alpha1Metadata(
+                //     annotations: new Dictionary<string, string>()
+                //     {
+                //         {
+                //             "workflows.argoproj.io/kill-cmd-istio-proxy",
+                //             """["pilot-agent", "request", "POST", "quitquitquit"]"""
+                //         }
+                //     }
+                // ),
+                // automountServiceAccountToken: false
                 // executor: new IoArgoprojWorkflowV1alpha1ExecutorConfig(
                 //     serviceAccountName: "argo-workflow"
                 // )
