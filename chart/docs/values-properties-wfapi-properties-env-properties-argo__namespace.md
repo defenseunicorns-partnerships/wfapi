@@ -4,7 +4,7 @@
 values.yaml#/properties/wfapi/properties/env/properties/Argo__Namespace
 ```
 
-Argo namespace
+Namespace where workflows should be created
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                           |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------- |
@@ -19,5 +19,5 @@ Argo namespace
 The default value is:
 
 ```json
-"{{.Release.Namespace}}"
+"argo"
 ```

@@ -19,8 +19,8 @@ wfapi: # @schema title: wfapi; type: [object]; description: wfapi chart settings
     Auth__Jwt__RequireHttpsMetadata: "true" # @schema title: Auth__Jwt__RequireHttpsMetadata; type: [string]; description: Require HTTPS when interfacing with the IDP; required: true; default: "true"
     Auth__Jwt__ValidateIssuer: "true" # @schema title: Auth__Jwt__ValidateIssuer; type: [string]; description: Whether to validate the JWT issuer; required: true; default: "true"
     Argo__ApiUrl: "http://argo-workflows-server:2746" # @schema title: Argo__ApiUrl; type: [string]; description: Argo API URL; required: true; default: "http://argo-workflows-server:2746"
-    Argo__Token: "" # @schema title: Argo__Token; type: [string]; description: Optional Argo API token. Not necessary in most cases as the app will fetch the token that is mounted to the filesystem; required: false; default: ""
-    Argo__Namespace: "{{.Release.Namespace}}" # @schema title: Argo__Namespace; type: [string]; description: Argo namespace; required: false; default: "{{.Release.Namespace}}"
+    Argo__Token: "" # @schema title: Argo__Token; type: [string]; description: Optional Argo API token. Not necessary in most cases as the app will fetch the token that is mounted to the filesystem. Leave as an empty string.; required: true; default: ""
+    Argo__Namespace: "argo" # @schema title: Argo__Namespace; type: [string]; description: Namespace where workflows should be created; required: true; default: "argo"
     Swagger__Enable: "false" # @schema title: Swagger__Enable; type: [string]; description: Whether to enable Swagger. If true, the SwaggerUI can be reached at <url>/swagger; required: true; default: "false"
 
   serviceAccount: # @schema title: serviceAccount; type: [object]; description: Service account settings; additionalProperties: false; required: true

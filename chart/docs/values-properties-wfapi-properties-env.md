@@ -20,8 +20,8 @@ Environment variables to set in the container. Ref: <https://kubernetes.io/docs/
 | :---------------------------------------------------------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [ASPNETCORE\_ENVIRONMENT](#aspnetcore_environment)                      | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-aspnetcore_environment.md "values.yaml#/properties/wfapi/properties/env/properties/ASPNETCORE_ENVIRONMENT")                   |
 | [Argo\_\_ApiUrl](#argo__apiurl)                                         | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__apiurl.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__ApiUrl")                                       |
-| [Argo\_\_Namespace](#argo__namespace)                                   | `string` | Optional | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__namespace.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__Namespace")                                 |
-| [Argo\_\_Token](#argo__token)                                           | `string` | Optional | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__token.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__Token")                                         |
+| [Argo\_\_Namespace](#argo__namespace)                                   | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__namespace.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__Namespace")                                 |
+| [Argo\_\_Token](#argo__token)                                           | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__token.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__Token")                                         |
 | [Auth\_\_Jwt\_\_Audience](#auth__jwt__audience)                         | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__audience.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__Audience")                         |
 | [Auth\_\_Jwt\_\_Authority](#auth__jwt__authority)                       | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__authority.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__Authority")                       |
 | [Auth\_\_Jwt\_\_RequireHttpsMetadata](#auth__jwt__requirehttpsmetadata) | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__requirehttpsmetadata.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__RequireHttpsMetadata") |
@@ -93,11 +93,11 @@ The default value is:
 
 ## Argo\_\_Namespace
 
-Argo namespace
+Namespace where workflows should be created
 
 `Argo__Namespace`
 
-* is optional
+* is required
 
 * Type: `string` ([Argo\_\_Namespace](values-properties-wfapi-properties-env-properties-argo__namespace.md))
 
@@ -114,16 +114,16 @@ Argo namespace
 The default value is:
 
 ```json
-"{{.Release.Namespace}}"
+"argo"
 ```
 
 ## Argo\_\_Token
 
-Optional Argo API token. Not necessary in most cases as the app will fetch the token that is mounted to the filesystem
+Optional Argo API token. Not necessary in most cases as the app will fetch the token that is mounted to the filesystem. Leave as an empty string.
 
 `Argo__Token`
 
-* is optional
+* is required
 
 * Type: `string` ([Argo\_\_Token](values-properties-wfapi-properties-env-properties-argo__token.md))
 
