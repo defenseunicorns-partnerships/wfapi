@@ -19,7 +19,7 @@ public class WorkflowsControllerTests
                   }
                   """)
         .When()
-            .Post("http://localhost:5000/api/v1/workflows")
+            .Post("https://wfapi.uds.dev/api/v1/workflows")
         .Then()
             .StatusCode(HttpStatusCode.OK);
     }
