@@ -1,6 +1,7 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Annotations;
 using wfapi.V1.Models;
 using Org.OpenAPITools.Model;
@@ -15,7 +16,7 @@ namespace wfapi.V1.Controllers;
 [ApiVersion(1.0)]
 [Route("api/v{version:apiVersion}/workflows")]
 [Tags("Workflows")]
-public class WorkflowsController(ArgoClient argoClient) : ControllerBase
+public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsController> log) : ControllerBase
 {
     /// <summary>
     /// Submit a workflow by providing the template to use and the parameters to use with it.
@@ -48,6 +49,7 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
         }
         var submitResult = argoClient.WorkflowServiceApi.WorkflowServiceSubmitWorkflow(argoClient.Namespace, body);
         var getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
+        log.LogInformation(JsonConvert.SerializeObject(getResult));
         var retval = new WorkflowInfo
         {
             Created = getResult.Metadata.CreationTimestamp ?? throw new ArgumentNullException(nameof(getResult.Metadata.CreationTimestamp), "Mandatory parameter"),
