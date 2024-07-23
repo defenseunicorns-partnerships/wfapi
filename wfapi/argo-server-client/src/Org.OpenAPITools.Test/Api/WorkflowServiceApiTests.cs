@@ -76,12 +76,12 @@ namespace Org.OpenAPITools.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
             //string name = null;
-            //string deleteOptionsGracePeriodSeconds = null;
-            //string deleteOptionsPreconditionsUid = null;
-            //string deleteOptionsPreconditionsResourceVersion = null;
+            //string? deleteOptionsGracePeriodSeconds = null;
+            //string? deleteOptionsPreconditionsUid = null;
+            //string? deleteOptionsPreconditionsResourceVersion = null;
             //bool? deleteOptionsOrphanDependents = null;
-            //string deleteOptionsPropagationPolicy = null;
-            //List<string> deleteOptionsDryRun = null;
+            //string? deleteOptionsPropagationPolicy = null;
+            //List<string>? deleteOptionsDryRun = null;
             //bool? force = null;
             //var response = instance.WorkflowServiceDeleteWorkflow(varNamespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun, force);
             //Assert.IsType<Object>(response);
@@ -96,8 +96,8 @@ namespace Org.OpenAPITools.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
             //string name = null;
-            //string getOptionsResourceVersion = null;
-            //string fields = null;
+            //string? getOptionsResourceVersion = null;
+            //string? fields = null;
             //var response = instance.WorkflowServiceGetWorkflow(varNamespace, name, getOptionsResourceVersion, fields);
             //Assert.IsType<IoArgoprojWorkflowV1alpha1Workflow>(response);
         }
@@ -123,16 +123,16 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
-            //string listOptionsLabelSelector = null;
-            //string listOptionsFieldSelector = null;
+            //string? listOptionsLabelSelector = null;
+            //string? listOptionsFieldSelector = null;
             //bool? listOptionsWatch = null;
             //bool? listOptionsAllowWatchBookmarks = null;
-            //string listOptionsResourceVersion = null;
-            //string listOptionsResourceVersionMatch = null;
-            //string listOptionsTimeoutSeconds = null;
-            //string listOptionsLimit = null;
-            //string listOptionsContinue = null;
-            //string fields = null;
+            //string? listOptionsResourceVersion = null;
+            //string? listOptionsResourceVersionMatch = null;
+            //string? listOptionsTimeoutSeconds = null;
+            //string? listOptionsLimit = null;
+            //string? listOptionsContinue = null;
+            //string? fields = null;
             //var response = instance.WorkflowServiceListWorkflows(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, fields);
             //Assert.IsType<IoArgoprojWorkflowV1alpha1WorkflowList>(response);
         }
@@ -147,18 +147,18 @@ namespace Org.OpenAPITools.Test.Api
             //string varNamespace = null;
             //string name = null;
             //string podName = null;
-            //string logOptionsContainer = null;
+            //string? logOptionsContainer = null;
             //bool? logOptionsFollow = null;
             //bool? logOptionsPrevious = null;
-            //string logOptionsSinceSeconds = null;
-            //string logOptionsSinceTimeSeconds = null;
+            //string? logOptionsSinceSeconds = null;
+            //string? logOptionsSinceTimeSeconds = null;
             //int? logOptionsSinceTimeNanos = null;
             //bool? logOptionsTimestamps = null;
-            //string logOptionsTailLines = null;
-            //string logOptionsLimitBytes = null;
+            //string? logOptionsTailLines = null;
+            //string? logOptionsLimitBytes = null;
             //bool? logOptionsInsecureSkipTLSVerifyBackend = null;
-            //string grep = null;
-            //string selector = null;
+            //string? grep = null;
+            //string? selector = null;
             //var response = instance.WorkflowServicePodLogs(varNamespace, name, podName, logOptionsContainer, logOptionsFollow, logOptionsPrevious, logOptionsSinceSeconds, logOptionsSinceTimeSeconds, logOptionsSinceTimeNanos, logOptionsTimestamps, logOptionsTailLines, logOptionsLimitBytes, logOptionsInsecureSkipTLSVerifyBackend, grep, selector);
             //Assert.IsType<StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry>(response);
         }
@@ -282,15 +282,15 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
-            //string listOptionsLabelSelector = null;
-            //string listOptionsFieldSelector = null;
+            //string? listOptionsLabelSelector = null;
+            //string? listOptionsFieldSelector = null;
             //bool? listOptionsWatch = null;
             //bool? listOptionsAllowWatchBookmarks = null;
-            //string listOptionsResourceVersion = null;
-            //string listOptionsResourceVersionMatch = null;
-            //string listOptionsTimeoutSeconds = null;
-            //string listOptionsLimit = null;
-            //string listOptionsContinue = null;
+            //string? listOptionsResourceVersion = null;
+            //string? listOptionsResourceVersionMatch = null;
+            //string? listOptionsTimeoutSeconds = null;
+            //string? listOptionsLimit = null;
+            //string? listOptionsContinue = null;
             //var response = instance.WorkflowServiceWatchEvents(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue);
             //Assert.IsType<StreamResultOfIoK8sApiCoreV1Event>(response);
         }
@@ -303,16 +303,16 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
-            //string listOptionsLabelSelector = null;
-            //string listOptionsFieldSelector = null;
+            //string? listOptionsLabelSelector = null;
+            //string? listOptionsFieldSelector = null;
             //bool? listOptionsWatch = null;
             //bool? listOptionsAllowWatchBookmarks = null;
-            //string listOptionsResourceVersion = null;
-            //string listOptionsResourceVersionMatch = null;
-            //string listOptionsTimeoutSeconds = null;
-            //string listOptionsLimit = null;
-            //string listOptionsContinue = null;
-            //string fields = null;
+            //string? listOptionsResourceVersion = null;
+            //string? listOptionsResourceVersionMatch = null;
+            //string? listOptionsTimeoutSeconds = null;
+            //string? listOptionsLimit = null;
+            //string? listOptionsContinue = null;
+            //string? fields = null;
             //var response = instance.WorkflowServiceWatchWorkflows(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, fields);
             //Assert.IsType<StreamResultOfIoArgoprojWorkflowV1alpha1WorkflowWatchEvent>(response);
         }
@@ -326,19 +326,19 @@ namespace Org.OpenAPITools.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
             //string name = null;
-            //string podName = null;
-            //string logOptionsContainer = null;
+            //string? podName = null;
+            //string? logOptionsContainer = null;
             //bool? logOptionsFollow = null;
             //bool? logOptionsPrevious = null;
-            //string logOptionsSinceSeconds = null;
-            //string logOptionsSinceTimeSeconds = null;
+            //string? logOptionsSinceSeconds = null;
+            //string? logOptionsSinceTimeSeconds = null;
             //int? logOptionsSinceTimeNanos = null;
             //bool? logOptionsTimestamps = null;
-            //string logOptionsTailLines = null;
-            //string logOptionsLimitBytes = null;
+            //string? logOptionsTailLines = null;
+            //string? logOptionsLimitBytes = null;
             //bool? logOptionsInsecureSkipTLSVerifyBackend = null;
-            //string grep = null;
-            //string selector = null;
+            //string? grep = null;
+            //string? selector = null;
             //var response = instance.WorkflowServiceWorkflowLogs(varNamespace, name, podName, logOptionsContainer, logOptionsFollow, logOptionsPrevious, logOptionsSinceSeconds, logOptionsSinceTimeSeconds, logOptionsSinceTimeNanos, logOptionsTimestamps, logOptionsTailLines, logOptionsLimitBytes, logOptionsInsecureSkipTLSVerifyBackend, grep, selector);
             //Assert.IsType<StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry>(response);
         }

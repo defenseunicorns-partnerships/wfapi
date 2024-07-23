@@ -1,12 +1,8 @@
-using System.Diagnostics;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Annotations;
 using wfapi.V1.Models;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
 
 namespace wfapi.V1.Controllers;
@@ -19,12 +15,13 @@ namespace wfapi.V1.Controllers;
 [ApiVersion(1.0)]
 [Route("api/v{version:apiVersion}/workflows")]
 [Tags("Workflows")]
-public class WorkflowsController(ILogger<WorkflowsController> log) : ControllerBase
+public class WorkflowsController(ArgoClient argoClient) : ControllerBase
 {
     /// <summary>
     /// Submit a workflow by providing the template to use and the parameters to use with it.
     /// </summary>
     /// <param name="submission">The input information</param>
+    /// <exception cref="ArgumentNullException"></exception>
     [HttpPost("")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
@@ -35,48 +32,31 @@ public class WorkflowsController(ILogger<WorkflowsController> log) : ControllerB
     [SwaggerOperation(OperationId = "SubmitWorkflow")]
     public IActionResult SubmitWorkflow([FromBody] WorkflowSubmission submission)
     {
-        var token = System.IO.File.ReadAllText("/var/run/secrets/kubernetes.io/serviceaccount/token");
-        Configuration config = new Configuration();
-        config.BasePath = "http://argo-workflows-server:2746";
-        config.AddApiKey("Authorization", token);
-        config.AddApiKeyPrefix("Authorization", "Bearer");
-
-        var apiInstance = new WorkflowServiceApi(config);
-        var varNamespace = "argo";
-        var body = new IoArgoprojWorkflowV1alpha1WorkflowCreateRequest();
-        body.Workflow = new IoArgoprojWorkflowV1alpha1Workflow(
-            apiVersion: "argoproj.io/v1alpha1",
-            kind: "Workflow",
-            metadata: new IoK8sApimachineryPkgApisMetaV1ObjectMeta(
-                generateName: submission.GenerateName
-            ),
-            spec: new IoArgoprojWorkflowV1alpha1WorkflowSpec(
-                // archiveLogs: true,
-                workflowTemplateRef: new IoArgoprojWorkflowV1alpha1WorkflowTemplateRef(
-                    name: submission.TemplateName
-                )
-                // podMetadata: new IoArgoprojWorkflowV1alpha1Metadata(
-                //     annotations: new Dictionary<string, string>()
-                //     {
-                //         {
-                //             "workflows.argoproj.io/kill-cmd-istio-proxy",
-                //             """["pilot-agent", "request", "POST", "quitquitquit"]"""
-                //         }
-                //     }
-                // ),
-                // automountServiceAccountToken: false
-                // executor: new IoArgoprojWorkflowV1alpha1ExecutorConfig(
-                //     serviceAccountName: "argo-workflow"
-                // )
-            )
-        );
-        IoArgoprojWorkflowV1alpha1Workflow result = apiInstance.WorkflowServiceCreateWorkflow(varNamespace, body);
-        log.LogInformation(JsonConvert.SerializeObject(result));
+        var body = new IoArgoprojWorkflowV1alpha1WorkflowSubmitRequest
+        {
+            ResourceKind = "WorkflowTemplate",
+            ResourceName = submission.TemplateName,
+            SubmitOptions = new IoArgoprojWorkflowV1alpha1SubmitOpts
+            {
+                GenerateName = submission.GenerateName,
+                Parameters = []
+            }
+        };
+        foreach (var parameter in submission.Parameters)
+        {
+            body.SubmitOptions.Parameters.Add(parameter.Name + "=" + parameter.Value);
+        }
+        var submitResult = argoClient.WorkflowServiceApi.WorkflowServiceSubmitWorkflow(argoClient.Namespace, body);
+        var getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
         var retval = new WorkflowInfo
         {
-            Created = result.Metadata.CreationTimestamp,
-            Name = result.Metadata.Name,
-            Status = (WorkflowStatus)Enum.Parse(typeof(WorkflowStatus), result.Status.Phase),
+            Created = getResult.Metadata.CreationTimestamp ?? throw new ArgumentNullException(nameof(getResult.Metadata.CreationTimestamp), "Mandatory parameter"),
+            Name = getResult.Metadata.Name,
+            Status = (WorkflowStatus)Enum.Parse(typeof(WorkflowStatus), getResult.Status.Phase),
+            Message = getResult.Status.Message,
+            Started = getResult.Status.StartedAt,
+            Finished = getResult.Status.FinishedAt,
+            Progress = getResult.Status.Progress
         };
         return Ok(retval);
     }

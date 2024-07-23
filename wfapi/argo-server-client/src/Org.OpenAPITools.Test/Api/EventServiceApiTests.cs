@@ -62,15 +62,15 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
-            //string listOptionsLabelSelector = null;
-            //string listOptionsFieldSelector = null;
+            //string? listOptionsLabelSelector = null;
+            //string? listOptionsFieldSelector = null;
             //bool? listOptionsWatch = null;
             //bool? listOptionsAllowWatchBookmarks = null;
-            //string listOptionsResourceVersion = null;
-            //string listOptionsResourceVersionMatch = null;
-            //string listOptionsTimeoutSeconds = null;
-            //string listOptionsLimit = null;
-            //string listOptionsContinue = null;
+            //string? listOptionsResourceVersion = null;
+            //string? listOptionsResourceVersionMatch = null;
+            //string? listOptionsTimeoutSeconds = null;
+            //string? listOptionsLimit = null;
+            //string? listOptionsContinue = null;
             //var response = instance.EventServiceListWorkflowEventBindings(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue);
             //Assert.IsType<IoArgoprojWorkflowV1alpha1WorkflowEventBindingList>(response);
         }

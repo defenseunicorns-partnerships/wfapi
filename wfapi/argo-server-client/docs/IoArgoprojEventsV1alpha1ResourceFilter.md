@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AfterStart** | **bool** |  | [optional]
-**CreatedBy** | **DateTime** | Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. | [optional]
+**CreatedBy** | **DateTime?** | Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. | [optional]
 **Fields** | [**List&lt;IoArgoprojEventsV1alpha1Selector&gt;**](IoArgoprojEventsV1alpha1Selector.md) |  | [optional]
 **Labels** | [**List&lt;IoArgoprojEventsV1alpha1Selector&gt;**](IoArgoprojEventsV1alpha1Selector.md) |  | [optional]
 **Prefix** | **string** |  | [optional]

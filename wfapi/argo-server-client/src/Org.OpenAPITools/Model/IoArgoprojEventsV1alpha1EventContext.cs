@@ -41,7 +41,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="subject">subject.</param>
         /// <param name="time">Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers..</param>
         /// <param name="type">Type - The type of the occurrence which has happened..</param>
-        public IoArgoprojEventsV1alpha1EventContext(string datacontenttype = default(string), string id = default(string), string source = default(string), string specversion = default(string), string subject = default(string), DateTime time = default(DateTime), string type = default(string))
+        public IoArgoprojEventsV1alpha1EventContext(string datacontenttype = default(string), string id = default(string), string source = default(string), string specversion = default(string), string subject = default(string), DateTime? time = default(DateTime?), string type = default(string))
         {
             this.Datacontenttype = datacontenttype;
             this.Id = id;
@@ -91,7 +91,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "time", EmitDefaultValue = false)]
-        public DateTime Time { get; set; }
+        public DateTime? Time { get; set; }
 
         /// <summary>
         /// Type - The type of the occurrence which has happened.

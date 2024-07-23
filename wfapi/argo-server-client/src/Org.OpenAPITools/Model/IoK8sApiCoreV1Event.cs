@@ -56,7 +56,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="series">series.</param>
         /// <param name="source">source.</param>
         /// <param name="type">Type of this event (Normal, Warning), new types could be added in the future.</param>
-        public IoK8sApiCoreV1Event(string action = default(string), string apiVersion = default(string), int count = default(int), DateTime eventTime = default(DateTime), DateTime firstTimestamp = default(DateTime), IoK8sApiCoreV1ObjectReference involvedObject = default(IoK8sApiCoreV1ObjectReference), string kind = default(string), DateTime lastTimestamp = default(DateTime), string message = default(string), IoK8sApimachineryPkgApisMetaV1ObjectMeta metadata = default(IoK8sApimachineryPkgApisMetaV1ObjectMeta), string reason = default(string), IoK8sApiCoreV1ObjectReference related = default(IoK8sApiCoreV1ObjectReference), string reportingComponent = default(string), string reportingInstance = default(string), IoK8sApiCoreV1EventSeries series = default(IoK8sApiCoreV1EventSeries), IoK8sApiCoreV1EventSource source = default(IoK8sApiCoreV1EventSource), string type = default(string))
+        public IoK8sApiCoreV1Event(string action = default(string), string apiVersion = default(string), int count = default(int), DateTime? eventTime = default(DateTime?), DateTime? firstTimestamp = default(DateTime?), IoK8sApiCoreV1ObjectReference involvedObject = default(IoK8sApiCoreV1ObjectReference), string kind = default(string), DateTime? lastTimestamp = default(DateTime?), string message = default(string), IoK8sApimachineryPkgApisMetaV1ObjectMeta metadata = default(IoK8sApimachineryPkgApisMetaV1ObjectMeta), string reason = default(string), IoK8sApiCoreV1ObjectReference related = default(IoK8sApiCoreV1ObjectReference), string reportingComponent = default(string), string reportingInstance = default(string), IoK8sApiCoreV1EventSeries series = default(IoK8sApiCoreV1EventSeries), IoK8sApiCoreV1EventSource source = default(IoK8sApiCoreV1EventSource), string type = default(string))
         {
             // to ensure "involvedObject" is required (not null)
             if (involvedObject == null)
@@ -113,14 +113,14 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>MicroTime is version of Time with microsecond level precision.</value>
         [DataMember(Name = "eventTime", EmitDefaultValue = false)]
-        public DateTime EventTime { get; set; }
+        public DateTime? EventTime { get; set; }
 
         /// <summary>
         /// Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "firstTimestamp", EmitDefaultValue = false)]
-        public DateTime FirstTimestamp { get; set; }
+        public DateTime? FirstTimestamp { get; set; }
 
         /// <summary>
         /// Gets or Sets InvolvedObject
@@ -140,7 +140,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "lastTimestamp", EmitDefaultValue = false)]
-        public DateTime LastTimestamp { get; set; }
+        public DateTime? LastTimestamp { get; set; }
 
         /// <summary>
         /// A human-readable description of the status of this operation.

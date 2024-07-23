@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Daemoned** | **bool** | Daemoned tracks whether or not this node was daemoned and need to be terminated | [optional]
 **DisplayName** | **string** | DisplayName is a human readable representation of the node. Unique within a template boundary | [optional]
 **EstimatedDuration** | **int** | EstimatedDuration in seconds. | [optional]
-**FinishedAt** | **DateTime** | Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. | [optional]
+**FinishedAt** | **DateTime?** | Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. | [optional]
 **HostNodeName** | **string** | HostNodeName name of the Kubernetes node on which the Pod is running, if applicable | [optional]
 **Id** | **string** | ID is a unique identifier of a node within the worklow It is implemented as a hash of the node name, which makes the ID deterministic |
 **Inputs** | [**IoArgoprojWorkflowV1alpha1Inputs**](IoArgoprojWorkflowV1alpha1Inputs.md) |  | [optional]
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **PodIP** | **string** | PodIP captures the IP of the pod for daemoned steps | [optional]
 **Progress** | **string** | Progress to completion | [optional]
 **ResourcesDuration** | **Dictionary&lt;string, long&gt;** | ResourcesDuration is indicative, but not accurate, resource duration. This is populated when the nodes completes. | [optional]
-**StartedAt** | **DateTime** | Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. | [optional]
+**StartedAt** | **DateTime?** | Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. | [optional]
 **SynchronizationStatus** | [**IoArgoprojWorkflowV1alpha1NodeSynchronizationStatus**](IoArgoprojWorkflowV1alpha1NodeSynchronizationStatus.md) |  | [optional]
 **TemplateName** | **string** | TemplateName is the template name which this node corresponds to. Not applicable to virtual nodes (e.g. Retry, StepGroup) | [optional]
 **TemplateRef** | [**IoArgoprojWorkflowV1alpha1TemplateRef**](IoArgoprojWorkflowV1alpha1TemplateRef.md) |  | [optional]

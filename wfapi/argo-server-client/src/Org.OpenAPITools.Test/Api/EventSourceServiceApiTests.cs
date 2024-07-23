@@ -76,12 +76,12 @@ namespace Org.OpenAPITools.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
             //string name = null;
-            //string deleteOptionsGracePeriodSeconds = null;
-            //string deleteOptionsPreconditionsUid = null;
-            //string deleteOptionsPreconditionsResourceVersion = null;
+            //string? deleteOptionsGracePeriodSeconds = null;
+            //string? deleteOptionsPreconditionsUid = null;
+            //string? deleteOptionsPreconditionsResourceVersion = null;
             //bool? deleteOptionsOrphanDependents = null;
-            //string deleteOptionsPropagationPolicy = null;
-            //List<string> deleteOptionsDryRun = null;
+            //string? deleteOptionsPropagationPolicy = null;
+            //List<string>? deleteOptionsDryRun = null;
             //var response = instance.EventSourceServiceDeleteEventSource(varNamespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun);
             //Assert.IsType<Object>(response);
         }
@@ -94,19 +94,19 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
-            //string name = null;
-            //string eventSourceType = null;
-            //string eventName = null;
-            //string grep = null;
-            //string podLogOptionsContainer = null;
+            //string? name = null;
+            //string? eventSourceType = null;
+            //string? eventName = null;
+            //string? grep = null;
+            //string? podLogOptionsContainer = null;
             //bool? podLogOptionsFollow = null;
             //bool? podLogOptionsPrevious = null;
-            //string podLogOptionsSinceSeconds = null;
-            //string podLogOptionsSinceTimeSeconds = null;
+            //string? podLogOptionsSinceSeconds = null;
+            //string? podLogOptionsSinceTimeSeconds = null;
             //int? podLogOptionsSinceTimeNanos = null;
             //bool? podLogOptionsTimestamps = null;
-            //string podLogOptionsTailLines = null;
-            //string podLogOptionsLimitBytes = null;
+            //string? podLogOptionsTailLines = null;
+            //string? podLogOptionsLimitBytes = null;
             //bool? podLogOptionsInsecureSkipTLSVerifyBackend = null;
             //var response = instance.EventSourceServiceEventSourcesLogs(varNamespace, name, eventSourceType, eventName, grep, podLogOptionsContainer, podLogOptionsFollow, podLogOptionsPrevious, podLogOptionsSinceSeconds, podLogOptionsSinceTimeSeconds, podLogOptionsSinceTimeNanos, podLogOptionsTimestamps, podLogOptionsTailLines, podLogOptionsLimitBytes, podLogOptionsInsecureSkipTLSVerifyBackend);
             //Assert.IsType<StreamResultOfEventsourceLogEntry>(response);
@@ -133,15 +133,15 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
-            //string listOptionsLabelSelector = null;
-            //string listOptionsFieldSelector = null;
+            //string? listOptionsLabelSelector = null;
+            //string? listOptionsFieldSelector = null;
             //bool? listOptionsWatch = null;
             //bool? listOptionsAllowWatchBookmarks = null;
-            //string listOptionsResourceVersion = null;
-            //string listOptionsResourceVersionMatch = null;
-            //string listOptionsTimeoutSeconds = null;
-            //string listOptionsLimit = null;
-            //string listOptionsContinue = null;
+            //string? listOptionsResourceVersion = null;
+            //string? listOptionsResourceVersionMatch = null;
+            //string? listOptionsTimeoutSeconds = null;
+            //string? listOptionsLimit = null;
+            //string? listOptionsContinue = null;
             //var response = instance.EventSourceServiceListEventSources(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue);
             //Assert.IsType<IoArgoprojEventsV1alpha1EventSourceList>(response);
         }
@@ -168,15 +168,15 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
-            //string listOptionsLabelSelector = null;
-            //string listOptionsFieldSelector = null;
+            //string? listOptionsLabelSelector = null;
+            //string? listOptionsFieldSelector = null;
             //bool? listOptionsWatch = null;
             //bool? listOptionsAllowWatchBookmarks = null;
-            //string listOptionsResourceVersion = null;
-            //string listOptionsResourceVersionMatch = null;
-            //string listOptionsTimeoutSeconds = null;
-            //string listOptionsLimit = null;
-            //string listOptionsContinue = null;
+            //string? listOptionsResourceVersion = null;
+            //string? listOptionsResourceVersionMatch = null;
+            //string? listOptionsTimeoutSeconds = null;
+            //string? listOptionsLimit = null;
+            //string? listOptionsContinue = null;
             //var response = instance.EventSourceServiceWatchEventSources(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue);
             //Assert.IsType<StreamResultOfEventsourceEventSourceWatchEvent>(response);
         }

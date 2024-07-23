@@ -33,6 +33,21 @@
                 "string"
               ]
             },
+            "Argo__ApiUrl": {
+              "default": "http://argo-workflows-server:2746",
+              "description": "Argo API URL",
+              "title": "Argo__ApiUrl",
+              "type": [
+                "string"
+              ]
+            },
+            "Argo__Namespace": {
+              "description": "Argo namespace",
+              "title": "Argo__Namespace",
+              "type": [
+                "string"
+              ]
+            },
             "Auth__Jwt__Audience": {
               "default": "wfapi",
               "description": "JWT audience. Corresponds to the Keycloak client associated with this app.",
@@ -98,6 +113,8 @@
             "Auth__Jwt__Audience",
             "Auth__Jwt__RequireHttpsMetadata",
             "Auth__Jwt__ValidateIssuer",
+            "Argo__ApiUrl",
+            "Argo__Namespace",
             "Swagger__Enable"
           ],
           "title": "env",

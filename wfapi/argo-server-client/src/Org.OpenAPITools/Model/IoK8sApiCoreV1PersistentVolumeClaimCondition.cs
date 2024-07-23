@@ -72,7 +72,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="reason">Unique, this should be a short, machine understandable string that gives the reason for condition&#39;s last transition. If it reports \&quot;ResizeStarted\&quot; that means the underlying persistent volume is being resized..</param>
         /// <param name="status">status (required).</param>
         /// <param name="type">   Possible enum values:  - &#x60;\&quot;FileSystemResizePending\&quot;&#x60; - controller resize is finished and a file system resize is pending on node  - &#x60;\&quot;Resizing\&quot;&#x60; - a user trigger resize of pvc has been started (required).</param>
-        public IoK8sApiCoreV1PersistentVolumeClaimCondition(DateTime lastProbeTime = default(DateTime), DateTime lastTransitionTime = default(DateTime), string message = default(string), string reason = default(string), string status = default(string), TypeEnum type = default(TypeEnum))
+        public IoK8sApiCoreV1PersistentVolumeClaimCondition(DateTime? lastProbeTime = default(DateTime?), DateTime? lastTransitionTime = default(DateTime?), string message = default(string), string reason = default(string), string status = default(string), TypeEnum type = default(TypeEnum))
         {
             // to ensure "status" is required (not null)
             if (status == null)
@@ -92,14 +92,14 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "lastProbeTime", EmitDefaultValue = false)]
-        public DateTime LastProbeTime { get; set; }
+        public DateTime? LastProbeTime { get; set; }
 
         /// <summary>
         /// Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "lastTransitionTime", EmitDefaultValue = false)]
-        public DateTime LastTransitionTime { get; set; }
+        public DateTime? LastTransitionTime { get; set; }
 
         /// <summary>
         /// Human-readable message indicating details about last transition.

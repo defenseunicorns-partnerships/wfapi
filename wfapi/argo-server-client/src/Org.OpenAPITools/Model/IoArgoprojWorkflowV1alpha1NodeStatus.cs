@@ -64,7 +64,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="templateRef">templateRef.</param>
         /// <param name="templateScope">TemplateScope is the template scope in which the template of this node was retrieved..</param>
         /// <param name="type">Type indicates type of node (required).</param>
-        public IoArgoprojWorkflowV1alpha1NodeStatus(string boundaryID = default(string), List<string> children = default(List<string>), bool daemoned = default(bool), string displayName = default(string), int estimatedDuration = default(int), DateTime finishedAt = default(DateTime), string hostNodeName = default(string), string id = default(string), IoArgoprojWorkflowV1alpha1Inputs inputs = default(IoArgoprojWorkflowV1alpha1Inputs), IoArgoprojWorkflowV1alpha1MemoizationStatus memoizationStatus = default(IoArgoprojWorkflowV1alpha1MemoizationStatus), string message = default(string), string name = default(string), IoArgoprojWorkflowV1alpha1NodeFlag nodeFlag = default(IoArgoprojWorkflowV1alpha1NodeFlag), List<string> outboundNodes = default(List<string>), IoArgoprojWorkflowV1alpha1Outputs outputs = default(IoArgoprojWorkflowV1alpha1Outputs), string phase = default(string), string podIP = default(string), string progress = default(string), Dictionary<string, long> resourcesDuration = default(Dictionary<string, long>), DateTime startedAt = default(DateTime), IoArgoprojWorkflowV1alpha1NodeSynchronizationStatus synchronizationStatus = default(IoArgoprojWorkflowV1alpha1NodeSynchronizationStatus), string templateName = default(string), IoArgoprojWorkflowV1alpha1TemplateRef templateRef = default(IoArgoprojWorkflowV1alpha1TemplateRef), string templateScope = default(string), string type = default(string))
+        public IoArgoprojWorkflowV1alpha1NodeStatus(string boundaryID = default(string), List<string> children = default(List<string>), bool daemoned = default(bool), string displayName = default(string), int estimatedDuration = default(int), DateTime? finishedAt = default(DateTime?), string hostNodeName = default(string), string id = default(string), IoArgoprojWorkflowV1alpha1Inputs inputs = default(IoArgoprojWorkflowV1alpha1Inputs), IoArgoprojWorkflowV1alpha1MemoizationStatus memoizationStatus = default(IoArgoprojWorkflowV1alpha1MemoizationStatus), string message = default(string), string name = default(string), IoArgoprojWorkflowV1alpha1NodeFlag nodeFlag = default(IoArgoprojWorkflowV1alpha1NodeFlag), List<string> outboundNodes = default(List<string>), IoArgoprojWorkflowV1alpha1Outputs outputs = default(IoArgoprojWorkflowV1alpha1Outputs), string phase = default(string), string podIP = default(string), string progress = default(string), Dictionary<string, long> resourcesDuration = default(Dictionary<string, long>), DateTime? startedAt = default(DateTime?), IoArgoprojWorkflowV1alpha1NodeSynchronizationStatus synchronizationStatus = default(IoArgoprojWorkflowV1alpha1NodeSynchronizationStatus), string templateName = default(string), IoArgoprojWorkflowV1alpha1TemplateRef templateRef = default(IoArgoprojWorkflowV1alpha1TemplateRef), string templateScope = default(string), string type = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -148,7 +148,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "finishedAt", EmitDefaultValue = false)]
-        public DateTime FinishedAt { get; set; }
+        public DateTime? FinishedAt { get; set; }
 
         /// <summary>
         /// HostNodeName name of the Kubernetes node on which the Pod is running, if applicable
@@ -242,7 +242,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "startedAt", EmitDefaultValue = false)]
-        public DateTime StartedAt { get; set; }
+        public DateTime? StartedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets SynchronizationStatus

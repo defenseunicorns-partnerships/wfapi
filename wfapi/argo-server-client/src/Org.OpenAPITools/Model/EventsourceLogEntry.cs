@@ -41,7 +41,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="msg">msg.</param>
         /// <param name="varNamespace">varNamespace.</param>
         /// <param name="time">Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers..</param>
-        public EventsourceLogEntry(string eventName = default(string), string eventSourceName = default(string), string eventSourceType = default(string), string level = default(string), string msg = default(string), string varNamespace = default(string), DateTime time = default(DateTime))
+        public EventsourceLogEntry(string eventName = default(string), string eventSourceName = default(string), string eventSourceType = default(string), string level = default(string), string msg = default(string), string varNamespace = default(string), DateTime? time = default(DateTime?))
         {
             this.EventName = eventName;
             this.EventSourceName = eventSourceName;
@@ -93,7 +93,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "time", EmitDefaultValue = false)]
-        public DateTime Time { get; set; }
+        public DateTime? Time { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -76,12 +76,12 @@ namespace Org.OpenAPITools.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
             //string name = null;
-            //string deleteOptionsGracePeriodSeconds = null;
-            //string deleteOptionsPreconditionsUid = null;
-            //string deleteOptionsPreconditionsResourceVersion = null;
+            //string? deleteOptionsGracePeriodSeconds = null;
+            //string? deleteOptionsPreconditionsUid = null;
+            //string? deleteOptionsPreconditionsResourceVersion = null;
             //bool? deleteOptionsOrphanDependents = null;
-            //string deleteOptionsPropagationPolicy = null;
-            //List<string> deleteOptionsDryRun = null;
+            //string? deleteOptionsPropagationPolicy = null;
+            //List<string>? deleteOptionsDryRun = null;
             //var response = instance.SensorServiceDeleteSensor(varNamespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun);
             //Assert.IsType<Object>(response);
         }
@@ -95,7 +95,7 @@ namespace Org.OpenAPITools.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
             //string name = null;
-            //string getOptionsResourceVersion = null;
+            //string? getOptionsResourceVersion = null;
             //var response = instance.SensorServiceGetSensor(varNamespace, name, getOptionsResourceVersion);
             //Assert.IsType<IoArgoprojEventsV1alpha1Sensor>(response);
         }
@@ -108,15 +108,15 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
-            //string listOptionsLabelSelector = null;
-            //string listOptionsFieldSelector = null;
+            //string? listOptionsLabelSelector = null;
+            //string? listOptionsFieldSelector = null;
             //bool? listOptionsWatch = null;
             //bool? listOptionsAllowWatchBookmarks = null;
-            //string listOptionsResourceVersion = null;
-            //string listOptionsResourceVersionMatch = null;
-            //string listOptionsTimeoutSeconds = null;
-            //string listOptionsLimit = null;
-            //string listOptionsContinue = null;
+            //string? listOptionsResourceVersion = null;
+            //string? listOptionsResourceVersionMatch = null;
+            //string? listOptionsTimeoutSeconds = null;
+            //string? listOptionsLimit = null;
+            //string? listOptionsContinue = null;
             //var response = instance.SensorServiceListSensors(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue);
             //Assert.IsType<IoArgoprojEventsV1alpha1SensorList>(response);
         }
@@ -129,18 +129,18 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
-            //string name = null;
-            //string triggerName = null;
-            //string grep = null;
-            //string podLogOptionsContainer = null;
+            //string? name = null;
+            //string? triggerName = null;
+            //string? grep = null;
+            //string? podLogOptionsContainer = null;
             //bool? podLogOptionsFollow = null;
             //bool? podLogOptionsPrevious = null;
-            //string podLogOptionsSinceSeconds = null;
-            //string podLogOptionsSinceTimeSeconds = null;
+            //string? podLogOptionsSinceSeconds = null;
+            //string? podLogOptionsSinceTimeSeconds = null;
             //int? podLogOptionsSinceTimeNanos = null;
             //bool? podLogOptionsTimestamps = null;
-            //string podLogOptionsTailLines = null;
-            //string podLogOptionsLimitBytes = null;
+            //string? podLogOptionsTailLines = null;
+            //string? podLogOptionsLimitBytes = null;
             //bool? podLogOptionsInsecureSkipTLSVerifyBackend = null;
             //var response = instance.SensorServiceSensorsLogs(varNamespace, name, triggerName, grep, podLogOptionsContainer, podLogOptionsFollow, podLogOptionsPrevious, podLogOptionsSinceSeconds, podLogOptionsSinceTimeSeconds, podLogOptionsSinceTimeNanos, podLogOptionsTimestamps, podLogOptionsTailLines, podLogOptionsLimitBytes, podLogOptionsInsecureSkipTLSVerifyBackend);
             //Assert.IsType<StreamResultOfSensorLogEntry>(response);
@@ -168,15 +168,15 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
-            //string listOptionsLabelSelector = null;
-            //string listOptionsFieldSelector = null;
+            //string? listOptionsLabelSelector = null;
+            //string? listOptionsFieldSelector = null;
             //bool? listOptionsWatch = null;
             //bool? listOptionsAllowWatchBookmarks = null;
-            //string listOptionsResourceVersion = null;
-            //string listOptionsResourceVersionMatch = null;
-            //string listOptionsTimeoutSeconds = null;
-            //string listOptionsLimit = null;
-            //string listOptionsContinue = null;
+            //string? listOptionsResourceVersion = null;
+            //string? listOptionsResourceVersionMatch = null;
+            //string? listOptionsTimeoutSeconds = null;
+            //string? listOptionsLimit = null;
+            //string? listOptionsContinue = null;
             //var response = instance.SensorServiceWatchSensors(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue);
             //Assert.IsType<StreamResultOfSensorSensorWatchEvent>(response);
         }

@@ -18,6 +18,8 @@ wfapi:
     Auth__Jwt__Audience: wfapi
     Auth__Jwt__RequireHttpsMetadata: "true"
     Auth__Jwt__ValidateIssuer: "true"
+    Argo__ApiUrl: http://argo-workflows-server:2746
+    Argo__Namespace: "{{ .Release.Namespace }}"
     Swagger__Enable: "true"
 
   serviceAccount:

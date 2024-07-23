@@ -42,7 +42,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="sensorName">sensorName.</param>
         /// <param name="time">Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers..</param>
         /// <param name="triggerName">triggerName.</param>
-        public SensorLogEntry(string dependencyName = default(string), string eventContext = default(string), string level = default(string), string msg = default(string), string varNamespace = default(string), string sensorName = default(string), DateTime time = default(DateTime), string triggerName = default(string))
+        public SensorLogEntry(string dependencyName = default(string), string eventContext = default(string), string level = default(string), string msg = default(string), string varNamespace = default(string), string sensorName = default(string), DateTime? time = default(DateTime?), string triggerName = default(string))
         {
             this.DependencyName = dependencyName;
             this.EventContext = eventContext;
@@ -95,7 +95,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "time", EmitDefaultValue = false)]
-        public DateTime Time { get; set; }
+        public DateTime? Time { get; set; }
 
         /// <summary>
         /// Gets or Sets TriggerName

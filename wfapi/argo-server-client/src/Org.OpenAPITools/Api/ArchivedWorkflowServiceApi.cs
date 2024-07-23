@@ -34,7 +34,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Object</returns>
-        Object ArchivedWorkflowServiceDeleteArchivedWorkflow(string uid, string varNamespace = default(string), int operationIndex = 0);
+        Object ArchivedWorkflowServiceDeleteArchivedWorkflow(string uid, string? varNamespace = default(string?), int operationIndex = 0);
 
         /// <summary>
         ///
@@ -47,7 +47,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> ArchivedWorkflowServiceDeleteArchivedWorkflowWithHttpInfo(string uid, string varNamespace = default(string), int operationIndex = 0);
+        ApiResponse<Object> ArchivedWorkflowServiceDeleteArchivedWorkflowWithHttpInfo(string uid, string? varNamespace = default(string?), int operationIndex = 0);
         /// <summary>
         ///
         /// </summary>
@@ -57,7 +57,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1Workflow</returns>
-        IoArgoprojWorkflowV1alpha1Workflow ArchivedWorkflowServiceGetArchivedWorkflow(string uid, string varNamespace = default(string), string name = default(string), int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1Workflow ArchivedWorkflowServiceGetArchivedWorkflow(string uid, string? varNamespace = default(string?), string? name = default(string?), int operationIndex = 0);
 
         /// <summary>
         ///
@@ -71,7 +71,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1Workflow</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1Workflow> ArchivedWorkflowServiceGetArchivedWorkflowWithHttpInfo(string uid, string varNamespace = default(string), string name = default(string), int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1Workflow> ArchivedWorkflowServiceGetArchivedWorkflowWithHttpInfo(string uid, string? varNamespace = default(string?), string? name = default(string?), int operationIndex = 0);
         /// <summary>
         ///
         /// </summary>
@@ -79,7 +79,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1LabelKeys</returns>
-        IoArgoprojWorkflowV1alpha1LabelKeys ArchivedWorkflowServiceListArchivedWorkflowLabelKeys(string varNamespace = default(string), int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1LabelKeys ArchivedWorkflowServiceListArchivedWorkflowLabelKeys(string? varNamespace = default(string?), int operationIndex = 0);
 
         /// <summary>
         ///
@@ -91,7 +91,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1LabelKeys</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1LabelKeys> ArchivedWorkflowServiceListArchivedWorkflowLabelKeysWithHttpInfo(string varNamespace = default(string), int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1LabelKeys> ArchivedWorkflowServiceListArchivedWorkflowLabelKeysWithHttpInfo(string? varNamespace = default(string?), int operationIndex = 0);
         /// <summary>
         ///
         /// </summary>
@@ -108,7 +108,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1LabelValues</returns>
-        IoArgoprojWorkflowV1alpha1LabelValues ArchivedWorkflowServiceListArchivedWorkflowLabelValues(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string varNamespace = default(string), int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1LabelValues ArchivedWorkflowServiceListArchivedWorkflowLabelValues(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? varNamespace = default(string?), int operationIndex = 0);
 
         /// <summary>
         ///
@@ -129,7 +129,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1LabelValues</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1LabelValues> ArchivedWorkflowServiceListArchivedWorkflowLabelValuesWithHttpInfo(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string varNamespace = default(string), int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1LabelValues> ArchivedWorkflowServiceListArchivedWorkflowLabelValuesWithHttpInfo(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? varNamespace = default(string?), int operationIndex = 0);
         /// <summary>
         ///
         /// </summary>
@@ -147,7 +147,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1WorkflowList</returns>
-        IoArgoprojWorkflowV1alpha1WorkflowList ArchivedWorkflowServiceListArchivedWorkflows(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string namePrefix = default(string), string varNamespace = default(string), int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1WorkflowList ArchivedWorkflowServiceListArchivedWorkflows(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? namePrefix = default(string?), string? varNamespace = default(string?), int operationIndex = 0);
 
         /// <summary>
         ///
@@ -169,7 +169,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1WorkflowList</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1WorkflowList> ArchivedWorkflowServiceListArchivedWorkflowsWithHttpInfo(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string namePrefix = default(string), string varNamespace = default(string), int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1WorkflowList> ArchivedWorkflowServiceListArchivedWorkflowsWithHttpInfo(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? namePrefix = default(string?), string? varNamespace = default(string?), int operationIndex = 0);
         /// <summary>
         ///
         /// </summary>
@@ -235,7 +235,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> ArchivedWorkflowServiceDeleteArchivedWorkflowAsync(string uid, string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Object> ArchivedWorkflowServiceDeleteArchivedWorkflowAsync(string uid, string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -249,7 +249,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ArchivedWorkflowServiceDeleteArchivedWorkflowWithHttpInfoAsync(string uid, string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> ArchivedWorkflowServiceDeleteArchivedWorkflowWithHttpInfoAsync(string uid, string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -263,7 +263,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1Workflow</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1Workflow> ArchivedWorkflowServiceGetArchivedWorkflowAsync(string uid, string varNamespace = default(string), string name = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1Workflow> ArchivedWorkflowServiceGetArchivedWorkflowAsync(string uid, string? varNamespace = default(string?), string? name = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -278,7 +278,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1Workflow)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1Workflow>> ArchivedWorkflowServiceGetArchivedWorkflowWithHttpInfoAsync(string uid, string varNamespace = default(string), string name = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1Workflow>> ArchivedWorkflowServiceGetArchivedWorkflowWithHttpInfoAsync(string uid, string? varNamespace = default(string?), string? name = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -290,7 +290,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1LabelKeys</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1LabelKeys> ArchivedWorkflowServiceListArchivedWorkflowLabelKeysAsync(string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1LabelKeys> ArchivedWorkflowServiceListArchivedWorkflowLabelKeysAsync(string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -303,7 +303,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1LabelKeys)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1LabelKeys>> ArchivedWorkflowServiceListArchivedWorkflowLabelKeysWithHttpInfoAsync(string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1LabelKeys>> ArchivedWorkflowServiceListArchivedWorkflowLabelKeysWithHttpInfoAsync(string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -324,7 +324,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1LabelValues</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1LabelValues> ArchivedWorkflowServiceListArchivedWorkflowLabelValuesAsync(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1LabelValues> ArchivedWorkflowServiceListArchivedWorkflowLabelValuesAsync(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -346,7 +346,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1LabelValues)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1LabelValues>> ArchivedWorkflowServiceListArchivedWorkflowLabelValuesWithHttpInfoAsync(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1LabelValues>> ArchivedWorkflowServiceListArchivedWorkflowLabelValuesWithHttpInfoAsync(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -368,7 +368,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1WorkflowList</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1WorkflowList> ArchivedWorkflowServiceListArchivedWorkflowsAsync(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string namePrefix = default(string), string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1WorkflowList> ArchivedWorkflowServiceListArchivedWorkflowsAsync(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? namePrefix = default(string?), string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -391,7 +391,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1WorkflowList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1WorkflowList>> ArchivedWorkflowServiceListArchivedWorkflowsWithHttpInfoAsync(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string namePrefix = default(string), string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1WorkflowList>> ArchivedWorkflowServiceListArchivedWorkflowsWithHttpInfoAsync(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? namePrefix = default(string?), string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -574,7 +574,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Object</returns>
-        public Object ArchivedWorkflowServiceDeleteArchivedWorkflow(string uid, string varNamespace = default(string), int operationIndex = 0)
+        public Object ArchivedWorkflowServiceDeleteArchivedWorkflow(string uid, string? varNamespace = default(string?), int operationIndex = 0)
         {
             Org.OpenAPITools.Client.ApiResponse<Object> localVarResponse = ArchivedWorkflowServiceDeleteArchivedWorkflowWithHttpInfo(uid, varNamespace);
             return localVarResponse.Data;
@@ -588,7 +588,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object</returns>
-        public Org.OpenAPITools.Client.ApiResponse<Object> ArchivedWorkflowServiceDeleteArchivedWorkflowWithHttpInfo(string uid, string varNamespace = default(string), int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<Object> ArchivedWorkflowServiceDeleteArchivedWorkflowWithHttpInfo(string uid, string? varNamespace = default(string?), int operationIndex = 0)
         {
             // verify the required parameter 'uid' is set
             if (uid == null)
@@ -656,7 +656,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> ArchivedWorkflowServiceDeleteArchivedWorkflowAsync(string uid, string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Object> ArchivedWorkflowServiceDeleteArchivedWorkflowAsync(string uid, string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Org.OpenAPITools.Client.ApiResponse<Object> localVarResponse = await ArchivedWorkflowServiceDeleteArchivedWorkflowWithHttpInfoAsync(uid, varNamespace, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -671,7 +671,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<Object>> ArchivedWorkflowServiceDeleteArchivedWorkflowWithHttpInfoAsync(string uid, string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<Object>> ArchivedWorkflowServiceDeleteArchivedWorkflowWithHttpInfoAsync(string uid, string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'uid' is set
             if (uid == null)
@@ -741,7 +741,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1Workflow</returns>
-        public IoArgoprojWorkflowV1alpha1Workflow ArchivedWorkflowServiceGetArchivedWorkflow(string uid, string varNamespace = default(string), string name = default(string), int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1Workflow ArchivedWorkflowServiceGetArchivedWorkflow(string uid, string? varNamespace = default(string?), string? name = default(string?), int operationIndex = 0)
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Workflow> localVarResponse = ArchivedWorkflowServiceGetArchivedWorkflowWithHttpInfo(uid, varNamespace, name);
             return localVarResponse.Data;
@@ -756,7 +756,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1Workflow</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Workflow> ArchivedWorkflowServiceGetArchivedWorkflowWithHttpInfo(string uid, string varNamespace = default(string), string name = default(string), int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Workflow> ArchivedWorkflowServiceGetArchivedWorkflowWithHttpInfo(string uid, string? varNamespace = default(string?), string? name = default(string?), int operationIndex = 0)
         {
             // verify the required parameter 'uid' is set
             if (uid == null)
@@ -829,7 +829,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1Workflow</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1Workflow> ArchivedWorkflowServiceGetArchivedWorkflowAsync(string uid, string varNamespace = default(string), string name = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1Workflow> ArchivedWorkflowServiceGetArchivedWorkflowAsync(string uid, string? varNamespace = default(string?), string? name = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Workflow> localVarResponse = await ArchivedWorkflowServiceGetArchivedWorkflowWithHttpInfoAsync(uid, varNamespace, name, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -845,7 +845,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1Workflow)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Workflow>> ArchivedWorkflowServiceGetArchivedWorkflowWithHttpInfoAsync(string uid, string varNamespace = default(string), string name = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Workflow>> ArchivedWorkflowServiceGetArchivedWorkflowWithHttpInfoAsync(string uid, string? varNamespace = default(string?), string? name = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'uid' is set
             if (uid == null)
@@ -917,7 +917,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1LabelKeys</returns>
-        public IoArgoprojWorkflowV1alpha1LabelKeys ArchivedWorkflowServiceListArchivedWorkflowLabelKeys(string varNamespace = default(string), int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1LabelKeys ArchivedWorkflowServiceListArchivedWorkflowLabelKeys(string? varNamespace = default(string?), int operationIndex = 0)
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1LabelKeys> localVarResponse = ArchivedWorkflowServiceListArchivedWorkflowLabelKeysWithHttpInfo(varNamespace);
             return localVarResponse.Data;
@@ -930,7 +930,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1LabelKeys</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1LabelKeys> ArchivedWorkflowServiceListArchivedWorkflowLabelKeysWithHttpInfo(string varNamespace = default(string), int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1LabelKeys> ArchivedWorkflowServiceListArchivedWorkflowLabelKeysWithHttpInfo(string? varNamespace = default(string?), int operationIndex = 0)
         {
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -990,7 +990,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1LabelKeys</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1LabelKeys> ArchivedWorkflowServiceListArchivedWorkflowLabelKeysAsync(string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1LabelKeys> ArchivedWorkflowServiceListArchivedWorkflowLabelKeysAsync(string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1LabelKeys> localVarResponse = await ArchivedWorkflowServiceListArchivedWorkflowLabelKeysWithHttpInfoAsync(varNamespace, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1004,7 +1004,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1LabelKeys)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1LabelKeys>> ArchivedWorkflowServiceListArchivedWorkflowLabelKeysWithHttpInfoAsync(string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1LabelKeys>> ArchivedWorkflowServiceListArchivedWorkflowLabelKeysWithHttpInfoAsync(string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -1074,7 +1074,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1LabelValues</returns>
-        public IoArgoprojWorkflowV1alpha1LabelValues ArchivedWorkflowServiceListArchivedWorkflowLabelValues(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string varNamespace = default(string), int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1LabelValues ArchivedWorkflowServiceListArchivedWorkflowLabelValues(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? varNamespace = default(string?), int operationIndex = 0)
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1LabelValues> localVarResponse = ArchivedWorkflowServiceListArchivedWorkflowLabelValuesWithHttpInfo(listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, varNamespace);
             return localVarResponse.Data;
@@ -1096,7 +1096,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1LabelValues</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1LabelValues> ArchivedWorkflowServiceListArchivedWorkflowLabelValuesWithHttpInfo(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string varNamespace = default(string), int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1LabelValues> ArchivedWorkflowServiceListArchivedWorkflowLabelValuesWithHttpInfo(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? varNamespace = default(string?), int operationIndex = 0)
         {
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1201,7 +1201,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1LabelValues</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1LabelValues> ArchivedWorkflowServiceListArchivedWorkflowLabelValuesAsync(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1LabelValues> ArchivedWorkflowServiceListArchivedWorkflowLabelValuesAsync(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1LabelValues> localVarResponse = await ArchivedWorkflowServiceListArchivedWorkflowLabelValuesWithHttpInfoAsync(listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, varNamespace, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1224,7 +1224,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1LabelValues)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1LabelValues>> ArchivedWorkflowServiceListArchivedWorkflowLabelValuesWithHttpInfoAsync(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1LabelValues>> ArchivedWorkflowServiceListArchivedWorkflowLabelValuesWithHttpInfoAsync(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -1331,7 +1331,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1WorkflowList</returns>
-        public IoArgoprojWorkflowV1alpha1WorkflowList ArchivedWorkflowServiceListArchivedWorkflows(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string namePrefix = default(string), string varNamespace = default(string), int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1WorkflowList ArchivedWorkflowServiceListArchivedWorkflows(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? namePrefix = default(string?), string? varNamespace = default(string?), int operationIndex = 0)
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1WorkflowList> localVarResponse = ArchivedWorkflowServiceListArchivedWorkflowsWithHttpInfo(listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, namePrefix, varNamespace);
             return localVarResponse.Data;
@@ -1354,7 +1354,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1WorkflowList</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1WorkflowList> ArchivedWorkflowServiceListArchivedWorkflowsWithHttpInfo(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string namePrefix = default(string), string varNamespace = default(string), int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1WorkflowList> ArchivedWorkflowServiceListArchivedWorkflowsWithHttpInfo(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? namePrefix = default(string?), string? varNamespace = default(string?), int operationIndex = 0)
         {
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1464,7 +1464,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1WorkflowList</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1WorkflowList> ArchivedWorkflowServiceListArchivedWorkflowsAsync(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string namePrefix = default(string), string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1WorkflowList> ArchivedWorkflowServiceListArchivedWorkflowsAsync(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? namePrefix = default(string?), string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1WorkflowList> localVarResponse = await ArchivedWorkflowServiceListArchivedWorkflowsWithHttpInfoAsync(listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, namePrefix, varNamespace, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1488,7 +1488,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1WorkflowList)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1WorkflowList>> ArchivedWorkflowServiceListArchivedWorkflowsWithHttpInfoAsync(string listOptionsLabelSelector = default(string), string listOptionsFieldSelector = default(string), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string listOptionsResourceVersion = default(string), string listOptionsResourceVersionMatch = default(string), string listOptionsTimeoutSeconds = default(string), string listOptionsLimit = default(string), string listOptionsContinue = default(string), string namePrefix = default(string), string varNamespace = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1WorkflowList>> ArchivedWorkflowServiceListArchivedWorkflowsWithHttpInfoAsync(string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), string? namePrefix = default(string?), string? varNamespace = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();

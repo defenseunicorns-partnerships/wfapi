@@ -93,7 +93,7 @@ namespace Example
 
             var apiInstance = new ArchivedWorkflowServiceApi(config);
             var uid = "uid_example";  // string |
-            var varNamespace = "varNamespace_example";  // string |  (optional)
+            var varNamespace = "varNamespace_example";  // string? |  (optional)
 
             try
             {

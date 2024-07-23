@@ -62,7 +62,7 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string uid = null;
-            //string varNamespace = null;
+            //string? varNamespace = null;
             //var response = instance.ArchivedWorkflowServiceDeleteArchivedWorkflow(uid, varNamespace);
             //Assert.IsType<Object>(response);
         }
@@ -75,8 +75,8 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string uid = null;
-            //string varNamespace = null;
-            //string name = null;
+            //string? varNamespace = null;
+            //string? name = null;
             //var response = instance.ArchivedWorkflowServiceGetArchivedWorkflow(uid, varNamespace, name);
             //Assert.IsType<IoArgoprojWorkflowV1alpha1Workflow>(response);
         }
@@ -88,7 +88,7 @@ namespace Org.OpenAPITools.Test.Api
         public void ArchivedWorkflowServiceListArchivedWorkflowLabelKeysTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string varNamespace = null;
+            //string? varNamespace = null;
             //var response = instance.ArchivedWorkflowServiceListArchivedWorkflowLabelKeys(varNamespace);
             //Assert.IsType<IoArgoprojWorkflowV1alpha1LabelKeys>(response);
         }
@@ -100,16 +100,16 @@ namespace Org.OpenAPITools.Test.Api
         public void ArchivedWorkflowServiceListArchivedWorkflowLabelValuesTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string listOptionsLabelSelector = null;
-            //string listOptionsFieldSelector = null;
+            //string? listOptionsLabelSelector = null;
+            //string? listOptionsFieldSelector = null;
             //bool? listOptionsWatch = null;
             //bool? listOptionsAllowWatchBookmarks = null;
-            //string listOptionsResourceVersion = null;
-            //string listOptionsResourceVersionMatch = null;
-            //string listOptionsTimeoutSeconds = null;
-            //string listOptionsLimit = null;
-            //string listOptionsContinue = null;
-            //string varNamespace = null;
+            //string? listOptionsResourceVersion = null;
+            //string? listOptionsResourceVersionMatch = null;
+            //string? listOptionsTimeoutSeconds = null;
+            //string? listOptionsLimit = null;
+            //string? listOptionsContinue = null;
+            //string? varNamespace = null;
             //var response = instance.ArchivedWorkflowServiceListArchivedWorkflowLabelValues(listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, varNamespace);
             //Assert.IsType<IoArgoprojWorkflowV1alpha1LabelValues>(response);
         }
@@ -121,17 +121,17 @@ namespace Org.OpenAPITools.Test.Api
         public void ArchivedWorkflowServiceListArchivedWorkflowsTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string listOptionsLabelSelector = null;
-            //string listOptionsFieldSelector = null;
+            //string? listOptionsLabelSelector = null;
+            //string? listOptionsFieldSelector = null;
             //bool? listOptionsWatch = null;
             //bool? listOptionsAllowWatchBookmarks = null;
-            //string listOptionsResourceVersion = null;
-            //string listOptionsResourceVersionMatch = null;
-            //string listOptionsTimeoutSeconds = null;
-            //string listOptionsLimit = null;
-            //string listOptionsContinue = null;
-            //string namePrefix = null;
-            //string varNamespace = null;
+            //string? listOptionsResourceVersion = null;
+            //string? listOptionsResourceVersionMatch = null;
+            //string? listOptionsTimeoutSeconds = null;
+            //string? listOptionsLimit = null;
+            //string? listOptionsContinue = null;
+            //string? namePrefix = null;
+            //string? varNamespace = null;
             //var response = instance.ArchivedWorkflowServiceListArchivedWorkflows(listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, namePrefix, varNamespace);
             //Assert.IsType<IoArgoprojWorkflowV1alpha1WorkflowList>(response);
         }

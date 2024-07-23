@@ -53,7 +53,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="storedWorkflowTemplateSpec">storedWorkflowTemplateSpec.</param>
         /// <param name="synchronization">synchronization.</param>
         /// <param name="taskResultsCompletionStatus">TaskResultsCompletionStatus tracks task result completion status (mapped by node ID). Used to prevent premature archiving and garbage collection..</param>
-        public IoArgoprojWorkflowV1alpha1WorkflowStatus(IoArgoprojWorkflowV1alpha1ArtGCStatus artifactGCStatus = default(IoArgoprojWorkflowV1alpha1ArtGCStatus), IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus artifactRepositoryRef = default(IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus), string compressedNodes = default(string), List<IoArgoprojWorkflowV1alpha1Condition> conditions = default(List<IoArgoprojWorkflowV1alpha1Condition>), int estimatedDuration = default(int), DateTime finishedAt = default(DateTime), string message = default(string), Dictionary<string, IoArgoprojWorkflowV1alpha1NodeStatus> nodes = default(Dictionary<string, IoArgoprojWorkflowV1alpha1NodeStatus>), string offloadNodeStatusVersion = default(string), IoArgoprojWorkflowV1alpha1Outputs outputs = default(IoArgoprojWorkflowV1alpha1Outputs), List<IoK8sApiCoreV1Volume> persistentVolumeClaims = default(List<IoK8sApiCoreV1Volume>), string phase = default(string), string progress = default(string), Dictionary<string, long> resourcesDuration = default(Dictionary<string, long>), DateTime startedAt = default(DateTime), Dictionary<string, IoArgoprojWorkflowV1alpha1Template> storedTemplates = default(Dictionary<string, IoArgoprojWorkflowV1alpha1Template>), IoArgoprojWorkflowV1alpha1WorkflowSpec storedWorkflowTemplateSpec = default(IoArgoprojWorkflowV1alpha1WorkflowSpec), IoArgoprojWorkflowV1alpha1SynchronizationStatus synchronization = default(IoArgoprojWorkflowV1alpha1SynchronizationStatus), Dictionary<string, bool> taskResultsCompletionStatus = default(Dictionary<string, bool>))
+        public IoArgoprojWorkflowV1alpha1WorkflowStatus(IoArgoprojWorkflowV1alpha1ArtGCStatus artifactGCStatus = default(IoArgoprojWorkflowV1alpha1ArtGCStatus), IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus artifactRepositoryRef = default(IoArgoprojWorkflowV1alpha1ArtifactRepositoryRefStatus), string compressedNodes = default(string), List<IoArgoprojWorkflowV1alpha1Condition> conditions = default(List<IoArgoprojWorkflowV1alpha1Condition>), int estimatedDuration = default(int), DateTime? finishedAt = default(DateTime?), string message = default(string), Dictionary<string, IoArgoprojWorkflowV1alpha1NodeStatus> nodes = default(Dictionary<string, IoArgoprojWorkflowV1alpha1NodeStatus>), string offloadNodeStatusVersion = default(string), IoArgoprojWorkflowV1alpha1Outputs outputs = default(IoArgoprojWorkflowV1alpha1Outputs), List<IoK8sApiCoreV1Volume> persistentVolumeClaims = default(List<IoK8sApiCoreV1Volume>), string phase = default(string), string progress = default(string), Dictionary<string, long> resourcesDuration = default(Dictionary<string, long>), DateTime? startedAt = default(DateTime?), Dictionary<string, IoArgoprojWorkflowV1alpha1Template> storedTemplates = default(Dictionary<string, IoArgoprojWorkflowV1alpha1Template>), IoArgoprojWorkflowV1alpha1WorkflowSpec storedWorkflowTemplateSpec = default(IoArgoprojWorkflowV1alpha1WorkflowSpec), IoArgoprojWorkflowV1alpha1SynchronizationStatus synchronization = default(IoArgoprojWorkflowV1alpha1SynchronizationStatus), Dictionary<string, bool> taskResultsCompletionStatus = default(Dictionary<string, bool>))
         {
             this.ArtifactGCStatus = artifactGCStatus;
             this.ArtifactRepositoryRef = artifactRepositoryRef;
@@ -114,7 +114,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "finishedAt", EmitDefaultValue = false)]
-        public DateTime FinishedAt { get; set; }
+        public DateTime? FinishedAt { get; set; }
 
         /// <summary>
         /// A human readable message indicating details about why the workflow is in this condition.
@@ -176,7 +176,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "startedAt", EmitDefaultValue = false)]
-        public DateTime StartedAt { get; set; }
+        public DateTime? StartedAt { get; set; }
 
         /// <summary>
         /// StoredTemplates is a mapping between a template ref and the node&#39;s status.

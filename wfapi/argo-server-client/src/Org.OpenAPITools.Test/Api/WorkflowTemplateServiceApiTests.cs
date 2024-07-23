@@ -76,12 +76,12 @@ namespace Org.OpenAPITools.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
             //string name = null;
-            //string deleteOptionsGracePeriodSeconds = null;
-            //string deleteOptionsPreconditionsUid = null;
-            //string deleteOptionsPreconditionsResourceVersion = null;
+            //string? deleteOptionsGracePeriodSeconds = null;
+            //string? deleteOptionsPreconditionsUid = null;
+            //string? deleteOptionsPreconditionsResourceVersion = null;
             //bool? deleteOptionsOrphanDependents = null;
-            //string deleteOptionsPropagationPolicy = null;
-            //List<string> deleteOptionsDryRun = null;
+            //string? deleteOptionsPropagationPolicy = null;
+            //List<string>? deleteOptionsDryRun = null;
             //var response = instance.WorkflowTemplateServiceDeleteWorkflowTemplate(varNamespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun);
             //Assert.IsType<Object>(response);
         }
@@ -95,7 +95,7 @@ namespace Org.OpenAPITools.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
             //string name = null;
-            //string getOptionsResourceVersion = null;
+            //string? getOptionsResourceVersion = null;
             //var response = instance.WorkflowTemplateServiceGetWorkflowTemplate(varNamespace, name, getOptionsResourceVersion);
             //Assert.IsType<IoArgoprojWorkflowV1alpha1WorkflowTemplate>(response);
         }
@@ -121,16 +121,16 @@ namespace Org.OpenAPITools.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string varNamespace = null;
-            //string namePattern = null;
-            //string listOptionsLabelSelector = null;
-            //string listOptionsFieldSelector = null;
+            //string? namePattern = null;
+            //string? listOptionsLabelSelector = null;
+            //string? listOptionsFieldSelector = null;
             //bool? listOptionsWatch = null;
             //bool? listOptionsAllowWatchBookmarks = null;
-            //string listOptionsResourceVersion = null;
-            //string listOptionsResourceVersionMatch = null;
-            //string listOptionsTimeoutSeconds = null;
-            //string listOptionsLimit = null;
-            //string listOptionsContinue = null;
+            //string? listOptionsResourceVersion = null;
+            //string? listOptionsResourceVersionMatch = null;
+            //string? listOptionsTimeoutSeconds = null;
+            //string? listOptionsLimit = null;
+            //string? listOptionsContinue = null;
             //var response = instance.WorkflowTemplateServiceListWorkflowTemplates(varNamespace, namePattern, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue);
             //Assert.IsType<IoArgoprojWorkflowV1alpha1WorkflowTemplateList>(response);
         }

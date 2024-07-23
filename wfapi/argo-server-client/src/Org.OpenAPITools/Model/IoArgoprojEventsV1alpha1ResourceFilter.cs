@@ -39,7 +39,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="fields">fields.</param>
         /// <param name="labels">labels.</param>
         /// <param name="prefix">prefix.</param>
-        public IoArgoprojEventsV1alpha1ResourceFilter(bool afterStart = default(bool), DateTime createdBy = default(DateTime), List<IoArgoprojEventsV1alpha1Selector> fields = default(List<IoArgoprojEventsV1alpha1Selector>), List<IoArgoprojEventsV1alpha1Selector> labels = default(List<IoArgoprojEventsV1alpha1Selector>), string prefix = default(string))
+        public IoArgoprojEventsV1alpha1ResourceFilter(bool afterStart = default(bool), DateTime? createdBy = default(DateTime?), List<IoArgoprojEventsV1alpha1Selector> fields = default(List<IoArgoprojEventsV1alpha1Selector>), List<IoArgoprojEventsV1alpha1Selector> labels = default(List<IoArgoprojEventsV1alpha1Selector>), string prefix = default(string))
         {
             this.AfterStart = afterStart;
             this.CreatedBy = createdBy;
@@ -59,7 +59,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "createdBy", EmitDefaultValue = false)]
-        public DateTime CreatedBy { get; set; }
+        public DateTime? CreatedBy { get; set; }
 
         /// <summary>
         /// Gets or Sets Fields

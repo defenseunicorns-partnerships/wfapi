@@ -36,7 +36,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <param name="count">Number of occurrences in this series up to the last heartbeat time.</param>
         /// <param name="lastObservedTime">MicroTime is version of Time with microsecond level precision..</param>
-        public IoK8sApiCoreV1EventSeries(int count = default(int), DateTime lastObservedTime = default(DateTime))
+        public IoK8sApiCoreV1EventSeries(int count = default(int), DateTime? lastObservedTime = default(DateTime?))
         {
             this.Count = count;
             this.LastObservedTime = lastObservedTime;
@@ -54,7 +54,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>MicroTime is version of Time with microsecond level precision.</value>
         [DataMember(Name = "lastObservedTime", EmitDefaultValue = false)]
-        public DateTime LastObservedTime { get; set; }
+        public DateTime? LastObservedTime { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

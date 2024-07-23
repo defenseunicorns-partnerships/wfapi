@@ -5,8 +5,8 @@ PersistentVolumeClaimCondition contails details about state of pvc
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LastProbeTime** | **DateTime** | Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. | [optional]
-**LastTransitionTime** | **DateTime** | Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. | [optional]
+**LastProbeTime** | **DateTime?** | Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. | [optional]
+**LastTransitionTime** | **DateTime?** | Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. | [optional]
 **Message** | **string** | Human-readable message indicating details about last transition. | [optional]
 **Reason** | **string** | Unique, this should be a short, machine understandable string that gives the reason for condition&#39;s last transition. If it reports \&quot;ResizeStarted\&quot; that means the underlying persistent volume is being resized. | [optional]
 **Status** | **string** |  |

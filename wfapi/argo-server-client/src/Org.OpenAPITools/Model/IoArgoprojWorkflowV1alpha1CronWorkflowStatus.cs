@@ -45,7 +45,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="lastScheduledTime">Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers. (required).</param>
         /// <param name="phase">v3.6 and after: Phase is an enum of Active or Stopped. It changes to Stopped when stopStrategy.condition is true (required).</param>
         /// <param name="succeeded">v3.6 and after: Succeeded counts how many times child workflows succeeded (required).</param>
-        public IoArgoprojWorkflowV1alpha1CronWorkflowStatus(List<IoK8sApiCoreV1ObjectReference> active = default(List<IoK8sApiCoreV1ObjectReference>), List<IoArgoprojWorkflowV1alpha1Condition> conditions = default(List<IoArgoprojWorkflowV1alpha1Condition>), int failed = default(int), DateTime lastScheduledTime = default(DateTime), string phase = default(string), int succeeded = default(int))
+        public IoArgoprojWorkflowV1alpha1CronWorkflowStatus(List<IoK8sApiCoreV1ObjectReference> active = default(List<IoK8sApiCoreV1ObjectReference>), List<IoArgoprojWorkflowV1alpha1Condition> conditions = default(List<IoArgoprojWorkflowV1alpha1Condition>), int failed = default(int), DateTime? lastScheduledTime = default(DateTime?), string phase = default(string), int succeeded = default(int))
         {
             // to ensure "active" is required (not null)
             if (active == null)
@@ -60,6 +60,11 @@ namespace Org.OpenAPITools.Model
             }
             this.Conditions = conditions;
             this.Failed = failed;
+            // to ensure "lastScheduledTime" is required (not null)
+            if (lastScheduledTime == null)
+            {
+                throw new ArgumentNullException("lastScheduledTime is a required property for IoArgoprojWorkflowV1alpha1CronWorkflowStatus and cannot be null");
+            }
             this.LastScheduledTime = lastScheduledTime;
             // to ensure "phase" is required (not null)
             if (phase == null)
@@ -96,7 +101,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "lastScheduledTime", IsRequired = true, EmitDefaultValue = true)]
-        public DateTime LastScheduledTime { get; set; }
+        public DateTime? LastScheduledTime { get; set; }
 
         /// <summary>
         /// v3.6 and after: Phase is an enum of Active or Stopped. It changes to Stopped when stopStrategy.condition is true

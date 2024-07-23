@@ -39,7 +39,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="reason">reason.</param>
         /// <param name="status">status.</param>
         /// <param name="type">type.</param>
-        public IoArgoprojEventsV1alpha1Condition(DateTime lastTransitionTime = default(DateTime), string message = default(string), string reason = default(string), string status = default(string), string type = default(string))
+        public IoArgoprojEventsV1alpha1Condition(DateTime? lastTransitionTime = default(DateTime?), string message = default(string), string reason = default(string), string status = default(string), string type = default(string))
         {
             this.LastTransitionTime = lastTransitionTime;
             this.Message = message;
@@ -53,7 +53,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "lastTransitionTime", EmitDefaultValue = false)]
-        public DateTime LastTransitionTime { get; set; }
+        public DateTime? LastTransitionTime { get; set; }
 
         /// <summary>
         /// Gets or Sets Message

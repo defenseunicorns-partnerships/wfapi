@@ -41,7 +41,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="operation">Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are &#39;Apply&#39; and &#39;Update&#39;..</param>
         /// <param name="subresource">Subresource is the name of the subresource used to update that object, or empty string if the object was updated through the main resource. The value of this field is used to distinguish between managers, even if they share the same name. For example, a status update will be distinct from a regular update using the same manager name. Note that the APIVersion field is not related to the Subresource field and it always corresponds to the version of the main resource..</param>
         /// <param name="time">Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers..</param>
-        public IoK8sApimachineryPkgApisMetaV1ManagedFieldsEntry(string apiVersion = default(string), string fieldsType = default(string), Object fieldsV1 = default(Object), string manager = default(string), string operation = default(string), string subresource = default(string), DateTime time = default(DateTime))
+        public IoK8sApimachineryPkgApisMetaV1ManagedFieldsEntry(string apiVersion = default(string), string fieldsType = default(string), Object fieldsV1 = default(Object), string manager = default(string), string operation = default(string), string subresource = default(string), DateTime? time = default(DateTime?))
         {
             this.ApiVersion = apiVersion;
             this.FieldsType = fieldsType;
@@ -99,7 +99,7 @@ namespace Org.OpenAPITools.Model
         /// </summary>
         /// <value>Time is a wrapper around time.Time which supports correct marshaling to YAML and JSON.  Wrappers are provided for many of the factory methods that the time package offers.</value>
         [DataMember(Name = "time", EmitDefaultValue = false)]
-        public DateTime Time { get; set; }
+        public DateTime? Time { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

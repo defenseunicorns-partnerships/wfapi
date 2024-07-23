@@ -40,4 +40,10 @@ tasks:
     description: Use the openapi-generator-cli to generate the argo-server-client
     actions:
       - cmd: rm -rf wfapi/argo-server-client/
-      - cmd: npx @openapitools/openapi-generator-cli generate -i https://raw.githubusercontent.com/argoproj/argo-workflows/main/api/openapi-spec/swagger.json -g csharp -o $PWD/wfapi/argo-server-client/ --additional-properties=library=restsharp,netCoreProjectFile,nonPublicApi,nullableReferenceTypes,targetFramework=net8.0
+      - cmd: |
+          npx @openapitools/openapi-generator-cli generate \
+          -i https://raw.githubusercontent.com/argoproj/argo-workflows/main/api/openapi-spec/swagger.json \
+          -g csharp \
+          -o $PWD/wfapi/argo-server-client/ \
+          --additional-properties=library=restsharp,netCoreProjectFile,nonPublicApi,nullableReferenceTypes=true,targetFramework=net8.0 \
+          --type-mappings=DateTime=DateTime?
