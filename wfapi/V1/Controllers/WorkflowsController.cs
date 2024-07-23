@@ -63,7 +63,9 @@ public class WorkflowsController(ILogger<WorkflowsController> log) : ControllerB
                         }
                     }
                 ),
-                serviceAccountName: "argo-workflow"
+                executor: new IoArgoprojWorkflowV1alpha1ExecutorConfig(
+                    serviceAccountName: "argo-workflow"
+                )
             )
         );
         IoArgoprojWorkflowV1alpha1Workflow result = apiInstance.WorkflowServiceCreateWorkflow(varNamespace, body);
