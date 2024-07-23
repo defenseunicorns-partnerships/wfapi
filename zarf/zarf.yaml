@@ -38,5 +38,10 @@ components:
         version: 0.0.7 # x-release-please-version
         valuesFiles:
           - values.yaml
+    actions:
+      onDeploy:
+        onSuccess:
+          - description: Restart the deployment
+            cmd: ./zarf tools kubectl rollout restart deployment wfapi -n argo
     images:
       - ghcr.io/defenseunicorns/wfapi/containers/wfapi:0.0.7 # x-release-please-version
