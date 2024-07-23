@@ -15,6 +15,8 @@ spec:
   automountServiceAccountToken: false
   templates:
     - name: whalesay
+      archiveLocation:
+        archiveLogs: true
       container:
         envFrom:
           - secretRef:
