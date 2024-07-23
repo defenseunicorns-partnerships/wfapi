@@ -62,7 +62,8 @@ public class WorkflowsController(ILogger<WorkflowsController> log) : ControllerB
                             """["pilot-agent", "request", "POST", "quitquitquit"]"""
                         }
                     }
-                )
+                ),
+                serviceAccountName: "argo-workflow"
             )
         );
         IoArgoprojWorkflowV1alpha1Workflow result = apiInstance.WorkflowServiceCreateWorkflow(varNamespace, body);
