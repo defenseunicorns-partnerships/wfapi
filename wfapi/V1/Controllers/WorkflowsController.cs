@@ -48,6 +48,7 @@ public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsControl
             body.SubmitOptions.Parameters.Add(parameter.Name + "=" + parameter.Value);
         }
         var submitResult = argoClient.WorkflowServiceApi.WorkflowServiceSubmitWorkflow(argoClient.Namespace, body);
+        Thread.Sleep(1000);
         var getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
         log.LogInformation(JsonConvert.SerializeObject(getResult));
         var retval = new WorkflowInfo
