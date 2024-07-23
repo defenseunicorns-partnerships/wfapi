@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Annotations;
 using wfapi.V1.Models;
 using Org.OpenAPITools.Api;
@@ -70,7 +71,7 @@ public class WorkflowsController(ILogger<WorkflowsController> log) : ControllerB
             )
         );
         IoArgoprojWorkflowV1alpha1Workflow result = apiInstance.WorkflowServiceCreateWorkflow(varNamespace, body);
-        log.LogDebug(result.ToString());
+        log.LogDebug(JsonConvert.SerializeObject(result));
         var retval = new WorkflowInfo
         {
             Created = result.Metadata.CreationTimestamp,
