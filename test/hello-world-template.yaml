@@ -11,6 +11,8 @@ metadata:
 spec:
   entrypoint: whalesay
   serviceAccountName: argo-workflow
+  executor:
+    serviceAccountName: argo-workflow
   templates:
     - name: whalesay
       container:
