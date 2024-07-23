@@ -44,6 +44,6 @@ tasks:
           npx @openapitools/openapi-generator-cli generate \
           -i https://raw.githubusercontent.com/argoproj/argo-workflows/main/api/openapi-spec/swagger.json \
           -g csharp \
-          -o $PWD/wfapi/argo-server-client/ \
+          -o $PWD/argo-server-client/ \
           --additional-properties=library=restsharp,netCoreProjectFile,nonPublicApi,nullableReferenceTypes=true,targetFramework=net8.0 \
           --type-mappings=DateTime=DateTime?

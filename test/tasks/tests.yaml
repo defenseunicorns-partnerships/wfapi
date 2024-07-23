@@ -3,4 +3,13 @@ tasks:
     description: Run the full end-to-end test suite
     actions:
       - cmd: |
-          ./uds zarf tools kubectl apply -f test/hello-world-template.yaml
+          ./uds zarf tools kubectl --insecure-skip-tls-verify apply -f test/hello-world-template.yaml
+          curl -X 'POST' \
+            'https://wfapi.uds.dev/api/v1/workflows' \
+            -H 'accept: application/json' \
+            -H 'Content-Type: application/json-patch+json' \
+            -d '{
+              "templateName": "hello-world-template",
+              "generateName": "hello-world-template",
+              "parameters": []
+            }'
