@@ -42,8 +42,17 @@
               ]
             },
             "Argo__Namespace": {
+              "default": "{{.Release.Namespace}}",
               "description": "Argo namespace",
               "title": "Argo__Namespace",
+              "type": [
+                "string"
+              ]
+            },
+            "Argo__Token": {
+              "default": "",
+              "description": "Optional Argo API token. Not necessary in most cases as the app will fetch the token that is mounted to the filesystem",
+              "title": "Argo__Token",
               "type": [
                 "string"
               ]
@@ -114,7 +123,6 @@
             "Auth__Jwt__RequireHttpsMetadata",
             "Auth__Jwt__ValidateIssuer",
             "Argo__ApiUrl",
-            "Argo__Namespace",
             "Swagger__Enable"
           ],
           "title": "env",
