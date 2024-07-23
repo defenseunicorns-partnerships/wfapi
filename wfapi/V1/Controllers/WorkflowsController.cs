@@ -63,6 +63,7 @@ public class WorkflowsController(ILogger<WorkflowsController> log) : ControllerB
                         }
                     }
                 ),
+                automountServiceAccountToken: true,
                 executor: new IoArgoprojWorkflowV1alpha1ExecutorConfig(
                     serviceAccountName: "argo-workflow"
                 )
