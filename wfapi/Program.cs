@@ -137,7 +137,16 @@ try
     {
         BasePath = builder.Configuration.GetValue<string>("Argo:ApiUrl") ?? throw new InvalidOperationException()
     };
-    var token = builder.Configuration.GetValue<string>("Argo:Token") ?? File.ReadAllText("/var/run/secrets/kubernetes.io/serviceaccount/token");
+    var token = builder.Configuration.GetValue<string>("Argo:Token");
+    if (token == null)
+    {
+        token = File.ReadAllText("/var/run/secrets/kubernetes.io/serviceaccount/token");
+        Log.Information("Using service account token from file");
+    }
+    else
+    {
+        Log.Information("Using token from configuration");
+    }
     argoConfig.AddApiKey("Authorization", token);
     argoConfig.AddApiKeyPrefix("Authorization", "Bearer");
     var varNamespace = builder.Configuration.GetValue<string>("Argo:Namespace") ?? throw new InvalidOperationException();
