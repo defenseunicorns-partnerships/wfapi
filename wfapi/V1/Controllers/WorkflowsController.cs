@@ -63,10 +63,10 @@ public class WorkflowsController(ILogger<WorkflowsController> log) : ControllerB
                         }
                     }
                 ),
-                automountServiceAccountToken: false,
-                executor: new IoArgoprojWorkflowV1alpha1ExecutorConfig(
-                    serviceAccountName: "argo-workflow"
-                )
+                automountServiceAccountToken: false
+                // executor: new IoArgoprojWorkflowV1alpha1ExecutorConfig(
+                //     serviceAccountName: "argo-workflow"
+                // )
             )
         );
         IoArgoprojWorkflowV1alpha1Workflow result = apiInstance.WorkflowServiceCreateWorkflow(varNamespace, body);
