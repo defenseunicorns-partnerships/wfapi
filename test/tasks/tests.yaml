@@ -4,4 +4,4 @@ tasks:
     actions:
       - cmd: |
           ./uds zarf tools kubectl apply -f test/hello-world-template.yaml
-          dotnet test wfapi.Tests
+          dotnet test wfapi.E2ETests
