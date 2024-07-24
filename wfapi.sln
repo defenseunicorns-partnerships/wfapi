@@ -1,6 +1,13 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wfapi", "wfapi\wfapi.csproj", "{D89E5639-F703-4C43-BAD5-0FBA1E64C700}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9835D848-ED95-4C30-BD51-904974054E4C} = {9835D848-ED95-4C30-BD51-904974054E4C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Org.OpenAPITools", "argo-server-client\src\Org.OpenAPITools\Org.OpenAPITools.csproj", "{9835D848-ED95-4C30-BD51-904974054E4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Org.OpenAPITools.Test", "argo-server-client\src\Org.OpenAPITools.Test\Org.OpenAPITools.Test.csproj", "{2FBCD75C-6006-463E-B0F0-405BD5D4B5A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +19,13 @@ Global
 		{D89E5639-F703-4C43-BAD5-0FBA1E64C700}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D89E5639-F703-4C43-BAD5-0FBA1E64C700}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D89E5639-F703-4C43-BAD5-0FBA1E64C700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9835D848-ED95-4C30-BD51-904974054E4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9835D848-ED95-4C30-BD51-904974054E4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9835D848-ED95-4C30-BD51-904974054E4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9835D848-ED95-4C30-BD51-904974054E4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FBCD75C-6006-463E-B0F0-405BD5D4B5A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FBCD75C-6006-463E-B0F0-405BD5D4B5A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FBCD75C-6006-463E-B0F0-405BD5D4B5A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FBCD75C-6006-463E-B0F0-405BD5D4B5A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

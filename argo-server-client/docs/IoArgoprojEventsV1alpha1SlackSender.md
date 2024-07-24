@@ -1,0 +1,10 @@
+# Org.OpenAPITools.Model.IoArgoprojEventsV1alpha1SlackSender
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Icon** | **string** |  | [optional]
+**Username** | **string** |  | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

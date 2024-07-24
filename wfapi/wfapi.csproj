@@ -26,4 +26,8 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\argo-server-client\src\Org.OpenAPITools\Org.OpenAPITools.csproj" />
+    </ItemGroup>
+
 </Project>
