@@ -1,10 +1,10 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Annotations;
 using wfapi.V1.Models;
 using Org.OpenAPITools.Model;
+using FileInfo = wfapi.V1.Models.FileInfo;
 
 namespace wfapi.V1.Controllers;
 
