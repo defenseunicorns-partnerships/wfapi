@@ -426,6 +426,36 @@
             "object"
           ]
         },
+        "roleBinding": {
+          "additionalProperties": false,
+          "description": "Role binding settings",
+          "properties": {
+            "create": {
+              "default": true,
+              "description": "Specifies whether a role binding should be created",
+              "title": "create",
+              "type": [
+                "boolean"
+              ]
+            },
+            "roleName": {
+              "default": "server-role",
+              "description": "The name of the role to bind to the service account",
+              "title": "roleName",
+              "type": [
+                "string"
+              ]
+            }
+          },
+          "required": [
+            "create",
+            "roleName"
+          ],
+          "title": "roleBinding",
+          "type": [
+            "object"
+          ]
+        },
         "securityContext": {
           "additionalProperties": false,
           "description": "SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext. When both are set, the values in SecurityContext take precedence. Ref: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context-1",
@@ -735,6 +765,7 @@
         "fullnameOverride",
         "env",
         "serviceAccount",
+        "roleBinding",
         "podAnnotations",
         "podLabels",
         "podSecurityContext",

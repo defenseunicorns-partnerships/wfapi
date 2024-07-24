@@ -23,8 +23,14 @@ wfapi:
   serviceAccount:
     create: true
     automount: true
-    annotations: {}
+    annotations:
+      eks.amazonaws.com/role-arn: "###ZARF_VAR_IRSA_ROLE_ARN###"
     name: ""
+
+  # noinspection YAMLSchemaValidation
+  roleBinding:
+    create: ###ZARF_VAR_CREATE_ROLE_BINDING###
+    roleName: "###ZARF_VAR_EXISTING_ROLE_NAME###"
 
   podAnnotations: {}
   podLabels: {}
