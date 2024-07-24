@@ -1,7 +1,7 @@
 using System.Net;
 using static RestAssured.Dsl;
 
-namespace wfapi.Tests.V1.Controllers;
+namespace wfapi.E2ETests.V1.Controllers;
 
 public class WorkflowsControllerTests
 {

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Org.OpenAPITools", "argo-se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Org.OpenAPITools.Test", "argo-server-client\src\Org.OpenAPITools.Test\Org.OpenAPITools.Test.csproj", "{0C647057-1D7C-4567-8FAF-3CB42F51CD48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wfapi.Tests", "wfapi.Tests\wfapi.Tests.csproj", "{63CBB741-68DA-4529-8A7C-F849D8E5E43D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wfapi.E2ETests", "wfapi.E2ETests\wfapi.E2ETests.csproj", "{63CBB741-68DA-4529-8A7C-F849D8E5E43D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
