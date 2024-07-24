@@ -1,4 +1,5 @@
 includes:
+  - dev: test/tasks/dev.yaml
   - ci: test/tasks/ci.yaml
   - tests: test/tasks/tests.yaml
   - local: test/tasks/local.yaml

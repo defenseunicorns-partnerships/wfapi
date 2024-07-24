@@ -19,6 +19,61 @@ namespace wfapi.V1.Controllers;
 public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsController> log) : ControllerBase
 {
     /// <summary>
+    /// Get a list of all files present and ready to be consumed by a workflow.
+    /// </summary>
+    [HttpGet("files")]
+    [SwaggerResponse(
+        StatusCodes.Status200OK,
+        "Success. The list of files is returned.",
+        typeof(List<FileInfo>),
+        "application/json"
+    )]
+    public IActionResult GetFiles()
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Upload a file to be used in a workflow. The response contains the fully qualified filename that you can use in the workflow.
+    /// </summary>
+    /// <param name="fileName">The file name</param>
+    /// <param name="file">The file</param>
+    [HttpPost("files")]
+    [SwaggerResponse(
+        StatusCodes.Status200OK,
+        "Success. The file has been uploaded.",
+        typeof(FileInfo),
+        "application/json"
+    )]
+    public IActionResult UploadFile([FromForm] string fileName, IFormFile file)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    /// <summary>
+    /// Delete a file that was previously uploaded
+    /// </summary>
+    /// <param name="fileName">The fully qualified filename to be deleted. Example: "theuser/myfile.txt"</param>
+    [HttpDelete("files/{fileName}")]
+    [SwaggerResponse(
+        StatusCodes.Status200OK,
+        "Success. The file has been deleted."
+    ),
+     SwaggerResponse(
+         StatusCodes.Status404NotFound,
+         "The requested file was not found."
+     ),
+     SwaggerResponse(
+         StatusCodes.Status403Forbidden,
+         "You don't have permission to delete that file."
+     )]
+    public IActionResult DeleteFile([FromRoute] string fileName)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
     /// Submit a workflow by providing the template to use and the parameters to use with it.
     /// </summary>
     /// <param name="submission">The input information</param>
