@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Org.OpenAPITools", "argo-se
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Org.OpenAPITools.Test", "argo-server-client\src\Org.OpenAPITools.Test\Org.OpenAPITools.Test.csproj", "{2FBCD75C-6006-463E-B0F0-405BD5D4B5A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wfapi.E2ETests", "wfapi.E2ETests\wfapi.E2ETests.csproj", "{FA5DACBD-C4A3-4430-A549-4AF4B41095DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,5 +29,9 @@ Global
 		{2FBCD75C-6006-463E-B0F0-405BD5D4B5A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FBCD75C-6006-463E-B0F0-405BD5D4B5A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FBCD75C-6006-463E-B0F0-405BD5D4B5A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA5DACBD-C4A3-4430-A549-4AF4B41095DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA5DACBD-C4A3-4430-A549-4AF4B41095DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA5DACBD-C4A3-4430-A549-4AF4B41095DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA5DACBD-C4A3-4430-A549-4AF4B41095DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

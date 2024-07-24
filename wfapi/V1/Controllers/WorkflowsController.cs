@@ -16,7 +16,7 @@ namespace wfapi.V1.Controllers;
 [ApiVersion(1.0)]
 [Route("api/v{version:apiVersion}/workflows")]
 [Tags("Workflows")]
-public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsController> log) : ControllerBase
+public class WorkflowsController(ArgoClient argoClient) : ControllerBase
 {
     /// <summary>
     /// Get a list of all files present and ready to be consumed by a workflow.
@@ -108,7 +108,7 @@ public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsControl
         var startTime = DateTime.Now;
         var timeout = TimeSpan.FromSeconds(2);
         // Loop until the status phase is not null or timeout is reached
-        while (getResult.Status?.Phase == null && (DateTime.Now - startTime) < timeout)
+        while (string.IsNullOrWhiteSpace(getResult.Status.Phase) && (DateTime.Now - startTime) < timeout)
         {
             // Wait for 50 milliseconds
             Thread.Sleep(50);
@@ -116,7 +116,7 @@ public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsControl
             // Fetch the workflow status again
             getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
         }
-        if (getResult.Status?.Phase == null)
+        if (string.IsNullOrWhiteSpace(getResult.Status.Phase))
         {
             // Handle the timeout scenario
             throw new TimeoutException("Timeout occurred while waiting for the workflow status phase to be populated.");
