@@ -8,6 +8,8 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using Org.OpenAPITools.Api;
+using Org.OpenAPITools.Client;
 using Serilog;
 using Serilog.Templates;
 using Serilog.Templates.Themes;
@@ -129,6 +131,26 @@ try
     }
 
     builder.Services.AddHealthChecks();
+
+    // Add the Argo API client
+    var argoConfig = new Configuration
+    {
+        BasePath = builder.Configuration.GetValue<string>("Argo:ApiUrl") ?? throw new InvalidOperationException()
+    };
+    var token = builder.Configuration.GetValue<string>("Argo:Token");
+    if (String.IsNullOrWhiteSpace(token))
+    {
+        token = File.ReadAllText("/var/run/secrets/kubernetes.io/serviceaccount/token");
+        Log.Information("Using service account token from file");
+    }
+    else
+    {
+        Log.Information("Using token from configuration");
+    }
+    argoConfig.AddApiKey("Authorization", token);
+    argoConfig.AddApiKeyPrefix("Authorization", "Bearer");
+    var varNamespace = builder.Configuration.GetValue<string>("Argo:Namespace") ?? throw new InvalidOperationException();
+    builder.Services.AddSingleton(new ArgoClient(varNamespace, argoConfig));
 
     var app = builder.Build();
 

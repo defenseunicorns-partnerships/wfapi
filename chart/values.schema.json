@@ -33,6 +33,30 @@
                 "string"
               ]
             },
+            "Argo__ApiUrl": {
+              "default": "http://argo-workflows-server:2746",
+              "description": "Argo API URL",
+              "title": "Argo__ApiUrl",
+              "type": [
+                "string"
+              ]
+            },
+            "Argo__Namespace": {
+              "default": "argo",
+              "description": "Namespace where workflows should be created",
+              "title": "Argo__Namespace",
+              "type": [
+                "string"
+              ]
+            },
+            "Argo__Token": {
+              "default": "",
+              "description": "Optional Argo API token. Not necessary in most cases as the app will fetch the token that is mounted to the filesystem. Leave as an empty string.",
+              "title": "Argo__Token",
+              "type": [
+                "string"
+              ]
+            },
             "Auth__Jwt__Audience": {
               "default": "wfapi",
               "description": "JWT audience. Corresponds to the Keycloak client associated with this app.",
@@ -98,6 +122,9 @@
             "Auth__Jwt__Audience",
             "Auth__Jwt__RequireHttpsMetadata",
             "Auth__Jwt__ValidateIssuer",
+            "Argo__ApiUrl",
+            "Argo__Token",
+            "Argo__Namespace",
             "Swagger__Enable"
           ],
           "title": "env",
@@ -738,6 +765,49 @@
           ],
           "uniqueItems": true
         },
+        "udsPackage": {
+          "additionalProperties": false,
+          "description": "UDS package settings",
+          "properties": {
+            "enabled": {
+              "default": true,
+              "description": "Specifies whether the UDS package should be enabled",
+              "title": "enabled",
+              "type": [
+                "boolean"
+              ]
+            },
+            "expose": {
+              "additionalProperties": false,
+              "description": "Expose settings",
+              "properties": {
+                "host": {
+                  "default": "wfapi",
+                  "description": "Hostname to expose the app on",
+                  "title": "host",
+                  "type": [
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "host"
+              ],
+              "title": "expose",
+              "type": [
+                "object"
+              ]
+            }
+          },
+          "required": [
+            "enabled",
+            "expose"
+          ],
+          "title": "udsPackage",
+          "type": [
+            "object"
+          ]
+        },
         "volumeMounts": {
           "default": [],
           "description": "Additional volumeMounts on the output Deployment definition. Ref: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#volumes-1",
@@ -766,6 +836,7 @@
         "env",
         "serviceAccount",
         "roleBinding",
+        "udsPackage",
         "podAnnotations",
         "podLabels",
         "podSecurityContext",

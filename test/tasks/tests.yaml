@@ -3,4 +3,5 @@ tasks:
     description: Run the full end-to-end test suite
     actions:
       - cmd: |
-          echo "TODO: Implement tests"
+          ./uds zarf tools kubectl apply -f test/hello-world-template.yaml
+          dotnet test wfapi.E2ETests

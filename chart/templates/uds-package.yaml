@@ -1,0 +1,23 @@
+{{- if .Values.wfapi.udsPackage.enabled -}}
+apiVersion: uds.dev/v1alpha1
+kind: Package
+metadata:
+  name: {{ include "wfapi.fullname" . }}
+spec:
+  network:
+    expose:
+      - description: Expose the app using an Istio VirtualService
+        service: {{ include "wfapi.fullname" . }}
+        selector:
+          app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
+        host: {{ .Values.wfapi.udsPackage.expose.host}}
+        gateway: tenant
+        port: 80
+    allow:
+      - direction: Egress
+        selector: {}
+        remoteGenerated: Anywhere
+      - direction: Ingress
+        selector: {}
+        remoteGenerated: Anywhere
+{{- end }}

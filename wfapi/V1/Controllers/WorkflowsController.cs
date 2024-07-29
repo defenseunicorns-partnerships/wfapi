@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using wfapi.V1.Models;
+using Org.OpenAPITools.Model;
 using FileInfo = wfapi.V1.Models.FileInfo;
 
 namespace wfapi.V1.Controllers;
@@ -15,7 +16,7 @@ namespace wfapi.V1.Controllers;
 [ApiVersion(1.0)]
 [Route("api/v{version:apiVersion}/workflows")]
 [Tags("Workflows")]
-public class WorkflowsController : ControllerBase
+public class WorkflowsController(ArgoClient argoClient) : ControllerBase
 {
     /// <summary>
     /// Get a list of all files present and ready to be consumed by a workflow.
@@ -76,16 +77,61 @@ public class WorkflowsController : ControllerBase
     /// Submit a workflow by providing the template to use and the parameters to use with it.
     /// </summary>
     /// <param name="submission">The input information</param>
-    [HttpPost("submit")]
+    /// <exception cref="ArgumentNullException"></exception>
+    [HttpPost("")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
         "Success. The workflow has been submitted. The output is the WorkflowInfo object that you can also query for at any time.",
         typeof(WorkflowInfo),
         "application/json"
     )]
+    [SwaggerOperation(OperationId = "SubmitWorkflow")]
     public IActionResult SubmitWorkflow([FromBody] WorkflowSubmission submission)
     {
-        throw new NotImplementedException();
+        var body = new IoArgoprojWorkflowV1alpha1WorkflowSubmitRequest
+        {
+            ResourceKind = "WorkflowTemplate",
+            ResourceName = submission.TemplateName,
+            SubmitOptions = new IoArgoprojWorkflowV1alpha1SubmitOpts
+            {
+                GenerateName = submission.GenerateName,
+                Parameters = []
+            }
+        };
+        foreach (var parameter in submission.Parameters)
+        {
+            body.SubmitOptions.Parameters.Add(parameter.Name + "=" + parameter.Value);
+        }
+        var submitResult = argoClient.WorkflowServiceApi.WorkflowServiceSubmitWorkflow(argoClient.Namespace, body);
+        var getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
+        // Initialize the start time for timeout
+        var startTime = DateTime.Now;
+        var timeout = TimeSpan.FromSeconds(2);
+        // Loop until the status phase is not null or timeout is reached
+        while (string.IsNullOrWhiteSpace(getResult.Status.Phase) && (DateTime.Now - startTime) < timeout)
+        {
+            // Wait for 50 milliseconds
+            Thread.Sleep(50);
+
+            // Fetch the workflow status again
+            getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
+        }
+        if (string.IsNullOrWhiteSpace(getResult.Status.Phase))
+        {
+            // Handle the timeout scenario
+            throw new TimeoutException("Timeout occurred while waiting for the workflow status phase to be populated.");
+        }
+        var retval = new WorkflowInfo
+        {
+            Created = getResult.Metadata.CreationTimestamp ?? throw new ArgumentNullException(nameof(getResult.Metadata.CreationTimestamp), "Mandatory parameter"),
+            Name = getResult.Metadata.Name,
+            Status = (WorkflowStatus)Enum.Parse(typeof(WorkflowStatus), getResult.Status.Phase),
+            Message = getResult.Status.Message,
+            Started = getResult.Status.StartedAt,
+            Finished = getResult.Status.FinishedAt,
+            Progress = getResult.Status.Progress
+        };
+        return Ok(retval);
     }
 
     /// <summary>
@@ -103,6 +149,7 @@ public class WorkflowsController : ControllerBase
          StatusCodes.Status404NotFound,
          "The requested workflow was not found."
      )]
+    [SwaggerOperation(OperationId = "GetWorkflowInfo")]
     public IActionResult GetWorkflowInfo(string workflowName)
     {
         throw new NotImplementedException();
@@ -123,6 +170,7 @@ public class WorkflowsController : ControllerBase
         StatusCodes.Status404NotFound,
         "The requested workflow was not found."
     )]
+    [SwaggerOperation(OperationId = "GetWorkflowLog")]
     public IActionResult GetWorkflowLog(string workflowName)
     {
         throw new NotImplementedException();

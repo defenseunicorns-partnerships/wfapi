@@ -49,6 +49,10 @@ runs:
       shell: bash
       run: brew install yq
 
+    - name: Install dotnetcore
+      shell: bash
+      run: brew install dotnet
+
     - name: Run tests
       shell: bash
       run: uds run test --no-progress

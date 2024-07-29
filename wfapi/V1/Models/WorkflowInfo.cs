@@ -44,15 +44,20 @@ public class WorkflowInfo
     /// <summary>
     /// Time it took to finish the workflow in seconds
     /// </summary>
-    public int? Duration { get; set; }
+    public int? Duration
+    {
+        get
+        {
+            if (Started.HasValue && Finished.HasValue)
+            {
+                return (int)(Finished.Value - Started.Value).TotalSeconds;
+            }
+            return null;
+        }
+    }
 
     /// <summary>
-    /// Number of tasks in the workflow that have been completed
+    /// Progress of the workflow in the format of "X/Y" where X is the number of tasks completed and Y is the total number of tasks
     /// </summary>
-    public int? CompletedTasks { get; set; }
-
-    /// <summary>
-    /// Total number of tasks in the workflow
-    /// </summary>
-    public int? TotalTasks { get; set; }
+    public string? Progress { get; set; }
 }

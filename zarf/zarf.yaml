@@ -18,22 +18,17 @@ variables:
     description: The name of an existing role to bind to the service account.
     default: "server-role"
     sensitive: false
+  - name: UDS_PACKAGE_ENABLED
+    description: Whether to enable the UDS package custom resource
+    default: "true"
+    sensitive: false
+    pattern: "^(true|false)$"
+  - name: UDS_PACKAGE_EXPOSE_HOST
+    description: The hostname to use when creating the VirtualService
+    default: "wfapi"
+    sensitive: false
 
 components:
-  - name: wfapi-namespace
-    required: false
-    manifests:
-      - name: wfapi-namespace
-        namespace: zarf
-        files:
-          - manifests/namespace.yaml
-  - name: wfapi-uds-package
-    required: true
-    manifests:
-      - name: wfapi-uds-package
-        namespace: argo
-        files:
-          - manifests/uds-package.yaml
   - name: wfapi
     required: true
     charts:
