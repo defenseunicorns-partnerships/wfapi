@@ -20,5 +20,6 @@ The resulting context includes several key consequences:
 - Positive: Our initial customers will find it easier to interact with the API, submit issues, and contribute to the codebase.
 - Positive: The team can reuse existing code from another C# / .NET Core Web API project, saving development time and effort, especially for complex features like JWT authentication and Swagger documentation.
 - Positive: C# / .NET Core Web API provides a stable, performant, and well-supported framework, reducing the risks associated with "unknown unknowns."
+- Positive: The company now has an example repository for creating a C# / .NET Core Web API project for use with JWT in UDS-Core.
 - Neutral: The team will leverage their collective experience with C# to develop the API efficiently.
 - Negative: The broader company proficiency with Golang will not be utilized, potentially missing an opportunity to standardize on a single language across projects.
