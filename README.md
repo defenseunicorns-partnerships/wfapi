@@ -55,11 +55,7 @@ C# .NET Core Web API
 
 ### Why did you choose .NET Core Web API?
 
-- Many of our mission app devs are most familiar with C# and .NET Core
-- The team has quite a bit of experience with .NET Core as well
-- There is a lot of existing code that we can reuse
-- It is stable, performant, and well-supported
-- We get JWT auth and self-documenting Swagger UI for "free"
+See the [ADR](docs/decisions/0002-programming-language-and-framework.md) for more information.
 
 ### Will you ever support other workflow orchestrators?
 
@@ -71,4 +67,4 @@ Defense Unicorns -> Delivery -> Navy Domain -> Task Force Narwhal -> DUDES
 
 ### I want to use this for some other project. Can I?
 
-Yes, but your use case may not be supported by the maintainers. If this catches on and other teams want to use it, we'll look into transferring ownership to Product or some other more appropriate department.
+Yes, with a caveat that your use-case may not be a priority for the maintainers since their focus is on solving specific customer-based goals rather than building a general-use product. But feel free to submit issues or PRs and/or fork and modify as needed.
