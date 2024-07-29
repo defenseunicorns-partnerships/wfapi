@@ -1,6 +1,8 @@
+using System.Net.Mime;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Org.OpenAPITools.Client;
 using Swashbuckle.AspNetCore.Annotations;
 using wfapi.V1.Models;
 using Org.OpenAPITools.Model;
@@ -86,6 +88,7 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
         "application/json"
     )]
     [SwaggerOperation(OperationId = "SubmitWorkflow")]
+    [Consumes(MediaTypeNames.Application.Json)]
     public IActionResult SubmitWorkflow([FromBody] WorkflowSubmission submission)
     {
         var body = new IoArgoprojWorkflowV1alpha1WorkflowSubmitRequest
@@ -152,7 +155,30 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
     [SwaggerOperation(OperationId = "GetWorkflowInfo")]
     public IActionResult GetWorkflowInfo(string workflowName)
     {
-        throw new NotImplementedException();
+        IoArgoprojWorkflowV1alpha1Workflow getResult;
+        try
+        {
+            getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, workflowName);
+        }
+        catch (ApiException e)
+        {
+            if (e.ErrorCode == 404)
+            {
+                return NotFound();
+            }
+            throw;
+        }
+        var retval = new WorkflowInfo
+        {
+            Created = getResult.Metadata.CreationTimestamp ?? throw new ArgumentNullException(nameof(getResult.Metadata.CreationTimestamp), "Mandatory parameter"),
+            Name = getResult.Metadata.Name,
+            Status = (WorkflowStatus)Enum.Parse(typeof(WorkflowStatus), getResult.Status.Phase),
+            Message = getResult.Status.Message,
+            Started = getResult.Status.StartedAt,
+            Finished = getResult.Status.FinishedAt,
+            Progress = getResult.Status.Progress
+        };
+        return Ok(retval);
     }
 
     /// <summary>
