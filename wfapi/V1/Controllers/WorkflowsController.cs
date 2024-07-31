@@ -101,10 +101,11 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
                 Parameters = []
             }
         };
-        foreach (var parameter in submission.Parameters)
+        foreach (var parameter in submission.Parameters ?? [])
         {
             body.SubmitOptions.Parameters.Add(parameter.Name + "=" + parameter.Value);
         }
+
         var submitResult = argoClient.WorkflowServiceApi.WorkflowServiceSubmitWorkflow(argoClient.Namespace, body);
         var getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
         // Initialize the start time for timeout
@@ -189,7 +190,7 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
     [SwaggerResponse(
         StatusCodes.Status200OK,
         "Success. The workflow log is returned.",
-        typeof(List<WorkflowLog>),
+        typeof(IoArgoprojWorkflowV1alpha1LogEntry),
         "application/json"
     )]
     [SwaggerResponse(
@@ -199,6 +200,26 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
     [SwaggerOperation(OperationId = "GetWorkflowLog")]
     public IActionResult GetWorkflowLog(string workflowName)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var logsResult = argoClient.WorkflowServiceApi.WorkflowServiceWorkflowLogs(
+                varNamespace: argoClient.Namespace,
+                name: workflowName
+            );
+            if (logsResult != null)
+            {
+                return Ok(logsResult.Result);
+            }
+
+            return Ok();
+        }
+        catch (ApiException e)
+        {
+            if (e.ErrorCode == 404)
+            {
+                return NotFound();
+            }
+            throw;
+        }
     }
 }

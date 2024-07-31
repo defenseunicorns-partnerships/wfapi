@@ -22,6 +22,5 @@ public class WorkflowSubmission
     /// <summary>
     /// Parameters for the WorkflowTemplate
     /// </summary>
-    [Required]
-    public required List<WorkflowParameter> Parameters { get; set; }
+    public List<WorkflowParameter>? Parameters { get; set; }
 }

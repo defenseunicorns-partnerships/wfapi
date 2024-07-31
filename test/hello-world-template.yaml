@@ -7,6 +7,12 @@ metadata:
     workflows.argoproj.io/description: |
       This is a simple hello world example.
 spec:
+  podGC:
+    deleteDelayDuration: 3600s
+  ttlStrategy:
+    secondsAfterCompletion: 3600
+    secondsAfterFailure: 3600
+    secondsAfterSuccess: 3600
   archiveLogs: true
   entrypoint: whalesay
   serviceAccountName: argo-workflow
