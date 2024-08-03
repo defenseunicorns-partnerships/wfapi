@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mime;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -31,9 +32,8 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Object</returns>
-        Object InfoServiceCollectEvent(IoArgoprojWorkflowV1alpha1CollectEventRequest body, int operationIndex = 0);
+        Object InfoServiceCollectEvent(IoArgoprojWorkflowV1alpha1CollectEventRequest body);
 
         /// <summary>
         ///
@@ -43,16 +43,14 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> InfoServiceCollectEventWithHttpInfo(IoArgoprojWorkflowV1alpha1CollectEventRequest body, int operationIndex = 0);
+        ApiResponse<Object> InfoServiceCollectEventWithHttpInfo(IoArgoprojWorkflowV1alpha1CollectEventRequest body);
         /// <summary>
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1InfoResponse</returns>
-        IoArgoprojWorkflowV1alpha1InfoResponse InfoServiceGetInfo(int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1InfoResponse InfoServiceGetInfo();
 
         /// <summary>
         ///
@@ -61,16 +59,14 @@ namespace Org.OpenAPITools.Api
         ///
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1InfoResponse</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1InfoResponse> InfoServiceGetInfoWithHttpInfo(int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1InfoResponse> InfoServiceGetInfoWithHttpInfo();
         /// <summary>
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1GetUserInfoResponse</returns>
-        IoArgoprojWorkflowV1alpha1GetUserInfoResponse InfoServiceGetUserInfo(int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1GetUserInfoResponse InfoServiceGetUserInfo();
 
         /// <summary>
         ///
@@ -79,16 +75,14 @@ namespace Org.OpenAPITools.Api
         ///
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1GetUserInfoResponse</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1GetUserInfoResponse> InfoServiceGetUserInfoWithHttpInfo(int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1GetUserInfoResponse> InfoServiceGetUserInfoWithHttpInfo();
         /// <summary>
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1Version</returns>
-        IoArgoprojWorkflowV1alpha1Version InfoServiceGetVersion(int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1Version InfoServiceGetVersion();
 
         /// <summary>
         ///
@@ -97,9 +91,8 @@ namespace Org.OpenAPITools.Api
         ///
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1Version</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1Version> InfoServiceGetVersionWithHttpInfo(int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1Version> InfoServiceGetVersionWithHttpInfo();
         #endregion Synchronous Operations
     }
 
@@ -117,10 +110,9 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> InfoServiceCollectEventAsync(IoArgoprojWorkflowV1alpha1CollectEventRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Object> InfoServiceCollectEventAsync(IoArgoprojWorkflowV1alpha1CollectEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -130,10 +122,9 @@ namespace Org.OpenAPITools.Api
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> InfoServiceCollectEventWithHttpInfoAsync(IoArgoprojWorkflowV1alpha1CollectEventRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> InfoServiceCollectEventWithHttpInfoAsync(IoArgoprojWorkflowV1alpha1CollectEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -141,10 +132,9 @@ namespace Org.OpenAPITools.Api
         ///
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1InfoResponse</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1InfoResponse> InfoServiceGetInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1InfoResponse> InfoServiceGetInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -153,10 +143,9 @@ namespace Org.OpenAPITools.Api
         ///
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1InfoResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1InfoResponse>> InfoServiceGetInfoWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1InfoResponse>> InfoServiceGetInfoWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -164,10 +153,9 @@ namespace Org.OpenAPITools.Api
         ///
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1GetUserInfoResponse</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1GetUserInfoResponse> InfoServiceGetUserInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1GetUserInfoResponse> InfoServiceGetUserInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -176,10 +164,9 @@ namespace Org.OpenAPITools.Api
         ///
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1GetUserInfoResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1GetUserInfoResponse>> InfoServiceGetUserInfoWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1GetUserInfoResponse>> InfoServiceGetUserInfoWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -187,10 +174,9 @@ namespace Org.OpenAPITools.Api
         ///
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1Version</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1Version> InfoServiceGetVersionAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1Version> InfoServiceGetVersionAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -199,10 +185,9 @@ namespace Org.OpenAPITools.Api
         ///
         /// </remarks>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1Version)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1Version>> InfoServiceGetVersionWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1Version>> InfoServiceGetVersionWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -217,12 +202,14 @@ namespace Org.OpenAPITools.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class InfoServiceApi : IInfoServiceApi
+    public partial class InfoServiceApi : IDisposable, IInfoServiceApi
     {
         private Org.OpenAPITools.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InfoServiceApi"/> class.
+        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
+        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <returns></returns>
         public InfoServiceApi() : this((string)null)
@@ -231,7 +218,11 @@ namespace Org.OpenAPITools.Api
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InfoServiceApi"/> class.
+        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
+        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
+        /// <param name="basePath">The target service's base path in URL format.</param>
+        /// <exception cref="ArgumentException"></exception>
         /// <returns></returns>
         public InfoServiceApi(string basePath)
         {
@@ -239,16 +230,19 @@ namespace Org.OpenAPITools.Api
                 Org.OpenAPITools.Client.GlobalConfiguration.Instance,
                 new Org.OpenAPITools.Client.Configuration { BasePath = basePath }
             );
-            this.Client = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.Client =  this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
             this.ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InfoServiceApi"/> class
-        /// using Configuration object
+        /// Initializes a new instance of the <see cref="InfoServiceApi"/> class using Configuration object.
+        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
+        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
-        /// <param name="configuration">An instance of Configuration</param>
+        /// <param name="configuration">An instance of Configuration.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
         public InfoServiceApi(Org.OpenAPITools.Client.Configuration configuration)
         {
@@ -258,8 +252,78 @@ namespace Org.OpenAPITools.Api
                 Org.OpenAPITools.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.Client = this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
+            ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InfoServiceApi"/> class.
+        /// </summary>
+        /// <param name="client">An instance of HttpClient.</param>
+        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns></returns>
+        /// <remarks>
+        /// Some configuration settings will not be applied without passing an HttpClientHandler.
+        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
+        /// </remarks>
+        public InfoServiceApi(HttpClient client, HttpClientHandler handler = null) : this(client, (string)null, handler)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InfoServiceApi"/> class.
+        /// </summary>
+        /// <param name="client">An instance of HttpClient.</param>
+        /// <param name="basePath">The target service's base path in URL format.</param>
+        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <returns></returns>
+        /// <remarks>
+        /// Some configuration settings will not be applied without passing an HttpClientHandler.
+        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
+        /// </remarks>
+        public InfoServiceApi(HttpClient client, string basePath, HttpClientHandler handler = null)
+        {
+            if (client == null) throw new ArgumentNullException("client");
+
+            this.Configuration = Org.OpenAPITools.Client.Configuration.MergeConfigurations(
+                Org.OpenAPITools.Client.GlobalConfiguration.Instance,
+                new Org.OpenAPITools.Client.Configuration { BasePath = basePath }
+            );
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.Client =  this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
+            this.ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InfoServiceApi"/> class using Configuration object.
+        /// </summary>
+        /// <param name="client">An instance of HttpClient.</param>
+        /// <param name="configuration">An instance of Configuration.</param>
+        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns></returns>
+        /// <remarks>
+        /// Some configuration settings will not be applied without passing an HttpClientHandler.
+        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
+        /// </remarks>
+        public InfoServiceApi(HttpClient client, Org.OpenAPITools.Client.Configuration configuration, HttpClientHandler handler = null)
+        {
+            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException("client");
+
+            this.Configuration = Org.OpenAPITools.Client.Configuration.MergeConfigurations(
+                Org.OpenAPITools.Client.GlobalConfiguration.Instance,
+                configuration
+            );
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.Client = this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
             ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
         }
 
@@ -270,6 +334,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public InfoServiceApi(Org.OpenAPITools.Client.ISynchronousClient client, Org.OpenAPITools.Client.IAsynchronousClient asyncClient, Org.OpenAPITools.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
@@ -281,6 +346,19 @@ namespace Org.OpenAPITools.Api
             this.Configuration = configuration;
             this.ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
         }
+
+        /// <summary>
+        /// Disposes resources if they were created by us
+        /// </summary>
+        public void Dispose()
+        {
+            this.ApiClient?.Dispose();
+        }
+
+        /// <summary>
+        /// Holds the ApiClient if created
+        /// </summary>
+        public Org.OpenAPITools.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
@@ -328,9 +406,8 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Object</returns>
-        public Object InfoServiceCollectEvent(IoArgoprojWorkflowV1alpha1CollectEventRequest body, int operationIndex = 0)
+        public Object InfoServiceCollectEvent(IoArgoprojWorkflowV1alpha1CollectEventRequest body)
         {
             Org.OpenAPITools.Client.ApiResponse<Object> localVarResponse = InfoServiceCollectEventWithHttpInfo(body);
             return localVarResponse.Data;
@@ -341,15 +418,12 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object</returns>
-        public Org.OpenAPITools.Client.ApiResponse<Object> InfoServiceCollectEventWithHttpInfo(IoArgoprojWorkflowV1alpha1CollectEventRequest body, int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<Object> InfoServiceCollectEventWithHttpInfo(IoArgoprojWorkflowV1alpha1CollectEventRequest body)
         {
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling InfoServiceApi->InfoServiceCollectEvent");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -363,21 +437,12 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "InfoServiceApi.InfoServiceCollectEvent";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -387,13 +452,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<Object>("/api/v1/tracking/event", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("InfoServiceCollectEvent", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -404,12 +467,11 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> InfoServiceCollectEventAsync(IoArgoprojWorkflowV1alpha1CollectEventRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Object> InfoServiceCollectEventAsync(IoArgoprojWorkflowV1alpha1CollectEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<Object> localVarResponse = await InfoServiceCollectEventWithHttpInfoAsync(body, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<Object> localVarResponse = await InfoServiceCollectEventWithHttpInfoAsync(body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -418,16 +480,13 @@ namespace Org.OpenAPITools.Api
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<Object>> InfoServiceCollectEventWithHttpInfoAsync(IoArgoprojWorkflowV1alpha1CollectEventRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<Object>> InfoServiceCollectEventWithHttpInfoAsync(IoArgoprojWorkflowV1alpha1CollectEventRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling InfoServiceApi->InfoServiceCollectEvent");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -441,22 +500,14 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "InfoServiceApi.InfoServiceCollectEvent";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -465,15 +516,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/api/v1/tracking/event", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("InfoServiceCollectEvent", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -483,9 +532,8 @@ namespace Org.OpenAPITools.Api
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1InfoResponse</returns>
-        public IoArgoprojWorkflowV1alpha1InfoResponse InfoServiceGetInfo(int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1InfoResponse InfoServiceGetInfo()
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1InfoResponse> localVarResponse = InfoServiceGetInfoWithHttpInfo();
             return localVarResponse.Data;
@@ -495,9 +543,8 @@ namespace Org.OpenAPITools.Api
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1InfoResponse</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1InfoResponse> InfoServiceGetInfoWithHttpInfo(int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1InfoResponse> InfoServiceGetInfoWithHttpInfo()
         {
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -510,20 +557,11 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-
-            localVarRequestOptions.Operation = "InfoServiceApi.InfoServiceGetInfo";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -533,13 +571,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<IoArgoprojWorkflowV1alpha1InfoResponse>("/api/v1/info", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("InfoServiceGetInfo", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -549,12 +585,11 @@ namespace Org.OpenAPITools.Api
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1InfoResponse</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1InfoResponse> InfoServiceGetInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1InfoResponse> InfoServiceGetInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1InfoResponse> localVarResponse = await InfoServiceGetInfoWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1InfoResponse> localVarResponse = await InfoServiceGetInfoWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -562,10 +597,9 @@ namespace Org.OpenAPITools.Api
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1InfoResponse)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1InfoResponse>> InfoServiceGetInfoWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1InfoResponse>> InfoServiceGetInfoWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -578,21 +612,13 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-
-            localVarRequestOptions.Operation = "InfoServiceApi.InfoServiceGetInfo";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -601,15 +627,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.GetAsync<IoArgoprojWorkflowV1alpha1InfoResponse>("/api/v1/info", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("InfoServiceGetInfo", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -619,9 +643,8 @@ namespace Org.OpenAPITools.Api
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1GetUserInfoResponse</returns>
-        public IoArgoprojWorkflowV1alpha1GetUserInfoResponse InfoServiceGetUserInfo(int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1GetUserInfoResponse InfoServiceGetUserInfo()
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1GetUserInfoResponse> localVarResponse = InfoServiceGetUserInfoWithHttpInfo();
             return localVarResponse.Data;
@@ -631,9 +654,8 @@ namespace Org.OpenAPITools.Api
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1GetUserInfoResponse</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1GetUserInfoResponse> InfoServiceGetUserInfoWithHttpInfo(int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1GetUserInfoResponse> InfoServiceGetUserInfoWithHttpInfo()
         {
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -646,20 +668,11 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-
-            localVarRequestOptions.Operation = "InfoServiceApi.InfoServiceGetUserInfo";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -669,13 +682,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<IoArgoprojWorkflowV1alpha1GetUserInfoResponse>("/api/v1/userinfo", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("InfoServiceGetUserInfo", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -685,12 +696,11 @@ namespace Org.OpenAPITools.Api
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1GetUserInfoResponse</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1GetUserInfoResponse> InfoServiceGetUserInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1GetUserInfoResponse> InfoServiceGetUserInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1GetUserInfoResponse> localVarResponse = await InfoServiceGetUserInfoWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1GetUserInfoResponse> localVarResponse = await InfoServiceGetUserInfoWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -698,10 +708,9 @@ namespace Org.OpenAPITools.Api
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1GetUserInfoResponse)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1GetUserInfoResponse>> InfoServiceGetUserInfoWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1GetUserInfoResponse>> InfoServiceGetUserInfoWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -714,21 +723,13 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-
-            localVarRequestOptions.Operation = "InfoServiceApi.InfoServiceGetUserInfo";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -737,15 +738,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.GetAsync<IoArgoprojWorkflowV1alpha1GetUserInfoResponse>("/api/v1/userinfo", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("InfoServiceGetUserInfo", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -755,9 +754,8 @@ namespace Org.OpenAPITools.Api
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1Version</returns>
-        public IoArgoprojWorkflowV1alpha1Version InfoServiceGetVersion(int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1Version InfoServiceGetVersion()
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Version> localVarResponse = InfoServiceGetVersionWithHttpInfo();
             return localVarResponse.Data;
@@ -767,9 +765,8 @@ namespace Org.OpenAPITools.Api
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1Version</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Version> InfoServiceGetVersionWithHttpInfo(int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Version> InfoServiceGetVersionWithHttpInfo()
         {
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -782,20 +779,11 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-
-            localVarRequestOptions.Operation = "InfoServiceApi.InfoServiceGetVersion";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -805,13 +793,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<IoArgoprojWorkflowV1alpha1Version>("/api/v1/version", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("InfoServiceGetVersion", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -821,12 +807,11 @@ namespace Org.OpenAPITools.Api
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1Version</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1Version> InfoServiceGetVersionAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1Version> InfoServiceGetVersionAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Version> localVarResponse = await InfoServiceGetVersionWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Version> localVarResponse = await InfoServiceGetVersionWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -834,10 +819,9 @@ namespace Org.OpenAPITools.Api
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1Version)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Version>> InfoServiceGetVersionWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Version>> InfoServiceGetVersionWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -850,21 +834,13 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-
-            localVarRequestOptions.Operation = "InfoServiceApi.InfoServiceGetVersion";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -873,15 +849,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.GetAsync<IoArgoprojWorkflowV1alpha1Version>("/api/v1/version", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("InfoServiceGetVersion", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;

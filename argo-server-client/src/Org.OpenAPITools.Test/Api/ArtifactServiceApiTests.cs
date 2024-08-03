@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
-using RestSharp;
 using Xunit;
 
 using Org.OpenAPITools.Client;
@@ -68,7 +67,7 @@ namespace Org.OpenAPITools.Test.Api
             //string artifactName = null;
             //string artifactDiscriminator = null;
             //var response = instance.ArtifactServiceGetArtifactFile(varNamespace, idDiscriminator, id, nodeId, artifactName, artifactDiscriminator);
-            //Assert.IsType<System.IO.Stream>(response);
+            //Assert.IsType<FileParameter>(response);
         }
 
         /// <summary>
@@ -83,7 +82,7 @@ namespace Org.OpenAPITools.Test.Api
             //string nodeId = null;
             //string artifactName = null;
             //var response = instance.ArtifactServiceGetInputArtifact(varNamespace, name, nodeId, artifactName);
-            //Assert.IsType<System.IO.Stream>(response);
+            //Assert.IsType<FileParameter>(response);
         }
 
         /// <summary>
@@ -97,7 +96,7 @@ namespace Org.OpenAPITools.Test.Api
             //string nodeId = null;
             //string artifactName = null;
             //var response = instance.ArtifactServiceGetInputArtifactByUID(uid, nodeId, artifactName);
-            //Assert.IsType<System.IO.Stream>(response);
+            //Assert.IsType<FileParameter>(response);
         }
 
         /// <summary>
@@ -112,7 +111,7 @@ namespace Org.OpenAPITools.Test.Api
             //string nodeId = null;
             //string artifactName = null;
             //var response = instance.ArtifactServiceGetOutputArtifact(varNamespace, name, nodeId, artifactName);
-            //Assert.IsType<System.IO.Stream>(response);
+            //Assert.IsType<FileParameter>(response);
         }
 
         /// <summary>
@@ -126,7 +125,7 @@ namespace Org.OpenAPITools.Test.Api
             //string nodeId = null;
             //string artifactName = null;
             //var response = instance.ArtifactServiceGetOutputArtifactByUID(uid, nodeId, artifactName);
-            //Assert.IsType<System.IO.Stream>(response);
+            //Assert.IsType<FileParameter>(response);
         }
     }
 }

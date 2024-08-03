@@ -12,7 +12,7 @@ All URIs are relative to *http://localhost:2746*
 
 <a id="artifactservicegetartifactfile"></a>
 # **ArtifactServiceGetArtifactFile**
-> System.IO.Stream ArtifactServiceGetArtifactFile (string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator)
+> FileParameter ArtifactServiceGetArtifactFile (string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator)
 
 Get an artifact.
 
@@ -20,6 +20,7 @@ Get an artifact.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -37,7 +38,10 @@ namespace Example
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("Authorization", "Bearer");
 
-            var apiInstance = new ArtifactServiceApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ArtifactServiceApi(httpClient, config, httpClientHandler);
             var varNamespace = "varNamespace_example";  // string |
             var idDiscriminator = "workflow";  // string |
             var id = "id_example";  // string |
@@ -48,7 +52,7 @@ namespace Example
             try
             {
                 // Get an artifact.
-                System.IO.Stream result = apiInstance.ArtifactServiceGetArtifactFile(varNamespace, idDiscriminator, id, nodeId, artifactName, artifactDiscriminator);
+                FileParameter result = apiInstance.ArtifactServiceGetArtifactFile(varNamespace, idDiscriminator, id, nodeId, artifactName, artifactDiscriminator);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -69,7 +73,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get an artifact.
-    ApiResponse<System.IO.Stream> response = apiInstance.ArtifactServiceGetArtifactFileWithHttpInfo(varNamespace, idDiscriminator, id, nodeId, artifactName, artifactDiscriminator);
+    ApiResponse<FileParameter> response = apiInstance.ArtifactServiceGetArtifactFileWithHttpInfo(varNamespace, idDiscriminator, id, nodeId, artifactName, artifactDiscriminator);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -95,7 +99,7 @@ catch (ApiException e)
 
 ### Return type
 
-**System.IO.Stream**
+[**FileParameter**](FileParameter.md)
 
 ### Authorization
 
@@ -117,7 +121,7 @@ catch (ApiException e)
 
 <a id="artifactservicegetinputartifact"></a>
 # **ArtifactServiceGetInputArtifact**
-> System.IO.Stream ArtifactServiceGetInputArtifact (string varNamespace, string name, string nodeId, string artifactName)
+> FileParameter ArtifactServiceGetInputArtifact (string varNamespace, string name, string nodeId, string artifactName)
 
 Get an input artifact.
 
@@ -125,6 +129,7 @@ Get an input artifact.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -142,7 +147,10 @@ namespace Example
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("Authorization", "Bearer");
 
-            var apiInstance = new ArtifactServiceApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ArtifactServiceApi(httpClient, config, httpClientHandler);
             var varNamespace = "varNamespace_example";  // string |
             var name = "name_example";  // string |
             var nodeId = "nodeId_example";  // string |
@@ -151,7 +159,7 @@ namespace Example
             try
             {
                 // Get an input artifact.
-                System.IO.Stream result = apiInstance.ArtifactServiceGetInputArtifact(varNamespace, name, nodeId, artifactName);
+                FileParameter result = apiInstance.ArtifactServiceGetInputArtifact(varNamespace, name, nodeId, artifactName);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -172,7 +180,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get an input artifact.
-    ApiResponse<System.IO.Stream> response = apiInstance.ArtifactServiceGetInputArtifactWithHttpInfo(varNamespace, name, nodeId, artifactName);
+    ApiResponse<FileParameter> response = apiInstance.ArtifactServiceGetInputArtifactWithHttpInfo(varNamespace, name, nodeId, artifactName);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -196,7 +204,7 @@ catch (ApiException e)
 
 ### Return type
 
-**System.IO.Stream**
+[**FileParameter**](FileParameter.md)
 
 ### Authorization
 
@@ -218,7 +226,7 @@ catch (ApiException e)
 
 <a id="artifactservicegetinputartifactbyuid"></a>
 # **ArtifactServiceGetInputArtifactByUID**
-> System.IO.Stream ArtifactServiceGetInputArtifactByUID (string uid, string nodeId, string artifactName)
+> FileParameter ArtifactServiceGetInputArtifactByUID (string uid, string nodeId, string artifactName)
 
 Get an input artifact by UID.
 
@@ -226,6 +234,7 @@ Get an input artifact by UID.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -243,7 +252,10 @@ namespace Example
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("Authorization", "Bearer");
 
-            var apiInstance = new ArtifactServiceApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ArtifactServiceApi(httpClient, config, httpClientHandler);
             var uid = "uid_example";  // string |
             var nodeId = "nodeId_example";  // string |
             var artifactName = "artifactName_example";  // string |
@@ -251,7 +263,7 @@ namespace Example
             try
             {
                 // Get an input artifact by UID.
-                System.IO.Stream result = apiInstance.ArtifactServiceGetInputArtifactByUID(uid, nodeId, artifactName);
+                FileParameter result = apiInstance.ArtifactServiceGetInputArtifactByUID(uid, nodeId, artifactName);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -272,7 +284,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get an input artifact by UID.
-    ApiResponse<System.IO.Stream> response = apiInstance.ArtifactServiceGetInputArtifactByUIDWithHttpInfo(uid, nodeId, artifactName);
+    ApiResponse<FileParameter> response = apiInstance.ArtifactServiceGetInputArtifactByUIDWithHttpInfo(uid, nodeId, artifactName);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -295,7 +307,7 @@ catch (ApiException e)
 
 ### Return type
 
-**System.IO.Stream**
+[**FileParameter**](FileParameter.md)
 
 ### Authorization
 
@@ -317,7 +329,7 @@ catch (ApiException e)
 
 <a id="artifactservicegetoutputartifact"></a>
 # **ArtifactServiceGetOutputArtifact**
-> System.IO.Stream ArtifactServiceGetOutputArtifact (string varNamespace, string name, string nodeId, string artifactName)
+> FileParameter ArtifactServiceGetOutputArtifact (string varNamespace, string name, string nodeId, string artifactName)
 
 Get an output artifact.
 
@@ -325,6 +337,7 @@ Get an output artifact.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -342,7 +355,10 @@ namespace Example
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("Authorization", "Bearer");
 
-            var apiInstance = new ArtifactServiceApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ArtifactServiceApi(httpClient, config, httpClientHandler);
             var varNamespace = "varNamespace_example";  // string |
             var name = "name_example";  // string |
             var nodeId = "nodeId_example";  // string |
@@ -351,7 +367,7 @@ namespace Example
             try
             {
                 // Get an output artifact.
-                System.IO.Stream result = apiInstance.ArtifactServiceGetOutputArtifact(varNamespace, name, nodeId, artifactName);
+                FileParameter result = apiInstance.ArtifactServiceGetOutputArtifact(varNamespace, name, nodeId, artifactName);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -372,7 +388,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get an output artifact.
-    ApiResponse<System.IO.Stream> response = apiInstance.ArtifactServiceGetOutputArtifactWithHttpInfo(varNamespace, name, nodeId, artifactName);
+    ApiResponse<FileParameter> response = apiInstance.ArtifactServiceGetOutputArtifactWithHttpInfo(varNamespace, name, nodeId, artifactName);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -396,7 +412,7 @@ catch (ApiException e)
 
 ### Return type
 
-**System.IO.Stream**
+[**FileParameter**](FileParameter.md)
 
 ### Authorization
 
@@ -418,7 +434,7 @@ catch (ApiException e)
 
 <a id="artifactservicegetoutputartifactbyuid"></a>
 # **ArtifactServiceGetOutputArtifactByUID**
-> System.IO.Stream ArtifactServiceGetOutputArtifactByUID (string uid, string nodeId, string artifactName)
+> FileParameter ArtifactServiceGetOutputArtifactByUID (string uid, string nodeId, string artifactName)
 
 Get an output artifact by UID.
 
@@ -426,6 +442,7 @@ Get an output artifact by UID.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -443,7 +460,10 @@ namespace Example
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("Authorization", "Bearer");
 
-            var apiInstance = new ArtifactServiceApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ArtifactServiceApi(httpClient, config, httpClientHandler);
             var uid = "uid_example";  // string |
             var nodeId = "nodeId_example";  // string |
             var artifactName = "artifactName_example";  // string |
@@ -451,7 +471,7 @@ namespace Example
             try
             {
                 // Get an output artifact by UID.
-                System.IO.Stream result = apiInstance.ArtifactServiceGetOutputArtifactByUID(uid, nodeId, artifactName);
+                FileParameter result = apiInstance.ArtifactServiceGetOutputArtifactByUID(uid, nodeId, artifactName);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -472,7 +492,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get an output artifact by UID.
-    ApiResponse<System.IO.Stream> response = apiInstance.ArtifactServiceGetOutputArtifactByUIDWithHttpInfo(uid, nodeId, artifactName);
+    ApiResponse<FileParameter> response = apiInstance.ArtifactServiceGetOutputArtifactByUIDWithHttpInfo(uid, nodeId, artifactName);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -495,7 +515,7 @@ catch (ApiException e)
 
 ### Return type
 
-**System.IO.Stream**
+[**FileParameter**](FileParameter.md)
 
 ### Authorization
 
