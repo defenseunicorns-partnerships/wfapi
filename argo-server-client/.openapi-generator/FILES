@@ -810,8 +810,8 @@ src/Org.OpenAPITools/Client/ApiResponse.cs
 src/Org.OpenAPITools/Client/ClientUtils.cs
 src/Org.OpenAPITools/Client/Configuration.cs
 src/Org.OpenAPITools/Client/ExceptionFactory.cs
+src/Org.OpenAPITools/Client/FileParameter.cs
 src/Org.OpenAPITools/Client/GlobalConfiguration.cs
-src/Org.OpenAPITools/Client/HttpMethod.cs
 src/Org.OpenAPITools/Client/IApiAccessor.cs
 src/Org.OpenAPITools/Client/IAsynchronousClient.cs
 src/Org.OpenAPITools/Client/IReadableConfiguration.cs
@@ -820,6 +820,7 @@ src/Org.OpenAPITools/Client/Multimap.cs
 src/Org.OpenAPITools/Client/OpenAPIDateConverter.cs
 src/Org.OpenAPITools/Client/RequestOptions.cs
 src/Org.OpenAPITools/Client/RetryConfiguration.cs
+src/Org.OpenAPITools/Client/WebRequestPathBuilder.cs
 src/Org.OpenAPITools/Model/AbstractOpenAPISchema.cs
 src/Org.OpenAPITools/Model/EventsourceCreateEventSourceRequest.cs
 src/Org.OpenAPITools/Model/EventsourceEventSourceWatchEvent.cs

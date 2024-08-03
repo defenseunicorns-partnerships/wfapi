@@ -1,12 +1,15 @@
+using System.Net.Http.Headers;
 using System.Net.Mime;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Org.OpenAPITools.Client;
 using Swashbuckle.AspNetCore.Annotations;
 using wfapi.V1.Models;
 using Org.OpenAPITools.Model;
 using FileInfo = wfapi.V1.Models.FileInfo;
+using HttpMethod = System.Net.Http.HttpMethod;
 
 namespace wfapi.V1.Controllers;
 
@@ -183,43 +186,38 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
     }
 
     /// <summary>
-    /// Get the log of a workflow.
+    /// Get the log stream of a workflow as an NDJSON stream using SSE.
     /// </summary>
     /// <param name="workflowName">The name of the workflow that you want the log(s) for</param>
-    [HttpGet("{workflowName}/log")]
+    /// <param name="cancellationToken"></param>
+    [HttpGet("{workflowName}/logstream")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
-        "Success. The workflow log is returned.",
-        typeof(IoArgoprojWorkflowV1alpha1LogEntry),
-        "application/json"
+        "Success. The workflow log is returned as an NDJSON stream using SSE.",
+        typeof(StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry),
+        "application/x-ndjson"
     )]
     [SwaggerResponse(
         StatusCodes.Status404NotFound,
         "The requested workflow was not found."
     )]
-    [SwaggerOperation(OperationId = "GetWorkflowLog")]
-    public IActionResult GetWorkflowLog(string workflowName)
+    [SwaggerOperation(OperationId = "GetWorkflowLogStream")]
+    public async Task GetWorkflowLogStream(string workflowName, CancellationToken cancellationToken)
     {
-        try
-        {
-            var logsResult = argoClient.WorkflowServiceApi.WorkflowServiceWorkflowLogs(
-                varNamespace: argoClient.Namespace,
-                name: workflowName
-            );
-            if (logsResult != null)
-            {
-                return Ok(logsResult.Result);
-            }
+        Response.Headers.ContentType = "application/x-ndjson";
+        Response.Headers.CacheControl = "no-cache";
+        Response.Headers.Connection = "keep-alive";
 
-            return Ok();
-        }
-        catch (ApiException e)
+        await foreach (var logEntry in argoClient.WorkflowServiceSseApiAsync.WorkflowServiceWorkflowLogsAsync(
+                           varNamespace: argoClient.Namespace,
+                           name: workflowName,
+                           logOptionsFollow: true,
+                           cancellationToken: cancellationToken
+                       ))
         {
-            if (e.ErrorCode == 404)
-            {
-                return NotFound();
-            }
-            throw;
+            await Response.WriteAsync(JsonConvert.SerializeObject(logEntry), cancellationToken: cancellationToken);
+            await Response.WriteAsync("\n", cancellationToken: cancellationToken);
+            await Response.Body.FlushAsync(cancellationToken);
         }
     }
 }

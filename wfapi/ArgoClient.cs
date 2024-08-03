@@ -17,7 +17,7 @@ public class ArgoClient
     {
         this.Namespace = varNamespace;
         this.WorkflowServiceApi = new WorkflowServiceApi(configuration);
-        this.ArchivedWorkflowServiceApi = new ArchivedWorkflowServiceApi(configuration);
+        this.WorkflowServiceSseApiAsync = new WorkflowServiceSseApiAsync(configuration);
     }
 
     /// <summary>
@@ -30,5 +30,8 @@ public class ArgoClient
     /// </summary>
     public IWorkflowServiceApi WorkflowServiceApi { get; }
 
-    public IArchivedWorkflowServiceApi ArchivedWorkflowServiceApi { get; }
+    /// <summary>
+    /// WorkflowService SSE client
+    /// </summary>
+    public IWorkflowServiceSseApiAsync WorkflowServiceSseApiAsync { get; }
 }

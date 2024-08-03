@@ -19,6 +19,7 @@ All URIs are relative to *http://localhost:2746*
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -36,7 +37,10 @@ namespace Example
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("Authorization", "Bearer");
 
-            var apiInstance = new InfoServiceApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new InfoServiceApi(httpClient, config, httpClientHandler);
             var body = new IoArgoprojWorkflowV1alpha1CollectEventRequest(); // IoArgoprojWorkflowV1alpha1CollectEventRequest |
 
             try
@@ -112,6 +116,7 @@ catch (ApiException e)
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -129,7 +134,10 @@ namespace Example
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("Authorization", "Bearer");
 
-            var apiInstance = new InfoServiceApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new InfoServiceApi(httpClient, config, httpClientHandler);
 
             try
             {
@@ -200,6 +208,7 @@ This endpoint does not need any parameter.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -217,7 +226,10 @@ namespace Example
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("Authorization", "Bearer");
 
-            var apiInstance = new InfoServiceApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new InfoServiceApi(httpClient, config, httpClientHandler);
 
             try
             {
@@ -288,6 +300,7 @@ This endpoint does not need any parameter.
 ```csharp
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -305,7 +318,10 @@ namespace Example
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // config.AddApiKeyPrefix("Authorization", "Bearer");
 
-            var apiInstance = new InfoServiceApi(config);
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new InfoServiceApi(httpClient, config, httpClientHandler);
 
             try
             {

@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mime;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -32,9 +33,8 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojEventsV1alpha1EventSource</returns>
-        IoArgoprojEventsV1alpha1EventSource EventSourceServiceCreateEventSource(string varNamespace, EventsourceCreateEventSourceRequest body, int operationIndex = 0);
+        IoArgoprojEventsV1alpha1EventSource EventSourceServiceCreateEventSource(string varNamespace, EventsourceCreateEventSourceRequest body);
 
         /// <summary>
         ///
@@ -45,9 +45,8 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojEventsV1alpha1EventSource</returns>
-        ApiResponse<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceCreateEventSourceWithHttpInfo(string varNamespace, EventsourceCreateEventSourceRequest body, int operationIndex = 0);
+        ApiResponse<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceCreateEventSourceWithHttpInfo(string varNamespace, EventsourceCreateEventSourceRequest body);
         /// <summary>
         ///
         /// </summary>
@@ -60,9 +59,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Object</returns>
-        Object EventSourceServiceDeleteEventSource(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0);
+        Object EventSourceServiceDeleteEventSource(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?));
 
         /// <summary>
         ///
@@ -79,9 +77,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> EventSourceServiceDeleteEventSourceWithHttpInfo(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0);
+        ApiResponse<Object> EventSourceServiceDeleteEventSourceWithHttpInfo(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?));
         /// <summary>
         ///
         /// </summary>
@@ -101,9 +98,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="podLogOptionsTailLines">If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime +optional. (optional)</param>
         /// <param name="podLogOptionsLimitBytes">If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit. +optional. (optional)</param>
         /// <param name="podLogOptionsInsecureSkipTLSVerifyBackend">insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver&#39;s TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet). +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>StreamResultOfEventsourceLogEntry</returns>
-        StreamResultOfEventsourceLogEntry EventSourceServiceEventSourcesLogs(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?), int operationIndex = 0);
+        StreamResultOfEventsourceLogEntry EventSourceServiceEventSourcesLogs(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?));
 
         /// <summary>
         ///
@@ -127,18 +123,16 @@ namespace Org.OpenAPITools.Api
         /// <param name="podLogOptionsTailLines">If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime +optional. (optional)</param>
         /// <param name="podLogOptionsLimitBytes">If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit. +optional. (optional)</param>
         /// <param name="podLogOptionsInsecureSkipTLSVerifyBackend">insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver&#39;s TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet). +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of StreamResultOfEventsourceLogEntry</returns>
-        ApiResponse<StreamResultOfEventsourceLogEntry> EventSourceServiceEventSourcesLogsWithHttpInfo(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?), int operationIndex = 0);
+        ApiResponse<StreamResultOfEventsourceLogEntry> EventSourceServiceEventSourcesLogsWithHttpInfo(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?));
         /// <summary>
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojEventsV1alpha1EventSource</returns>
-        IoArgoprojEventsV1alpha1EventSource EventSourceServiceGetEventSource(string varNamespace, string name, int operationIndex = 0);
+        IoArgoprojEventsV1alpha1EventSource EventSourceServiceGetEventSource(string varNamespace, string name);
 
         /// <summary>
         ///
@@ -149,9 +143,8 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojEventsV1alpha1EventSource</returns>
-        ApiResponse<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceGetEventSourceWithHttpInfo(string varNamespace, string name, int operationIndex = 0);
+        ApiResponse<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceGetEventSourceWithHttpInfo(string varNamespace, string name);
         /// <summary>
         ///
         /// </summary>
@@ -166,9 +159,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojEventsV1alpha1EventSourceList</returns>
-        IoArgoprojEventsV1alpha1EventSourceList EventSourceServiceListEventSources(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0);
+        IoArgoprojEventsV1alpha1EventSourceList EventSourceServiceListEventSources(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?));
 
         /// <summary>
         ///
@@ -187,9 +179,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojEventsV1alpha1EventSourceList</returns>
-        ApiResponse<IoArgoprojEventsV1alpha1EventSourceList> EventSourceServiceListEventSourcesWithHttpInfo(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0);
+        ApiResponse<IoArgoprojEventsV1alpha1EventSourceList> EventSourceServiceListEventSourcesWithHttpInfo(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?));
         /// <summary>
         ///
         /// </summary>
@@ -197,9 +188,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojEventsV1alpha1EventSource</returns>
-        IoArgoprojEventsV1alpha1EventSource EventSourceServiceUpdateEventSource(string varNamespace, string name, EventsourceUpdateEventSourceRequest body, int operationIndex = 0);
+        IoArgoprojEventsV1alpha1EventSource EventSourceServiceUpdateEventSource(string varNamespace, string name, EventsourceUpdateEventSourceRequest body);
 
         /// <summary>
         ///
@@ -211,9 +201,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojEventsV1alpha1EventSource</returns>
-        ApiResponse<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceUpdateEventSourceWithHttpInfo(string varNamespace, string name, EventsourceUpdateEventSourceRequest body, int operationIndex = 0);
+        ApiResponse<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceUpdateEventSourceWithHttpInfo(string varNamespace, string name, EventsourceUpdateEventSourceRequest body);
         /// <summary>
         ///
         /// </summary>
@@ -228,9 +217,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>StreamResultOfEventsourceEventSourceWatchEvent</returns>
-        StreamResultOfEventsourceEventSourceWatchEvent EventSourceServiceWatchEventSources(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0);
+        StreamResultOfEventsourceEventSourceWatchEvent EventSourceServiceWatchEventSources(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?));
 
         /// <summary>
         ///
@@ -249,9 +237,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of StreamResultOfEventsourceEventSourceWatchEvent</returns>
-        ApiResponse<StreamResultOfEventsourceEventSourceWatchEvent> EventSourceServiceWatchEventSourcesWithHttpInfo(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0);
+        ApiResponse<StreamResultOfEventsourceEventSourceWatchEvent> EventSourceServiceWatchEventSourcesWithHttpInfo(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?));
         #endregion Synchronous Operations
     }
 
@@ -270,10 +257,9 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojEventsV1alpha1EventSource</returns>
-        System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceCreateEventSourceAsync(string varNamespace, EventsourceCreateEventSourceRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceCreateEventSourceAsync(string varNamespace, EventsourceCreateEventSourceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -284,10 +270,9 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojEventsV1alpha1EventSource)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojEventsV1alpha1EventSource>> EventSourceServiceCreateEventSourceWithHttpInfoAsync(string varNamespace, EventsourceCreateEventSourceRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojEventsV1alpha1EventSource>> EventSourceServiceCreateEventSourceWithHttpInfoAsync(string varNamespace, EventsourceCreateEventSourceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -303,10 +288,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> EventSourceServiceDeleteEventSourceAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Object> EventSourceServiceDeleteEventSourceAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -323,10 +307,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> EventSourceServiceDeleteEventSourceWithHttpInfoAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> EventSourceServiceDeleteEventSourceWithHttpInfoAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -349,10 +332,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="podLogOptionsTailLines">If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime +optional. (optional)</param>
         /// <param name="podLogOptionsLimitBytes">If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit. +optional. (optional)</param>
         /// <param name="podLogOptionsInsecureSkipTLSVerifyBackend">insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver&#39;s TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet). +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of StreamResultOfEventsourceLogEntry</returns>
-        System.Threading.Tasks.Task<StreamResultOfEventsourceLogEntry> EventSourceServiceEventSourcesLogsAsync(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<StreamResultOfEventsourceLogEntry> EventSourceServiceEventSourcesLogsAsync(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -376,10 +358,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="podLogOptionsTailLines">If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime +optional. (optional)</param>
         /// <param name="podLogOptionsLimitBytes">If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit. +optional. (optional)</param>
         /// <param name="podLogOptionsInsecureSkipTLSVerifyBackend">insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver&#39;s TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet). +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (StreamResultOfEventsourceLogEntry)</returns>
-        System.Threading.Tasks.Task<ApiResponse<StreamResultOfEventsourceLogEntry>> EventSourceServiceEventSourcesLogsWithHttpInfoAsync(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<StreamResultOfEventsourceLogEntry>> EventSourceServiceEventSourcesLogsWithHttpInfoAsync(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -389,10 +370,9 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojEventsV1alpha1EventSource</returns>
-        System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceGetEventSourceAsync(string varNamespace, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceGetEventSourceAsync(string varNamespace, string name, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -403,10 +383,9 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojEventsV1alpha1EventSource)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojEventsV1alpha1EventSource>> EventSourceServiceGetEventSourceWithHttpInfoAsync(string varNamespace, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojEventsV1alpha1EventSource>> EventSourceServiceGetEventSourceWithHttpInfoAsync(string varNamespace, string name, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -424,10 +403,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojEventsV1alpha1EventSourceList</returns>
-        System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSourceList> EventSourceServiceListEventSourcesAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSourceList> EventSourceServiceListEventSourcesAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -446,10 +424,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojEventsV1alpha1EventSourceList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojEventsV1alpha1EventSourceList>> EventSourceServiceListEventSourcesWithHttpInfoAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojEventsV1alpha1EventSourceList>> EventSourceServiceListEventSourcesWithHttpInfoAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -460,10 +437,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojEventsV1alpha1EventSource</returns>
-        System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceUpdateEventSourceAsync(string varNamespace, string name, EventsourceUpdateEventSourceRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceUpdateEventSourceAsync(string varNamespace, string name, EventsourceUpdateEventSourceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -475,10 +451,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojEventsV1alpha1EventSource)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojEventsV1alpha1EventSource>> EventSourceServiceUpdateEventSourceWithHttpInfoAsync(string varNamespace, string name, EventsourceUpdateEventSourceRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojEventsV1alpha1EventSource>> EventSourceServiceUpdateEventSourceWithHttpInfoAsync(string varNamespace, string name, EventsourceUpdateEventSourceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -496,10 +471,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of StreamResultOfEventsourceEventSourceWatchEvent</returns>
-        System.Threading.Tasks.Task<StreamResultOfEventsourceEventSourceWatchEvent> EventSourceServiceWatchEventSourcesAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<StreamResultOfEventsourceEventSourceWatchEvent> EventSourceServiceWatchEventSourcesAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -518,10 +492,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (StreamResultOfEventsourceEventSourceWatchEvent)</returns>
-        System.Threading.Tasks.Task<ApiResponse<StreamResultOfEventsourceEventSourceWatchEvent>> EventSourceServiceWatchEventSourcesWithHttpInfoAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<StreamResultOfEventsourceEventSourceWatchEvent>> EventSourceServiceWatchEventSourcesWithHttpInfoAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -536,12 +509,14 @@ namespace Org.OpenAPITools.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class EventSourceServiceApi : IEventSourceServiceApi
+    public partial class EventSourceServiceApi : IDisposable, IEventSourceServiceApi
     {
         private Org.OpenAPITools.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventSourceServiceApi"/> class.
+        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
+        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <returns></returns>
         public EventSourceServiceApi() : this((string)null)
@@ -550,7 +525,11 @@ namespace Org.OpenAPITools.Api
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventSourceServiceApi"/> class.
+        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
+        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
+        /// <param name="basePath">The target service's base path in URL format.</param>
+        /// <exception cref="ArgumentException"></exception>
         /// <returns></returns>
         public EventSourceServiceApi(string basePath)
         {
@@ -558,16 +537,19 @@ namespace Org.OpenAPITools.Api
                 Org.OpenAPITools.Client.GlobalConfiguration.Instance,
                 new Org.OpenAPITools.Client.Configuration { BasePath = basePath }
             );
-            this.Client = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.Client =  this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
             this.ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventSourceServiceApi"/> class
-        /// using Configuration object
+        /// Initializes a new instance of the <see cref="EventSourceServiceApi"/> class using Configuration object.
+        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
+        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
-        /// <param name="configuration">An instance of Configuration</param>
+        /// <param name="configuration">An instance of Configuration.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
         public EventSourceServiceApi(Org.OpenAPITools.Client.Configuration configuration)
         {
@@ -577,8 +559,78 @@ namespace Org.OpenAPITools.Api
                 Org.OpenAPITools.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.Client = this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
+            ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventSourceServiceApi"/> class.
+        /// </summary>
+        /// <param name="client">An instance of HttpClient.</param>
+        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns></returns>
+        /// <remarks>
+        /// Some configuration settings will not be applied without passing an HttpClientHandler.
+        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
+        /// </remarks>
+        public EventSourceServiceApi(HttpClient client, HttpClientHandler handler = null) : this(client, (string)null, handler)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventSourceServiceApi"/> class.
+        /// </summary>
+        /// <param name="client">An instance of HttpClient.</param>
+        /// <param name="basePath">The target service's base path in URL format.</param>
+        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <returns></returns>
+        /// <remarks>
+        /// Some configuration settings will not be applied without passing an HttpClientHandler.
+        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
+        /// </remarks>
+        public EventSourceServiceApi(HttpClient client, string basePath, HttpClientHandler handler = null)
+        {
+            if (client == null) throw new ArgumentNullException("client");
+
+            this.Configuration = Org.OpenAPITools.Client.Configuration.MergeConfigurations(
+                Org.OpenAPITools.Client.GlobalConfiguration.Instance,
+                new Org.OpenAPITools.Client.Configuration { BasePath = basePath }
+            );
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.Client =  this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
+            this.ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventSourceServiceApi"/> class using Configuration object.
+        /// </summary>
+        /// <param name="client">An instance of HttpClient.</param>
+        /// <param name="configuration">An instance of Configuration.</param>
+        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns></returns>
+        /// <remarks>
+        /// Some configuration settings will not be applied without passing an HttpClientHandler.
+        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
+        /// </remarks>
+        public EventSourceServiceApi(HttpClient client, Org.OpenAPITools.Client.Configuration configuration, HttpClientHandler handler = null)
+        {
+            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException("client");
+
+            this.Configuration = Org.OpenAPITools.Client.Configuration.MergeConfigurations(
+                Org.OpenAPITools.Client.GlobalConfiguration.Instance,
+                configuration
+            );
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.Client = this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
             ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
         }
 
@@ -589,6 +641,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public EventSourceServiceApi(Org.OpenAPITools.Client.ISynchronousClient client, Org.OpenAPITools.Client.IAsynchronousClient asyncClient, Org.OpenAPITools.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
@@ -600,6 +653,19 @@ namespace Org.OpenAPITools.Api
             this.Configuration = configuration;
             this.ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
         }
+
+        /// <summary>
+        /// Disposes resources if they were created by us
+        /// </summary>
+        public void Dispose()
+        {
+            this.ApiClient?.Dispose();
+        }
+
+        /// <summary>
+        /// Holds the ApiClient if created
+        /// </summary>
+        public Org.OpenAPITools.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
@@ -648,9 +714,8 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojEventsV1alpha1EventSource</returns>
-        public IoArgoprojEventsV1alpha1EventSource EventSourceServiceCreateEventSource(string varNamespace, EventsourceCreateEventSourceRequest body, int operationIndex = 0)
+        public IoArgoprojEventsV1alpha1EventSource EventSourceServiceCreateEventSource(string varNamespace, EventsourceCreateEventSourceRequest body)
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> localVarResponse = EventSourceServiceCreateEventSourceWithHttpInfo(varNamespace, body);
             return localVarResponse.Data;
@@ -662,21 +727,16 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojEventsV1alpha1EventSource</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceCreateEventSourceWithHttpInfo(string varNamespace, EventsourceCreateEventSourceRequest body, int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceCreateEventSourceWithHttpInfo(string varNamespace, EventsourceCreateEventSourceRequest body)
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceCreateEventSource");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling EventSourceServiceApi->EventSourceServiceCreateEventSource");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -690,22 +750,13 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceCreateEventSource";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -715,13 +766,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<IoArgoprojEventsV1alpha1EventSource>("/api/v1/event-sources/{namespace}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceCreateEventSource", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -733,12 +782,11 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojEventsV1alpha1EventSource</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceCreateEventSourceAsync(string varNamespace, EventsourceCreateEventSourceRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceCreateEventSourceAsync(string varNamespace, EventsourceCreateEventSourceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> localVarResponse = await EventSourceServiceCreateEventSourceWithHttpInfoAsync(varNamespace, body, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> localVarResponse = await EventSourceServiceCreateEventSourceWithHttpInfoAsync(varNamespace, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -748,22 +796,17 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojEventsV1alpha1EventSource)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource>> EventSourceServiceCreateEventSourceWithHttpInfoAsync(string varNamespace, EventsourceCreateEventSourceRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource>> EventSourceServiceCreateEventSourceWithHttpInfoAsync(string varNamespace, EventsourceCreateEventSourceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceCreateEventSource");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling EventSourceServiceApi->EventSourceServiceCreateEventSource");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -777,23 +820,15 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceCreateEventSource";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -802,15 +837,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.PostAsync<IoArgoprojEventsV1alpha1EventSource>("/api/v1/event-sources/{namespace}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceCreateEventSource", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -828,9 +861,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Object</returns>
-        public Object EventSourceServiceDeleteEventSource(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0)
+        public Object EventSourceServiceDeleteEventSource(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?))
         {
             Org.OpenAPITools.Client.ApiResponse<Object> localVarResponse = EventSourceServiceDeleteEventSourceWithHttpInfo(varNamespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun);
             return localVarResponse.Data;
@@ -848,21 +880,16 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object</returns>
-        public Org.OpenAPITools.Client.ApiResponse<Object> EventSourceServiceDeleteEventSourceWithHttpInfo(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<Object> EventSourceServiceDeleteEventSourceWithHttpInfo(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceDeleteEventSource");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling EventSourceServiceApi->EventSourceServiceDeleteEventSource");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -875,16 +902,10 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
@@ -913,9 +934,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("multi", "deleteOptions.dryRun", deleteOptionsDryRun));
             }
 
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceDeleteEventSource";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -924,13 +942,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Delete<Object>("/api/v1/event-sources/{namespace}/{name}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceDeleteEventSource", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -948,12 +964,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> EventSourceServiceDeleteEventSourceAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Object> EventSourceServiceDeleteEventSourceAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<Object> localVarResponse = await EventSourceServiceDeleteEventSourceWithHttpInfoAsync(varNamespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<Object> localVarResponse = await EventSourceServiceDeleteEventSourceWithHttpInfoAsync(varNamespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -969,22 +984,17 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<Object>> EventSourceServiceDeleteEventSourceWithHttpInfoAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<Object>> EventSourceServiceDeleteEventSourceWithHttpInfoAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceDeleteEventSource");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling EventSourceServiceApi->EventSourceServiceDeleteEventSource");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -997,17 +1007,12 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
@@ -1036,9 +1041,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("multi", "deleteOptions.dryRun", deleteOptionsDryRun));
             }
 
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceDeleteEventSource";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -1046,15 +1048,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/api/v1/event-sources/{namespace}/{name}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceDeleteEventSource", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1079,9 +1079,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="podLogOptionsTailLines">If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime +optional. (optional)</param>
         /// <param name="podLogOptionsLimitBytes">If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit. +optional. (optional)</param>
         /// <param name="podLogOptionsInsecureSkipTLSVerifyBackend">insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver&#39;s TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet). +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>StreamResultOfEventsourceLogEntry</returns>
-        public StreamResultOfEventsourceLogEntry EventSourceServiceEventSourcesLogs(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?), int operationIndex = 0)
+        public StreamResultOfEventsourceLogEntry EventSourceServiceEventSourcesLogs(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?))
         {
             Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceLogEntry> localVarResponse = EventSourceServiceEventSourcesLogsWithHttpInfo(varNamespace, name, eventSourceType, eventName, grep, podLogOptionsContainer, podLogOptionsFollow, podLogOptionsPrevious, podLogOptionsSinceSeconds, podLogOptionsSinceTimeSeconds, podLogOptionsSinceTimeNanos, podLogOptionsTimestamps, podLogOptionsTailLines, podLogOptionsLimitBytes, podLogOptionsInsecureSkipTLSVerifyBackend);
             return localVarResponse.Data;
@@ -1106,15 +1105,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="podLogOptionsTailLines">If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime +optional. (optional)</param>
         /// <param name="podLogOptionsLimitBytes">If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit. +optional. (optional)</param>
         /// <param name="podLogOptionsInsecureSkipTLSVerifyBackend">insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver&#39;s TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet). +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of StreamResultOfEventsourceLogEntry</returns>
-        public Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceLogEntry> EventSourceServiceEventSourcesLogsWithHttpInfo(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?), int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceLogEntry> EventSourceServiceEventSourcesLogsWithHttpInfo(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceEventSourcesLogs");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1127,16 +1123,10 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             if (name != null)
@@ -1196,9 +1186,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("", "podLogOptions.insecureSkipTLSVerifyBackend", podLogOptionsInsecureSkipTLSVerifyBackend));
             }
 
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceEventSourcesLogs";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -1207,13 +1194,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<StreamResultOfEventsourceLogEntry>("/api/v1/stream/event-sources/{namespace}/logs", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceEventSourcesLogs", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1238,12 +1223,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="podLogOptionsTailLines">If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime +optional. (optional)</param>
         /// <param name="podLogOptionsLimitBytes">If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit. +optional. (optional)</param>
         /// <param name="podLogOptionsInsecureSkipTLSVerifyBackend">insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver&#39;s TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet). +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of StreamResultOfEventsourceLogEntry</returns>
-        public async System.Threading.Tasks.Task<StreamResultOfEventsourceLogEntry> EventSourceServiceEventSourcesLogsAsync(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<StreamResultOfEventsourceLogEntry> EventSourceServiceEventSourcesLogsAsync(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceLogEntry> localVarResponse = await EventSourceServiceEventSourcesLogsWithHttpInfoAsync(varNamespace, name, eventSourceType, eventName, grep, podLogOptionsContainer, podLogOptionsFollow, podLogOptionsPrevious, podLogOptionsSinceSeconds, podLogOptionsSinceTimeSeconds, podLogOptionsSinceTimeNanos, podLogOptionsTimestamps, podLogOptionsTailLines, podLogOptionsLimitBytes, podLogOptionsInsecureSkipTLSVerifyBackend, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceLogEntry> localVarResponse = await EventSourceServiceEventSourcesLogsWithHttpInfoAsync(varNamespace, name, eventSourceType, eventName, grep, podLogOptionsContainer, podLogOptionsFollow, podLogOptionsPrevious, podLogOptionsSinceSeconds, podLogOptionsSinceTimeSeconds, podLogOptionsSinceTimeNanos, podLogOptionsTimestamps, podLogOptionsTailLines, podLogOptionsLimitBytes, podLogOptionsInsecureSkipTLSVerifyBackend, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1266,16 +1250,13 @@ namespace Org.OpenAPITools.Api
         /// <param name="podLogOptionsTailLines">If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime +optional. (optional)</param>
         /// <param name="podLogOptionsLimitBytes">If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit. +optional. (optional)</param>
         /// <param name="podLogOptionsInsecureSkipTLSVerifyBackend">insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver&#39;s TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet). +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (StreamResultOfEventsourceLogEntry)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceLogEntry>> EventSourceServiceEventSourcesLogsWithHttpInfoAsync(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceLogEntry>> EventSourceServiceEventSourcesLogsWithHttpInfoAsync(string varNamespace, string? name = default(string?), string? eventSourceType = default(string?), string? eventName = default(string?), string? grep = default(string?), string? podLogOptionsContainer = default(string?), bool? podLogOptionsFollow = default(bool?), bool? podLogOptionsPrevious = default(bool?), string? podLogOptionsSinceSeconds = default(string?), string? podLogOptionsSinceTimeSeconds = default(string?), int? podLogOptionsSinceTimeNanos = default(int?), bool? podLogOptionsTimestamps = default(bool?), string? podLogOptionsTailLines = default(string?), string? podLogOptionsLimitBytes = default(string?), bool? podLogOptionsInsecureSkipTLSVerifyBackend = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceEventSourcesLogs");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -1288,17 +1269,12 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             if (name != null)
@@ -1358,9 +1334,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("", "podLogOptions.insecureSkipTLSVerifyBackend", podLogOptionsInsecureSkipTLSVerifyBackend));
             }
 
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceEventSourcesLogs";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -1368,15 +1341,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.GetAsync<StreamResultOfEventsourceLogEntry>("/api/v1/stream/event-sources/{namespace}/logs", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceEventSourcesLogs", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1388,9 +1359,8 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojEventsV1alpha1EventSource</returns>
-        public IoArgoprojEventsV1alpha1EventSource EventSourceServiceGetEventSource(string varNamespace, string name, int operationIndex = 0)
+        public IoArgoprojEventsV1alpha1EventSource EventSourceServiceGetEventSource(string varNamespace, string name)
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> localVarResponse = EventSourceServiceGetEventSourceWithHttpInfo(varNamespace, name);
             return localVarResponse.Data;
@@ -1402,21 +1372,16 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojEventsV1alpha1EventSource</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceGetEventSourceWithHttpInfo(string varNamespace, string name, int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceGetEventSourceWithHttpInfo(string varNamespace, string name)
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceGetEventSource");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling EventSourceServiceApi->EventSourceServiceGetEventSource");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1429,22 +1394,13 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
-
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceGetEventSource";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1454,13 +1410,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<IoArgoprojEventsV1alpha1EventSource>("/api/v1/event-sources/{namespace}/{name}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceGetEventSource", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1472,12 +1426,11 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojEventsV1alpha1EventSource</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceGetEventSourceAsync(string varNamespace, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceGetEventSourceAsync(string varNamespace, string name, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> localVarResponse = await EventSourceServiceGetEventSourceWithHttpInfoAsync(varNamespace, name, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> localVarResponse = await EventSourceServiceGetEventSourceWithHttpInfoAsync(varNamespace, name, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1487,22 +1440,17 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojEventsV1alpha1EventSource)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource>> EventSourceServiceGetEventSourceWithHttpInfoAsync(string varNamespace, string name, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource>> EventSourceServiceGetEventSourceWithHttpInfoAsync(string varNamespace, string name, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceGetEventSource");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling EventSourceServiceApi->EventSourceServiceGetEventSource");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -1515,23 +1463,15 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
-
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceGetEventSource";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1540,15 +1480,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.GetAsync<IoArgoprojEventsV1alpha1EventSource>("/api/v1/event-sources/{namespace}/{name}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceGetEventSource", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1568,9 +1506,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojEventsV1alpha1EventSourceList</returns>
-        public IoArgoprojEventsV1alpha1EventSourceList EventSourceServiceListEventSources(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0)
+        public IoArgoprojEventsV1alpha1EventSourceList EventSourceServiceListEventSources(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?))
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSourceList> localVarResponse = EventSourceServiceListEventSourcesWithHttpInfo(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue);
             return localVarResponse.Data;
@@ -1590,15 +1527,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojEventsV1alpha1EventSourceList</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSourceList> EventSourceServiceListEventSourcesWithHttpInfo(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSourceList> EventSourceServiceListEventSourcesWithHttpInfo(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceListEventSources");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1611,16 +1545,10 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             if (listOptionsLabelSelector != null)
@@ -1660,9 +1588,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("", "listOptions.continue", listOptionsContinue));
             }
 
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceListEventSources";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -1671,13 +1596,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<IoArgoprojEventsV1alpha1EventSourceList>("/api/v1/event-sources/{namespace}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceListEventSources", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1697,12 +1620,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojEventsV1alpha1EventSourceList</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSourceList> EventSourceServiceListEventSourcesAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSourceList> EventSourceServiceListEventSourcesAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSourceList> localVarResponse = await EventSourceServiceListEventSourcesWithHttpInfoAsync(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSourceList> localVarResponse = await EventSourceServiceListEventSourcesWithHttpInfoAsync(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1720,16 +1642,13 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojEventsV1alpha1EventSourceList)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSourceList>> EventSourceServiceListEventSourcesWithHttpInfoAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSourceList>> EventSourceServiceListEventSourcesWithHttpInfoAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceListEventSources");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -1742,17 +1661,12 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             if (listOptionsLabelSelector != null)
@@ -1792,9 +1706,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("", "listOptions.continue", listOptionsContinue));
             }
 
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceListEventSources";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -1802,15 +1713,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.GetAsync<IoArgoprojEventsV1alpha1EventSourceList>("/api/v1/event-sources/{namespace}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceListEventSources", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1823,9 +1732,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojEventsV1alpha1EventSource</returns>
-        public IoArgoprojEventsV1alpha1EventSource EventSourceServiceUpdateEventSource(string varNamespace, string name, EventsourceUpdateEventSourceRequest body, int operationIndex = 0)
+        public IoArgoprojEventsV1alpha1EventSource EventSourceServiceUpdateEventSource(string varNamespace, string name, EventsourceUpdateEventSourceRequest body)
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> localVarResponse = EventSourceServiceUpdateEventSourceWithHttpInfo(varNamespace, name, body);
             return localVarResponse.Data;
@@ -1838,27 +1746,20 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojEventsV1alpha1EventSource</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceUpdateEventSourceWithHttpInfo(string varNamespace, string name, EventsourceUpdateEventSourceRequest body, int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceUpdateEventSourceWithHttpInfo(string varNamespace, string name, EventsourceUpdateEventSourceRequest body)
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceUpdateEventSource");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling EventSourceServiceApi->EventSourceServiceUpdateEventSource");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling EventSourceServiceApi->EventSourceServiceUpdateEventSource");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1872,23 +1773,14 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceUpdateEventSource";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1898,13 +1790,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Put<IoArgoprojEventsV1alpha1EventSource>("/api/v1/event-sources/{namespace}/{name}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceUpdateEventSource", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1917,12 +1807,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojEventsV1alpha1EventSource</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceUpdateEventSourceAsync(string varNamespace, string name, EventsourceUpdateEventSourceRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojEventsV1alpha1EventSource> EventSourceServiceUpdateEventSourceAsync(string varNamespace, string name, EventsourceUpdateEventSourceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> localVarResponse = await EventSourceServiceUpdateEventSourceWithHttpInfoAsync(varNamespace, name, body, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource> localVarResponse = await EventSourceServiceUpdateEventSourceWithHttpInfoAsync(varNamespace, name, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1933,28 +1822,21 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojEventsV1alpha1EventSource)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource>> EventSourceServiceUpdateEventSourceWithHttpInfoAsync(string varNamespace, string name, EventsourceUpdateEventSourceRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojEventsV1alpha1EventSource>> EventSourceServiceUpdateEventSourceWithHttpInfoAsync(string varNamespace, string name, EventsourceUpdateEventSourceRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceUpdateEventSource");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling EventSourceServiceApi->EventSourceServiceUpdateEventSource");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling EventSourceServiceApi->EventSourceServiceUpdateEventSource");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -1968,24 +1850,16 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceUpdateEventSource";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1994,15 +1868,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.PutAsync<IoArgoprojEventsV1alpha1EventSource>("/api/v1/event-sources/{namespace}/{name}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceUpdateEventSource", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -2022,9 +1894,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>StreamResultOfEventsourceEventSourceWatchEvent</returns>
-        public StreamResultOfEventsourceEventSourceWatchEvent EventSourceServiceWatchEventSources(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0)
+        public StreamResultOfEventsourceEventSourceWatchEvent EventSourceServiceWatchEventSources(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?))
         {
             Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceEventSourceWatchEvent> localVarResponse = EventSourceServiceWatchEventSourcesWithHttpInfo(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue);
             return localVarResponse.Data;
@@ -2044,15 +1915,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of StreamResultOfEventsourceEventSourceWatchEvent</returns>
-        public Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceEventSourceWatchEvent> EventSourceServiceWatchEventSourcesWithHttpInfo(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceEventSourceWatchEvent> EventSourceServiceWatchEventSourcesWithHttpInfo(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceWatchEventSources");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -2065,16 +1933,10 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             if (listOptionsLabelSelector != null)
@@ -2114,9 +1976,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("", "listOptions.continue", listOptionsContinue));
             }
 
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceWatchEventSources";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -2125,13 +1984,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<StreamResultOfEventsourceEventSourceWatchEvent>("/api/v1/stream/event-sources/{namespace}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceWatchEventSources", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -2151,12 +2008,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of StreamResultOfEventsourceEventSourceWatchEvent</returns>
-        public async System.Threading.Tasks.Task<StreamResultOfEventsourceEventSourceWatchEvent> EventSourceServiceWatchEventSourcesAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<StreamResultOfEventsourceEventSourceWatchEvent> EventSourceServiceWatchEventSourcesAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceEventSourceWatchEvent> localVarResponse = await EventSourceServiceWatchEventSourcesWithHttpInfoAsync(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceEventSourceWatchEvent> localVarResponse = await EventSourceServiceWatchEventSourcesWithHttpInfoAsync(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2174,16 +2030,13 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (StreamResultOfEventsourceEventSourceWatchEvent)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceEventSourceWatchEvent>> EventSourceServiceWatchEventSourcesWithHttpInfoAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<StreamResultOfEventsourceEventSourceWatchEvent>> EventSourceServiceWatchEventSourcesWithHttpInfoAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling EventSourceServiceApi->EventSourceServiceWatchEventSources");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -2196,17 +2049,12 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             if (listOptionsLabelSelector != null)
@@ -2246,9 +2094,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("", "listOptions.continue", listOptionsContinue));
             }
 
-            localVarRequestOptions.Operation = "EventSourceServiceApi.EventSourceServiceWatchEventSources";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -2256,15 +2101,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.GetAsync<StreamResultOfEventsourceEventSourceWatchEvent>("/api/v1/stream/event-sources/{namespace}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EventSourceServiceWatchEventSources", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;

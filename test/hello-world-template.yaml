@@ -36,6 +36,11 @@ spec:
             echo "this is an artifact test" > /tmp/artifact.txt
             echo "$(ls /tmp)"
             cat "/tmp/artifact.txt"
+            for i in {1..10}
+            do
+              echo "$(date +"%Y-%m-%d %H:%M:%S")"
+              sleep 1
+            done
       outputs:
         artifacts:
           - name: temp-artifact
