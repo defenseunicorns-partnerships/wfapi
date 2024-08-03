@@ -211,6 +211,7 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
         await foreach (var logEntry in argoClient.WorkflowServiceSseApiAsync.WorkflowServiceWorkflowLogsAsync(
                            varNamespace: argoClient.Namespace,
                            name: workflowName,
+                           logOptionsContainer: "main",
                            logOptionsFollow: true,
                            cancellationToken: cancellationToken
                        ))
