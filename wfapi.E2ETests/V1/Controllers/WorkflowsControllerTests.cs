@@ -3,13 +3,14 @@ using System.Net;
 using System.Net.Mime;
 using Newtonsoft.Json;
 using RestAssured.Request.Logging;
+using RestAssured.Response.Logging;
 using wfapi.V1.Models;
 using Xunit.Abstractions;
 using static RestAssured.Dsl;
 
 namespace wfapi.E2ETests.V1.Controllers;
 
-public class WorkflowsControllerTests(ITestOutputHelper output)
+public class WorkflowsControllerTests
 {
     private static readonly string RootUrl = "https://wfapi.uds.dev";
     private static readonly string TemplateName = "hello-world-template";
@@ -18,10 +19,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
     [Fact]
     public void SubmitWorkflow_WhenCalled_WithEmptyParameters_ReturnsOk()
     {
-        Console.SetOut(new ConsoleWriter(output));
-
         Given()
-            .Log(RequestLogLevel.All)
             .Accept(MediaTypeNames.Application.Json)
             .ContentType(MediaTypeNames.Application.Json)
             .Body(new WorkflowSubmission()
@@ -39,10 +37,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
     [Fact]
     public void SubmitWorkflow_WhenCalled_WithoutParameters_ReturnsOk()
     {
-        Console.SetOut(new ConsoleWriter(output));
-
         Given()
-            .Log(RequestLogLevel.All)
             .Accept(MediaTypeNames.Application.Json)
             .ContentType(MediaTypeNames.Application.Json)
             .Body(new WorkflowSubmission()
@@ -59,11 +54,8 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
     [Fact]
     public void GetWorkflow_WhenCalled_ReturnsOk()
     {
-        Console.SetOut(new ConsoleWriter(output));
-
         // Submit the workflow
         var workflow = (WorkflowInfo)Given()
-            .Log(RequestLogLevel.All)
             .Accept(MediaTypeNames.Application.Json)
             .ContentType(MediaTypeNames.Application.Json)
             .Body(new WorkflowSubmission()
@@ -92,8 +84,6 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
     [Fact]
     public void GetWorkflowLogstream_WhenCalledOnRunningPod_ReturnsOkImmediately()
     {
-        Console.SetOut(new ConsoleWriter(output));
-
         // Submit the workflow
         var workflow = (WorkflowInfo)Given()
             .Log(RequestLogLevel.All)
@@ -108,6 +98,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             .When()
             .Post($"{RootUrl}/api/v1/workflows/")
             .Then()
+            .Log(ResponseLogLevel.All)
             .StatusCode(HttpStatusCode.OK)
             .And()
             .DeserializeTo(typeof(WorkflowInfo));
