@@ -4,11 +4,12 @@ using System.Net.Mime;
 using Newtonsoft.Json;
 using RestAssured.Request.Logging;
 using wfapi.V1.Models;
+using Xunit.Abstractions;
 using static RestAssured.Dsl;
 
 namespace wfapi.E2ETests.V1.Controllers;
 
-public class WorkflowsControllerTests
+public class WorkflowsControllerTests(ITestOutputHelper output)
 {
     private static readonly string RootUrl = "https://wfapi.uds.dev";
     private static readonly string TemplateName = "hello-world-template";
@@ -17,6 +18,8 @@ public class WorkflowsControllerTests
     [Fact]
     public void SubmitWorkflow_WhenCalled_WithEmptyParameters_ReturnsOk()
     {
+        Console.SetOut(new ConsoleWriter(output));
+
         Given()
             .Log(RequestLogLevel.All)
             .Accept(MediaTypeNames.Application.Json)
@@ -36,6 +39,8 @@ public class WorkflowsControllerTests
     [Fact]
     public void SubmitWorkflow_WhenCalled_WithoutParameters_ReturnsOk()
     {
+        Console.SetOut(new ConsoleWriter(output));
+
         Given()
             .Log(RequestLogLevel.All)
             .Accept(MediaTypeNames.Application.Json)
@@ -54,6 +59,8 @@ public class WorkflowsControllerTests
     [Fact]
     public void GetWorkflow_WhenCalled_ReturnsOk()
     {
+        Console.SetOut(new ConsoleWriter(output));
+
         // Submit the workflow
         var workflow = (WorkflowInfo)Given()
             .Log(RequestLogLevel.All)
@@ -85,6 +92,8 @@ public class WorkflowsControllerTests
     [Fact]
     public void GetWorkflowLogstream_WhenCalledOnRunningPod_ReturnsOkImmediately()
     {
+        Console.SetOut(new ConsoleWriter(output));
+
         // Submit the workflow
         var workflow = (WorkflowInfo)Given()
             .Log(RequestLogLevel.All)
@@ -122,10 +131,13 @@ public class WorkflowsControllerTests
         }
         sw.Stop();
 
-        // Get the logstream
+        // Get the logstream. Make sure it isn't waiting for the workflow to finish
+        var handler = new HttpClientHandler();
+        var httpClient = new HttpClient(handler);
         sw = Stopwatch.StartNew();
         Given()
             .Log(RequestLogLevel.All)
+            .Timeout(TimeSpan.FromSeconds(1))
             .Accept("application/x-ndjson")
             .When()
             .Get($"{RootUrl}/api/v1/workflows/{workflow.Name}/logstream")
@@ -136,10 +148,8 @@ public class WorkflowsControllerTests
             .And()
             .Header("Cache-Control", "no-cache")
             .And()
-            .Header("Connection", "keep-alive");
-
-        // assert that the logstream is not waiting for the workflow to finish
-        sw.Stop();
-        Assert.True(sw.ElapsedMilliseconds < 1000);
+            .Header("Connection", "keep-alive")
+            .And()
+            .ResponseTime(NHamcrest.Is.LessThan(TimeSpan.FromSeconds(1)));
     }
 }
