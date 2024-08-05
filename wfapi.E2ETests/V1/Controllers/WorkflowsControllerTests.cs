@@ -98,7 +98,6 @@ public class WorkflowsControllerTests
             .When()
             .Post($"{RootUrl}/api/v1/workflows/")
             .Then()
-            .Log(ResponseLogLevel.All)
             .StatusCode(HttpStatusCode.OK)
             .And()
             .DeserializeTo(typeof(WorkflowInfo));
@@ -133,6 +132,7 @@ public class WorkflowsControllerTests
             .When()
             .Get($"{RootUrl}/api/v1/workflows/{workflow.Name}/logstream")
             .Then()
+            .Log(ResponseLogLevel.All)
             .StatusCode(HttpStatusCode.OK)
             .And()
             .ContentType("application/x-ndjson")
