@@ -4,7 +4,6 @@ using System.Net.Mime;
 using Newtonsoft.Json;
 using Org.OpenAPITools.Model;
 using RestAssured.Request.Logging;
-using RestAssured.Response.Logging;
 using wfapi.V1.Models;
 using Xunit.Abstractions;
 using static RestAssured.Dsl;
@@ -13,9 +12,9 @@ namespace wfapi.E2ETests.V1.Controllers;
 
 public class WorkflowsControllerTests(ITestOutputHelper output)
 {
-    private static readonly string RootUrl = "https://wfapi.uds.dev";
-    private static readonly string TemplateName = "hello-world-template";
-    private static readonly string GenerateName = "hello-world-";
+    private const string RootUrl = "https://wfapi.uds.dev";
+    private const string TemplateName = "hello-world-template";
+    private const string GenerateName = "hello-world-";
 
     [Fact]
     public void SubmitWorkflow_WhenCalled_WithEmptyParameters_ReturnsOk()
