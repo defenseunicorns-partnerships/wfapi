@@ -37,6 +37,7 @@ public class WorkflowsControllerTests
     public void SubmitWorkflow_WhenCalled_WithoutParameters_ReturnsOk()
     {
         Given()
+            .Log(RequestLogLevel.All)
             .Accept(MediaTypeNames.Application.Json)
             .ContentType(MediaTypeNames.Application.Json)
             .Body(new WorkflowSubmission()
@@ -55,6 +56,7 @@ public class WorkflowsControllerTests
     {
         // Submit the workflow
         var workflow = (WorkflowInfo)Given()
+            .Log(RequestLogLevel.All)
             .Accept(MediaTypeNames.Application.Json)
             .ContentType(MediaTypeNames.Application.Json)
             .Body(new WorkflowSubmission()
@@ -71,6 +73,7 @@ public class WorkflowsControllerTests
 
         // Get the workflow
         Given()
+            .Log(RequestLogLevel.All)
             .Accept(MediaTypeNames.Application.Json)
             .ContentType(MediaTypeNames.Application.Json)
             .When()
@@ -84,13 +87,14 @@ public class WorkflowsControllerTests
     {
         // Submit the workflow
         var workflow = (WorkflowInfo)Given()
+            .Log(RequestLogLevel.All)
             .Accept(MediaTypeNames.Application.Json)
             .ContentType(MediaTypeNames.Application.Json)
             .Body(new WorkflowSubmission()
             {
                 TemplateName = TemplateName,
                 GenerateName = GenerateName,
-                Parameters = [new WorkflowParameter("waitSeconds", "10")]
+                Parameters = [new WorkflowParameter("waitSeconds", "5")]
             })
             .When()
             .Post($"{RootUrl}/api/v1/workflows/")
@@ -105,6 +109,7 @@ public class WorkflowsControllerTests
         while (workflow.Status != WorkflowStatus.Running && sw.ElapsedMilliseconds < 3000)
         {
             workflow = (WorkflowInfo)Given()
+                .Log(RequestLogLevel.All)
                 .Accept(MediaTypeNames.Application.Json)
                 .ContentType(MediaTypeNames.Application.Json)
                 .When()
@@ -120,6 +125,7 @@ public class WorkflowsControllerTests
         // Get the logstream
         sw = Stopwatch.StartNew();
         Given()
+            .Log(RequestLogLevel.All)
             .Accept("application/x-ndjson")
             .When()
             .Get($"{RootUrl}/api/v1/workflows/{workflow.Name}/logstream")
