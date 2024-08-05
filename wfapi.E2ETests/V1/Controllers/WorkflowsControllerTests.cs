@@ -128,6 +128,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         sw = Stopwatch.StartNew();
         var response = httpClient.Send(request, HttpCompletionOption.ResponseHeadersRead);
         sw.Stop();
+        output.WriteLine("Logstream request took " + sw.ElapsedMilliseconds + "ms");
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.NotNull(response.Content.Headers.ContentType?.MediaType);
         Assert.Equal("application/x-ndjson", response.Content.Headers.ContentType.MediaType);
