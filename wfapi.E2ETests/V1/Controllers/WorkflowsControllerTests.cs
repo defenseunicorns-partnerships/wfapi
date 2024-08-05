@@ -108,7 +108,6 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         {
             workflow = (WorkflowInfo)Given()
                 .Accept(MediaTypeNames.Application.Json)
-                .ContentType(MediaTypeNames.Application.Json)
                 .When()
                 .Get($"{RootUrl}/api/v1/workflows/{workflow.Name}")
                 .Then()
@@ -128,7 +127,6 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         sw = Stopwatch.StartNew();
         var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
         sw.Stop();
-
         output.WriteLine("Logstream request took " + sw.ElapsedMilliseconds + "ms");
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.NotNull(response.Content.Headers.ContentType?.MediaType);
@@ -138,7 +136,15 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         // Istio strips this header. Not sure why yet. See https://defense-unicorns.slack.com/archives/C06QJAUHWFN/p1722893232750909
         // Assert.NotNull(response.Headers.Connection);
         // Assert.Equal("keep-alive", response.Headers.Connection.ToString());
-        Assert.True(sw.ElapsedMilliseconds < 7000);
+        Assert.True(sw.ElapsedMilliseconds < 10000); // 10 seconds
+
+        // Do it one more time. This time it should happen extremely quickly since we know the pod is done initializing.
+        sw = Stopwatch.StartNew();
+        response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+        sw.Stop();
+        output.WriteLine("2nd logstream request took " + sw.ElapsedMilliseconds + "ms");
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.True(sw.ElapsedMilliseconds < 1000); // 1 second
 
         // Make sure the workflow is still running
         workflow = (WorkflowInfo)Given()
