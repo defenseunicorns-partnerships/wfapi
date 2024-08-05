@@ -21,6 +21,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
+using FileParameter = Org.OpenAPITools.Client.FileParameter;
 using OpenAPIDateConverter = Org.OpenAPITools.Client.OpenAPIDateConverter;
 
 namespace Org.OpenAPITools.Model
@@ -37,7 +38,7 @@ namespace Org.OpenAPITools.Model
         /// <param name="deleteDelayDuration">deleteDelayDuration.</param>
         /// <param name="labelSelector">labelSelector.</param>
         /// <param name="strategy">Strategy is the strategy to use. One of \&quot;OnPodCompletion\&quot;, \&quot;OnPodSuccess\&quot;, \&quot;OnWorkflowCompletion\&quot;, \&quot;OnWorkflowSuccess\&quot;. If unset, does not delete Pods.</param>
-        public IoArgoprojWorkflowV1alpha1PodGC(IoK8sApimachineryPkgApisMetaV1Duration deleteDelayDuration = default(IoK8sApimachineryPkgApisMetaV1Duration), IoK8sApimachineryPkgApisMetaV1LabelSelector labelSelector = default(IoK8sApimachineryPkgApisMetaV1LabelSelector), string strategy = default(string))
+        public IoArgoprojWorkflowV1alpha1PodGC(string deleteDelayDuration = default(string), IoK8sApimachineryPkgApisMetaV1LabelSelector labelSelector = default(IoK8sApimachineryPkgApisMetaV1LabelSelector), string strategy = default(string))
         {
             this.DeleteDelayDuration = deleteDelayDuration;
             this.LabelSelector = labelSelector;
@@ -48,7 +49,7 @@ namespace Org.OpenAPITools.Model
         /// Gets or Sets DeleteDelayDuration
         /// </summary>
         [DataMember(Name = "deleteDelayDuration", EmitDefaultValue = false)]
-        public IoK8sApimachineryPkgApisMetaV1Duration DeleteDelayDuration { get; set; }
+        public string DeleteDelayDuration { get; set; }
 
         /// <summary>
         /// Gets or Sets LabelSelector

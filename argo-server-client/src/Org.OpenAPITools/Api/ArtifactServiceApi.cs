@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mime;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -36,9 +37,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
         /// <param name="artifactDiscriminator"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>System.IO.Stream</returns>
-        System.IO.Stream ArtifactServiceGetArtifactFile(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, int operationIndex = 0);
+        /// <returns>FileParameter</returns>
+        FileParameter ArtifactServiceGetArtifactFile(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator);
 
         /// <summary>
         /// Get an artifact.
@@ -53,9 +53,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
         /// <param name="artifactDiscriminator"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of System.IO.Stream</returns>
-        ApiResponse<System.IO.Stream> ArtifactServiceGetArtifactFileWithHttpInfo(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, int operationIndex = 0);
+        /// <returns>ApiResponse of FileParameter</returns>
+        ApiResponse<FileParameter> ArtifactServiceGetArtifactFileWithHttpInfo(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator);
         /// <summary>
         /// Get an input artifact.
         /// </summary>
@@ -64,9 +63,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>System.IO.Stream</returns>
-        System.IO.Stream ArtifactServiceGetInputArtifact(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0);
+        /// <returns>FileParameter</returns>
+        FileParameter ArtifactServiceGetInputArtifact(string varNamespace, string name, string nodeId, string artifactName);
 
         /// <summary>
         /// Get an input artifact.
@@ -79,9 +77,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of System.IO.Stream</returns>
-        ApiResponse<System.IO.Stream> ArtifactServiceGetInputArtifactWithHttpInfo(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0);
+        /// <returns>ApiResponse of FileParameter</returns>
+        ApiResponse<FileParameter> ArtifactServiceGetInputArtifactWithHttpInfo(string varNamespace, string name, string nodeId, string artifactName);
         /// <summary>
         /// Get an input artifact by UID.
         /// </summary>
@@ -89,9 +86,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="uid"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>System.IO.Stream</returns>
-        System.IO.Stream ArtifactServiceGetInputArtifactByUID(string uid, string nodeId, string artifactName, int operationIndex = 0);
+        /// <returns>FileParameter</returns>
+        FileParameter ArtifactServiceGetInputArtifactByUID(string uid, string nodeId, string artifactName);
 
         /// <summary>
         /// Get an input artifact by UID.
@@ -103,9 +99,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="uid"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of System.IO.Stream</returns>
-        ApiResponse<System.IO.Stream> ArtifactServiceGetInputArtifactByUIDWithHttpInfo(string uid, string nodeId, string artifactName, int operationIndex = 0);
+        /// <returns>ApiResponse of FileParameter</returns>
+        ApiResponse<FileParameter> ArtifactServiceGetInputArtifactByUIDWithHttpInfo(string uid, string nodeId, string artifactName);
         /// <summary>
         /// Get an output artifact.
         /// </summary>
@@ -114,9 +109,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>System.IO.Stream</returns>
-        System.IO.Stream ArtifactServiceGetOutputArtifact(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0);
+        /// <returns>FileParameter</returns>
+        FileParameter ArtifactServiceGetOutputArtifact(string varNamespace, string name, string nodeId, string artifactName);
 
         /// <summary>
         /// Get an output artifact.
@@ -129,9 +123,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of System.IO.Stream</returns>
-        ApiResponse<System.IO.Stream> ArtifactServiceGetOutputArtifactWithHttpInfo(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0);
+        /// <returns>ApiResponse of FileParameter</returns>
+        ApiResponse<FileParameter> ArtifactServiceGetOutputArtifactWithHttpInfo(string varNamespace, string name, string nodeId, string artifactName);
         /// <summary>
         /// Get an output artifact by UID.
         /// </summary>
@@ -139,9 +132,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="uid"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>System.IO.Stream</returns>
-        System.IO.Stream ArtifactServiceGetOutputArtifactByUID(string uid, string nodeId, string artifactName, int operationIndex = 0);
+        /// <returns>FileParameter</returns>
+        FileParameter ArtifactServiceGetOutputArtifactByUID(string uid, string nodeId, string artifactName);
 
         /// <summary>
         /// Get an output artifact by UID.
@@ -153,9 +145,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="uid"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of System.IO.Stream</returns>
-        ApiResponse<System.IO.Stream> ArtifactServiceGetOutputArtifactByUIDWithHttpInfo(string uid, string nodeId, string artifactName, int operationIndex = 0);
+        /// <returns>ApiResponse of FileParameter</returns>
+        ApiResponse<FileParameter> ArtifactServiceGetOutputArtifactByUIDWithHttpInfo(string uid, string nodeId, string artifactName);
         #endregion Synchronous Operations
     }
 
@@ -178,10 +169,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
         /// <param name="artifactDiscriminator"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ArtifactServiceGetArtifactFileAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of FileParameter</returns>
+        System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetArtifactFileAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get an artifact.
@@ -196,10 +186,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
         /// <param name="artifactDiscriminator"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ArtifactServiceGetArtifactFileWithHttpInfoAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FileParameter>> ArtifactServiceGetArtifactFileWithHttpInfoAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get an input artifact.
         /// </summary>
@@ -211,10 +200,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ArtifactServiceGetInputArtifactAsync(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of FileParameter</returns>
+        System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetInputArtifactAsync(string varNamespace, string name, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get an input artifact.
@@ -227,10 +215,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ArtifactServiceGetInputArtifactWithHttpInfoAsync(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FileParameter>> ArtifactServiceGetInputArtifactWithHttpInfoAsync(string varNamespace, string name, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get an input artifact by UID.
         /// </summary>
@@ -241,10 +228,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="uid"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ArtifactServiceGetInputArtifactByUIDAsync(string uid, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of FileParameter</returns>
+        System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetInputArtifactByUIDAsync(string uid, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get an input artifact by UID.
@@ -256,10 +242,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="uid"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ArtifactServiceGetInputArtifactByUIDWithHttpInfoAsync(string uid, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FileParameter>> ArtifactServiceGetInputArtifactByUIDWithHttpInfoAsync(string uid, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get an output artifact.
         /// </summary>
@@ -271,10 +256,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ArtifactServiceGetOutputArtifactAsync(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of FileParameter</returns>
+        System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetOutputArtifactAsync(string varNamespace, string name, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get an output artifact.
@@ -287,10 +271,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ArtifactServiceGetOutputArtifactWithHttpInfoAsync(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FileParameter>> ArtifactServiceGetOutputArtifactWithHttpInfoAsync(string varNamespace, string name, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get an output artifact by UID.
         /// </summary>
@@ -301,10 +284,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="uid"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of System.IO.Stream</returns>
-        System.Threading.Tasks.Task<System.IO.Stream> ArtifactServiceGetOutputArtifactByUIDAsync(string uid, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of FileParameter</returns>
+        System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetOutputArtifactByUIDAsync(string uid, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get an output artifact by UID.
@@ -316,10 +298,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="uid"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> ArtifactServiceGetOutputArtifactByUIDWithHttpInfoAsync(string uid, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FileParameter>> ArtifactServiceGetOutputArtifactByUIDWithHttpInfoAsync(string uid, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -334,12 +315,14 @@ namespace Org.OpenAPITools.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class ArtifactServiceApi : IArtifactServiceApi
+    public partial class ArtifactServiceApi : IDisposable, IArtifactServiceApi
     {
         private Org.OpenAPITools.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ArtifactServiceApi"/> class.
+        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
+        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <returns></returns>
         public ArtifactServiceApi() : this((string)null)
@@ -348,7 +331,11 @@ namespace Org.OpenAPITools.Api
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ArtifactServiceApi"/> class.
+        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
+        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
+        /// <param name="basePath">The target service's base path in URL format.</param>
+        /// <exception cref="ArgumentException"></exception>
         /// <returns></returns>
         public ArtifactServiceApi(string basePath)
         {
@@ -356,16 +343,19 @@ namespace Org.OpenAPITools.Api
                 Org.OpenAPITools.Client.GlobalConfiguration.Instance,
                 new Org.OpenAPITools.Client.Configuration { BasePath = basePath }
             );
-            this.Client = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.Client =  this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
             this.ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ArtifactServiceApi"/> class
-        /// using Configuration object
+        /// Initializes a new instance of the <see cref="ArtifactServiceApi"/> class using Configuration object.
+        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
+        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
-        /// <param name="configuration">An instance of Configuration</param>
+        /// <param name="configuration">An instance of Configuration.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
         public ArtifactServiceApi(Org.OpenAPITools.Client.Configuration configuration)
         {
@@ -375,8 +365,78 @@ namespace Org.OpenAPITools.Api
                 Org.OpenAPITools.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.Client = this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
+            ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ArtifactServiceApi"/> class.
+        /// </summary>
+        /// <param name="client">An instance of HttpClient.</param>
+        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns></returns>
+        /// <remarks>
+        /// Some configuration settings will not be applied without passing an HttpClientHandler.
+        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
+        /// </remarks>
+        public ArtifactServiceApi(HttpClient client, HttpClientHandler handler = null) : this(client, (string)null, handler)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ArtifactServiceApi"/> class.
+        /// </summary>
+        /// <param name="client">An instance of HttpClient.</param>
+        /// <param name="basePath">The target service's base path in URL format.</param>
+        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <returns></returns>
+        /// <remarks>
+        /// Some configuration settings will not be applied without passing an HttpClientHandler.
+        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
+        /// </remarks>
+        public ArtifactServiceApi(HttpClient client, string basePath, HttpClientHandler handler = null)
+        {
+            if (client == null) throw new ArgumentNullException("client");
+
+            this.Configuration = Org.OpenAPITools.Client.Configuration.MergeConfigurations(
+                Org.OpenAPITools.Client.GlobalConfiguration.Instance,
+                new Org.OpenAPITools.Client.Configuration { BasePath = basePath }
+            );
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.Client =  this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
+            this.ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ArtifactServiceApi"/> class using Configuration object.
+        /// </summary>
+        /// <param name="client">An instance of HttpClient.</param>
+        /// <param name="configuration">An instance of Configuration.</param>
+        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns></returns>
+        /// <remarks>
+        /// Some configuration settings will not be applied without passing an HttpClientHandler.
+        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
+        /// </remarks>
+        public ArtifactServiceApi(HttpClient client, Org.OpenAPITools.Client.Configuration configuration, HttpClientHandler handler = null)
+        {
+            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException("client");
+
+            this.Configuration = Org.OpenAPITools.Client.Configuration.MergeConfigurations(
+                Org.OpenAPITools.Client.GlobalConfiguration.Instance,
+                configuration
+            );
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.Client = this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
             ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
         }
 
@@ -387,6 +447,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public ArtifactServiceApi(Org.OpenAPITools.Client.ISynchronousClient client, Org.OpenAPITools.Client.IAsynchronousClient asyncClient, Org.OpenAPITools.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
@@ -398,6 +459,19 @@ namespace Org.OpenAPITools.Api
             this.Configuration = configuration;
             this.ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
         }
+
+        /// <summary>
+        /// Disposes resources if they were created by us
+        /// </summary>
+        public void Dispose()
+        {
+            this.ApiClient?.Dispose();
+        }
+
+        /// <summary>
+        /// Holds the ApiClient if created
+        /// </summary>
+        public Org.OpenAPITools.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
@@ -450,11 +524,10 @@ namespace Org.OpenAPITools.Api
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
         /// <param name="artifactDiscriminator"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>System.IO.Stream</returns>
-        public System.IO.Stream ArtifactServiceGetArtifactFile(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, int operationIndex = 0)
+        /// <returns>FileParameter</returns>
+        public FileParameter ArtifactServiceGetArtifactFile(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator)
         {
-            Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> localVarResponse = ArtifactServiceGetArtifactFileWithHttpInfo(varNamespace, idDiscriminator, id, nodeId, artifactName, artifactDiscriminator);
+            Org.OpenAPITools.Client.ApiResponse<FileParameter> localVarResponse = ArtifactServiceGetArtifactFileWithHttpInfo(varNamespace, idDiscriminator, id, nodeId, artifactName, artifactDiscriminator);
             return localVarResponse.Data;
         }
 
@@ -468,45 +541,32 @@ namespace Org.OpenAPITools.Api
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
         /// <param name="artifactDiscriminator"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of System.IO.Stream</returns>
-        public Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> ArtifactServiceGetArtifactFileWithHttpInfo(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, int operationIndex = 0)
+        /// <returns>ApiResponse of FileParameter</returns>
+        public Org.OpenAPITools.Client.ApiResponse<FileParameter> ArtifactServiceGetArtifactFileWithHttpInfo(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator)
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling ArtifactServiceApi->ArtifactServiceGetArtifactFile");
-            }
 
             // verify the required parameter 'idDiscriminator' is set
             if (idDiscriminator == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'idDiscriminator' when calling ArtifactServiceApi->ArtifactServiceGetArtifactFile");
-            }
 
             // verify the required parameter 'id' is set
             if (id == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'id' when calling ArtifactServiceApi->ArtifactServiceGetArtifactFile");
-            }
 
             // verify the required parameter 'nodeId' is set
             if (nodeId == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetArtifactFile");
-            }
 
             // verify the required parameter 'artifactName' is set
             if (artifactName == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetArtifactFile");
-            }
 
             // verify the required parameter 'artifactDiscriminator' is set
             if (artifactDiscriminator == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactDiscriminator' when calling ArtifactServiceApi->ArtifactServiceGetArtifactFile");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -519,16 +579,10 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("idDiscriminator", Org.OpenAPITools.Client.ClientUtils.ParameterToString(idDiscriminator)); // path parameter
@@ -537,9 +591,6 @@ namespace Org.OpenAPITools.Api
             localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
             localVarRequestOptions.PathParameters.Add("artifactDiscriminator", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactDiscriminator)); // path parameter
 
-            localVarRequestOptions.Operation = "ArtifactServiceApi.ArtifactServiceGetArtifactFile";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -547,14 +598,12 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/artifact-files/{namespace}/{idDiscriminator}/{id}/{nodeId}/{artifactDiscriminator}/{artifactName}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<FileParameter>("/artifact-files/{namespace}/{idDiscriminator}/{id}/{nodeId}/{artifactDiscriminator}/{artifactName}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ArtifactServiceGetArtifactFile", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -570,12 +619,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
         /// <param name="artifactDiscriminator"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ArtifactServiceGetArtifactFileAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of FileParameter</returns>
+        public async System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetArtifactFileAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> localVarResponse = await ArtifactServiceGetArtifactFileWithHttpInfoAsync(varNamespace, idDiscriminator, id, nodeId, artifactName, artifactDiscriminator, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<FileParameter> localVarResponse = await ArtifactServiceGetArtifactFileWithHttpInfoAsync(varNamespace, idDiscriminator, id, nodeId, artifactName, artifactDiscriminator, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -589,46 +637,33 @@ namespace Org.OpenAPITools.Api
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
         /// <param name="artifactDiscriminator"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<System.IO.Stream>> ArtifactServiceGetArtifactFileWithHttpInfoAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<FileParameter>> ArtifactServiceGetArtifactFileWithHttpInfoAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling ArtifactServiceApi->ArtifactServiceGetArtifactFile");
-            }
 
             // verify the required parameter 'idDiscriminator' is set
             if (idDiscriminator == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'idDiscriminator' when calling ArtifactServiceApi->ArtifactServiceGetArtifactFile");
-            }
 
             // verify the required parameter 'id' is set
             if (id == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'id' when calling ArtifactServiceApi->ArtifactServiceGetArtifactFile");
-            }
 
             // verify the required parameter 'nodeId' is set
             if (nodeId == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetArtifactFile");
-            }
 
             // verify the required parameter 'artifactName' is set
             if (artifactName == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetArtifactFile");
-            }
 
             // verify the required parameter 'artifactDiscriminator' is set
             if (artifactDiscriminator == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactDiscriminator' when calling ArtifactServiceApi->ArtifactServiceGetArtifactFile");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -641,17 +676,12 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("idDiscriminator", Org.OpenAPITools.Client.ClientUtils.ParameterToString(idDiscriminator)); // path parameter
@@ -660,9 +690,6 @@ namespace Org.OpenAPITools.Api
             localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
             localVarRequestOptions.PathParameters.Add("artifactDiscriminator", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactDiscriminator)); // path parameter
 
-            localVarRequestOptions.Operation = "ArtifactServiceApi.ArtifactServiceGetArtifactFile";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -670,15 +697,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/artifact-files/{namespace}/{idDiscriminator}/{id}/{nodeId}/{artifactDiscriminator}/{artifactName}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileParameter>("/artifact-files/{namespace}/{idDiscriminator}/{id}/{nodeId}/{artifactDiscriminator}/{artifactName}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ArtifactServiceGetArtifactFile", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -692,11 +717,10 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>System.IO.Stream</returns>
-        public System.IO.Stream ArtifactServiceGetInputArtifact(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0)
+        /// <returns>FileParameter</returns>
+        public FileParameter ArtifactServiceGetInputArtifact(string varNamespace, string name, string nodeId, string artifactName)
         {
-            Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> localVarResponse = ArtifactServiceGetInputArtifactWithHttpInfo(varNamespace, name, nodeId, artifactName);
+            Org.OpenAPITools.Client.ApiResponse<FileParameter> localVarResponse = ArtifactServiceGetInputArtifactWithHttpInfo(varNamespace, name, nodeId, artifactName);
             return localVarResponse.Data;
         }
 
@@ -708,33 +732,24 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of System.IO.Stream</returns>
-        public Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> ArtifactServiceGetInputArtifactWithHttpInfo(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0)
+        /// <returns>ApiResponse of FileParameter</returns>
+        public Org.OpenAPITools.Client.ApiResponse<FileParameter> ArtifactServiceGetInputArtifactWithHttpInfo(string varNamespace, string name, string nodeId, string artifactName)
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifact");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifact");
-            }
 
             // verify the required parameter 'nodeId' is set
             if (nodeId == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifact");
-            }
 
             // verify the required parameter 'artifactName' is set
             if (artifactName == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifact");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -747,24 +762,15 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
             localVarRequestOptions.PathParameters.Add("nodeId", Org.OpenAPITools.Client.ClientUtils.ParameterToString(nodeId)); // path parameter
             localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
-
-            localVarRequestOptions.Operation = "ArtifactServiceApi.ArtifactServiceGetInputArtifact";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -773,366 +779,61 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/input-artifacts/{namespace}/{name}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ArtifactServiceGetInputArtifact", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Get an input artifact.
-        /// </summary>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="varNamespace"></param>
-        /// <param name="name"></param>
-        /// <param name="nodeId"></param>
-        /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ArtifactServiceGetInputArtifactAsync(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> localVarResponse = await ArtifactServiceGetInputArtifactWithHttpInfoAsync(varNamespace, name, nodeId, artifactName, operationIndex, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get an input artifact.
-        /// </summary>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="varNamespace"></param>
-        /// <param name="name"></param>
-        /// <param name="nodeId"></param>
-        /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<System.IO.Stream>> ArtifactServiceGetInputArtifactWithHttpInfoAsync(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'varNamespace' is set
-            if (varNamespace == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifact");
-            }
-
-            // verify the required parameter 'name' is set
-            if (name == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifact");
-            }
-
-            // verify the required parameter 'nodeId' is set
-            if (nodeId == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifact");
-            }
-
-            // verify the required parameter 'artifactName' is set
-            if (artifactName == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifact");
-            }
-
-
-            Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
-            localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
-            localVarRequestOptions.PathParameters.Add("nodeId", Org.OpenAPITools.Client.ClientUtils.ParameterToString(nodeId)); // path parameter
-            localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
-
-            localVarRequestOptions.Operation = "ArtifactServiceApi.ArtifactServiceGetInputArtifact";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (BearerToken) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/input-artifacts/{namespace}/{name}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = this.Client.Get<FileParameter>("/input-artifacts/{namespace}/{name}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ArtifactServiceGetInputArtifact", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
         }
 
         /// <summary>
-        /// Get an input artifact by UID.
-        /// </summary>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid"></param>
-        /// <param name="nodeId"></param>
-        /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>System.IO.Stream</returns>
-        public System.IO.Stream ArtifactServiceGetInputArtifactByUID(string uid, string nodeId, string artifactName, int operationIndex = 0)
-        {
-            Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> localVarResponse = ArtifactServiceGetInputArtifactByUIDWithHttpInfo(uid, nodeId, artifactName);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get an input artifact by UID.
-        /// </summary>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid"></param>
-        /// <param name="nodeId"></param>
-        /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of System.IO.Stream</returns>
-        public Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> ArtifactServiceGetInputArtifactByUIDWithHttpInfo(string uid, string nodeId, string artifactName, int operationIndex = 0)
-        {
-            // verify the required parameter 'uid' is set
-            if (uid == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'uid' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifactByUID");
-            }
-
-            // verify the required parameter 'nodeId' is set
-            if (nodeId == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifactByUID");
-            }
-
-            // verify the required parameter 'artifactName' is set
-            if (artifactName == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifactByUID");
-            }
-
-            Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("uid", Org.OpenAPITools.Client.ClientUtils.ParameterToString(uid)); // path parameter
-            localVarRequestOptions.PathParameters.Add("nodeId", Org.OpenAPITools.Client.ClientUtils.ParameterToString(nodeId)); // path parameter
-            localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
-
-            localVarRequestOptions.Operation = "ArtifactServiceApi.ArtifactServiceGetInputArtifactByUID";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (BearerToken) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/input-artifacts-by-uid/{uid}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ArtifactServiceGetInputArtifactByUID", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Get an input artifact by UID.
-        /// </summary>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid"></param>
-        /// <param name="nodeId"></param>
-        /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ArtifactServiceGetInputArtifactByUIDAsync(string uid, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> localVarResponse = await ArtifactServiceGetInputArtifactByUIDWithHttpInfoAsync(uid, nodeId, artifactName, operationIndex, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get an input artifact by UID.
-        /// </summary>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid"></param>
-        /// <param name="nodeId"></param>
-        /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<System.IO.Stream>> ArtifactServiceGetInputArtifactByUIDWithHttpInfoAsync(string uid, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'uid' is set
-            if (uid == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'uid' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifactByUID");
-            }
-
-            // verify the required parameter 'nodeId' is set
-            if (nodeId == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifactByUID");
-            }
-
-            // verify the required parameter 'artifactName' is set
-            if (artifactName == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifactByUID");
-            }
-
-
-            Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("uid", Org.OpenAPITools.Client.ClientUtils.ParameterToString(uid)); // path parameter
-            localVarRequestOptions.PathParameters.Add("nodeId", Org.OpenAPITools.Client.ClientUtils.ParameterToString(nodeId)); // path parameter
-            localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
-
-            localVarRequestOptions.Operation = "ArtifactServiceApi.ArtifactServiceGetInputArtifactByUID";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (BearerToken) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-
-            // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/input-artifacts-by-uid/{uid}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ArtifactServiceGetInputArtifactByUID", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Get an output artifact.
+        /// Get an input artifact.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>System.IO.Stream</returns>
-        public System.IO.Stream ArtifactServiceGetOutputArtifact(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0)
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileParameter</returns>
+        public async System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetInputArtifactAsync(string varNamespace, string name, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> localVarResponse = ArtifactServiceGetOutputArtifactWithHttpInfo(varNamespace, name, nodeId, artifactName);
+            Org.OpenAPITools.Client.ApiResponse<FileParameter> localVarResponse = await ArtifactServiceGetInputArtifactWithHttpInfoAsync(varNamespace, name, nodeId, artifactName, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get an output artifact.
+        /// Get an input artifact.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of System.IO.Stream</returns>
-        public Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> ArtifactServiceGetOutputArtifactWithHttpInfo(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0)
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<FileParameter>> ArtifactServiceGetInputArtifactWithHttpInfoAsync(string varNamespace, string name, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifact");
-            }
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifact");
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifact");
-            }
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifact");
 
             // verify the required parameter 'nodeId' is set
             if (nodeId == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifact");
-            }
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifact");
 
             // verify the required parameter 'artifactName' is set
             if (artifactName == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifact");
-            }
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifact");
+
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1144,25 +845,92 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
             localVarRequestOptions.PathParameters.Add("nodeId", Org.OpenAPITools.Client.ClientUtils.ParameterToString(nodeId)); // path parameter
             localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
 
-            localVarRequestOptions.Operation = "ArtifactServiceApi.ArtifactServiceGetOutputArtifact";
-            localVarRequestOptions.OperationIndex = operationIndex;
+            // authentication (BearerToken) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileParameter>("/input-artifacts/{namespace}/{name}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ArtifactServiceGetInputArtifact", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get an input artifact by UID.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid"></param>
+        /// <param name="nodeId"></param>
+        /// <param name="artifactName"></param>
+        /// <returns>FileParameter</returns>
+        public FileParameter ArtifactServiceGetInputArtifactByUID(string uid, string nodeId, string artifactName)
+        {
+            Org.OpenAPITools.Client.ApiResponse<FileParameter> localVarResponse = ArtifactServiceGetInputArtifactByUIDWithHttpInfo(uid, nodeId, artifactName);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get an input artifact by UID.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid"></param>
+        /// <param name="nodeId"></param>
+        /// <param name="artifactName"></param>
+        /// <returns>ApiResponse of FileParameter</returns>
+        public Org.OpenAPITools.Client.ApiResponse<FileParameter> ArtifactServiceGetInputArtifactByUIDWithHttpInfo(string uid, string nodeId, string artifactName)
+        {
+            // verify the required parameter 'uid' is set
+            if (uid == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'uid' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifactByUID");
+
+            // verify the required parameter 'nodeId' is set
+            if (nodeId == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifactByUID");
+
+            // verify the required parameter 'artifactName' is set
+            if (artifactName == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifactByUID");
+
+            Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("uid", Org.OpenAPITools.Client.ClientUtils.ParameterToString(uid)); // path parameter
+            localVarRequestOptions.PathParameters.Add("nodeId", Org.OpenAPITools.Client.ClientUtils.ParameterToString(nodeId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1171,14 +939,91 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/artifacts/{namespace}/{name}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<FileParameter>("/input-artifacts-by-uid/{uid}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("ArtifactServiceGetOutputArtifact", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                Exception _exception = this.ExceptionFactory("ArtifactServiceGetInputArtifactByUID", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get an input artifact by UID.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid"></param>
+        /// <param name="nodeId"></param>
+        /// <param name="artifactName"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileParameter</returns>
+        public async System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetInputArtifactByUIDAsync(string uid, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Org.OpenAPITools.Client.ApiResponse<FileParameter> localVarResponse = await ArtifactServiceGetInputArtifactByUIDWithHttpInfoAsync(uid, nodeId, artifactName, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get an input artifact by UID.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid"></param>
+        /// <param name="nodeId"></param>
+        /// <param name="artifactName"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<FileParameter>> ArtifactServiceGetInputArtifactByUIDWithHttpInfoAsync(string uid, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'uid' is set
+            if (uid == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'uid' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifactByUID");
+
+            // verify the required parameter 'nodeId' is set
+            if (nodeId == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifactByUID");
+
+            // verify the required parameter 'artifactName' is set
+            if (artifactName == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetInputArtifactByUID");
+
+
+            Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("uid", Org.OpenAPITools.Client.ClientUtils.ParameterToString(uid)); // path parameter
+            localVarRequestOptions.PathParameters.Add("nodeId", Org.OpenAPITools.Client.ClientUtils.ParameterToString(nodeId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
+
+            // authentication (BearerToken) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileParameter>("/input-artifacts-by-uid/{uid}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ArtifactServiceGetInputArtifactByUID", localVarResponse);
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1192,12 +1037,10 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ArtifactServiceGetOutputArtifactAsync(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>FileParameter</returns>
+        public FileParameter ArtifactServiceGetOutputArtifact(string varNamespace, string name, string nodeId, string artifactName)
         {
-            Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> localVarResponse = await ArtifactServiceGetOutputArtifactWithHttpInfoAsync(varNamespace, name, nodeId, artifactName, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<FileParameter> localVarResponse = ArtifactServiceGetOutputArtifactWithHttpInfo(varNamespace, name, nodeId, artifactName);
             return localVarResponse.Data;
         }
 
@@ -1209,35 +1052,24 @@ namespace Org.OpenAPITools.Api
         /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<System.IO.Stream>> ArtifactServiceGetOutputArtifactWithHttpInfoAsync(string varNamespace, string name, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>ApiResponse of FileParameter</returns>
+        public Org.OpenAPITools.Client.ApiResponse<FileParameter> ArtifactServiceGetOutputArtifactWithHttpInfo(string varNamespace, string name, string nodeId, string artifactName)
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifact");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifact");
-            }
 
             // verify the required parameter 'nodeId' is set
             if (nodeId == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifact");
-            }
 
             // verify the required parameter 'artifactName' is set
             if (artifactName == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifact");
-            }
-
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1250,25 +1082,16 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
             localVarRequestOptions.PathParameters.Add("nodeId", Org.OpenAPITools.Client.ClientUtils.ParameterToString(nodeId)); // path parameter
             localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
 
-            localVarRequestOptions.Operation = "ArtifactServiceApi.ArtifactServiceGetOutputArtifact";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -1276,158 +1099,60 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/artifacts/{namespace}/{name}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = this.Client.Get<FileParameter>("/artifacts/{namespace}/{name}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ArtifactServiceGetOutputArtifact", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
         }
 
         /// <summary>
-        /// Get an output artifact by UID.
+        /// Get an output artifact.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid"></param>
+        /// <param name="varNamespace"></param>
+        /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>System.IO.Stream</returns>
-        public System.IO.Stream ArtifactServiceGetOutputArtifactByUID(string uid, string nodeId, string artifactName, int operationIndex = 0)
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileParameter</returns>
+        public async System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetOutputArtifactAsync(string varNamespace, string name, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> localVarResponse = ArtifactServiceGetOutputArtifactByUIDWithHttpInfo(uid, nodeId, artifactName);
+            Org.OpenAPITools.Client.ApiResponse<FileParameter> localVarResponse = await ArtifactServiceGetOutputArtifactWithHttpInfoAsync(varNamespace, name, nodeId, artifactName, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get an output artifact by UID.
+        /// Get an output artifact.
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid"></param>
+        /// <param name="varNamespace"></param>
+        /// <param name="name"></param>
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of System.IO.Stream</returns>
-        public Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> ArtifactServiceGetOutputArtifactByUIDWithHttpInfo(string uid, string nodeId, string artifactName, int operationIndex = 0)
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<FileParameter>> ArtifactServiceGetOutputArtifactWithHttpInfoAsync(string varNamespace, string name, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            // verify the required parameter 'uid' is set
-            if (uid == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'uid' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifactByUID");
-            }
+            // verify the required parameter 'varNamespace' is set
+            if (varNamespace == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifact");
+
+            // verify the required parameter 'name' is set
+            if (name == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifact");
 
             // verify the required parameter 'nodeId' is set
             if (nodeId == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifactByUID");
-            }
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifact");
 
             // verify the required parameter 'artifactName' is set
             if (artifactName == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifactByUID");
-            }
-
-            Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
-
-            var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
-
-            localVarRequestOptions.PathParameters.Add("uid", Org.OpenAPITools.Client.ClientUtils.ParameterToString(uid)); // path parameter
-            localVarRequestOptions.PathParameters.Add("nodeId", Org.OpenAPITools.Client.ClientUtils.ParameterToString(nodeId)); // path parameter
-            localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
-
-            localVarRequestOptions.Operation = "ArtifactServiceApi.ArtifactServiceGetOutputArtifactByUID";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
-            // authentication (BearerToken) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Get<System.IO.Stream>("/artifacts-by-uid/{uid}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration);
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("ArtifactServiceGetOutputArtifactByUID", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Get an output artifact by UID.
-        /// </summary>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid"></param>
-        /// <param name="nodeId"></param>
-        /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of System.IO.Stream</returns>
-        public async System.Threading.Tasks.Task<System.IO.Stream> ArtifactServiceGetOutputArtifactByUIDAsync(string uid, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            Org.OpenAPITools.Client.ApiResponse<System.IO.Stream> localVarResponse = await ArtifactServiceGetOutputArtifactByUIDWithHttpInfoAsync(uid, nodeId, artifactName, operationIndex, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get an output artifact by UID.
-        /// </summary>
-        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="uid"></param>
-        /// <param name="nodeId"></param>
-        /// <param name="artifactName"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<System.IO.Stream>> ArtifactServiceGetOutputArtifactByUIDWithHttpInfoAsync(string uid, string nodeId, string artifactName, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
-        {
-            // verify the required parameter 'uid' is set
-            if (uid == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'uid' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifactByUID");
-            }
-
-            // verify the required parameter 'nodeId' is set
-            if (nodeId == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifactByUID");
-            }
-
-            // verify the required parameter 'artifactName' is set
-            if (artifactName == null)
-            {
-                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifactByUID");
-            }
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifact");
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -1440,24 +1165,17 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("uid", Org.OpenAPITools.Client.ClientUtils.ParameterToString(uid)); // path parameter
+            localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
+            localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
             localVarRequestOptions.PathParameters.Add("nodeId", Org.OpenAPITools.Client.ClientUtils.ParameterToString(nodeId)); // path parameter
             localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
-
-            localVarRequestOptions.Operation = "ArtifactServiceApi.ArtifactServiceGetOutputArtifactByUID";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1466,15 +1184,166 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/artifacts-by-uid/{uid}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileParameter>("/artifacts/{namespace}/{name}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ArtifactServiceGetOutputArtifact", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get an output artifact by UID.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid"></param>
+        /// <param name="nodeId"></param>
+        /// <param name="artifactName"></param>
+        /// <returns>FileParameter</returns>
+        public FileParameter ArtifactServiceGetOutputArtifactByUID(string uid, string nodeId, string artifactName)
+        {
+            Org.OpenAPITools.Client.ApiResponse<FileParameter> localVarResponse = ArtifactServiceGetOutputArtifactByUIDWithHttpInfo(uid, nodeId, artifactName);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get an output artifact by UID.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid"></param>
+        /// <param name="nodeId"></param>
+        /// <param name="artifactName"></param>
+        /// <returns>ApiResponse of FileParameter</returns>
+        public Org.OpenAPITools.Client.ApiResponse<FileParameter> ArtifactServiceGetOutputArtifactByUIDWithHttpInfo(string uid, string nodeId, string artifactName)
+        {
+            // verify the required parameter 'uid' is set
+            if (uid == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'uid' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifactByUID");
+
+            // verify the required parameter 'nodeId' is set
+            if (nodeId == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifactByUID");
+
+            // verify the required parameter 'artifactName' is set
+            if (artifactName == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifactByUID");
+
+            Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("uid", Org.OpenAPITools.Client.ClientUtils.ParameterToString(uid)); // path parameter
+            localVarRequestOptions.PathParameters.Add("nodeId", Org.OpenAPITools.Client.ClientUtils.ParameterToString(nodeId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
+
+            // authentication (BearerToken) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<FileParameter>("/artifacts-by-uid/{uid}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ArtifactServiceGetOutputArtifactByUID", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get an output artifact by UID.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid"></param>
+        /// <param name="nodeId"></param>
+        /// <param name="artifactName"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileParameter</returns>
+        public async System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetOutputArtifactByUIDAsync(string uid, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Org.OpenAPITools.Client.ApiResponse<FileParameter> localVarResponse = await ArtifactServiceGetOutputArtifactByUIDWithHttpInfoAsync(uid, nodeId, artifactName, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get an output artifact by UID.
+        /// </summary>
+        /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uid"></param>
+        /// <param name="nodeId"></param>
+        /// <param name="artifactName"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<FileParameter>> ArtifactServiceGetOutputArtifactByUIDWithHttpInfoAsync(string uid, string nodeId, string artifactName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'uid' is set
+            if (uid == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'uid' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifactByUID");
+
+            // verify the required parameter 'nodeId' is set
+            if (nodeId == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'nodeId' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifactByUID");
+
+            // verify the required parameter 'artifactName' is set
+            if (artifactName == null)
+                throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'artifactName' when calling ArtifactServiceApi->ArtifactServiceGetOutputArtifactByUID");
+
+
+            Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("uid", Org.OpenAPITools.Client.ClientUtils.ParameterToString(uid)); // path parameter
+            localVarRequestOptions.PathParameters.Add("nodeId", Org.OpenAPITools.Client.ClientUtils.ParameterToString(nodeId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("artifactName", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactName)); // path parameter
+
+            // authentication (BearerToken) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileParameter>("/artifacts-by-uid/{uid}/{nodeId}/{artifactName}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ArtifactServiceGetOutputArtifactByUID", localVarResponse);
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;

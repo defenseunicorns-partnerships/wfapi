@@ -8,5 +8,7 @@ tasks:
           -i https://raw.githubusercontent.com/argoproj/argo-workflows/main/api/openapi-spec/swagger.json \
           -g csharp \
           -o $PWD/argo-server-client/ \
-          --additional-properties=library=restsharp,netCoreProjectFile,nonPublicApi,nullableReferenceTypes=true,targetFramework=net8.0 \
-          --type-mappings=DateTime=DateTime?
+          --additional-properties=library=httpclient,netCoreProjectFile,nonPublicApi,nullableReferenceTypes=true,targetFramework=net8.0 \
+          --type-mappings=DateTime=DateTime? \
+          --type-mappings=IoK8sApimachineryPkgApisMetaV1Duration=string
+      - cmd: sed -i '' 's/class WebRequestPathBuilder/public class WebRequestPathBuilder/' argo-server-client/src/Org.OpenAPITools/Client/WebRequestPathBuilder.cs

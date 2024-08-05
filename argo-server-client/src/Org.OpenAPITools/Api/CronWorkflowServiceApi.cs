@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mime;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
@@ -32,9 +33,8 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceCreateCronWorkflow(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body, int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceCreateCronWorkflow(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body);
 
         /// <summary>
         ///
@@ -45,9 +45,8 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceCreateCronWorkflowWithHttpInfo(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body, int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceCreateCronWorkflowWithHttpInfo(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body);
         /// <summary>
         ///
         /// </summary>
@@ -60,9 +59,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Object</returns>
-        Object CronWorkflowServiceDeleteCronWorkflow(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0);
+        Object CronWorkflowServiceDeleteCronWorkflow(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?));
 
         /// <summary>
         ///
@@ -79,9 +77,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object</returns>
-        ApiResponse<Object> CronWorkflowServiceDeleteCronWorkflowWithHttpInfo(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0);
+        ApiResponse<Object> CronWorkflowServiceDeleteCronWorkflowWithHttpInfo(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?));
         /// <summary>
         ///
         /// </summary>
@@ -89,9 +86,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="getOptionsResourceVersion">resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceGetCronWorkflow(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceGetCronWorkflow(string varNamespace, string name, string? getOptionsResourceVersion = default(string?));
 
         /// <summary>
         ///
@@ -103,18 +99,16 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="getOptionsResourceVersion">resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceGetCronWorkflowWithHttpInfo(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceGetCronWorkflowWithHttpInfo(string varNamespace, string name, string? getOptionsResourceVersion = default(string?));
         /// <summary>
         ///
         /// </summary>
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceLintCronWorkflow(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body, int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceLintCronWorkflow(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body);
 
         /// <summary>
         ///
@@ -125,9 +119,8 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceLintCronWorkflowWithHttpInfo(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body, int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceLintCronWorkflowWithHttpInfo(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body);
         /// <summary>
         ///
         /// </summary>
@@ -142,9 +135,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflowList</returns>
-        IoArgoprojWorkflowV1alpha1CronWorkflowList CronWorkflowServiceListCronWorkflows(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1CronWorkflowList CronWorkflowServiceListCronWorkflows(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?));
 
         /// <summary>
         ///
@@ -163,9 +155,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflowList</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflowList> CronWorkflowServiceListCronWorkflowsWithHttpInfo(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflowList> CronWorkflowServiceListCronWorkflowsWithHttpInfo(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?));
         /// <summary>
         ///
         /// </summary>
@@ -173,9 +164,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceResumeCronWorkflow(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body, int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceResumeCronWorkflow(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body);
 
         /// <summary>
         ///
@@ -187,9 +177,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceResumeCronWorkflowWithHttpInfo(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body, int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceResumeCronWorkflowWithHttpInfo(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body);
         /// <summary>
         ///
         /// </summary>
@@ -197,9 +186,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceSuspendCronWorkflow(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body, int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceSuspendCronWorkflow(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body);
 
         /// <summary>
         ///
@@ -211,9 +199,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceSuspendCronWorkflowWithHttpInfo(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body, int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceSuspendCronWorkflowWithHttpInfo(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body);
         /// <summary>
         ///
         /// </summary>
@@ -221,9 +208,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name">DEPRECATED: This field is ignored.</param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceUpdateCronWorkflow(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body, int operationIndex = 0);
+        IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceUpdateCronWorkflow(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body);
 
         /// <summary>
         ///
@@ -235,9 +221,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name">DEPRECATED: This field is ignored.</param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceUpdateCronWorkflowWithHttpInfo(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body, int operationIndex = 0);
+        ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceUpdateCronWorkflowWithHttpInfo(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body);
         #endregion Synchronous Operations
     }
 
@@ -256,10 +241,9 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceCreateCronWorkflowAsync(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceCreateCronWorkflowAsync(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -270,10 +254,9 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflow)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceCreateCronWorkflowWithHttpInfoAsync(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceCreateCronWorkflowWithHttpInfoAsync(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -289,10 +272,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Object</returns>
-        System.Threading.Tasks.Task<Object> CronWorkflowServiceDeleteCronWorkflowAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Object> CronWorkflowServiceDeleteCronWorkflowAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -309,10 +291,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CronWorkflowServiceDeleteCronWorkflowWithHttpInfoAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> CronWorkflowServiceDeleteCronWorkflowWithHttpInfoAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -323,10 +304,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="getOptionsResourceVersion">resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceGetCronWorkflowAsync(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceGetCronWorkflowAsync(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -338,10 +318,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="getOptionsResourceVersion">resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflow)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceGetCronWorkflowWithHttpInfoAsync(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceGetCronWorkflowWithHttpInfoAsync(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -351,10 +330,9 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceLintCronWorkflowAsync(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceLintCronWorkflowAsync(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -365,10 +343,9 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflow)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceLintCronWorkflowWithHttpInfoAsync(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceLintCronWorkflowWithHttpInfoAsync(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -386,10 +363,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflowList</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflowList> CronWorkflowServiceListCronWorkflowsAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflowList> CronWorkflowServiceListCronWorkflowsAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -408,10 +384,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflowList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflowList>> CronWorkflowServiceListCronWorkflowsWithHttpInfoAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflowList>> CronWorkflowServiceListCronWorkflowsWithHttpInfoAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -422,10 +397,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceResumeCronWorkflowAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceResumeCronWorkflowAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -437,10 +411,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflow)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceResumeCronWorkflowWithHttpInfoAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceResumeCronWorkflowWithHttpInfoAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -451,10 +424,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceSuspendCronWorkflowAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceSuspendCronWorkflowAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -466,10 +438,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflow)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceSuspendCronWorkflowWithHttpInfoAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceSuspendCronWorkflowWithHttpInfoAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -480,10 +451,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name">DEPRECATED: This field is ignored.</param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceUpdateCronWorkflowAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceUpdateCronWorkflowAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -495,10 +465,9 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name">DEPRECATED: This field is ignored.</param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflow)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceUpdateCronWorkflowWithHttpInfoAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceUpdateCronWorkflowWithHttpInfoAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -513,12 +482,14 @@ namespace Org.OpenAPITools.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class CronWorkflowServiceApi : ICronWorkflowServiceApi
+    public partial class CronWorkflowServiceApi : IDisposable, ICronWorkflowServiceApi
     {
         private Org.OpenAPITools.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CronWorkflowServiceApi"/> class.
+        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
+        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <returns></returns>
         public CronWorkflowServiceApi() : this((string)null)
@@ -527,7 +498,11 @@ namespace Org.OpenAPITools.Api
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CronWorkflowServiceApi"/> class.
+        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
+        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
+        /// <param name="basePath">The target service's base path in URL format.</param>
+        /// <exception cref="ArgumentException"></exception>
         /// <returns></returns>
         public CronWorkflowServiceApi(string basePath)
         {
@@ -535,16 +510,19 @@ namespace Org.OpenAPITools.Api
                 Org.OpenAPITools.Client.GlobalConfiguration.Instance,
                 new Org.OpenAPITools.Client.Configuration { BasePath = basePath }
             );
-            this.Client = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.Client =  this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
             this.ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CronWorkflowServiceApi"/> class
-        /// using Configuration object
+        /// Initializes a new instance of the <see cref="CronWorkflowServiceApi"/> class using Configuration object.
+        /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
+        /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
-        /// <param name="configuration">An instance of Configuration</param>
+        /// <param name="configuration">An instance of Configuration.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
         public CronWorkflowServiceApi(Org.OpenAPITools.Client.Configuration configuration)
         {
@@ -554,8 +532,78 @@ namespace Org.OpenAPITools.Api
                 Org.OpenAPITools.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(this.Configuration.BasePath);
+            this.Client = this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
+            ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CronWorkflowServiceApi"/> class.
+        /// </summary>
+        /// <param name="client">An instance of HttpClient.</param>
+        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns></returns>
+        /// <remarks>
+        /// Some configuration settings will not be applied without passing an HttpClientHandler.
+        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
+        /// </remarks>
+        public CronWorkflowServiceApi(HttpClient client, HttpClientHandler handler = null) : this(client, (string)null, handler)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CronWorkflowServiceApi"/> class.
+        /// </summary>
+        /// <param name="client">An instance of HttpClient.</param>
+        /// <param name="basePath">The target service's base path in URL format.</param>
+        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        /// <returns></returns>
+        /// <remarks>
+        /// Some configuration settings will not be applied without passing an HttpClientHandler.
+        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
+        /// </remarks>
+        public CronWorkflowServiceApi(HttpClient client, string basePath, HttpClientHandler handler = null)
+        {
+            if (client == null) throw new ArgumentNullException("client");
+
+            this.Configuration = Org.OpenAPITools.Client.Configuration.MergeConfigurations(
+                Org.OpenAPITools.Client.GlobalConfiguration.Instance,
+                new Org.OpenAPITools.Client.Configuration { BasePath = basePath }
+            );
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.Client =  this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
+            this.ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CronWorkflowServiceApi"/> class using Configuration object.
+        /// </summary>
+        /// <param name="client">An instance of HttpClient.</param>
+        /// <param name="configuration">An instance of Configuration.</param>
+        /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns></returns>
+        /// <remarks>
+        /// Some configuration settings will not be applied without passing an HttpClientHandler.
+        /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
+        /// </remarks>
+        public CronWorkflowServiceApi(HttpClient client, Org.OpenAPITools.Client.Configuration configuration, HttpClientHandler handler = null)
+        {
+            if (configuration == null) throw new ArgumentNullException("configuration");
+            if (client == null) throw new ArgumentNullException("client");
+
+            this.Configuration = Org.OpenAPITools.Client.Configuration.MergeConfigurations(
+                Org.OpenAPITools.Client.GlobalConfiguration.Instance,
+                configuration
+            );
+            this.ApiClient = new Org.OpenAPITools.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.Client = this.ApiClient;
+            this.AsynchronousClient = this.ApiClient;
             ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
         }
 
@@ -566,6 +614,7 @@ namespace Org.OpenAPITools.Api
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public CronWorkflowServiceApi(Org.OpenAPITools.Client.ISynchronousClient client, Org.OpenAPITools.Client.IAsynchronousClient asyncClient, Org.OpenAPITools.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
@@ -577,6 +626,19 @@ namespace Org.OpenAPITools.Api
             this.Configuration = configuration;
             this.ExceptionFactory = Org.OpenAPITools.Client.Configuration.DefaultExceptionFactory;
         }
+
+        /// <summary>
+        /// Disposes resources if they were created by us
+        /// </summary>
+        public void Dispose()
+        {
+            this.ApiClient?.Dispose();
+        }
+
+        /// <summary>
+        /// Holds the ApiClient if created
+        /// </summary>
+        public Org.OpenAPITools.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
@@ -625,9 +687,8 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceCreateCronWorkflow(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body, int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceCreateCronWorkflow(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body)
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = CronWorkflowServiceCreateCronWorkflowWithHttpInfo(varNamespace, body);
             return localVarResponse.Data;
@@ -639,21 +700,16 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceCreateCronWorkflowWithHttpInfo(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body, int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceCreateCronWorkflowWithHttpInfo(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body)
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceCreateCronWorkflow");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling CronWorkflowServiceApi->CronWorkflowServiceCreateCronWorkflow");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -667,22 +723,13 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceCreateCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -692,13 +739,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<IoArgoprojWorkflowV1alpha1CronWorkflow>("/api/v1/cron-workflows/{namespace}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceCreateCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -710,12 +755,11 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceCreateCronWorkflowAsync(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceCreateCronWorkflowAsync(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = await CronWorkflowServiceCreateCronWorkflowWithHttpInfoAsync(varNamespace, body, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = await CronWorkflowServiceCreateCronWorkflowWithHttpInfoAsync(varNamespace, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -725,22 +769,17 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflow)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceCreateCronWorkflowWithHttpInfoAsync(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceCreateCronWorkflowWithHttpInfoAsync(string varNamespace, IoArgoprojWorkflowV1alpha1CreateCronWorkflowRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceCreateCronWorkflow");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling CronWorkflowServiceApi->CronWorkflowServiceCreateCronWorkflow");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -754,23 +793,15 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceCreateCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -779,15 +810,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.PostAsync<IoArgoprojWorkflowV1alpha1CronWorkflow>("/api/v1/cron-workflows/{namespace}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceCreateCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -805,9 +834,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Object</returns>
-        public Object CronWorkflowServiceDeleteCronWorkflow(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0)
+        public Object CronWorkflowServiceDeleteCronWorkflow(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?))
         {
             Org.OpenAPITools.Client.ApiResponse<Object> localVarResponse = CronWorkflowServiceDeleteCronWorkflowWithHttpInfo(varNamespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun);
             return localVarResponse.Data;
@@ -825,21 +853,16 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object</returns>
-        public Org.OpenAPITools.Client.ApiResponse<Object> CronWorkflowServiceDeleteCronWorkflowWithHttpInfo(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<Object> CronWorkflowServiceDeleteCronWorkflowWithHttpInfo(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceDeleteCronWorkflow");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling CronWorkflowServiceApi->CronWorkflowServiceDeleteCronWorkflow");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -852,16 +875,10 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
@@ -890,9 +907,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("multi", "deleteOptions.dryRun", deleteOptionsDryRun));
             }
 
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceDeleteCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -901,13 +915,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Delete<Object>("/api/v1/cron-workflows/{namespace}/{name}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceDeleteCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -925,12 +937,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Object</returns>
-        public async System.Threading.Tasks.Task<Object> CronWorkflowServiceDeleteCronWorkflowAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Object> CronWorkflowServiceDeleteCronWorkflowAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<Object> localVarResponse = await CronWorkflowServiceDeleteCronWorkflowWithHttpInfoAsync(varNamespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<Object> localVarResponse = await CronWorkflowServiceDeleteCronWorkflowWithHttpInfoAsync(varNamespace, name, deleteOptionsGracePeriodSeconds, deleteOptionsPreconditionsUid, deleteOptionsPreconditionsResourceVersion, deleteOptionsOrphanDependents, deleteOptionsPropagationPolicy, deleteOptionsDryRun, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -946,22 +957,17 @@ namespace Org.OpenAPITools.Api
         /// <param name="deleteOptionsOrphanDependents">Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)</param>
         /// <param name="deleteOptionsPropagationPolicy">Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. (optional)</param>
         /// <param name="deleteOptionsDryRun">When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Object)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<Object>> CronWorkflowServiceDeleteCronWorkflowWithHttpInfoAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<Object>> CronWorkflowServiceDeleteCronWorkflowWithHttpInfoAsync(string varNamespace, string name, string? deleteOptionsGracePeriodSeconds = default(string?), string? deleteOptionsPreconditionsUid = default(string?), string? deleteOptionsPreconditionsResourceVersion = default(string?), bool? deleteOptionsOrphanDependents = default(bool?), string? deleteOptionsPropagationPolicy = default(string?), List<string>? deleteOptionsDryRun = default(List<string>?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceDeleteCronWorkflow");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling CronWorkflowServiceApi->CronWorkflowServiceDeleteCronWorkflow");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -974,17 +980,12 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
@@ -1013,9 +1014,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("multi", "deleteOptions.dryRun", deleteOptionsDryRun));
             }
 
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceDeleteCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -1023,15 +1021,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/api/v1/cron-workflows/{namespace}/{name}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceDeleteCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1044,9 +1040,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="getOptionsResourceVersion">resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceGetCronWorkflow(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceGetCronWorkflow(string varNamespace, string name, string? getOptionsResourceVersion = default(string?))
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = CronWorkflowServiceGetCronWorkflowWithHttpInfo(varNamespace, name, getOptionsResourceVersion);
             return localVarResponse.Data;
@@ -1059,21 +1054,16 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="getOptionsResourceVersion">resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceGetCronWorkflowWithHttpInfo(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceGetCronWorkflowWithHttpInfo(string varNamespace, string name, string? getOptionsResourceVersion = default(string?))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceGetCronWorkflow");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling CronWorkflowServiceApi->CronWorkflowServiceGetCronWorkflow");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1086,16 +1076,10 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
@@ -1103,9 +1087,6 @@ namespace Org.OpenAPITools.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("", "getOptions.resourceVersion", getOptionsResourceVersion));
             }
-
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceGetCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1115,13 +1096,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<IoArgoprojWorkflowV1alpha1CronWorkflow>("/api/v1/cron-workflows/{namespace}/{name}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceGetCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1134,12 +1113,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="getOptionsResourceVersion">resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceGetCronWorkflowAsync(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceGetCronWorkflowAsync(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = await CronWorkflowServiceGetCronWorkflowWithHttpInfoAsync(varNamespace, name, getOptionsResourceVersion, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = await CronWorkflowServiceGetCronWorkflowWithHttpInfoAsync(varNamespace, name, getOptionsResourceVersion, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1150,22 +1128,17 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="getOptionsResourceVersion">resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflow)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceGetCronWorkflowWithHttpInfoAsync(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceGetCronWorkflowWithHttpInfoAsync(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceGetCronWorkflow");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling CronWorkflowServiceApi->CronWorkflowServiceGetCronWorkflow");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -1178,17 +1151,12 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
@@ -1197,9 +1165,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("", "getOptions.resourceVersion", getOptionsResourceVersion));
             }
 
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceGetCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -1207,15 +1172,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.GetAsync<IoArgoprojWorkflowV1alpha1CronWorkflow>("/api/v1/cron-workflows/{namespace}/{name}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceGetCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1227,9 +1190,8 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceLintCronWorkflow(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body, int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceLintCronWorkflow(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body)
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = CronWorkflowServiceLintCronWorkflowWithHttpInfo(varNamespace, body);
             return localVarResponse.Data;
@@ -1241,21 +1203,16 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceLintCronWorkflowWithHttpInfo(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body, int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceLintCronWorkflowWithHttpInfo(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body)
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceLintCronWorkflow");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling CronWorkflowServiceApi->CronWorkflowServiceLintCronWorkflow");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1269,22 +1226,13 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceLintCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1294,13 +1242,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Post<IoArgoprojWorkflowV1alpha1CronWorkflow>("/api/v1/cron-workflows/{namespace}/lint", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceLintCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1312,12 +1258,11 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceLintCronWorkflowAsync(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceLintCronWorkflowAsync(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = await CronWorkflowServiceLintCronWorkflowWithHttpInfoAsync(varNamespace, body, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = await CronWorkflowServiceLintCronWorkflowWithHttpInfoAsync(varNamespace, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1327,22 +1272,17 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflow)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceLintCronWorkflowWithHttpInfoAsync(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceLintCronWorkflowWithHttpInfoAsync(string varNamespace, IoArgoprojWorkflowV1alpha1LintCronWorkflowRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceLintCronWorkflow");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling CronWorkflowServiceApi->CronWorkflowServiceLintCronWorkflow");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -1356,23 +1296,15 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceLintCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1381,15 +1313,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.PostAsync<IoArgoprojWorkflowV1alpha1CronWorkflow>("/api/v1/cron-workflows/{namespace}/lint", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceLintCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1409,9 +1339,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflowList</returns>
-        public IoArgoprojWorkflowV1alpha1CronWorkflowList CronWorkflowServiceListCronWorkflows(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1CronWorkflowList CronWorkflowServiceListCronWorkflows(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?))
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflowList> localVarResponse = CronWorkflowServiceListCronWorkflowsWithHttpInfo(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue);
             return localVarResponse.Data;
@@ -1431,15 +1360,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflowList</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflowList> CronWorkflowServiceListCronWorkflowsWithHttpInfo(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflowList> CronWorkflowServiceListCronWorkflowsWithHttpInfo(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceListCronWorkflows");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1452,16 +1378,10 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             if (listOptionsLabelSelector != null)
@@ -1501,9 +1421,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("", "listOptions.continue", listOptionsContinue));
             }
 
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceListCronWorkflows";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -1512,13 +1429,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Get<IoArgoprojWorkflowV1alpha1CronWorkflowList>("/api/v1/cron-workflows/{namespace}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceListCronWorkflows", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1538,12 +1453,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflowList</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflowList> CronWorkflowServiceListCronWorkflowsAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflowList> CronWorkflowServiceListCronWorkflowsAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflowList> localVarResponse = await CronWorkflowServiceListCronWorkflowsWithHttpInfoAsync(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflowList> localVarResponse = await CronWorkflowServiceListCronWorkflowsWithHttpInfoAsync(varNamespace, listOptionsLabelSelector, listOptionsFieldSelector, listOptionsWatch, listOptionsAllowWatchBookmarks, listOptionsResourceVersion, listOptionsResourceVersionMatch, listOptionsTimeoutSeconds, listOptionsLimit, listOptionsContinue, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1561,16 +1475,13 @@ namespace Org.OpenAPITools.Api
         /// <param name="listOptionsTimeoutSeconds">Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)</param>
         /// <param name="listOptionsLimit">limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)</param>
         /// <param name="listOptionsContinue">The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)</param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflowList)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflowList>> CronWorkflowServiceListCronWorkflowsWithHttpInfoAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflowList>> CronWorkflowServiceListCronWorkflowsWithHttpInfoAsync(string varNamespace, string? listOptionsLabelSelector = default(string?), string? listOptionsFieldSelector = default(string?), bool? listOptionsWatch = default(bool?), bool? listOptionsAllowWatchBookmarks = default(bool?), string? listOptionsResourceVersion = default(string?), string? listOptionsResourceVersionMatch = default(string?), string? listOptionsTimeoutSeconds = default(string?), string? listOptionsLimit = default(string?), string? listOptionsContinue = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceListCronWorkflows");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -1583,17 +1494,12 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             if (listOptionsLabelSelector != null)
@@ -1633,9 +1539,6 @@ namespace Org.OpenAPITools.Api
                 localVarRequestOptions.QueryParameters.Add(Org.OpenAPITools.Client.ClientUtils.ParameterToMultiMap("", "listOptions.continue", listOptionsContinue));
             }
 
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceListCronWorkflows";
-            localVarRequestOptions.OperationIndex = operationIndex;
-
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
             {
@@ -1643,15 +1546,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.GetAsync<IoArgoprojWorkflowV1alpha1CronWorkflowList>("/api/v1/cron-workflows/{namespace}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceListCronWorkflows", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1664,9 +1565,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceResumeCronWorkflow(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body, int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceResumeCronWorkflow(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body)
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = CronWorkflowServiceResumeCronWorkflowWithHttpInfo(varNamespace, name, body);
             return localVarResponse.Data;
@@ -1679,27 +1579,20 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceResumeCronWorkflowWithHttpInfo(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body, int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceResumeCronWorkflowWithHttpInfo(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body)
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceResumeCronWorkflow");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling CronWorkflowServiceApi->CronWorkflowServiceResumeCronWorkflow");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling CronWorkflowServiceApi->CronWorkflowServiceResumeCronWorkflow");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1713,23 +1606,14 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceResumeCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1739,13 +1623,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Put<IoArgoprojWorkflowV1alpha1CronWorkflow>("/api/v1/cron-workflows/{namespace}/{name}/resume", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceResumeCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1758,12 +1640,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceResumeCronWorkflowAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceResumeCronWorkflowAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = await CronWorkflowServiceResumeCronWorkflowWithHttpInfoAsync(varNamespace, name, body, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = await CronWorkflowServiceResumeCronWorkflowWithHttpInfoAsync(varNamespace, name, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1774,28 +1655,21 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflow)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceResumeCronWorkflowWithHttpInfoAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceResumeCronWorkflowWithHttpInfoAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowResumeRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceResumeCronWorkflow");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling CronWorkflowServiceApi->CronWorkflowServiceResumeCronWorkflow");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling CronWorkflowServiceApi->CronWorkflowServiceResumeCronWorkflow");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -1809,24 +1683,16 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceResumeCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1835,15 +1701,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.PutAsync<IoArgoprojWorkflowV1alpha1CronWorkflow>("/api/v1/cron-workflows/{namespace}/{name}/resume", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceResumeCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1856,9 +1720,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceSuspendCronWorkflow(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body, int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceSuspendCronWorkflow(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body)
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = CronWorkflowServiceSuspendCronWorkflowWithHttpInfo(varNamespace, name, body);
             return localVarResponse.Data;
@@ -1871,27 +1734,20 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceSuspendCronWorkflowWithHttpInfo(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body, int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceSuspendCronWorkflowWithHttpInfo(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body)
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceSuspendCronWorkflow");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling CronWorkflowServiceApi->CronWorkflowServiceSuspendCronWorkflow");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling CronWorkflowServiceApi->CronWorkflowServiceSuspendCronWorkflow");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -1905,23 +1761,14 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceSuspendCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -1931,13 +1778,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Put<IoArgoprojWorkflowV1alpha1CronWorkflow>("/api/v1/cron-workflows/{namespace}/{name}/suspend", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceSuspendCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -1950,12 +1795,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceSuspendCronWorkflowAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceSuspendCronWorkflowAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = await CronWorkflowServiceSuspendCronWorkflowWithHttpInfoAsync(varNamespace, name, body, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = await CronWorkflowServiceSuspendCronWorkflowWithHttpInfoAsync(varNamespace, name, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1966,28 +1810,21 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflow)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceSuspendCronWorkflowWithHttpInfoAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceSuspendCronWorkflowWithHttpInfoAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1CronWorkflowSuspendRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceSuspendCronWorkflow");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling CronWorkflowServiceApi->CronWorkflowServiceSuspendCronWorkflow");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling CronWorkflowServiceApi->CronWorkflowServiceSuspendCronWorkflow");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -2001,24 +1838,16 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceSuspendCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2027,15 +1856,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.PutAsync<IoArgoprojWorkflowV1alpha1CronWorkflow>("/api/v1/cron-workflows/{namespace}/{name}/suspend", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceSuspendCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -2048,9 +1875,8 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name">DEPRECATED: This field is ignored.</param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceUpdateCronWorkflow(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body, int operationIndex = 0)
+        public IoArgoprojWorkflowV1alpha1CronWorkflow CronWorkflowServiceUpdateCronWorkflow(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body)
         {
             Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = CronWorkflowServiceUpdateCronWorkflowWithHttpInfo(varNamespace, name, body);
             return localVarResponse.Data;
@@ -2063,27 +1889,20 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name">DEPRECATED: This field is ignored.</param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceUpdateCronWorkflowWithHttpInfo(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body, int operationIndex = 0)
+        public Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceUpdateCronWorkflowWithHttpInfo(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body)
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceUpdateCronWorkflow");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling CronWorkflowServiceApi->CronWorkflowServiceUpdateCronWorkflow");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling CronWorkflowServiceApi->CronWorkflowServiceUpdateCronWorkflow");
-            }
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
 
@@ -2097,23 +1916,14 @@ namespace Org.OpenAPITools.Api
             };
 
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceUpdateCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2123,13 +1933,11 @@ namespace Org.OpenAPITools.Api
 
             // make the HTTP request
             var localVarResponse = this.Client.Put<IoArgoprojWorkflowV1alpha1CronWorkflow>("/api/v1/cron-workflows/{namespace}/{name}", localVarRequestOptions, this.Configuration);
+
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceUpdateCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
@@ -2142,12 +1950,11 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name">DEPRECATED: This field is ignored.</param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1CronWorkflow</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceUpdateCronWorkflowAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1CronWorkflow> CronWorkflowServiceUpdateCronWorkflowAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = await CronWorkflowServiceUpdateCronWorkflowWithHttpInfoAsync(varNamespace, name, body, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow> localVarResponse = await CronWorkflowServiceUpdateCronWorkflowWithHttpInfoAsync(varNamespace, name, body, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2158,28 +1965,21 @@ namespace Org.OpenAPITools.Api
         /// <param name="varNamespace"></param>
         /// <param name="name">DEPRECATED: This field is ignored.</param>
         /// <param name="body"></param>
-        /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1CronWorkflow)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceUpdateCronWorkflowWithHttpInfoAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1CronWorkflow>> CronWorkflowServiceUpdateCronWorkflowWithHttpInfoAsync(string varNamespace, string name, IoArgoprojWorkflowV1alpha1UpdateCronWorkflowRequest body, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'varNamespace' when calling CronWorkflowServiceApi->CronWorkflowServiceUpdateCronWorkflow");
-            }
 
             // verify the required parameter 'name' is set
             if (name == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'name' when calling CronWorkflowServiceApi->CronWorkflowServiceUpdateCronWorkflow");
-            }
 
             // verify the required parameter 'body' is set
             if (body == null)
-            {
                 throw new Org.OpenAPITools.Client.ApiException(400, "Missing required parameter 'body' when calling CronWorkflowServiceApi->CronWorkflowServiceUpdateCronWorkflow");
-            }
 
 
             Org.OpenAPITools.Client.RequestOptions localVarRequestOptions = new Org.OpenAPITools.Client.RequestOptions();
@@ -2193,24 +1993,16 @@ namespace Org.OpenAPITools.Api
                 "application/json"
             };
 
+
             var localVarContentType = Org.OpenAPITools.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-            }
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
             var localVarAccept = Org.OpenAPITools.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-            }
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("namespace", Org.OpenAPITools.Client.ClientUtils.ParameterToString(varNamespace)); // path parameter
             localVarRequestOptions.PathParameters.Add("name", Org.OpenAPITools.Client.ClientUtils.ParameterToString(name)); // path parameter
             localVarRequestOptions.Data = body;
-
-            localVarRequestOptions.Operation = "CronWorkflowServiceApi.CronWorkflowServiceUpdateCronWorkflow";
-            localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (BearerToken) required
             if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2219,15 +2011,13 @@ namespace Org.OpenAPITools.Api
             }
 
             // make the HTTP request
+
             var localVarResponse = await this.AsynchronousClient.PutAsync<IoArgoprojWorkflowV1alpha1CronWorkflow>("/api/v1/cron-workflows/{namespace}/{name}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CronWorkflowServiceUpdateCronWorkflow", localVarResponse);
-                if (_exception != null)
-                {
-                    throw _exception;
-                }
+                if (_exception != null) throw _exception;
             }
 
             return localVarResponse;
