@@ -100,6 +100,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             .StatusCode(HttpStatusCode.OK)
             .And()
             .DeserializeTo(typeof(WorkflowInfo));
+        output.WriteLine($"Workflow {workflow.Name} submitted");
         Thread.Sleep(500);
 
         // loop until the workflow is running
