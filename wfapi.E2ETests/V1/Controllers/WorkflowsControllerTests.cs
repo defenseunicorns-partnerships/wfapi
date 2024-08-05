@@ -82,7 +82,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
     }
 
     [Fact]
-    public void GetWorkflowLogstream_WhenCalledOnRunningPod_ReturnsOkImmediately()
+    public async Task GetWorkflowLogstream_WhenCalledOnRunningPod_ReturnsOkImmediately()
     {
         // Submit the workflow
         var workflow = (WorkflowInfo)Given()
@@ -126,8 +126,9 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         var request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/logstream");
         request.Headers.Add("Accept", "application/x-ndjson");
         sw = Stopwatch.StartNew();
-        var response = httpClient.Send(request, HttpCompletionOption.ResponseHeadersRead);
+        var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
         sw.Stop();
+
         output.WriteLine("Logstream request took " + sw.ElapsedMilliseconds + "ms");
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.NotNull(response.Content.Headers.ContentType?.MediaType);
