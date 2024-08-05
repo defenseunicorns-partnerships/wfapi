@@ -21,12 +21,12 @@ public class WorkflowsControllerTests
             .Log(RequestLogLevel.All)
             .Accept(MediaTypeNames.Application.Json)
             .ContentType(MediaTypeNames.Application.Json)
-            .Body(JsonConvert.SerializeObject(new WorkflowSubmission()
+            .Body(new WorkflowSubmission()
             {
                 TemplateName = TemplateName,
                 GenerateName = GenerateName,
                 Parameters = []
-            }))
+            })
         .When()
             .Post($"{RootUrl}/api/v1/workflows")
         .Then()
