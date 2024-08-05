@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Mime;
 using Newtonsoft.Json;
+using Org.OpenAPITools.Model;
 using RestAssured.Request.Logging;
 using RestAssured.Response.Logging;
 using wfapi.V1.Models;
@@ -148,6 +149,15 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         output.WriteLine("2nd logstream request took " + sw.ElapsedMilliseconds + "ms");
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.True(sw.ElapsedMilliseconds < 2000); // 2 seconds
+
+        // Deserialize the first line of the logstream to make sure it is valid. We'll assume for the sake of time that the rest of the stream is formatted the same way.
+        await using var responseStream = await response.Content.ReadAsStreamAsync();
+        using var reader = new StreamReader(responseStream);
+        var line = await reader.ReadLineAsync();
+        Assert.NotNull(line);
+        var logEntry = JsonConvert.DeserializeObject<StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry>(line);
+        Assert.NotNull(logEntry);
+        Assert.Contains("capturing logs", logEntry.Result.Content);
 
         // Make sure the workflow is still running
         workflow = (WorkflowInfo)Given()
