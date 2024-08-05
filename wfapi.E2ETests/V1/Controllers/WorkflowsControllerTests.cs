@@ -92,7 +92,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             {
                 TemplateName = TemplateName,
                 GenerateName = GenerateName,
-                Parameters = [new WorkflowParameter("waitSeconds", "10")]
+                Parameters = [new WorkflowParameter("waitSeconds", "15")]
             })
             .When()
             .Post($"{RootUrl}/api/v1/workflows/")
@@ -139,5 +139,17 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         // Assert.NotNull(response.Headers.Connection);
         // Assert.Equal("keep-alive", response.Headers.Connection.ToString());
         Assert.True(sw.ElapsedMilliseconds < 7000);
+
+        // Make sure the workflow is still running
+        workflow = (WorkflowInfo)Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .ContentType(MediaTypeNames.Application.Json)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/{workflow.Name}")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .DeserializeTo(typeof(WorkflowInfo));
+        Assert.Equal(WorkflowStatus.Running, workflow.Status);
     }
 }
