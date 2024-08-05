@@ -92,7 +92,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             {
                 TemplateName = TemplateName,
                 GenerateName = GenerateName,
-                Parameters = [new WorkflowParameter("waitSeconds", "5")]
+                Parameters = [new WorkflowParameter("waitSeconds", "10")]
             })
             .When()
             .Post($"{RootUrl}/api/v1/workflows/")
@@ -137,6 +137,6 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         // Assert.NotNull(response.Headers.Connection);
         // Assert.Equal("keep-alive", response.Headers.Connection.ToString());
         sw.Stop();
-        Assert.True(sw.ElapsedMilliseconds < 10000);
+        Assert.True(sw.ElapsedMilliseconds < 7000);
     }
 }
