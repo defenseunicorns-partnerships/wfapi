@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
 // ReSharper disable ClassNeverInstantiated.Global
 
@@ -26,11 +27,13 @@ public class WorkflowParameter
     /// Parameter name
     /// </summary>
     [Required]
+    [JsonProperty("name")]
     public required string Name { get; set; }
 
     /// <summary>
     /// Parameter value
     /// </summary>
     [Required]
+    [JsonProperty("value")]
     public required string Value { get; set; }
 }
