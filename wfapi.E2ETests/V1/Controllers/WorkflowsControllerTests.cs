@@ -135,7 +135,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         Assert.Equal("no-cache", response.Headers.CacheControl.ToString());
         Assert.NotNull(response.Headers.Connection);
         // log the value
-        output.WriteLine(response.Headers.Connection.ToString());
+        output.WriteLine($"Connection header: {response.Headers.Connection}");
         Assert.Equal("keep-alive", response.Headers.Connection.ToString());
         sw.Stop();
         Assert.True(sw.ElapsedMilliseconds < 3000);
