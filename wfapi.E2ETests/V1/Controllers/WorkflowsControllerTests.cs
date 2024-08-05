@@ -10,7 +10,7 @@ using static RestAssured.Dsl;
 
 namespace wfapi.E2ETests.V1.Controllers;
 
-public class WorkflowsControllerTests
+public class WorkflowsControllerTests(ITestOutputHelper output)
 {
     private static readonly string RootUrl = "https://wfapi.uds.dev";
     private static readonly string TemplateName = "hello-world-template";
@@ -134,6 +134,8 @@ public class WorkflowsControllerTests
         Assert.NotNull(response.Headers.CacheControl);
         Assert.Equal("no-cache", response.Headers.CacheControl.ToString());
         Assert.NotNull(response.Headers.Connection);
+        // log the value
+        output.WriteLine(response.Headers.Connection.ToString());
         Assert.Equal("keep-alive", response.Headers.Connection.ToString());
         sw.Stop();
         Assert.True(sw.ElapsedMilliseconds < 3000);
