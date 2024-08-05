@@ -8,11 +8,11 @@ metadata:
       This is a simple hello world example.
 spec:
   podGC:
-    deleteDelayDuration: 3600s
+    deleteDelayDuration: 600s
   ttlStrategy:
-    secondsAfterCompletion: 3600
-    secondsAfterFailure: 3600
-    secondsAfterSuccess: 3600
+    secondsAfterCompletion: 600
+    secondsAfterFailure: 600
+    secondsAfterSuccess: 600
   archiveLogs: true
   entrypoint: whalesay
   serviceAccountName: argo-workflow
