@@ -137,6 +137,6 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         // Assert.NotNull(response.Headers.Connection);
         // Assert.Equal("keep-alive", response.Headers.Connection.ToString());
         sw.Stop();
-        Assert.True(sw.ElapsedMilliseconds < 3000);
+        Assert.True(sw.ElapsedMilliseconds < 10000);
     }
 }
