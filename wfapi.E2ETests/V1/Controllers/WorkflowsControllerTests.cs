@@ -140,6 +140,8 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
 
         // Do it one more time. This time it should happen extremely quickly since we know the pod is done initializing.
         sw = Stopwatch.StartNew();
+        request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/logstream");
+        request.Headers.Add("Accept", "application/x-ndjson");
         response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
         sw.Stop();
         output.WriteLine("2nd logstream request took " + sw.ElapsedMilliseconds + "ms");
