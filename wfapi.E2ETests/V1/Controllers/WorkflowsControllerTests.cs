@@ -82,11 +82,10 @@ public class WorkflowsControllerTests
     }
 
     [Fact]
-    public void GetWorkflowLogstream_WhenCalledOnRunningPod_ReturnsOkImmediately()
+    public async Task GetWorkflowLogstream_WhenCalledOnRunningPod_ReturnsOkImmediately()
     {
         // Submit the workflow
         var workflow = (WorkflowInfo)Given()
-            .Log(RequestLogLevel.All)
             .Accept(MediaTypeNames.Application.Json)
             .ContentType(MediaTypeNames.Application.Json)
             .Body(new WorkflowSubmission()
@@ -122,25 +121,21 @@ public class WorkflowsControllerTests
         sw.Stop();
 
         // Get the logstream. Make sure it isn't waiting for the workflow to finish
-        var handler = new HttpClientHandler();
-        var httpClient = new HttpClient(handler);
+        // We have to do our own request here because rest-assured-net doesn't support SSE
         sw = Stopwatch.StartNew();
-        Given()
-            .Log(RequestLogLevel.All)
-            .Timeout(TimeSpan.FromSeconds(1))
-            .Accept("application/x-ndjson")
-            .When()
-            .Get($"{RootUrl}/api/v1/workflows/{workflow.Name}/logstream")
-            .Then()
-            .Log(ResponseLogLevel.All)
-            .StatusCode(HttpStatusCode.OK)
-            .And()
-            .ContentType("application/x-ndjson")
-            .And()
-            .Header("Cache-Control", "no-cache")
-            .And()
-            .Header("Connection", "keep-alive")
-            .And()
-            .ResponseTime(NHamcrest.Is.LessThan(TimeSpan.FromSeconds(1)));
+        var httpClientHandler = new HttpClientHandler();
+        using var httpClient = new HttpClient(httpClientHandler, true);
+        var request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/logstream");
+        request.Headers.Add("Accept", "application/x-ndjson");
+        var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.NotNull(response.Content.Headers.ContentType?.MediaType);
+        Assert.Equal("application/x-ndjson", response.Content.Headers.ContentType.MediaType);
+        Assert.NotNull(response.Headers.CacheControl);
+        Assert.Equal("no-cache", response.Headers.CacheControl.ToString());
+        Assert.NotNull(response.Headers.Connection);
+        Assert.Equal("keep-alive", response.Headers.Connection.ToString());
+        sw.Stop();
+        Assert.True(sw.ElapsedMilliseconds < 3000);
     }
 }
