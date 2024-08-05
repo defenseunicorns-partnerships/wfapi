@@ -19,6 +19,10 @@ spec:
   executor:
     serviceAccountName: argo-workflow
   automountServiceAccountToken: false
+  arguments:
+    parameters:
+      - name: waitSeconds
+        value: "1"
   templates:
     - name: whalesay
       archiveLocation:
@@ -36,7 +40,7 @@ spec:
             echo "this is an artifact test" > /tmp/artifact.txt
             echo "$(ls /tmp)"
             cat "/tmp/artifact.txt"
-            for i in {1..10}
+            for i in {1..{{workflow.parameters.waitSeconds}}}
             do
               echo "$(date +"%Y-%m-%d %H:%M:%S")"
               sleep 1
