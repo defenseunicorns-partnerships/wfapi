@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Mime;
 using Newtonsoft.Json;
+using RestAssured.Request.Logging;
 using wfapi.V1.Models;
 using static RestAssured.Dsl;
 
@@ -17,6 +18,7 @@ public class WorkflowsControllerTests
     public void SubmitWorkflow_WhenCalled_WithEmptyParameters_ReturnsOk()
     {
         Given()
+            .Log(RequestLogLevel.All)
             .Accept(MediaTypeNames.Application.Json)
             .ContentType(MediaTypeNames.Application.Json)
             .Body(JsonConvert.SerializeObject(new WorkflowSubmission()
