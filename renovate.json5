@@ -30,12 +30,19 @@
   customManagers: [
     {
       customType: "regex",
-      fileMatch: [".*"],
+      fileMatch: ["\.env"],
       matchStrings: [
-        "renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?(?<currentValue>.*)\\s",
         "renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?_VERSION=(?<currentValue>.*)\\s"
       ],
-      matchStringsStrategy: "recursive",
+      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}",
+      extractVersionTemplate: "^v?(?<version>.*)$"
+    },
+    {
+      customType: "regex",
+      fileMatch: [".*\.[yaml|yml]"],
+      matchStrings: [
+        "renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*?(?<currentValue>.*)\\s"
+      ],
       versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver-coerced{{/if}}",
       extractVersionTemplate: "^v?(?<version>.*)$"
     }
