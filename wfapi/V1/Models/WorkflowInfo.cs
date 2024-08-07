@@ -18,6 +18,13 @@ public class WorkflowInfo
     public required string Name { get; set; }
 
     /// <summary>
+    /// Unique workflow ID
+    /// </summary>
+    [Required]
+    [JsonProperty("uid")]
+    public required string Uid { get; set; }
+
+    /// <summary>
     /// Status of the workflow
     /// </summary>
     [Required]

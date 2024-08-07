@@ -176,6 +176,7 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
         {
             Created = getResult.Metadata.CreationTimestamp ?? throw new ArgumentNullException(nameof(getResult.Metadata.CreationTimestamp), "Mandatory parameter"),
             Name = getResult.Metadata.Name,
+            Uid = getResult.Metadata.Uid,
             Status = (WorkflowStatus)Enum.Parse(typeof(WorkflowStatus), getResult.Status.Phase),
             Message = getResult.Status.Message,
             Started = getResult.Status.StartedAt,
@@ -186,11 +187,12 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
     }
 
     /// <summary>
-    /// Get the log stream of a workflow as an NDJSON stream using SSE.
+    /// Get the log stream of a workflow as an NDJSON stream using SSE. If the workflow is active in the cluster it will stream the logs from there. If it isn't, it will look for the logs in the archive.
     /// </summary>
     /// <param name="workflowName">The name of the workflow that you want the log(s) for</param>
+    /// <param name="podName">The name of the pod that you want the log(s) for. If the workflow only had one template than the podname will be the same as the workflow name</param>
     /// <param name="cancellationToken"></param>
-    [HttpGet("{workflowName}/logstream")]
+    [HttpGet("{workflowName}/pods/{podName}/logstream")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
         "Success. The workflow log is returned as an NDJSON stream using SSE.",
@@ -202,23 +204,41 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
         "The requested workflow was not found."
     )]
     [SwaggerOperation(OperationId = "GetWorkflowLogStream")]
-    public async Task GetWorkflowLogStream(string workflowName, CancellationToken cancellationToken)
+    public async Task GetWorkflowLogStream(string workflowName, string podName, CancellationToken cancellationToken)
     {
         Response.Headers.ContentType = "application/x-ndjson";
         Response.Headers.CacheControl = "no-cache";
-        Response.Headers.Connection = "keep-alive";
+        // Istio strips the connection header, so adding this doesn't do anything useful.
+        // Response.Headers.Connection = "keep-alive";
 
-        await foreach (var logEntry in argoClient.WorkflowServiceSseApiAsync.WorkflowServiceWorkflowLogsAsync(
-                           varNamespace: argoClient.Namespace,
-                           name: workflowName,
-                           logOptionsContainer: "main",
-                           logOptionsFollow: true,
-                           cancellationToken: cancellationToken
-                       ))
+        // First try to get the logs from the active workflow
+        try
         {
-            await Response.WriteAsync(JsonConvert.SerializeObject(logEntry), cancellationToken: cancellationToken);
-            await Response.WriteAsync("\n", cancellationToken: cancellationToken);
-            await Response.Body.FlushAsync(cancellationToken);
+            await foreach (var logEntry in argoClient.WorkflowServiceSseApiAsync.WorkflowServiceWorkflowLogsAsync(
+                               varNamespace: argoClient.Namespace,
+                               name: workflowName,
+                               podName: podName,
+                               logOptionsContainer: "main",
+                               logOptionsFollow: true,
+                               cancellationToken: cancellationToken
+                           ))
+            {
+                await Response.WriteAsync(JsonConvert.SerializeObject(logEntry), cancellationToken: cancellationToken);
+                await Response.WriteAsync("\n", cancellationToken: cancellationToken);
+                await Response.Body.FlushAsync(cancellationToken);
+            }
+        }
+        catch (ApiException e)
+        {
+            if (e.ErrorCode == 404)
+            {
+                // If the workflow wasn't found, it might be in the archive
+                argoClient.ArtifactServiceApi.
+            }
+            else
+            {
+                throw;
+            }
         }
     }
 }
