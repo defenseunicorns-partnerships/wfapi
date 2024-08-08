@@ -170,4 +170,10 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             .DeserializeTo(typeof(WorkflowInfo));
         Assert.Equal(WorkflowStatus.Running, workflow.Status);
     }
+
+    [Fact]
+    public async Task GetWorkflowLogstream_WhenCalledOnArchivedPod_ReturnsOk()
+    {
+
+    }
 }

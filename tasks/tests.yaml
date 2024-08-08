@@ -5,3 +5,10 @@ tasks:
       - cmd: |
           ./uds zarf tools kubectl apply -f test/hello-world-template.yaml
           dotnet test wfapi.E2ETests --logger "console;verbosity=detailed"
+
+  - name: dast
+    description: Run DAST tests
+    actions:
+      - cmd: |
+          docker run -t --rm --network host registry1.dso.mil/ironbank/opensource/owasp-zap/owasp-zap:v2.15.0 \
+          zap-baseline.py -t https://wfapi.uds.dev

@@ -9,7 +9,6 @@ using Swashbuckle.AspNetCore.Annotations;
 using wfapi.V1.Models;
 using Org.OpenAPITools.Model;
 using FileInfo = wfapi.V1.Models.FileInfo;
-using HttpMethod = System.Net.Http.HttpMethod;
 
 namespace wfapi.V1.Controllers;
 
@@ -21,7 +20,7 @@ namespace wfapi.V1.Controllers;
 [ApiVersion(1.0)]
 [Route("api/v{version:apiVersion}/workflows")]
 [Tags("Workflows")]
-public class WorkflowsController(ArgoClient argoClient) : ControllerBase
+public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsController> log) : ControllerBase
 {
     /// <summary>
     /// Get a list of all files present and ready to be consumed by a workflow.
@@ -132,6 +131,7 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
         {
             Created = getResult.Metadata.CreationTimestamp ?? throw new ArgumentNullException(nameof(getResult.Metadata.CreationTimestamp), "Mandatory parameter"),
             Name = getResult.Metadata.Name,
+            Uid = getResult.Metadata.Uid,
             Status = (WorkflowStatus)Enum.Parse(typeof(WorkflowStatus), getResult.Status.Phase),
             Message = getResult.Status.Message,
             Started = getResult.Status.StartedAt,
@@ -211,7 +211,7 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
         // Istio strips the connection header, so adding this doesn't do anything useful.
         // Response.Headers.Connection = "keep-alive";
 
-        // First try to get the logs from the active workflow
+        // If the workflow is still active, we'll get the log stream from the active pod
         try
         {
             await foreach (var logEntry in argoClient.WorkflowServiceSseApiAsync.WorkflowServiceWorkflowLogsAsync(
@@ -223,6 +223,7 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
                                cancellationToken: cancellationToken
                            ))
             {
+                // log.LogInformation(JsonConvert.SerializeObject(logEntry));
                 await Response.WriteAsync(JsonConvert.SerializeObject(logEntry), cancellationToken: cancellationToken);
                 await Response.WriteAsync("\n", cancellationToken: cancellationToken);
                 await Response.Body.FlushAsync(cancellationToken);
@@ -232,8 +233,34 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
         {
             if (e.ErrorCode == 404)
             {
-                // If the workflow wasn't found, it might be in the archive
-                argoClient.ArtifactServiceApi.
+                // If the workflow is not found, it might be in the archive. We'll try to get the logs from there.
+                try
+                {
+                    var workflow = await argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflowAsync(
+                        argoClient.Namespace, workflowName,
+                        cancellationToken: cancellationToken);
+                    var logFile = await argoClient.ArtifactServiceApi.ArtifactServiceGetArtifactFileAsync(argoClient.Namespace,
+                        "archived-workflows", workflow.Metadata.Uid, podName, "main-logs", "outputs",
+                        cancellationToken: cancellationToken);
+                    using var reader = new StreamReader(logFile.Content);
+                    while (!reader.EndOfStream && !cancellationToken.IsCancellationRequested)
+                    {
+                        var line = await reader.ReadLineAsync(cancellationToken).ConfigureAwait(false);
+                        if (string.IsNullOrWhiteSpace(line)) continue;
+                        var streamResultLogEntry =
+                            new StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry(
+                                result: new IoArgoprojWorkflowV1alpha1LogEntry(line, podName));
+                        await Response.WriteAsync(JsonConvert.SerializeObject(streamResultLogEntry), cancellationToken);
+                        await Response.WriteAsync("\n", cancellationToken);
+                        await Response.Body.FlushAsync(cancellationToken);
+                    }
+                }
+                catch (ApiException e2)
+                {
+                    if (e2.ErrorCode != 404) throw;
+                    // If the workflow is still not found, we'll return a 404
+                    Response.StatusCode = 404;
+                }
             }
             else
             {
