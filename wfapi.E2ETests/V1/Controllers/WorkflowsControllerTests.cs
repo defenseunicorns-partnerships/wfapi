@@ -127,7 +127,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         // We have to do our own request here because rest-assured-net doesn't support SSE
         var httpClientHandler = new HttpClientHandler();
         using var httpClient = new HttpClient(httpClientHandler, true);
-        var request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/logstream");
+        var request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/pods/{workflow.Name}/logstream");
         request.Headers.Add("Accept", "application/x-ndjson");
         sw = Stopwatch.StartNew();
         var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
@@ -144,7 +144,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         Assert.True(sw.ElapsedMilliseconds < 10000); // 10 seconds
 
         // Do it one more time. This time it should happen extremely quickly since we know the pod is done initializing.
-        request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/logstream");
+        request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/pods/{workflow.Name}/logstream");
         request.Headers.Add("Accept", "application/x-ndjson");
         sw = Stopwatch.StartNew();
         response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
@@ -221,13 +221,13 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         // Ideally we would check the pod status but as far as I can tell
         // the Argo Server API's GetWorkflow endpoint does not report whether
         // a workflow is archived.
-        await Task.Delay(30000);
+        await Task.Delay(3000);
 
         // Get the logstream. This should happen very quickly since grabbing logs from the archive is quite a bit faster than establishing a live SSE connection.
         // We have to do our own request here because rest-assured-net doesn't support SSE
         var httpClientHandler = new HttpClientHandler();
         using var httpClient = new HttpClient(httpClientHandler, true);
-        var request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/logstream");
+        var request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/pods/{workflow.Name}/logstream");
         request.Headers.Add("Accept", "application/x-ndjson");
         sw = Stopwatch.StartNew();
         var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
