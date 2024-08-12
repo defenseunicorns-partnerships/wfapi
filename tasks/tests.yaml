@@ -10,6 +10,7 @@ tasks:
     description: Run DAST tests using OWASP ZAP's API scan
     actions:
       - cmd: rm -rf zap/wrk
+      - cmd: mkdir -p zap/wrk
       - cmd: scripts/check_swagger_status.sh
       - cmd: |
           docker run -t --rm \
