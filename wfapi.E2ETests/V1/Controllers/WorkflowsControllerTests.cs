@@ -241,6 +241,6 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         // Istio strips this header. Not sure why yet. See https://defense-unicorns.slack.com/archives/C06QJAUHWFN/p1722893232750909
         // Assert.NotNull(response.Headers.Connection);
         // Assert.Equal("keep-alive", response.Headers.Connection.ToString());
-        Assert.True(sw.ElapsedMilliseconds < 2); // 2 seconds
+        Assert.True(sw.ElapsedMilliseconds < 500); // .5 second
     }
 }
