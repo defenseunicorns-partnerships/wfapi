@@ -101,7 +101,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             .And()
             .DeserializeTo(typeof(WorkflowInfo));
         output.WriteLine($"Workflow {workflow.Name} submitted");
-        Thread.Sleep(500);
+        await Task.Delay(500);
 
         // loop until the workflow is running
         Stopwatch sw = Stopwatch.StartNew();
@@ -118,7 +118,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
                 .DeserializeTo(typeof(WorkflowInfo));
             isRunning = workflow.Status == WorkflowStatus.Running;
             if (isRunning) break;
-            Thread.Sleep(500);
+            await Task.Delay(500);
         }
         sw.Stop();
         Assert.True(isRunning);
@@ -195,7 +195,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             .And()
             .DeserializeTo(typeof(WorkflowInfo));
         output.WriteLine($"Workflow {workflow.Name} submitted");
-        Thread.Sleep(500);
+        await Task.Delay(500);
 
         // loop until the workflow is archived
         Stopwatch sw = Stopwatch.StartNew();
@@ -212,7 +212,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
                 .DeserializeTo(typeof(WorkflowInfo));
             isSucceeded = workflow.Status == WorkflowStatus.Succeeded;
             if (isSucceeded) break;
-            Thread.Sleep(500);
+            await Task.Delay(500);
         }
         sw.Stop();
         Assert.True(isSucceeded);
@@ -221,7 +221,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         // Ideally we would check the pod status but as far as I can tell
         // the Argo Server API's GetWorkflow endpoint does not report whether
         // a workflow is archived.
-        Thread.Sleep(3000);
+        await Task.Delay(3000);
 
         // Get the logstream. This should happen very quickly since grabbing logs from the archive is quite a bit faster than establishing a live SSE connection.
         // We have to do our own request here because rest-assured-net doesn't support SSE
