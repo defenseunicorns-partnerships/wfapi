@@ -7,24 +7,22 @@ metadata:
     workflows.argoproj.io/description: |
       This is a simple hello world example.
 spec:
+  arguments:
+    parameters:
+      - name: waitSeconds
+        value: "1"
   podGC:
-    deleteDelayDuration: {{workflow.parameters.ttlSeconds}}s
+    deleteDelayDuration: 1s
   ttlStrategy:
-    secondsAfterCompletion: {{workflow.parameters.ttlSeconds}}
-    secondsAfterFailure: {{workflow.parameters.ttlSeconds}}
-    secondsAfterSuccess: {{workflow.parameters.ttlSeconds}}
+    secondsAfterCompletion: 1
+    secondsAfterFailure: 1
+    secondsAfterSuccess: 1
   archiveLogs: true
   entrypoint: whalesay
   serviceAccountName: argo-workflow
   executor:
     serviceAccountName: argo-workflow
   automountServiceAccountToken: false
-  arguments:
-    parameters:
-      - name: waitSeconds
-        value: "1"
-      - name: ttlSeconds
-        value: "600"
   templates:
     - name: whalesay
       archiveLocation:
