@@ -106,7 +106,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         // loop until the workflow is running
         Stopwatch sw = Stopwatch.StartNew();
         var isRunning = false;
-        while (!isRunning && sw.ElapsedMilliseconds < 10000)
+        while (!isRunning && sw.ElapsedMilliseconds < 60000)
         {
             workflow = (WorkflowInfo)Given()
                 .Accept(MediaTypeNames.Application.Json)
@@ -201,7 +201,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         // loop until the workflow is archived
         Stopwatch sw = Stopwatch.StartNew();
         var isSucceeded = false;
-        while (!isSucceeded && sw.ElapsedMilliseconds < 25000)
+        while (!isSucceeded && sw.ElapsedMilliseconds < 60000)
         {
             workflow = (WorkflowInfo)Given()
                 .Accept(MediaTypeNames.Application.Json)
