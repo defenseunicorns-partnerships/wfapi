@@ -1,5 +1,6 @@
 {
   "$schema": "https://xunit.net/schema/current/xunit.runner.schema.json",
   "parallelAlgorithm": "conservative",
-  "stopOnFail": true
+  "stopOnFail": true,
+  "parallelizeAssembly": true
 }
