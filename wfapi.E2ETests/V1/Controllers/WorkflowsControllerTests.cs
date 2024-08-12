@@ -121,6 +121,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             await Task.Delay(500);
         }
         sw.Stop();
+        output.WriteLine($"Workflow {workflow.Name} is {workflow.Status} after " + sw.ElapsedMilliseconds + "ms");
         Assert.True(isRunning);
 
         // Get the logstream. Make sure it isn't waiting for the workflow to finish
@@ -215,6 +216,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             await Task.Delay(500);
         }
         sw.Stop();
+        output.WriteLine($"Workflow {workflow.Name} is {workflow.Status} after " + sw.ElapsedMilliseconds + "ms");
         Assert.True(isSucceeded);
 
         // Wait 3 more seconds to try to make sure the pod is archived.
