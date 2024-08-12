@@ -221,7 +221,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         // Ideally we would check the pod status but as far as I can tell
         // the Argo Server API's GetWorkflow endpoint does not report whether
         // a workflow is archived.
-        await Task.Delay(3000);
+        await Task.Delay(10000);
 
         // Get the logstream. This should happen very quickly since grabbing logs from the archive is quite a bit faster than establishing a live SSE connection.
         // We have to do our own request here because rest-assured-net doesn't support SSE
