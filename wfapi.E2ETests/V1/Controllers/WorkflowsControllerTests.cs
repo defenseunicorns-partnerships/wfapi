@@ -92,7 +92,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             {
                 TemplateName = TemplateName,
                 GenerateName = GenerateName,
-                Parameters = [new WorkflowParameter("waitSeconds", "15")]
+                Parameters = [new WorkflowParameter("waitSeconds", "30")]
             })
             .When()
             .Post($"{RootUrl}/api/v1/workflows/")
