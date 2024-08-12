@@ -57,6 +57,11 @@ runs:
       shell: bash
       run: uds run test --no-progress
 
+    - name: Zap Log
+      if: ${{ failure() }}
+      shell: bash
+      run: cat zap/wrk/zap.out
+
     - name: Update GitHub Status for success
       if: ${{ success() }}
       uses: defenseunicorns/delivery-github-actions-workflows/.github/actions/report-status-context@main
