@@ -105,7 +105,8 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
 
         // loop until the workflow is running
         Stopwatch sw = Stopwatch.StartNew();
-        while (workflow.Status != WorkflowStatus.Running && sw.ElapsedMilliseconds < 3000)
+        var isRunning = false;
+        while (!isRunning && sw.ElapsedMilliseconds < 10000)
         {
             workflow = (WorkflowInfo)Given()
                 .Accept(MediaTypeNames.Application.Json)
@@ -115,9 +116,12 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
                 .StatusCode(HttpStatusCode.OK)
                 .And()
                 .DeserializeTo(typeof(WorkflowInfo));
+            isRunning = workflow.Status == WorkflowStatus.Running;
+            if (isRunning) break;
             Thread.Sleep(500);
         }
         sw.Stop();
+        Assert.True(isRunning);
 
         // Get the logstream. Make sure it isn't waiting for the workflow to finish
         // We have to do our own request here because rest-assured-net doesn't support SSE
@@ -174,6 +178,69 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
     [Fact]
     public async Task GetWorkflowLogstream_WhenCalledOnArchivedPod_ReturnsOk()
     {
+        // Submit the workflow
+        var workflow = (WorkflowInfo)Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .ContentType(MediaTypeNames.Application.Json)
+            .Body(new WorkflowSubmission()
+            {
+                TemplateName = TemplateName,
+                GenerateName = GenerateName,
+                Parameters = [new WorkflowParameter("waitSeconds", "1")]
+            })
+            .When()
+            .Post($"{RootUrl}/api/v1/workflows/")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .DeserializeTo(typeof(WorkflowInfo));
+        output.WriteLine($"Workflow {workflow.Name} submitted");
+        Thread.Sleep(500);
 
+        // loop until the workflow is archived
+        Stopwatch sw = Stopwatch.StartNew();
+        var isSucceeded = false;
+        while (!isSucceeded && sw.ElapsedMilliseconds < 10000)
+        {
+            workflow = (WorkflowInfo)Given()
+                .Accept(MediaTypeNames.Application.Json)
+                .When()
+                .Get($"{RootUrl}/api/v1/workflows/{workflow.Name}")
+                .Then()
+                .StatusCode(HttpStatusCode.OK)
+                .And()
+                .DeserializeTo(typeof(WorkflowInfo));
+            isSucceeded = workflow.Status == WorkflowStatus.Succeeded;
+            if (isSucceeded) break;
+            Thread.Sleep(500);
+        }
+        sw.Stop();
+        Assert.True(isSucceeded);
+
+        // Wait 3 more seconds to try to make sure the pod is archived.
+        // Ideally we would check the pod status but as far as I can tell
+        // the Argo Server API's GetWorkflow endpoint does not report whether
+        // a workflow is archived.
+        Thread.Sleep(3000);
+
+        // Get the logstream. This should happen very quickly since grabbing logs from the archive is quite a bit faster than establishing a live SSE connection.
+        // We have to do our own request here because rest-assured-net doesn't support SSE
+        var httpClientHandler = new HttpClientHandler();
+        using var httpClient = new HttpClient(httpClientHandler, true);
+        var request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/logstream");
+        request.Headers.Add("Accept", "application/x-ndjson");
+        sw = Stopwatch.StartNew();
+        var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+        sw.Stop();
+        output.WriteLine("Logstream request took " + sw.ElapsedMilliseconds + "ms");
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.NotNull(response.Content.Headers.ContentType?.MediaType);
+        Assert.Equal("application/x-ndjson", response.Content.Headers.ContentType.MediaType);
+        Assert.NotNull(response.Headers.CacheControl);
+        Assert.Equal("no-cache", response.Headers.CacheControl.ToString());
+        // Istio strips this header. Not sure why yet. See https://defense-unicorns.slack.com/archives/C06QJAUHWFN/p1722893232750909
+        // Assert.NotNull(response.Headers.Connection);
+        // Assert.Equal("keep-alive", response.Headers.Connection.ToString());
+        Assert.True(sw.ElapsedMilliseconds < 2); // 2 seconds
     }
 }
