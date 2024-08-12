@@ -8,10 +8,17 @@ max_retry_time=10
 check_status() {
   http_status=$(curl -o /dev/null -s -w "%{http_code}" https://wfapi.uds.dev/swagger/index.html)
 
-  if [ "$http_status" -eq 200 ]; then
-    return 0
+  # Check if the curl command was successful
+  if [ $? -eq 0 ]; then
+    if [ "$http_status" -eq 200 ]; then
+      return 0
+    else
+      echo "Received HTTP status code: $http_status"
+      return 1
+    fi
   else
-    return 1
+    echo "Curl command failed with an error."
+    return 2
   fi
 }
 
@@ -21,7 +28,7 @@ while [ $retry_counter -lt $max_retry_time ]; do
     echo "Success: Status 200 received."
     exit 0
   else
-    echo "Attempt $((retry_counter + 1)): Status not 200, retrying..."
+    # If the status is not 200 or if there's an error, increment the retry counter
     retry_counter=$((retry_counter + 1))
     sleep 1
   fi
