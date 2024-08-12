@@ -7,8 +7,21 @@ tasks:
           dotnet test wfapi.E2ETests --logger "console;verbosity=detailed"
 
   - name: dast
-    description: Run DAST tests
+    description: Run DAST tests using OWASP ZAP's API scan
     actions:
+      - cmd: rm -rf zap/wrk
       - cmd: |
-          docker run -t --rm --network host -v $PWD/zap/wrk:/zap/wrk -w /zap/wrk registry1.dso.mil/ironbank/opensource/owasp-zap/owasp-zap:v2.15.0 \
-          zap-baseline.py -t https://wfapi.uds.dev -r ./dast-report.html -J ./dast-report.json
+          docker run -t --rm \
+          --network host \
+          -v $PWD/zap/zap-api-scan.conf:/home/zap/zap-api-scan.conf \
+          -v $PWD/zap/wrk:/zap/wrk:rw \
+          -w /zap/wrk \
+          ghcr.io/zaproxy/zaproxy:stable \
+            zap-api-scan.py \
+            -t https://wfapi.uds.dev \
+            -f openapi \
+            --schema https://wfapi.uds.dev/swagger/v1/swagger.json \
+            -r ./zap-api-scan.html \
+            -J ./zap-api-scan.json \
+            -c /home/zap/zap-api-scan.conf \
+            -d
