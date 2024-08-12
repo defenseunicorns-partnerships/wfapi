@@ -1,6 +1,10 @@
+using System.Net.Http.Headers;
+using System.Net.Mime;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Org.OpenAPITools.Client;
 using Swashbuckle.AspNetCore.Annotations;
 using wfapi.V1.Models;
 using Org.OpenAPITools.Model;
@@ -16,7 +20,7 @@ namespace wfapi.V1.Controllers;
 [ApiVersion(1.0)]
 [Route("api/v{version:apiVersion}/workflows")]
 [Tags("Workflows")]
-public class WorkflowsController(ArgoClient argoClient) : ControllerBase
+public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsController> log) : ControllerBase
 {
     /// <summary>
     /// Get a list of all files present and ready to be consumed by a workflow.
@@ -86,6 +90,7 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
         "application/json"
     )]
     [SwaggerOperation(OperationId = "SubmitWorkflow")]
+    [Consumes(MediaTypeNames.Application.Json)]
     public IActionResult SubmitWorkflow([FromBody] WorkflowSubmission submission)
     {
         var body = new IoArgoprojWorkflowV1alpha1WorkflowSubmitRequest
@@ -98,10 +103,11 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
                 Parameters = []
             }
         };
-        foreach (var parameter in submission.Parameters)
+        foreach (var parameter in submission.Parameters ?? [])
         {
             body.SubmitOptions.Parameters.Add(parameter.Name + "=" + parameter.Value);
         }
+
         var submitResult = argoClient.WorkflowServiceApi.WorkflowServiceSubmitWorkflow(argoClient.Namespace, body);
         var getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
         // Initialize the start time for timeout
@@ -125,6 +131,7 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
         {
             Created = getResult.Metadata.CreationTimestamp ?? throw new ArgumentNullException(nameof(getResult.Metadata.CreationTimestamp), "Mandatory parameter"),
             Name = getResult.Metadata.Name,
+            Uid = getResult.Metadata.Uid,
             Status = (WorkflowStatus)Enum.Parse(typeof(WorkflowStatus), getResult.Status.Phase),
             Message = getResult.Status.Message,
             Started = getResult.Status.StartedAt,
@@ -152,27 +159,113 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
     [SwaggerOperation(OperationId = "GetWorkflowInfo")]
     public IActionResult GetWorkflowInfo(string workflowName)
     {
-        throw new NotImplementedException();
+        IoArgoprojWorkflowV1alpha1Workflow getResult;
+        try
+        {
+            getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, workflowName);
+        }
+        catch (ApiException e)
+        {
+            if (e.ErrorCode == 404)
+            {
+                return NotFound();
+            }
+            throw;
+        }
+        var retval = new WorkflowInfo
+        {
+            Created = getResult.Metadata.CreationTimestamp ?? throw new ArgumentNullException(nameof(getResult.Metadata.CreationTimestamp), "Mandatory parameter"),
+            Name = getResult.Metadata.Name,
+            Uid = getResult.Metadata.Uid,
+            Status = (WorkflowStatus)Enum.Parse(typeof(WorkflowStatus), getResult.Status.Phase),
+            Message = getResult.Status.Message,
+            Started = getResult.Status.StartedAt,
+            Finished = getResult.Status.FinishedAt,
+            Progress = getResult.Status.Progress
+        };
+        return Ok(retval);
     }
 
     /// <summary>
-    /// Get the log of a workflow.
+    /// Get the log stream of a workflow as an NDJSON stream using SSE. If the workflow is active in the cluster it will stream the logs from there. If it isn't, it will look for the logs in the archive.
     /// </summary>
     /// <param name="workflowName">The name of the workflow that you want the log(s) for</param>
-    [HttpGet("{workflowName}/log")]
+    /// <param name="podName">The name of the pod that you want the log(s) for. If the workflow only had one template than the podname will be the same as the workflow name</param>
+    /// <param name="cancellationToken"></param>
+    [HttpGet("{workflowName}/pods/{podName}/logstream")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
-        "Success. The workflow log is returned.",
-        typeof(List<WorkflowLog>),
-        "application/json"
+        "Success. The workflow log is returned as an NDJSON stream using SSE.",
+        typeof(StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry),
+        "application/x-ndjson"
     )]
     [SwaggerResponse(
         StatusCodes.Status404NotFound,
         "The requested workflow was not found."
     )]
-    [SwaggerOperation(OperationId = "GetWorkflowLog")]
-    public IActionResult GetWorkflowLog(string workflowName)
+    [SwaggerOperation(OperationId = "GetWorkflowLogStream")]
+    public async Task GetWorkflowLogStream(string workflowName, string podName, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        Response.Headers.ContentType = "application/x-ndjson";
+        Response.Headers.CacheControl = "no-cache";
+        // Istio strips the connection header, so adding this doesn't do anything useful.
+        // Response.Headers.Connection = "keep-alive";
+
+        // If the workflow is still active, we'll get the log stream from the active pod
+        try
+        {
+            await foreach (var logEntry in argoClient.WorkflowServiceSseApiAsync.WorkflowServiceWorkflowLogsAsync(
+                               varNamespace: argoClient.Namespace,
+                               name: workflowName,
+                               podName: podName,
+                               logOptionsContainer: "main",
+                               logOptionsFollow: true,
+                               cancellationToken: cancellationToken
+                           ))
+            {
+                // log.LogInformation(JsonConvert.SerializeObject(logEntry));
+                await Response.WriteAsync(JsonConvert.SerializeObject(logEntry), cancellationToken: cancellationToken);
+                await Response.WriteAsync("\n", cancellationToken: cancellationToken);
+                await Response.Body.FlushAsync(cancellationToken);
+            }
+        }
+        catch (ApiException e)
+        {
+            if (e.ErrorCode == 404)
+            {
+                // If the workflow is not found, it might be in the archive. We'll try to get the logs from there.
+                try
+                {
+                    var workflow = await argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflowAsync(
+                        argoClient.Namespace, workflowName,
+                        cancellationToken: cancellationToken);
+                    var logFile = await argoClient.ArtifactServiceApi.ArtifactServiceGetArtifactFileAsync(argoClient.Namespace,
+                        "archived-workflows", workflow.Metadata.Uid, podName, "main-logs", "outputs",
+                        cancellationToken: cancellationToken);
+                    using var reader = new StreamReader(logFile.Content);
+                    while (!reader.EndOfStream && !cancellationToken.IsCancellationRequested)
+                    {
+                        var line = await reader.ReadLineAsync(cancellationToken).ConfigureAwait(false);
+                        if (string.IsNullOrWhiteSpace(line)) continue;
+                        var streamResultLogEntry =
+                            new StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry(
+                                result: new IoArgoprojWorkflowV1alpha1LogEntry(line, podName));
+                        await Response.WriteAsync(JsonConvert.SerializeObject(streamResultLogEntry), cancellationToken);
+                        await Response.WriteAsync("\n", cancellationToken);
+                        await Response.Body.FlushAsync(cancellationToken);
+                    }
+                }
+                catch (ApiException e2)
+                {
+                    if (e2.ErrorCode != 404) throw;
+                    // If the workflow is still not found, we'll return a 404
+                    Response.StatusCode = 404;
+                }
+            }
+            else
+            {
+                throw;
+            }
+        }
     }
 }

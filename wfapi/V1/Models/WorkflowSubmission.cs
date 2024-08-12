@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace wfapi.V1.Models;
 
@@ -11,17 +12,19 @@ public class WorkflowSubmission
     /// Name of the WorkflowTemplate to use
     /// </summary>
     [Required]
+    [JsonProperty("templateName")]
     public required string TemplateName { get; set; }
 
     /// <summary>
     /// Name prefix for the generated workflow. The actual name will be the prefix followed by a random string
     /// </summary>
     [Required]
+    [JsonProperty("generateName")]
     public required string GenerateName { get; set; }
 
     /// <summary>
     /// Parameters for the WorkflowTemplate
     /// </summary>
-    [Required]
-    public required List<WorkflowParameter> Parameters { get; set; }
+    [JsonProperty("parameters")]
+    public List<WorkflowParameter>? Parameters { get; set; }
 }
