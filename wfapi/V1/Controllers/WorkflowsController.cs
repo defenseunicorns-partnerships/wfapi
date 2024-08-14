@@ -1,5 +1,5 @@
-using System.Net.Http.Headers;
 using System.Net.Mime;
+using Amazon.S3.Model;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,8 +20,10 @@ namespace wfapi.V1.Controllers;
 [ApiVersion(1.0)]
 [Route("api/v{version:apiVersion}/workflows")]
 [Tags("Workflows")]
-public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsController> log) : ControllerBase
+public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogger<WorkflowsController> log) : ControllerBase
 {
+    private const string filesPrefix = "files/";
+
     /// <summary>
     /// Get a list of all files present and ready to be consumed by a workflow.
     /// </summary>
@@ -32,9 +34,15 @@ public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsControl
         typeof(List<FileInfo>),
         "application/json"
     )]
-    public IActionResult GetFiles()
+    public async Task<IActionResult> GetFiles()
     {
-        throw new NotImplementedException();
+        var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request
+        {
+            BucketName = s3Client.BucketName,
+            Prefix = filesPrefix
+        });
+        var files = objects.S3Objects.Select(o => new FileInfo { FileName = o.Key }).ToList();
+        return Ok(files);
     }
 
     /// <summary>
