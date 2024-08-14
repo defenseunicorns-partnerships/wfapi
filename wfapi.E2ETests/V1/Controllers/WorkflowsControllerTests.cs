@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Mime;
 using Newtonsoft.Json;
+using NHamcrest;
 using Org.OpenAPITools.Model;
 using RestAssured.Request.Logging;
 using wfapi.V1.Models;
@@ -140,7 +141,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             // .And()
             // .Header("Connection", "keep-alive")
             .And()
-            .ResponseTime(NHamcrest.Is.LessThan(TimeSpan.FromSeconds(10)));
+            .ResponseTime(Is.LessThan(TimeSpan.FromSeconds(10)));
 
         // Do it one more time. This time it should happen extremely quickly since we know the pod is done initializing.
         HttpResponseMessage response = Given()
@@ -158,7 +159,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             // .And()
             // .Header("Connection", "keep-alive")
             .And()
-            .ResponseTime(NHamcrest.Is.LessThan(TimeSpan.FromSeconds(2)))
+            .ResponseTime(Is.LessThan(TimeSpan.FromSeconds(2)))
             .And()
             .Extract().Response();
 
@@ -234,23 +235,21 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         await Task.Delay(3000);
 
         // Get the logstream. This should happen very quickly since grabbing logs from the archive is quite a bit faster than establishing a live SSE connection.
-        // We have to do our own request here because rest-assured-net doesn't support SSE
-        var httpClientHandler = new HttpClientHandler();
-        using var httpClient = new HttpClient(httpClientHandler, true);
-        var request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/pods/{workflow.Name}/logstream");
-        request.Headers.Add("Accept", "application/x-ndjson");
-        sw = Stopwatch.StartNew();
-        var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
-        sw.Stop();
-        output.WriteLine("Logstream request took " + sw.ElapsedMilliseconds + "ms");
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.NotNull(response.Content.Headers.ContentType?.MediaType);
-        Assert.Equal("application/x-ndjson", response.Content.Headers.ContentType.MediaType);
-        Assert.NotNull(response.Headers.CacheControl);
-        Assert.Equal("no-cache", response.Headers.CacheControl.ToString());
-        // Istio strips this header. Not sure why yet. See https://defense-unicorns.slack.com/archives/C06QJAUHWFN/p1722893232750909
-        // Assert.NotNull(response.Headers.Connection);
-        // Assert.Equal("keep-alive", response.Headers.Connection.ToString());
-        Assert.True(sw.ElapsedMilliseconds < 500); // .5 second
+        Given()
+            .UseHttpCompletionOption(HttpCompletionOption.ResponseHeadersRead)
+            .Accept("application/x-ndjson")
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/{workflow.Name}/pods/{workflow.Name}/logstream")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .ContentType("application/x-ndjson")
+            .And()
+            .Header("Cache-Control", "no-cache")
+            // Istio strips this header. Not sure why yet. See https://defense-unicorns.slack.com/archives/C06QJAUHWFN/p1722893232750909
+            // .And()
+            // .Header("Connection", "keep-alive")
+            .And()
+            .ResponseTime(Is.LessThan(TimeSpan.FromMilliseconds(500)));
     }
 }
