@@ -27,15 +27,24 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         File.WriteAllText(tempFile, "Hello, World!");
 
         // Upload the file
-        Given()
-            .Accept(MediaTypeNames.Application.Json)
-            .ContentType(MediaTypeNames.Multipart.FormData)
-            .MultiPart("fileName", new StringContent("hello.txt"))
-            .MultiPart(new FileInfo(tempFile), "file", new MediaTypeHeaderValue(MediaTypeNames.Text.Plain))
-            .When()
-            .Post($"{RootUrl}/api/v1/workflows/files")
-            .Then()
-            .StatusCode(HttpStatusCode.OK);
+        try
+        {
+            Given()
+                .Accept(MediaTypeNames.Application.Json)
+                .ContentType(MediaTypeNames.Multipart.FormData)
+                .MultiPart("fileName", new StringContent("hello.txt"))
+                .MultiPart(new FileInfo(tempFile), "file", new MediaTypeHeaderValue(MediaTypeNames.Text.Plain))
+                .When()
+                .Post($"{RootUrl}/api/v1/workflows/files")
+                .Then()
+                .StatusCode(HttpStatusCode.OK);
+        }
+        catch (Exception e)
+        {
+            output.WriteLine(JsonConvert.SerializeObject(e));
+            throw;
+        }
+
 
         // Upload the file again. Expect a 409 this time
         Given()
