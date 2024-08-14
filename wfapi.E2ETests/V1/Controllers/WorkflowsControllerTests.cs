@@ -125,6 +125,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         Assert.True(isRunning);
 
         // Get the logstream using rest-assured-net. Make sure it isn't waiting for the workflow to finish
+        sw = Stopwatch.StartNew();
         Given()
             .UseHttpCompletionOption(HttpCompletionOption.ResponseHeadersRead)
             .Accept("application/x-ndjson")
@@ -141,6 +142,9 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             // .Header("Connection", "keep-alive")
             .And()
             .ResponseTime(NHamcrest.Is.LessThan(TimeSpan.FromSeconds(10)));
+        sw.Stop();
+        output.WriteLine("rest-assured-net logstream request took " + sw.ElapsedMilliseconds + "ms");
+        Assert.True(sw.ElapsedMilliseconds < 10000);
 
         // Get the logstream. Make sure it isn't waiting for the workflow to finish
         // We have to do our own request here because rest-assured-net doesn't support SSE
