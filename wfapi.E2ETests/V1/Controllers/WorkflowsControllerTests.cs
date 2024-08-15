@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Mime;
+using System.Web;
 using Newtonsoft.Json;
 using NHamcrest;
 using Org.OpenAPITools.Model;
@@ -15,7 +16,7 @@ namespace wfapi.E2ETests.V1.Controllers;
 
 public class WorkflowsControllerTests(ITestOutputHelper output)
 {
-    private const string RootUrl = "https://wfapi.uds.dev";
+    private const string RootUrl = "http://localhost:5000";
     private const string TemplateName = "hello-world-template";
     private const string GenerateName = "hello-world-";
 
@@ -26,27 +27,66 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         var tempFile = Path.GetTempFileName();
         File.WriteAllText(tempFile, "Hello, World!");
 
-        // Upload the file
-        try
+        // If the file exists already we have to clean it up first
+        var responseBody = Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/files")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .Extract().Body();
+        var files = JsonConvert.DeserializeObject<List<WfapiFileInfo>>(responseBody);
+        if (files != null && files.Any(file => file.FileName == "files/hello.txt"))
         {
+            var encodedKey = HttpUtility.UrlEncode("files/hello.txt");
             Given()
                 .Accept(MediaTypeNames.Application.Json)
-                .ContentType(MediaTypeNames.Multipart.FormData)
-                .MultiPart("fileName", new StringContent("hello.txt"))
-                .MultiPart(new FileInfo(tempFile), "file", new MediaTypeHeaderValue(MediaTypeNames.Text.Plain))
                 .When()
-                .Post($"{RootUrl}/api/v1/workflows/files")
+                .Delete($"{RootUrl}/api/v1/workflows/files/{encodedKey}")
                 .Then()
-                .StatusCode(HttpStatusCode.OK);
-        }
-        catch (Exception e)
-        {
-            output.WriteLine(JsonConvert.SerializeObject(e));
-            throw;
+                .StatusCode(HttpStatusCode.NoContent);
         }
 
+        // Get files. Expect that the file does not exist now
+        responseBody = Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/files")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .Extract().Body();
+        files = JsonConvert.DeserializeObject<List<WfapiFileInfo>>(responseBody);
+        Assert.NotNull(files);
+        Assert.DoesNotContain(files, file => file.FileName == "files/hello.txt");
 
-        // Upload the file again. Expect a 409 this time
+        // Upload the file
+        Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .ContentType(MediaTypeNames.Multipart.FormData)
+            .MultiPart("fileName", new StringContent("hello.txt"))
+            .MultiPart(new FileInfo(tempFile), "file", new MediaTypeHeaderValue(MediaTypeNames.Text.Plain))
+            .When()
+            .Post($"{RootUrl}/api/v1/workflows/files")
+            .Then()
+            .StatusCode(HttpStatusCode.OK);
+
+        // Get files. Expect the file to exist
+        responseBody = Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/files")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .Extract().Body();
+        files = JsonConvert.DeserializeObject<List<WfapiFileInfo>>(responseBody);
+        Assert.NotNull(files);
+        Assert.Contains(files, file => file.FileName == "files/hello.txt");
+
+        // Upload the file again as an overwrite.
+        File.WriteAllText(tempFile, "Hello, World 2!");
         Given()
             .Accept(MediaTypeNames.Application.Json)
             .ContentType(MediaTypeNames.Multipart.FormData)
@@ -57,8 +97,8 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             .Then()
             .StatusCode(HttpStatusCode.Conflict);
 
-        // Get files. Expect the file
-        var responseBody = Given()
+        // Get files. Expect the file to exist
+        responseBody = Given()
             .Accept(MediaTypeNames.Application.Json)
             .When()
             .Get($"{RootUrl}/api/v1/workflows/files")
@@ -66,7 +106,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             .StatusCode(HttpStatusCode.OK)
             .And()
             .Extract().Body();
-        var files = JsonConvert.DeserializeObject<List<WfapiFileInfo>>(responseBody);
+        files = JsonConvert.DeserializeObject<List<WfapiFileInfo>>(responseBody);
         Assert.NotNull(files);
         Assert.Contains(files, file => file.FileName == "files/hello.txt");
 
@@ -76,7 +116,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             .When()
             .Delete($"{RootUrl}/api/v1/workflows/files/files/hello.txt")
             .Then()
-            .StatusCode(HttpStatusCode.OK);
+            .StatusCode(HttpStatusCode.NoContent);
 
         // Get files again. Expect the file to not exist
         responseBody = Given()

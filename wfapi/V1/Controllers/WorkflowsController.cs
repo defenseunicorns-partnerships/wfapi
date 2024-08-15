@@ -1,4 +1,5 @@
 using System.Net.Mime;
+using System.Web;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Asp.Versioning;
@@ -70,17 +71,6 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     {
         var key = $"{FilesPrefix}{fileName}";
 
-        // Check if the file already exists
-        var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request
-        {
-            BucketName = s3Client.BucketName,
-            Prefix = key
-        }, cancellationToken: cancellationToken);
-        if (objects.S3Objects.Count != 0)
-        {
-            return Conflict();
-        }
-
         // Upload the file
         await using var stream = file.OpenReadStream();
         await s3Client.Client.UploadObjectFromStreamAsync(s3Client.BucketName, key, stream, null, cancellationToken: cancellationToken);
@@ -93,6 +83,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     /// Delete a file that was previously uploaded
     /// </summary>
     /// <param name="fileName">The fully qualified filename to be deleted. Example: "files/myfile.txt"</param>
+    /// <param name="cancellationToken"></param>
     [HttpDelete("files/{fileName}")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
@@ -107,12 +98,22 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
          "You don't have permission to delete that file."
      )]
     [SwaggerOperation(OperationId = "DeleteFile")]
-    public async Task<IActionResult> DeleteFile([FromRoute] string fileName)
+    public async Task<IActionResult> DeleteFile([FromRoute] string fileName, CancellationToken cancellationToken)
     {
+        fileName = HttpUtility.UrlDecode(fileName);
         try
         {
-            await s3Client.Client.DeleteObjectAsync(s3Client.BucketName, fileName);
-            return Ok();
+            var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request()
+            {
+                BucketName = s3Client.BucketName,
+                Prefix = fileName
+            }, cancellationToken: cancellationToken);
+            if (objects.S3Objects.Count == 0)
+            {
+                return NotFound();
+            }
+            var response = await s3Client.Client.DeleteObjectAsync(s3Client.BucketName, fileName, cancellationToken);
+            return NoContent();
         }
         catch (AmazonS3Exception e)
         {
