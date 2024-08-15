@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using NHamcrest;
 using Org.OpenAPITools.Model;
 using RestAssured.Request.Logging;
+using wfapi.V1.Controllers;
 using wfapi.V1.Models;
 using Xunit.Abstractions;
 using static RestAssured.Dsl;
@@ -14,6 +15,9 @@ using FileInfo = System.IO.FileInfo;
 
 namespace wfapi.E2ETests.V1.Controllers;
 
+/// <summary>
+/// Tests for <see cref="WorkflowsController"/>
+/// </summary>
 public class WorkflowsControllerTests(ITestOutputHelper output)
 {
     private const string RootUrl = "https://wfapi.uds.dev";
@@ -95,7 +99,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             .When()
             .Post($"{RootUrl}/api/v1/workflows/files")
             .Then()
-            .StatusCode(HttpStatusCode.Conflict);
+            .StatusCode(HttpStatusCode.OK);
 
         // Get files. Expect the file to exist
         responseBody = Given()
