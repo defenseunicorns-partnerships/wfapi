@@ -21,6 +21,11 @@ wfapi: # @schema title: wfapi; type: [object]; description: wfapi chart settings
     Argo__ApiUrl: "http://argo-workflows-server:2746" # @schema title: Argo__ApiUrl; type: [string]; description: Argo API URL; required: true; default: "http://argo-workflows-server:2746"
     Argo__Token: "" # @schema title: Argo__Token; type: [string]; description: Optional Argo API token. Not necessary in most cases as the app will fetch the token that is mounted to the filesystem. Leave as an empty string.; required: true; default: ""
     Argo__Namespace: "argo" # @schema title: Argo__Namespace; type: [string]; description: Namespace where workflows should be created; required: true; default: "argo"
+    Bucket__Region: "minio" # @schema title: Bucket__Region; type: [string]; description: Bucket region; required: true; default: "minio"
+    Bucket__ServiceUrl: "http://minio.uds-dev-stack.svc.cluster.local:9000" # @schema title: Bucket__ServiceUrl; type: [string]; description: Bucket service URL; required: true; default: "http://minio.uds-dev-stack.svc.cluster.local:9000"
+    Bucket__Name: "argo" # @schema title: Bucket__Name; type: [string]; description: Bucket name; required: true; default: "argo"
+    AWS_ACCESS_KEY_ID: "" # @schema title: AWS_ACCESS_KEY_ID; type: [string]; description: AWS access key ID. Leave as empty string if using IRSA; required: true; default: ""
+    AWS_SECRET_ACCESS_KEY: "" # @schema title: AWS_SECRET_ACCESS_KEY; type: [string]; description: AWS secret access key. Leave as empty string if using IRSA; required: true; default: ""
     Swagger__Enable: "false" # @schema title: Swagger__Enable; type: [string]; description: Whether to enable Swagger. If true, the SwaggerUI can be reached at <url>/swagger; required: true; default: "false"
 
   serviceAccount: # @schema title: serviceAccount; type: [object]; description: Service account settings; additionalProperties: false; required: true

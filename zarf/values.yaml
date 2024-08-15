@@ -21,6 +21,11 @@ wfapi:
     Argo__ApiUrl: http://argo-workflows-server:2746
     Argo__Namespace: argo
     Argo__Token: ""
+    Bucket__Region: minio
+    Bucket__ServiceUrl: http://minio.uds-dev-stack.svc.cluster.local:9000
+    Bucket__Name: argo
+    AWS_ACCESS_KEY_ID: test-user
+    AWS_SECRET_ACCESS_KEY: test-secret
     Swagger__Enable: "true"
 
   serviceAccount:
