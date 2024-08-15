@@ -16,7 +16,7 @@ namespace wfapi.E2ETests.V1.Controllers;
 
 public class WorkflowsControllerTests(ITestOutputHelper output)
 {
-    private const string RootUrl = "http://localhost:5000";
+    private const string RootUrl = "https://wfapi.uds.dev";
     private const string TemplateName = "hello-world-template";
     private const string GenerateName = "hello-world-";
 
