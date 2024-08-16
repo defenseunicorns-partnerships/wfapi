@@ -118,7 +118,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         Given()
             .Accept(MediaTypeNames.Application.Json)
             .When()
-            .Delete($"{RootUrl}/api/v1/workflows/files/files/hello.txt")
+            .Delete($"{RootUrl}/api/v1/workflows/files/files%2Fhello.txt")
             .Then()
             .StatusCode(HttpStatusCode.NoContent);
 

@@ -14,7 +14,7 @@ using Org.OpenAPITools.Model;
 namespace wfapi.V1.Controllers;
 
 /// <summary>
-/// Workflows controller for the Workflow API
+/// Workflows controller for the Workflow API.
 /// </summary>
 [ApiController]
 [Authorize]
@@ -82,7 +82,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     /// <summary>
     /// Delete a file that was previously uploaded
     /// </summary>
-    /// <param name="fileName">The fully qualified filename to be deleted. Example: "files/myfile.txt"</param>
+    /// <param name="fileName">The fully qualified filename to be deleted. Example: "files/myfile.txt". Must be URLEncoded though, so that would actually be "files%2Fmyfile.txt"</param>
     /// <param name="cancellationToken"></param>
     [HttpDelete("files/{fileName}")]
     [SwaggerResponse(
