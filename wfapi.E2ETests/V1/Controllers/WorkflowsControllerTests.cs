@@ -89,6 +89,20 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         Assert.NotNull(files);
         Assert.Contains(files, file => file.FileName == "files/hello.txt");
 
+        // Download the file. Expect it to contain "Hello, World!"
+        var downloadResponse = Given()
+            .Accept(MediaTypeNames.Application.Octet)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/files/files%2Fhello.txt")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .Extract().Response();
+        var downloadStream = downloadResponse.Content.ReadAsStream();
+        var reader = new StreamReader(downloadStream);
+        var downloadedContent = reader.ReadToEnd();
+        Assert.Equal("Hello, World!", downloadedContent);
+
         // Upload the file again as an overwrite.
         File.WriteAllText(tempFile, "Hello, World 2!");
         Given()
@@ -113,6 +127,20 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         files = JsonConvert.DeserializeObject<List<WfapiFileInfo>>(responseBody);
         Assert.NotNull(files);
         Assert.Contains(files, file => file.FileName == "files/hello.txt");
+
+        // Download the file. Expect it to contain "Hello, World 2!"
+        downloadResponse = Given()
+            .Accept(MediaTypeNames.Application.Octet)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/files/files%2Fhello.txt")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .Extract().Response();
+        downloadStream = downloadResponse.Content.ReadAsStream();
+        reader = new StreamReader(downloadStream);
+        downloadedContent = reader.ReadToEnd();
+        Assert.Equal("Hello, World 2!", downloadedContent);
 
         // Delete the file
         Given()
