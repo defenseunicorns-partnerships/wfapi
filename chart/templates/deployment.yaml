@@ -36,8 +36,10 @@ spec:
           imagePullPolicy: {{ .Values.wfapi.image.pullPolicy }}
           env:
             {{- range $key, $val := .Values.wfapi.env }}
+            {{- if and $val (ne $val "") }}
             - name: {{ $key }}
               value: {{ $val | quote }}
+            {{- end }}
             {{- end }}
           ports:
             - name: http

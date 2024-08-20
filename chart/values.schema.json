@@ -33,6 +33,22 @@
                 "string"
               ]
             },
+            "AWS_ACCESS_KEY_ID": {
+              "default": "",
+              "description": "AWS access key ID. Leave as empty string if using IRSA",
+              "title": "AWS_ACCESS_KEY_ID",
+              "type": [
+                "string"
+              ]
+            },
+            "AWS_SECRET_ACCESS_KEY": {
+              "default": "",
+              "description": "AWS secret access key. Leave as empty string if using IRSA",
+              "title": "AWS_SECRET_ACCESS_KEY",
+              "type": [
+                "string"
+              ]
+            },
             "Argo__ApiUrl": {
               "default": "http://argo-workflows-server:2746",
               "description": "Argo API URL",
@@ -97,6 +113,30 @@
                 "string"
               ]
             },
+            "Bucket__Name": {
+              "default": "argo",
+              "description": "Bucket name",
+              "title": "Bucket__Name",
+              "type": [
+                "string"
+              ]
+            },
+            "Bucket__Region": {
+              "default": "minio",
+              "description": "Bucket region",
+              "title": "Bucket__Region",
+              "type": [
+                "string"
+              ]
+            },
+            "Bucket__ServiceUrl": {
+              "default": "http://minio.uds-dev-stack.svc.cluster.local:9000",
+              "description": "Bucket service URL",
+              "title": "Bucket__ServiceUrl",
+              "type": [
+                "string"
+              ]
+            },
             "Serilog__MinimumLevel__Default": {
               "default": "Information",
               "description": "Serilog minimum log level",
@@ -125,6 +165,11 @@
             "Argo__ApiUrl",
             "Argo__Token",
             "Argo__Namespace",
+            "Bucket__Region",
+            "Bucket__ServiceUrl",
+            "Bucket__Name",
+            "AWS_ACCESS_KEY_ID",
+            "AWS_SECRET_ACCESS_KEY",
             "Swagger__Enable"
           ],
           "title": "env",

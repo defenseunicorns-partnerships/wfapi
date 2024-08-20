@@ -1,20 +1,168 @@
 using System.Diagnostics;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Mime;
+using System.Web;
 using Newtonsoft.Json;
+using NHamcrest;
 using Org.OpenAPITools.Model;
 using RestAssured.Request.Logging;
+using wfapi.V1.Controllers;
 using wfapi.V1.Models;
 using Xunit.Abstractions;
 using static RestAssured.Dsl;
+using FileInfo = System.IO.FileInfo;
 
 namespace wfapi.E2ETests.V1.Controllers;
 
+/// <summary>
+/// Tests for <see cref="WorkflowsController"/>
+/// </summary>
 public class WorkflowsControllerTests(ITestOutputHelper output)
 {
     private const string RootUrl = "https://wfapi.uds.dev";
     private const string TemplateName = "hello-world-template";
     private const string GenerateName = "hello-world-";
+
+    [Fact]
+    public void FileManagementEndpoints_WhenCalled_BehavesAsExpected()
+    {
+        // Create a text file in the temp directory and add "Hello, World!" to it
+        var tempFile = Path.GetTempFileName();
+        File.WriteAllText(tempFile, "Hello, World!");
+
+        // If the file exists already we have to clean it up first
+        var responseBody = Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/files")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .Extract().Body();
+        var files = JsonConvert.DeserializeObject<List<WfapiFileInfo>>(responseBody);
+        if (files != null && files.Any(file => file.FileName == "files/hello.txt"))
+        {
+            var encodedKey = HttpUtility.UrlEncode("files/hello.txt");
+            Given()
+                .Accept(MediaTypeNames.Application.Json)
+                .When()
+                .Delete($"{RootUrl}/api/v1/workflows/files/{encodedKey}")
+                .Then()
+                .StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // Get files. Expect that the file does not exist now
+        responseBody = Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/files")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .Extract().Body();
+        files = JsonConvert.DeserializeObject<List<WfapiFileInfo>>(responseBody);
+        Assert.NotNull(files);
+        Assert.DoesNotContain(files, file => file.FileName == "files/hello.txt");
+
+        // Upload the file
+        Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .ContentType(MediaTypeNames.Multipart.FormData)
+            .MultiPart("fileName", new StringContent("hello.txt"))
+            .MultiPart(new FileInfo(tempFile), "file", new MediaTypeHeaderValue(MediaTypeNames.Text.Plain))
+            .When()
+            .Post($"{RootUrl}/api/v1/workflows/files")
+            .Then()
+            .StatusCode(HttpStatusCode.OK);
+
+        // Get files. Expect the file to exist
+        responseBody = Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/files")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .Extract().Body();
+        files = JsonConvert.DeserializeObject<List<WfapiFileInfo>>(responseBody);
+        Assert.NotNull(files);
+        Assert.Contains(files, file => file.FileName == "files/hello.txt");
+
+        // Download the file. Expect it to contain "Hello, World!"
+        var downloadResponse = Given()
+            .Accept(MediaTypeNames.Application.Octet)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/files/files%2Fhello.txt")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .Extract().Response();
+        var downloadStream = downloadResponse.Content.ReadAsStream();
+        var reader = new StreamReader(downloadStream);
+        var downloadedContent = reader.ReadToEnd();
+        Assert.Equal("Hello, World!", downloadedContent);
+
+        // Upload the file again as an overwrite.
+        File.WriteAllText(tempFile, "Hello, World 2!");
+        Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .ContentType(MediaTypeNames.Multipart.FormData)
+            .MultiPart("fileName", new StringContent("hello.txt"))
+            .MultiPart(new FileInfo(tempFile), "file", new MediaTypeHeaderValue(MediaTypeNames.Text.Plain))
+            .When()
+            .Post($"{RootUrl}/api/v1/workflows/files")
+            .Then()
+            .StatusCode(HttpStatusCode.OK);
+
+        // Get files. Expect the file to exist
+        responseBody = Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/files")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .Extract().Body();
+        files = JsonConvert.DeserializeObject<List<WfapiFileInfo>>(responseBody);
+        Assert.NotNull(files);
+        Assert.Contains(files, file => file.FileName == "files/hello.txt");
+
+        // Download the file. Expect it to contain "Hello, World 2!"
+        downloadResponse = Given()
+            .Accept(MediaTypeNames.Application.Octet)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/files/files%2Fhello.txt")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .Extract().Response();
+        downloadStream = downloadResponse.Content.ReadAsStream();
+        reader = new StreamReader(downloadStream);
+        downloadedContent = reader.ReadToEnd();
+        Assert.Equal("Hello, World 2!", downloadedContent);
+
+        // Delete the file
+        Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .When()
+            .Delete($"{RootUrl}/api/v1/workflows/files/files%2Fhello.txt")
+            .Then()
+            .StatusCode(HttpStatusCode.NoContent);
+
+        // Get files again. Expect the file to not exist
+        responseBody = Given()
+            .Accept(MediaTypeNames.Application.Json)
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/files")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .Extract().Body();
+        files = JsonConvert.DeserializeObject<List<WfapiFileInfo>>(responseBody);
+        Assert.NotNull(files);
+        Assert.DoesNotContain(files, file => file.FileName == "files/hello.txt");
+    }
 
     [Fact]
     public void SubmitWorkflow_WhenCalled_WithEmptyParameters_ReturnsOk()
@@ -125,34 +273,42 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         Assert.True(isRunning);
 
         // Get the logstream. Make sure it isn't waiting for the workflow to finish
-        // We have to do our own request here because rest-assured-net doesn't support SSE
-        var httpClientHandler = new HttpClientHandler();
-        using var httpClient = new HttpClient(httpClientHandler, true);
-        var request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/pods/{workflow.Name}/logstream");
-        request.Headers.Add("Accept", "application/x-ndjson");
-        sw = Stopwatch.StartNew();
-        var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
-        sw.Stop();
-        output.WriteLine("Logstream request took " + sw.ElapsedMilliseconds + "ms");
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.NotNull(response.Content.Headers.ContentType?.MediaType);
-        Assert.Equal("application/x-ndjson", response.Content.Headers.ContentType.MediaType);
-        Assert.NotNull(response.Headers.CacheControl);
-        Assert.Equal("no-cache", response.Headers.CacheControl.ToString());
-        // Istio strips this header. Not sure why yet. See https://defense-unicorns.slack.com/archives/C06QJAUHWFN/p1722893232750909
-        // Assert.NotNull(response.Headers.Connection);
-        // Assert.Equal("keep-alive", response.Headers.Connection.ToString());
-        Assert.True(sw.ElapsedMilliseconds < 10000); // 10 seconds
+        Given()
+            .UseHttpCompletionOption(HttpCompletionOption.ResponseHeadersRead)
+            .Accept("application/x-ndjson")
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/{workflow.Name}/pods/{workflow.Name}/logstream")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .ContentType("application/x-ndjson")
+            .And()
+            .Header("Cache-Control", "no-cache")
+            // Istio strips this header. Not sure why yet. See https://defense-unicorns.slack.com/archives/C06QJAUHWFN/p1722893232750909
+            // .And()
+            // .Header("Connection", "keep-alive")
+            .And()
+            .ResponseTime(Is.LessThan(TimeSpan.FromSeconds(10)));
 
         // Do it one more time. This time it should happen extremely quickly since we know the pod is done initializing.
-        request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/pods/{workflow.Name}/logstream");
-        request.Headers.Add("Accept", "application/x-ndjson");
-        sw = Stopwatch.StartNew();
-        response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
-        sw.Stop();
-        output.WriteLine("2nd logstream request took " + sw.ElapsedMilliseconds + "ms");
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.True(sw.ElapsedMilliseconds < 2000); // 2 seconds
+        HttpResponseMessage response = Given()
+            .UseHttpCompletionOption(HttpCompletionOption.ResponseHeadersRead)
+            .Accept("application/x-ndjson")
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/{workflow.Name}/pods/{workflow.Name}/logstream")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .ContentType("application/x-ndjson")
+            .And()
+            .Header("Cache-Control", "no-cache")
+            // Istio strips this header. Not sure why yet. See https://defense-unicorns.slack.com/archives/C06QJAUHWFN/p1722893232750909
+            // .And()
+            // .Header("Connection", "keep-alive")
+            .And()
+            .ResponseTime(Is.LessThan(TimeSpan.FromSeconds(2)))
+            .And()
+            .Extract().Response();
 
         // Deserialize the first line of the logstream to make sure it is valid. We'll assume for the sake of time that the rest of the stream is formatted the same way.
         await using var responseStream = await response.Content.ReadAsStreamAsync();
@@ -226,23 +382,21 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         await Task.Delay(3000);
 
         // Get the logstream. This should happen very quickly since grabbing logs from the archive is quite a bit faster than establishing a live SSE connection.
-        // We have to do our own request here because rest-assured-net doesn't support SSE
-        var httpClientHandler = new HttpClientHandler();
-        using var httpClient = new HttpClient(httpClientHandler, true);
-        var request = new HttpRequestMessage(HttpMethod.Get, $"{RootUrl}/api/v1/workflows/{workflow.Name}/pods/{workflow.Name}/logstream");
-        request.Headers.Add("Accept", "application/x-ndjson");
-        sw = Stopwatch.StartNew();
-        var response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
-        sw.Stop();
-        output.WriteLine("Logstream request took " + sw.ElapsedMilliseconds + "ms");
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-        Assert.NotNull(response.Content.Headers.ContentType?.MediaType);
-        Assert.Equal("application/x-ndjson", response.Content.Headers.ContentType.MediaType);
-        Assert.NotNull(response.Headers.CacheControl);
-        Assert.Equal("no-cache", response.Headers.CacheControl.ToString());
-        // Istio strips this header. Not sure why yet. See https://defense-unicorns.slack.com/archives/C06QJAUHWFN/p1722893232750909
-        // Assert.NotNull(response.Headers.Connection);
-        // Assert.Equal("keep-alive", response.Headers.Connection.ToString());
-        Assert.True(sw.ElapsedMilliseconds < 500); // .5 second
+        Given()
+            .UseHttpCompletionOption(HttpCompletionOption.ResponseHeadersRead)
+            .Accept("application/x-ndjson")
+            .When()
+            .Get($"{RootUrl}/api/v1/workflows/{workflow.Name}/pods/{workflow.Name}/logstream")
+            .Then()
+            .StatusCode(HttpStatusCode.OK)
+            .And()
+            .ContentType("application/x-ndjson")
+            .And()
+            .Header("Cache-Control", "no-cache")
+            // Istio strips this header. Not sure why yet. See https://defense-unicorns.slack.com/archives/C06QJAUHWFN/p1722893232750909
+            // .And()
+            // .Header("Connection", "keep-alive")
+            .And()
+            .ResponseTime(Is.LessThan(TimeSpan.FromMilliseconds(500)));
     }
 }

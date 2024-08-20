@@ -1,5 +1,7 @@
-using System.Net.Http.Headers;
 using System.Net.Mime;
+using System.Web;
+using Amazon.S3;
+using Amazon.S3.Model;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,33 +10,82 @@ using Org.OpenAPITools.Client;
 using Swashbuckle.AspNetCore.Annotations;
 using wfapi.V1.Models;
 using Org.OpenAPITools.Model;
-using FileInfo = wfapi.V1.Models.FileInfo;
 
 namespace wfapi.V1.Controllers;
 
 /// <summary>
-/// Workflows controller for the Workflow API
+/// Workflows controller for the Workflow API.
 /// </summary>
 [ApiController]
 [Authorize]
 [ApiVersion(1.0)]
 [Route("api/v{version:apiVersion}/workflows")]
 [Tags("Workflows")]
-public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsController> log) : ControllerBase
+public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogger<WorkflowsController> log) : ControllerBase
 {
+    private const string FilesPrefix = "files/";
+
     /// <summary>
     /// Get a list of all files present and ready to be consumed by a workflow.
     /// </summary>
+    /// <param name="cancellationToken"></param>
     [HttpGet("files")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
         "Success. The list of files is returned.",
-        typeof(List<FileInfo>),
-        "application/json"
+        typeof(List<WfapiFileInfo>),
+        MediaTypeNames.Application.Json
     )]
-    public IActionResult GetFiles()
+    [SwaggerOperation(OperationId = "GetFiles")]
+    public async Task<IActionResult> GetFiles(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request
+        {
+            BucketName = s3Client.BucketName,
+            Prefix = FilesPrefix
+        }, cancellationToken: cancellationToken);
+        var files = objects.S3Objects.Select(o => new WfapiFileInfo { FileName = o.Key }).ToList();
+        return Ok(files);
+    }
+
+    /// <summary>
+    /// Download a file that was previously uploaded
+    /// </summary>
+    /// <param name="fullFileName"></param>
+    /// <param name="cancellationToken"></param>
+    [HttpGet("files/{fullFileName}")]
+    [SwaggerResponse(
+        StatusCodes.Status200OK,
+        "Success. The file is returned.",
+        typeof(FileStreamResult),
+        MediaTypeNames.Application.Octet
+    )]
+    [SwaggerResponse(
+        StatusCodes.Status404NotFound,
+        "The requested file was not found."
+    )]
+    [SwaggerResponse(
+        StatusCodes.Status403Forbidden,
+        "You don't have permission to download that file."
+    )]
+    [SwaggerOperation(OperationId = "DownloadFile")]
+    public async Task<IActionResult> DownloadFile(string fullFileName, CancellationToken cancellationToken)
+    {
+        fullFileName = HttpUtility.UrlDecode(fullFileName);
+        var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request()
+        {
+            BucketName = s3Client.BucketName,
+            Prefix = fullFileName
+        }, cancellationToken: cancellationToken);
+        if (objects.S3Objects.Count == 0)
+        {
+            return NotFound();
+        }
+        var response = await s3Client.Client.GetObjectStreamAsync(s3Client.BucketName, fullFileName, null, cancellationToken);
+        return new FileStreamResult(response, MediaTypeNames.Application.Octet)
+        {
+            FileDownloadName = Path.GetFileName(fullFileName)
+        };
     }
 
     /// <summary>
@@ -42,24 +93,38 @@ public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsControl
     /// </summary>
     /// <param name="fileName">The file name</param>
     /// <param name="file">The file</param>
+    /// <param name="cancellationToken"></param>
     [HttpPost("files")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
         "Success. The file has been uploaded.",
-        typeof(FileInfo),
+        typeof(WfapiFileInfo),
         "application/json"
     )]
-    public IActionResult UploadFile([FromForm] string fileName, IFormFile file)
+    [SwaggerResponse(
+        StatusCodes.Status409Conflict,
+        "A file with the same name already exists."
+    )]
+    [SwaggerOperation(OperationId = "UploadFile")]
+    [Consumes(MediaTypeNames.Multipart.FormData)]
+    public async Task<IActionResult> UploadFile([FromForm] string fileName, IFormFile file, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var key = $"{FilesPrefix}{fileName}";
+
+        // Upload the file
+        await using var stream = file.OpenReadStream();
+        await s3Client.Client.UploadObjectFromStreamAsync(s3Client.BucketName, key, stream, null, cancellationToken: cancellationToken);
+
+        return Ok(new WfapiFileInfo { FileName = key });
     }
 
 
     /// <summary>
     /// Delete a file that was previously uploaded
     /// </summary>
-    /// <param name="fileName">The fully qualified filename to be deleted. Example: "theuser/myfile.txt"</param>
-    [HttpDelete("files/{fileName}")]
+    /// <param name="fullFileName">The fully qualified filename to be deleted. Example: "files/myfile.txt". Must be URLEncoded though, so that would actually be "files%2Fmyfile.txt"</param>
+    /// <param name="cancellationToken"></param>
+    [HttpDelete("files/{fullFileName}")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
         "Success. The file has been deleted."
@@ -72,9 +137,36 @@ public class WorkflowsController(ArgoClient argoClient, ILogger<WorkflowsControl
          StatusCodes.Status403Forbidden,
          "You don't have permission to delete that file."
      )]
-    public IActionResult DeleteFile([FromRoute] string fileName)
+    [SwaggerOperation(OperationId = "DeleteFile")]
+    public async Task<IActionResult> DeleteFile([FromRoute] string fullFileName, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        fullFileName = HttpUtility.UrlDecode(fullFileName);
+        try
+        {
+            var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request()
+            {
+                BucketName = s3Client.BucketName,
+                Prefix = fullFileName
+            }, cancellationToken: cancellationToken);
+            if (objects.S3Objects.Count == 0)
+            {
+                return NotFound();
+            }
+            var response = await s3Client.Client.DeleteObjectAsync(s3Client.BucketName, fullFileName, cancellationToken);
+            return NoContent();
+        }
+        catch (AmazonS3Exception e)
+        {
+            if (e.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return NotFound();
+            }
+            if (e.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                return Forbid();
+            }
+            throw;
+        }
     }
 
     /// <summary>
