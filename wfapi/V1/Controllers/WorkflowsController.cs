@@ -1,36 +1,91 @@
+using System.Net.Mime;
+using System.Web;
+using Amazon.S3;
+using Amazon.S3.Model;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Org.OpenAPITools.Client;
 using Swashbuckle.AspNetCore.Annotations;
 using wfapi.V1.Models;
 using Org.OpenAPITools.Model;
-using FileInfo = wfapi.V1.Models.FileInfo;
 
 namespace wfapi.V1.Controllers;
 
 /// <summary>
-/// Workflows controller for the Workflow API
+/// Workflows controller for the Workflow API.
 /// </summary>
 [ApiController]
 [Authorize]
 [ApiVersion(1.0)]
 [Route("api/v{version:apiVersion}/workflows")]
 [Tags("Workflows")]
-public class WorkflowsController(ArgoClient argoClient) : ControllerBase
+public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogger<WorkflowsController> log) : ControllerBase
 {
+    private const string FilesPrefix = "files/";
+
     /// <summary>
     /// Get a list of all files present and ready to be consumed by a workflow.
     /// </summary>
+    /// <param name="cancellationToken"></param>
     [HttpGet("files")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
         "Success. The list of files is returned.",
-        typeof(List<FileInfo>),
-        "application/json"
+        typeof(List<WfapiFileInfo>),
+        MediaTypeNames.Application.Json
     )]
-    public IActionResult GetFiles()
+    [SwaggerOperation(OperationId = "GetFiles")]
+    public async Task<IActionResult> GetFiles(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request
+        {
+            BucketName = s3Client.BucketName,
+            Prefix = FilesPrefix
+        }, cancellationToken: cancellationToken);
+        var files = objects.S3Objects.Select(o => new WfapiFileInfo { FileName = o.Key }).ToList();
+        return Ok(files);
+    }
+
+    /// <summary>
+    /// Download a file that was previously uploaded
+    /// </summary>
+    /// <param name="fullFileName"></param>
+    /// <param name="cancellationToken"></param>
+    [HttpGet("files/{fullFileName}")]
+    [SwaggerResponse(
+        StatusCodes.Status200OK,
+        "Success. The file is returned.",
+        typeof(FileStreamResult),
+        MediaTypeNames.Application.Octet
+    )]
+    [SwaggerResponse(
+        StatusCodes.Status404NotFound,
+        "The requested file was not found."
+    )]
+    [SwaggerResponse(
+        StatusCodes.Status403Forbidden,
+        "You don't have permission to download that file."
+    )]
+    [SwaggerOperation(OperationId = "DownloadFile")]
+    public async Task<IActionResult> DownloadFile(string fullFileName, CancellationToken cancellationToken)
+    {
+        fullFileName = HttpUtility.UrlDecode(fullFileName);
+        var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request()
+        {
+            BucketName = s3Client.BucketName,
+            Prefix = fullFileName
+        }, cancellationToken: cancellationToken);
+        if (objects.S3Objects.Count == 0)
+        {
+            return NotFound();
+        }
+        var response = await s3Client.Client.GetObjectStreamAsync(s3Client.BucketName, fullFileName, null, cancellationToken);
+        return new FileStreamResult(response, MediaTypeNames.Application.Octet)
+        {
+            FileDownloadName = Path.GetFileName(fullFileName)
+        };
     }
 
     /// <summary>
@@ -38,24 +93,38 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
     /// </summary>
     /// <param name="fileName">The file name</param>
     /// <param name="file">The file</param>
+    /// <param name="cancellationToken"></param>
     [HttpPost("files")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
         "Success. The file has been uploaded.",
-        typeof(FileInfo),
+        typeof(WfapiFileInfo),
         "application/json"
     )]
-    public IActionResult UploadFile([FromForm] string fileName, IFormFile file)
+    [SwaggerResponse(
+        StatusCodes.Status409Conflict,
+        "A file with the same name already exists."
+    )]
+    [SwaggerOperation(OperationId = "UploadFile")]
+    [Consumes(MediaTypeNames.Multipart.FormData)]
+    public async Task<IActionResult> UploadFile([FromForm] string fileName, IFormFile file, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var key = $"{FilesPrefix}{fileName}";
+
+        // Upload the file
+        await using var stream = file.OpenReadStream();
+        await s3Client.Client.UploadObjectFromStreamAsync(s3Client.BucketName, key, stream, null, cancellationToken: cancellationToken);
+
+        return Ok(new WfapiFileInfo { FileName = key });
     }
 
 
     /// <summary>
     /// Delete a file that was previously uploaded
     /// </summary>
-    /// <param name="fileName">The fully qualified filename to be deleted. Example: "theuser/myfile.txt"</param>
-    [HttpDelete("files/{fileName}")]
+    /// <param name="fullFileName">The fully qualified filename to be deleted. Example: "files/myfile.txt". Must be URLEncoded though, so that would actually be "files%2Fmyfile.txt"</param>
+    /// <param name="cancellationToken"></param>
+    [HttpDelete("files/{fullFileName}")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
         "Success. The file has been deleted."
@@ -68,9 +137,36 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
          StatusCodes.Status403Forbidden,
          "You don't have permission to delete that file."
      )]
-    public IActionResult DeleteFile([FromRoute] string fileName)
+    [SwaggerOperation(OperationId = "DeleteFile")]
+    public async Task<IActionResult> DeleteFile([FromRoute] string fullFileName, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        fullFileName = HttpUtility.UrlDecode(fullFileName);
+        try
+        {
+            var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request()
+            {
+                BucketName = s3Client.BucketName,
+                Prefix = fullFileName
+            }, cancellationToken: cancellationToken);
+            if (objects.S3Objects.Count == 0)
+            {
+                return NotFound();
+            }
+            var response = await s3Client.Client.DeleteObjectAsync(s3Client.BucketName, fullFileName, cancellationToken);
+            return NoContent();
+        }
+        catch (AmazonS3Exception e)
+        {
+            if (e.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return NotFound();
+            }
+            if (e.StatusCode == System.Net.HttpStatusCode.Forbidden)
+            {
+                return Forbid();
+            }
+            throw;
+        }
     }
 
     /// <summary>
@@ -86,6 +182,7 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
         "application/json"
     )]
     [SwaggerOperation(OperationId = "SubmitWorkflow")]
+    [Consumes(MediaTypeNames.Application.Json)]
     public IActionResult SubmitWorkflow([FromBody] WorkflowSubmission submission)
     {
         var body = new IoArgoprojWorkflowV1alpha1WorkflowSubmitRequest
@@ -98,10 +195,11 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
                 Parameters = []
             }
         };
-        foreach (var parameter in submission.Parameters)
+        foreach (var parameter in submission.Parameters ?? [])
         {
             body.SubmitOptions.Parameters.Add(parameter.Name + "=" + parameter.Value);
         }
+
         var submitResult = argoClient.WorkflowServiceApi.WorkflowServiceSubmitWorkflow(argoClient.Namespace, body);
         var getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
         // Initialize the start time for timeout
@@ -125,6 +223,7 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
         {
             Created = getResult.Metadata.CreationTimestamp ?? throw new ArgumentNullException(nameof(getResult.Metadata.CreationTimestamp), "Mandatory parameter"),
             Name = getResult.Metadata.Name,
+            Uid = getResult.Metadata.Uid,
             Status = (WorkflowStatus)Enum.Parse(typeof(WorkflowStatus), getResult.Status.Phase),
             Message = getResult.Status.Message,
             Started = getResult.Status.StartedAt,
@@ -152,27 +251,113 @@ public class WorkflowsController(ArgoClient argoClient) : ControllerBase
     [SwaggerOperation(OperationId = "GetWorkflowInfo")]
     public IActionResult GetWorkflowInfo(string workflowName)
     {
-        throw new NotImplementedException();
+        IoArgoprojWorkflowV1alpha1Workflow getResult;
+        try
+        {
+            getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, workflowName);
+        }
+        catch (ApiException e)
+        {
+            if (e.ErrorCode == 404)
+            {
+                return NotFound();
+            }
+            throw;
+        }
+        var retval = new WorkflowInfo
+        {
+            Created = getResult.Metadata.CreationTimestamp ?? throw new ArgumentNullException(nameof(getResult.Metadata.CreationTimestamp), "Mandatory parameter"),
+            Name = getResult.Metadata.Name,
+            Uid = getResult.Metadata.Uid,
+            Status = (WorkflowStatus)Enum.Parse(typeof(WorkflowStatus), getResult.Status.Phase),
+            Message = getResult.Status.Message,
+            Started = getResult.Status.StartedAt,
+            Finished = getResult.Status.FinishedAt,
+            Progress = getResult.Status.Progress
+        };
+        return Ok(retval);
     }
 
     /// <summary>
-    /// Get the log of a workflow.
+    /// Get the log stream of a workflow as an NDJSON stream using SSE. If the workflow is active in the cluster it will stream the logs from there. If it isn't, it will look for the logs in the archive.
     /// </summary>
     /// <param name="workflowName">The name of the workflow that you want the log(s) for</param>
-    [HttpGet("{workflowName}/log")]
+    /// <param name="podName">The name of the pod that you want the log(s) for. If the workflow only had one template than the podname will be the same as the workflow name</param>
+    /// <param name="cancellationToken"></param>
+    [HttpGet("{workflowName}/pods/{podName}/logstream")]
     [SwaggerResponse(
         StatusCodes.Status200OK,
-        "Success. The workflow log is returned.",
-        typeof(List<WorkflowLog>),
-        "application/json"
+        "Success. The workflow log is returned as an NDJSON stream using SSE.",
+        typeof(StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry),
+        "application/x-ndjson"
     )]
     [SwaggerResponse(
         StatusCodes.Status404NotFound,
         "The requested workflow was not found."
     )]
-    [SwaggerOperation(OperationId = "GetWorkflowLog")]
-    public IActionResult GetWorkflowLog(string workflowName)
+    [SwaggerOperation(OperationId = "GetWorkflowLogStream")]
+    public async Task GetWorkflowLogStream(string workflowName, string podName, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        Response.Headers.ContentType = "application/x-ndjson";
+        Response.Headers.CacheControl = "no-cache";
+        // Istio strips the connection header, so adding this doesn't do anything useful.
+        // Response.Headers.Connection = "keep-alive";
+
+        // If the workflow is still active, we'll get the log stream from the active pod
+        try
+        {
+            await foreach (var logEntry in argoClient.WorkflowServiceSseApiAsync.WorkflowServiceWorkflowLogsAsync(
+                               varNamespace: argoClient.Namespace,
+                               name: workflowName,
+                               podName: podName,
+                               logOptionsContainer: "main",
+                               logOptionsFollow: true,
+                               cancellationToken: cancellationToken
+                           ))
+            {
+                // log.LogInformation(JsonConvert.SerializeObject(logEntry));
+                await Response.WriteAsync(JsonConvert.SerializeObject(logEntry), cancellationToken: cancellationToken);
+                await Response.WriteAsync("\n", cancellationToken: cancellationToken);
+                await Response.Body.FlushAsync(cancellationToken);
+            }
+        }
+        catch (ApiException e)
+        {
+            if (e.ErrorCode == 404)
+            {
+                // If the workflow is not found, it might be in the archive. We'll try to get the logs from there.
+                try
+                {
+                    var workflow = await argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflowAsync(
+                        argoClient.Namespace, workflowName,
+                        cancellationToken: cancellationToken);
+                    var logFile = await argoClient.ArtifactServiceApi.ArtifactServiceGetArtifactFileAsync(argoClient.Namespace,
+                        "archived-workflows", workflow.Metadata.Uid, podName, "main-logs", "outputs",
+                        cancellationToken: cancellationToken);
+                    using var reader = new StreamReader(logFile.Content);
+                    while (!reader.EndOfStream && !cancellationToken.IsCancellationRequested)
+                    {
+                        var line = await reader.ReadLineAsync(cancellationToken).ConfigureAwait(false);
+                        if (string.IsNullOrWhiteSpace(line)) continue;
+                        var streamResultLogEntry =
+                            new StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry(
+                                result: new IoArgoprojWorkflowV1alpha1LogEntry(line, podName));
+                        await Response.WriteAsync(JsonConvert.SerializeObject(streamResultLogEntry), cancellationToken);
+                        await Response.WriteAsync("\n", cancellationToken);
+                        await Response.Body.FlushAsync(cancellationToken);
+                    }
+                }
+                catch (ApiException e2)
+                {
+                    if (e2.ErrorCode != 404) throw;
+                    // If the workflow is still not found, we'll return a 404
+                    Response.StatusCode = 404;
+                }
+            }
+            else
+            {
+                throw;
+            }
+        }
     }
 }

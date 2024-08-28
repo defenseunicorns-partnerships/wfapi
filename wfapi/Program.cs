@@ -1,4 +1,9 @@
 using System.Security.Claims;
+using Amazon;
+using Amazon.Extensions.NETCore.Setup;
+using Amazon.Internal;
+using Amazon.Runtime;
+using Amazon.S3;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
@@ -151,6 +156,25 @@ try
     argoConfig.AddApiKeyPrefix("Authorization", "Bearer");
     var varNamespace = builder.Configuration.GetValue<string>("Argo:Namespace") ?? throw new InvalidOperationException();
     builder.Services.AddSingleton(new ArgoClient(varNamespace, argoConfig));
+
+    // Object Storage setup. Officially supported object storage providers are AWS S3 and MinIO.
+    var bucketRegion = builder.Configuration.GetValue<string>("Bucket:Region") ?? throw new InvalidOperationException();
+    var bucketServiceUrl = builder.Configuration.GetValue<string>("Bucket:ServiceUrl") ?? throw new InvalidOperationException();
+    var bucketName = builder.Configuration.GetValue<string>("Bucket:Name") ?? throw new InvalidOperationException();
+    builder.Services.AddSingleton(
+        new S3Client(
+            bucketName,
+            new AmazonS3Client(
+                FallbackCredentialsFactory.GetCredentials(),
+                new AmazonS3Config
+                {
+                    ServiceURL = bucketServiceUrl,
+                    AuthenticationRegion = bucketRegion,
+                    ForcePathStyle = true
+                }
+            )
+        )
+    );
 
     var app = builder.Build();
 

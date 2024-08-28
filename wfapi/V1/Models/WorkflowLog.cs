@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
+
 // ReSharper disable UnusedMember.Global
 // ReSharper disable ClassNeverInstantiated.Global
 
@@ -13,11 +15,13 @@ public class WorkflowLog
     /// Pod name
     /// </summary>
     [Required]
+    [JsonProperty("podName")]
     public required string PodName { get; set; }
 
     /// <summary>
     /// Log content
     /// </summary>
     [Required]
+    [JsonProperty("content")]
     public required string Content { get; set; }
 }

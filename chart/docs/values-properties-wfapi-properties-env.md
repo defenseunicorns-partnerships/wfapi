@@ -19,6 +19,8 @@ Environment variables to set in the container. Ref: <https://kubernetes.io/docs/
 | Property                                                                | Type     | Required | Nullable       | Defined by                                                                                                                                                                                    |
 | :---------------------------------------------------------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [ASPNETCORE\_ENVIRONMENT](#aspnetcore_environment)                      | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-aspnetcore_environment.md "values.yaml#/properties/wfapi/properties/env/properties/ASPNETCORE_ENVIRONMENT")                   |
+| [AWS\_ACCESS\_KEY\_ID](#aws_access_key_id)                              | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-aws_access_key_id.md "values.yaml#/properties/wfapi/properties/env/properties/AWS_ACCESS_KEY_ID")                             |
+| [AWS\_SECRET\_ACCESS\_KEY](#aws_secret_access_key)                      | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-aws_secret_access_key.md "values.yaml#/properties/wfapi/properties/env/properties/AWS_SECRET_ACCESS_KEY")                     |
 | [Argo\_\_ApiUrl](#argo__apiurl)                                         | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__apiurl.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__ApiUrl")                                       |
 | [Argo\_\_Namespace](#argo__namespace)                                   | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__namespace.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__Namespace")                                 |
 | [Argo\_\_Token](#argo__token)                                           | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__token.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__Token")                                         |
@@ -27,6 +29,9 @@ Environment variables to set in the container. Ref: <https://kubernetes.io/docs/
 | [Auth\_\_Jwt\_\_RequireHttpsMetadata](#auth__jwt__requirehttpsmetadata) | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__requirehttpsmetadata.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__RequireHttpsMetadata") |
 | [Auth\_\_Jwt\_\_ValidateIssuer](#auth__jwt__validateissuer)             | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__validateissuer.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__ValidateIssuer")             |
 | [Auth\_\_Jwt\_\_WellKnownConfig](#auth__jwt__wellknownconfig)           | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__wellknownconfig.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__WellKnownConfig")           |
+| [Bucket\_\_Name](#bucket__name)                                         | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-bucket__name.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__Name")                                       |
+| [Bucket\_\_Region](#bucket__region)                                     | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-bucket__region.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__Region")                                   |
+| [Bucket\_\_ServiceUrl](#bucket__serviceurl)                             | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-bucket__serviceurl.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__ServiceUrl")                           |
 | [Serilog\_\_MinimumLevel\_\_Default](#serilog__minimumlevel__default)   | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-serilog__minimumlevel__default.md "values.yaml#/properties/wfapi/properties/env/properties/Serilog__MinimumLevel__Default")   |
 | [Swagger\_\_Enable](#swagger__enable)                                   | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-swagger__enable.md "values.yaml#/properties/wfapi/properties/env/properties/Swagger__Enable")                                 |
 
@@ -64,6 +69,42 @@ The default value is:
 ```json
 "Production"
 ```
+
+## AWS\_ACCESS\_KEY\_ID
+
+AWS access key ID. Leave as empty string if using IRSA
+
+`AWS_ACCESS_KEY_ID`
+
+* is required
+
+* Type: `string` ([AWS\_ACCESS\_KEY\_ID](values-properties-wfapi-properties-env-properties-aws_access_key_id.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-aws_access_key_id.md "values.yaml#/properties/wfapi/properties/env/properties/AWS_ACCESS_KEY_ID")
+
+### AWS\_ACCESS\_KEY\_ID Type
+
+`string` ([AWS\_ACCESS\_KEY\_ID](values-properties-wfapi-properties-env-properties-aws_access_key_id.md))
+
+## AWS\_SECRET\_ACCESS\_KEY
+
+AWS secret access key. Leave as empty string if using IRSA
+
+`AWS_SECRET_ACCESS_KEY`
+
+* is required
+
+* Type: `string` ([AWS\_SECRET\_ACCESS\_KEY](values-properties-wfapi-properties-env-properties-aws_secret_access_key.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-aws_secret_access_key.md "values.yaml#/properties/wfapi/properties/env/properties/AWS_SECRET_ACCESS_KEY")
+
+### AWS\_SECRET\_ACCESS\_KEY Type
+
+`string` ([AWS\_SECRET\_ACCESS\_KEY](values-properties-wfapi-properties-env-properties-aws_secret_access_key.md))
 
 ## Argo\_\_ApiUrl
 
@@ -263,6 +304,84 @@ The default value is:
 
 ```json
 "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
+```
+
+## Bucket\_\_Name
+
+Bucket name
+
+`Bucket__Name`
+
+* is required
+
+* Type: `string` ([Bucket\_\_Name](values-properties-wfapi-properties-env-properties-bucket__name.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-bucket__name.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__Name")
+
+### Bucket\_\_Name Type
+
+`string` ([Bucket\_\_Name](values-properties-wfapi-properties-env-properties-bucket__name.md))
+
+### Bucket\_\_Name Default Value
+
+The default value is:
+
+```json
+"argo"
+```
+
+## Bucket\_\_Region
+
+Bucket region
+
+`Bucket__Region`
+
+* is required
+
+* Type: `string` ([Bucket\_\_Region](values-properties-wfapi-properties-env-properties-bucket__region.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-bucket__region.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__Region")
+
+### Bucket\_\_Region Type
+
+`string` ([Bucket\_\_Region](values-properties-wfapi-properties-env-properties-bucket__region.md))
+
+### Bucket\_\_Region Default Value
+
+The default value is:
+
+```json
+"minio"
+```
+
+## Bucket\_\_ServiceUrl
+
+Bucket service URL
+
+`Bucket__ServiceUrl`
+
+* is required
+
+* Type: `string` ([Bucket\_\_ServiceUrl](values-properties-wfapi-properties-env-properties-bucket__serviceurl.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-bucket__serviceurl.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__ServiceUrl")
+
+### Bucket\_\_ServiceUrl Type
+
+`string` ([Bucket\_\_ServiceUrl](values-properties-wfapi-properties-env-properties-bucket__serviceurl.md))
+
+### Bucket\_\_ServiceUrl Default Value
+
+The default value is:
+
+```json
+"http://minio.uds-dev-stack.svc.cluster.local:9000"
 ```
 
 ## Serilog\_\_MinimumLevel\_\_Default
