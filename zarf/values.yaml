@@ -11,22 +11,22 @@ wfapi:
   fullnameOverride: ""
 
   env:
-    ASPNETCORE_ENVIRONMENT: "Development"
-    Serilog__MinimumLevel__Default: "Information"
-    Auth__Jwt__WellKnownConfig: "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
-    Auth__Jwt__Authority: "https://sso.uds.dev/realms/uds"
-    Auth__Jwt__Audience: wfapi
-    Auth__Jwt__RequireHttpsMetadata: "true"
-    Auth__Jwt__ValidateIssuer: "true"
-    Argo__ApiUrl: http://argo-workflows-server:2746
-    Argo__Namespace: argo
-    Argo__Token: ""
-    Bucket__Region: minio
-    Bucket__ServiceUrl: http://minio.uds-dev-stack.svc.cluster.local:9000
-    Bucket__Name: argo
-    AWS_ACCESS_KEY_ID: test-user
-    AWS_SECRET_ACCESS_KEY: test-secret
-    Swagger__Enable: "true"
+    ASPNETCORE_ENVIRONMENT: "###ZARF_VAR_ENV_ASPNETCORE_ENVIRONMENT###"
+    Serilog__MinimumLevel__Default: "###ZARF_VAR_ENV_SERILOG__MINIMUMLEVEL__DEFAULT###"
+    Auth__Jwt__WellKnownConfig: "###ZARF_VAR_ENV_AUTH__JWT__WELLKNOWNCONFIG###"
+    Auth__Jwt__Authority: "###ZARF_VAR_ENV_AUTH__JWT__AUTHORITY###"
+    Auth__Jwt__Audience: "###ZARF_VAR_ENV_AUTH__JWT__AUDIENCE###"
+    Auth__Jwt__RequireHttpsMetadata: "###ZARF_VAR_ENV_AUTH__JWT__REQUIREHTTPSMETADATA###"
+    Auth__Jwt__ValidateIssuer: "###ZARF_VAR_ENV_AUTH__JWT__VALIDATEISSUER###"
+    Argo__ApiUrl: "###ZARF_VAR_ENV_ARGO__APIURL###"
+    Argo__Namespace: "###ZARF_VAR_ENV_ARGO__NAMESPACE###"
+    Argo__Token: "###ZARF_VAR_ENV_ARGO__TOKEN###"
+    Bucket__Region: "###ZARF_VAR_ENV_BUCKET__REGION###"
+    Bucket__ServiceUrl: "###ZARF_VAR_ENV_BUCKET__SERVICEURL###"
+    Bucket__Name: "###ZARF_VAR_ENV_BUCKET__NAME###"
+    AWS_ACCESS_KEY_ID: "###ZARF_VAR_ENV_AWS_ACCESS_KEY_ID###"
+    AWS_SECRET_ACCESS_KEY: "###ZARF_VAR_ENV_AWS_SECRET_ACCESS_KEY###"
+    Swagger__Enable: "###ZARF_VAR_ENV_SWAGGER__ENABLE###"
 
   serviceAccount:
     create: true
@@ -74,11 +74,11 @@ wfapi:
 
   resources:
     requests:
-      cpu: "100m"
-      memory: "512Mi"
+      cpu: "###ZARF_VAR_CPU_REQUEST###"
+      memory: "###ZARF_VAR_MEMORY_REQUEST###"
     limits:
-      cpu: "100"
-      memory: "100Gi"
+      cpu: "###ZARF_VAR_CPU_LIMIT###"
+      memory: "###ZARF_VAR_MEMORY_LIMIT###"
 
   startupProbe:
     httpGet:

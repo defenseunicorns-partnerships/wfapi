@@ -1,4 +1,4 @@
-# WF API
+# WFAPI
 
 REST API for interacting with Argo Workflows
 
@@ -8,7 +8,7 @@ This project is a REST API for interacting with Argo Workflows. You'll want to u
 
 - You manage a Kubernetes cluster that runs mission apps that need the ability to initiate and monitor workflow jobs
 - You run Argo Workflows to provide that functionality
-- But you don't want to give those mission apps direct access to the Kubernetes API
+- But for security reasons you don't want to give those mission apps direct access to the Kubernetes API
 - And you want more fine-grained control than what the Argo Workflows Server API would provide
 
 ### Why not use the Argo Workflows Server API? Why build this instead?
@@ -29,13 +29,36 @@ This project is a REST API for interacting with Argo Workflows. You'll want to u
 
 ![C4 Container Diagram](docs/diagrams/c4_container-0.png)
 
+## Prerequisites
+
+- Linux or MacOS x86_64
+- Container runtime (we test using Docker, but others like Podman should work too)
+- K3d
+- UDS CLI
+
+Windows is not supported at this time. We recommend using WSL2. Please let us know if you run into any issues when using WSL2. ARM64 is not supported at this time, but only because we don't know of anyone wanting to use it. Please let us know if ARM64 support is important to you.
+
 ## Installation
 
-TODO: Write this section. Talk about how to deploy the Zarf package.
+WFAPI is published as a [Docker image](https://github.com/defenseunicorns/wfapi/pkgs/container/wfapi%2Fcontainers%2Fwfapi) as well as a [Zarf Package](https://github.com/defenseunicorns/wfapi/pkgs/container/wfapi%2Fpackages%2Fwfapi) published as an OCI artifact. We recommend using the Zarf Package. See the [Zarf Docs](https://docs.zarf.dev/getting-started/) for details on how to deploy a Zarf Package. Use [Zarf config variables](https://docs.zarf.dev/ref/config-files/) for configuration. See [zarf.yaml](zarf/zarf.yaml) for all available configuration options.
 
 ## Usage
 
-TODO: Write this section. Talk about the self-documenting Swagger UI.
+WFAPI uses Swagger for API documentation. The best way to see the Swagger UI or get the `swagger.json` right now is to run WFAPI locally and navigate to [https://wfapi.uds.dev/swagger](https://wfapi.uds.dev/swagger). We intend to make it much easier to access the Swagger UI in the future.
+
+The easiest way to spin up WFAPI locally is to use the testing UDS Task. This will spin up Argo Workflows and WFAPI in a local Kubernetes cluster powered by K3d. You need Docker, K3d, and UDS CLI installed. This is also the recommended approach for local development of applications that intend to interact with WFAPI.
+
+```shell
+uds run ci:up
+```
+
+If everything worked successfully, WFAPI will be available at [https://wfapi.uds.dev](https://wfapi.uds.dev).
+
+## Authentication/Authorization
+
+If variable ASPNETCORE_ENVIRONMENT is set to "Development", the API will not require authn/authz. This is useful for local development.
+
+If variable ASPNETCORE_ENVIRONMENT is set to anything other than "Development" (like "Production", which is the default) the API requires a JWT token in the Authorization header. The token must be signed by the auth server specified in the configuration (likely Keycloak).
 
 ## FAQ
 
