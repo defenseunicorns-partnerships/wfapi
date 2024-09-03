@@ -37,7 +37,7 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
         var info = new OpenApiInfo()
         {
             Title = "WFAPI",
-            Version = "0.0.8", // x-release-please-version
+            Version = "0.0.9", // x-release-please-version
             Contact = new OpenApiContact() { Name = "Defense Unicorns", Email = "navy@defenseunicorns.com" },
         };
 
