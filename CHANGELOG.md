@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.0.9](https://github.com/defenseunicorns/wfapi/compare/0.0.8...0.0.9) (2024-09-03)
+
+
+### Documentation
+
+* doc cleanup ([#65](https://github.com/defenseunicorns/wfapi/issues/65)) ([c34cfef](https://github.com/defenseunicorns/wfapi/commit/c34cfefb6717ec997b34c012c67c0d16889ef97e))
+
+
+### Miscellaneous Chores
+
+* **deps:** update stable ([#64](https://github.com/defenseunicorns/wfapi/issues/64)) ([59fc371](https://github.com/defenseunicorns/wfapi/commit/59fc37180f88783270feecf7ebb74a81dd1f8823))
+
 ## [0.0.8](https://github.com/defenseunicorns/wfapi/compare/0.0.7...0.0.8) (2024-08-28)
 
 
