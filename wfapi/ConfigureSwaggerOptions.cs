@@ -33,11 +33,11 @@ public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
 
     private static OpenApiInfo CreateInfoForApiVersion( ApiVersionDescription description )
     {
-        var text = new StringBuilder( "WF API." );
+        var text = new StringBuilder( "WFAPI." );
         var info = new OpenApiInfo()
         {
-            Title = "WF API",
-            Version = description.ApiVersion.ToString(),
+            Title = "WFAPI",
+            Version = "0.0.8", // x-release-please-version
             Contact = new OpenApiContact() { Name = "Defense Unicorns", Email = "navy@defenseunicorns.com" },
         };
 

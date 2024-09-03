@@ -36,7 +36,9 @@ This project is a REST API for interacting with Argo Workflows. You'll want to u
 - K3d
 - UDS CLI
 
-Windows is not supported at this time. We recommend using WSL2. Please let us know if you run into any issues when using WSL2. ARM64 is not supported at this time, but only because we don't know of anyone wanting to use it. Please let us know if ARM64 support is important to you.
+Windows is not supported at this time. We recommend using WSL2. Please let us know if you run into any issues when using WSL2.
+
+ARM64 is not supported at this time, but only because we don't know of anyone wanting to use it. Please let us know if ARM64 support is important to you.
 
 ## Installation
 
