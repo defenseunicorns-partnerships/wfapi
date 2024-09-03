@@ -39,6 +39,10 @@
         {
           "type": "generic",
           "path": "zarf/zarf.yaml"
+        },
+        {
+          "type": "generic",
+          "path": "wfapi/ConfigureSwaggerOptions.cs"
         }
       ]
     }

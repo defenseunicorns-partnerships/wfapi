@@ -1,16 +1,85 @@
 kind: ZarfPackageConfig
 metadata:
   name: wfapi
-  description: Deploy WF API
+  description: Deploy WFAPI
   version: 0.0.8 # x-release-please-version
 
 variables:
+  - name: ENV_ASPNETCORE_ENVIRONMENT
+    description: ASP.NET Core environment. If "Development", all JWT auth will be disabled.
+    default: "Development"
+    sensitive: false
+    pattern: "^(Development|Production)$"
+  - name: ENV_SERILOG__MINIMUMLEVEL__DEFAULT
+    description: Serilog minimum log level.
+    default: "Information"
+    sensitive: false
+    pattern: "^(Verbose|Debug|Information|Warning|Error|Fatal)$"
+  - name: ENV_AUTH__JWT__WELLKNOWNCONFIG
+    description: Well-known configuration URL for the JWT issuer.
+    default: "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
+    sensitive: false
+  - name: ENV_AUTH__JWT__AUTHORITY
+    description: JWT authority.
+    default: "https://sso.uds.dev/realms/uds"
+    sensitive: false
+  - name: ENV_AUTH__JWT__AUDIENCE
+    description: JWT audience. Corresponds to the Keycloak client associated with this app.
+    default: "wfapi"
+    sensitive: false
+  - name: ENV_AUTH__JWT__REQUIREHTTPSMETADATA
+    description: Whether to require HTTPS when interfacing with the IDP.
+    default: "true"
+    sensitive: false
+    pattern: "^(true|false)$"
+  - name: ENV_AUTH__JWT__VALIDATEISSUER
+    description: Whether to validate the JWT issuer.
+    default: "true"
+    sensitive: false
+    pattern: "^(true|false)$"
+  - name: ENV_ARGO__APIURL
+    description: Argo Server API URL.
+    default: "http://argo-workflows-server:2746"
+    sensitive: false
+  - name: ENV_ARGO__NAMESPACE
+    description: The K8s namespace that workflows should be created in.
+    default: "argo"
+    sensitive: false
+  - name: ENV_ARGO__TOKEN
+    description: Optional Argo API token. Not necessary in most cases as the app will fetch the token that is mounted to the filesystem. Leave as an empty string.
+    default: ""
+    sensitive: true
+  - name: ENV_BUCKET__REGION
+    description: The region of the bucket that WFAPI will interact with.
+    default: "minio"
+    sensitive: false
+  - name: ENV_BUCKET__SERVICEURL
+    description: The URL of the S3 service that WFAPI will interact with.
+    default: "http://minio.uds-dev-stack.svc.cluster.local:9000"
+    sensitive: false
+  - name: ENV_BUCKET__NAME
+    description: The name of the bucket that WFAPI will interact with.
+    default: "argo"
+    sensitive: false
+  - name: ENV_AWS_ACCESS_KEY_ID
+    description: The AWS access key ID. Leave as an empty string if using IRSA.
+    default: ""
+    sensitive: true
+  - name: ENV_AWS_SECRET_ACCESS_KEY
+    description: The AWS secret access key. Leave as an empty string if using IRSA.
+    default: ""
+    sensitive: true
+  - name: ENV_SWAGGER__ENABLE
+    description: Whether to enable the Swagger UI.
+    default: "false"
+    sensitive: false
+    pattern: "^(true|false)$"
   - name: IRSA_ROLE_ARN
-    description: The ARN of the IAM role to associate with the service account for IRSA.
+    description: Set this if you are using IRSA. This is the ARN of the IAM role to associate with the service account for IRSA.
     default: ""
     sensitive: true
   - name: CREATE_ROLE_BINDING
-    description: Whether to create a role binding for the service account. f this is set to true
+    description: Whether to create a role binding for the service account.
     default: "true"
     sensitive: false
     pattern: "^(true|false)$"
@@ -26,6 +95,22 @@ variables:
   - name: UDS_PACKAGE_EXPOSE_HOST
     description: The hostname to use when creating the VirtualService
     default: "wfapi"
+    sensitive: false
+  - name: CPU_REQUEST
+    description: The amount of CPU to request for the container.
+    default: "100m"
+    sensitive: false
+  - name: MEMORY_REQUEST
+    description: The amount of memory to request for the container.
+    default: "512Mi"
+    sensitive: false
+  - name: CPU_LIMIT
+    description: The amount of CPU to limit the container to.
+    default: "100"
+    sensitive: false
+  - name: MEMORY_LIMIT
+    description: The amount of memory to limit the container to.
+    default: "100Gi"
     sensitive: false
 
 components:

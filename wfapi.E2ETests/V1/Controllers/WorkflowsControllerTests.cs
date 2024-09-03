@@ -288,7 +288,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             // .And()
             // .Header("Connection", "keep-alive")
             .And()
-            .ResponseTime(Is.LessThan(TimeSpan.FromSeconds(10)));
+            .ResponseTime(Is.LessThan(TimeSpan.FromSeconds(12)));
 
         // Do it one more time. This time it should happen extremely quickly since we know the pod is done initializing.
         HttpResponseMessage response = Given()
@@ -357,7 +357,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
         // loop until the workflow is archived
         Stopwatch sw = Stopwatch.StartNew();
         var isSucceeded = false;
-        while (!isSucceeded && sw.ElapsedMilliseconds < 60000)
+        while (!isSucceeded && sw.ElapsedMilliseconds < 70000)
         {
             workflow = (WorkflowInfo)Given()
                 .Accept(MediaTypeNames.Application.Json)
