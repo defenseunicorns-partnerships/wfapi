@@ -42,7 +42,7 @@ ARM64 is not supported at this time, but only because we don't know of anyone wa
 
 ## Installation
 
-WFAPI is published as a [Docker image](https://github.com/defenseunicorns/wfapi/pkgs/container/wfapi%2Fcontainers%2Fwfapi) as well as a [Zarf Package](https://github.com/defenseunicorns/wfapi/pkgs/container/wfapi%2Fpackages%2Fwfapi) published as an OCI artifact. We recommend using the Zarf Package. See the [Zarf Docs](https://docs.zarf.dev/getting-started/) for details on how to deploy a Zarf Package. Use [Zarf config variables](https://docs.zarf.dev/ref/config-files/) for configuration. See [zarf.yaml](zarf/zarf.yaml) for all available configuration options.
+WFAPI is published as a [Docker image](https://github.com/defenseunicorns-partnerships/wfapi/pkgs/container/wfapi%2Fcontainers%2Fwfapi) as well as a [Zarf Package](https://github.com/defenseunicorns-partnerships/wfapi/pkgs/container/wfapi%2Fpackages%2Fwfapi) published as an OCI artifact. We recommend using the Zarf Package. See the [Zarf Docs](https://docs.zarf.dev/getting-started/) for details on how to deploy a Zarf Package. Use [Zarf config variables](https://docs.zarf.dev/ref/config-files/) for configuration. See [zarf.yaml](zarf/zarf.yaml) for all available configuration options.
 
 ## Usage
 
