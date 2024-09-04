@@ -126,7 +126,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     /// <param name="cancellationToken"></param>
     [HttpDelete("files/{fullFileName}")]
     [SwaggerResponse(
-        StatusCodes.Status200OK,
+        StatusCodes.Status204NoContent,
         "Success. The file has been deleted."
     ),
      SwaggerResponse(
