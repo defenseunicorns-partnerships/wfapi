@@ -2,7 +2,7 @@ wfapi:
   replicaCount: 1
 
   image:
-    repository: ghcr.io/defenseunicorns/wfapi/containers/wfapi
+    repository: ghcr.io/defenseunicorns-partnerships/wfapi/containers/wfapi
     pullPolicy: Always
     tag: ""
 

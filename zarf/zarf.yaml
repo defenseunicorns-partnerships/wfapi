@@ -129,4 +129,4 @@ components:
           - description: Restart the deployment
             cmd: ./zarf tools kubectl rollout restart deployment wfapi -n argo
     images:
-      - ghcr.io/defenseunicorns/wfapi/containers/wfapi:0.0.9 # x-release-please-version
+      - ghcr.io/defenseunicorns-partnerships/wfapi/containers/wfapi:0.0.9 # x-release-please-version

@@ -58,7 +58,7 @@ echo "Using port $UNUSED_PORT for Docker registry."
 # set the registry, image name and tag
 REMOTE_DOCKER_REGISTRY="ghcr.io"
 LOCAL_DOCKER_REGISTRY="localhost:${UNUSED_PORT}"
-IMAGE_NAME="defenseunicorns/wfapi/containers/wfapi"
+IMAGE_NAME="defenseunicorns-partnerships/wfapi/containers/wfapi"
 IMAGE_TAG=$(yq e '.metadata.version' zarf/zarf.yaml)
 
 # Run Docker registry

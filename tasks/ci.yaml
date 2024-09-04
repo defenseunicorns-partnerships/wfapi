@@ -32,7 +32,7 @@ tasks:
           linux: bash
         cmd: |
             set -a; source ../../.env; set +a
-            ./uds zarf package deploy -l debug oci://ghcr.io/defenseunicorns/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --components=dev-setup --confirm
+            ./uds zarf package deploy -l debug oci://ghcr.io/defenseunicorns-partnerships/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --components=dev-setup --confirm
   - name: argo-down
     description: Bring down the test instance of Argo Workflows
     actions:
@@ -42,7 +42,7 @@ tasks:
           linux: bash
         cmd: |
             set -a; source ../../.env; set +a
-            ./uds zarf package remove -l debug oci://ghcr.io/defenseunicorns/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm
+            ./uds zarf package remove -l debug oci://ghcr.io/defenseunicorns-partnerships/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm
   - name: package-up
     description: Build and deploy the zarf package
     actions:
