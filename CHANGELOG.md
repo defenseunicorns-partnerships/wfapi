@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.10](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.9...0.0.10) (2024-09-04)
+
+
+### Bug Fixes
+
+* **scripts:** change image repository ([#70](https://github.com/defenseunicorns-partnerships/wfapi/issues/70)) ([a43e634](https://github.com/defenseunicorns-partnerships/wfapi/commit/a43e634e6886dbda2138827c26c0194934e63ecc))
+
+
+### Miscellaneous Chores
+
+* re-add narwhal-bot token to release-please workflow ([8954c56](https://github.com/defenseunicorns-partnerships/wfapi/commit/8954c564d7e6f3a1c8a890944a5c37ea97814e32))
+* remove narwhal bot token from release please flow ([42d6447](https://github.com/defenseunicorns-partnerships/wfapi/commit/42d6447ad196552aaa913bd2901178a819a9abf2))
+
 ## [0.0.9](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.8...0.0.9) (2024-09-03)
 
 
