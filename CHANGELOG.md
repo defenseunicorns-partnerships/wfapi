@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.11](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.10...0.0.11) (2024-09-04)
+
+
+### Documentation
+
+* fix success status code for DeleteFile endpoint ([#71](https://github.com/defenseunicorns-partnerships/wfapi/issues/71)) ([f7c73af](https://github.com/defenseunicorns-partnerships/wfapi/commit/f7c73afefd1b740a60290d1e33dafd5ca46e010d))
+
 ## [0.0.10](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.9...0.0.10) (2024-09-04)
 
 
