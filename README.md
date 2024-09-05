@@ -33,9 +33,9 @@ This project is a REST API for interacting with Argo Workflows. You'll want to u
 
 - Linux or MacOS x86_64
 - Container runtime (we test using Docker, but others like Podman should work too)
-- K3d
-- UDS CLI
-- yq
+- [K3d](https://k3d.io/)
+- [UDS CLI](https://github.com/defenseunicorns/uds-cli)
+- [yq](https://github.com/mikefarah/yq)
 
 Windows is not supported at this time. We recommend using WSL2. Please let us know if you run into any issues when using WSL2.
 
