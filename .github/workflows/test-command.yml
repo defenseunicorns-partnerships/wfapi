@@ -36,7 +36,7 @@ jobs:
           application_private_key: ${{ secrets.NARWHAL_BOT_SECRET }}
 
   test-all:
-    runs-on: narwal-ubuntu-big-boy-4-core
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4

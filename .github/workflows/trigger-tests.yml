@@ -99,7 +99,7 @@ jobs:
   test-all:
     needs: test-exemption
     if: github.event_name == 'merge_group' && needs.test-exemption.outputs.not-exempt == 'true'
-    runs-on: narwal-ubuntu-big-boy-4-core
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
