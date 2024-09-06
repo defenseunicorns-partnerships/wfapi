@@ -12,6 +12,7 @@ tasks:
       - cmd: rm -rf zap/wrk
       - cmd: mkdir -p zap/wrk
       - cmd: scripts/check_swagger_status.sh
+      - cmd: sleep 5
       - cmd: |
           docker run -t --rm \
           --network="host" \
