@@ -13,7 +13,7 @@ tasks:
       - cmd: mkdir -p zap/wrk
       - cmd: scripts/check_swagger_status.sh
       # Give the app a few more seconds to be ready. Without this the ZAP scan sometimes fails to start.
-      - cmd: sleep 5
+      - cmd: sleep 10
       - cmd: |
           docker run -t --rm \
           --network="host" \
