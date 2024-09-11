@@ -542,7 +542,20 @@
             },
             "appArmorProfile": {
               "additionalProperties": true,
+              "default": {},
               "description": "AppArmor profile. NOTE: This only works if on K8s v1.30.0 or later. If on an earlier version you have to set the profile using an annotation. Ref: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#apparmorprofile-v1-core",
+              "properties": {
+                "type": {
+                  "description": "The type for the AppArmor profile, valid values are RuntimeDefault, Localhost(requires localhostProfile), Unconfined (no AppArmor)",
+                  "title": "type",
+                  "type": [
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "type"
+              ],
               "title": "appArmorProfile",
               "type": [
                 "object"

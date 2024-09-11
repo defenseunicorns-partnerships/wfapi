@@ -65,6 +65,14 @@ AppArmor profile. NOTE: This only works if on K8s v1.30.0 or later. If on an ear
 
 `object` ([appArmorProfile](values-properties-wfapi-properties-securitycontext-properties-apparmorprofile.md))
 
+### appArmorProfile Default Value
+
+The default value is:
+
+```json
+{}
+```
+
 ## capabilities
 
 The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.
