@@ -542,9 +542,7 @@
             },
             "appArmorProfile": {
               "additionalProperties": true,
-              "default": {},
               "description": "AppArmor profile. NOTE: This only works if on K8s v1.30.0 or later. If on an earlier version you have to set the profile using an annotation. Ref: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#apparmorprofile-v1-core",
-              "properties": {},
               "title": "appArmorProfile",
               "type": [
                 "object"
@@ -650,7 +648,6 @@
           },
           "required": [
             "allowPrivilegeEscalation",
-            "appArmorProfile",
             "capabilities",
             "privileged",
             "readOnlyRootFilesystem",
