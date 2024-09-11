@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.0.12](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.11...0.0.12) (2024-09-10)
+
+
+### Documentation
+
+* Add links to prerequisites list ([#78](https://github.com/defenseunicorns-partnerships/wfapi/issues/78)) ([90f77a5](https://github.com/defenseunicorns-partnerships/wfapi/commit/90f77a53763e34e2169c1ad5c261e862d9a58690))
+* add yq to list of prerequisites ([#76](https://github.com/defenseunicorns-partnerships/wfapi/issues/76)) ([e8e9d10](https://github.com/defenseunicorns-partnerships/wfapi/commit/e8e9d10ead0e6b619692aa78448bedb1bcca2b3e))
+
+
+### Miscellaneous Chores
+
+* **deps:** update stable ([#73](https://github.com/defenseunicorns-partnerships/wfapi/issues/73)) ([536cb8d](https://github.com/defenseunicorns-partnerships/wfapi/commit/536cb8d3c02a1b545de483482ce26a319144db5a))
+* **deps:** update stable ([#81](https://github.com/defenseunicorns-partnerships/wfapi/issues/81)) ([4c8f532](https://github.com/defenseunicorns-partnerships/wfapi/commit/4c8f53219feaa9211a68870aa17fe3ee15971675))
+* find least permissions for egress/ingress ([#85](https://github.com/defenseunicorns-partnerships/wfapi/issues/85)) ([6aebe76](https://github.com/defenseunicorns-partnerships/wfapi/commit/6aebe761b30636056f9b3e36b1ff0b6ea64ba4e7))
+
 ## [0.0.11](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.10...0.0.11) (2024-09-04)
 
 
