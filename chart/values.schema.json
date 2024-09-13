@@ -541,10 +541,29 @@
               ]
             },
             "appArmorProfile": {
-              "additionalProperties": true,
-              "default": {},
+              "additionalProperties": false,
               "description": "AppArmor profile. NOTE: This only works if on K8s v1.30.0 or later. If on an earlier version you have to set the profile using an annotation. Ref: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#apparmorprofile-v1-core",
-              "properties": {},
+              "properties": {
+                "localhostProfile": {
+                  "default": "null",
+                  "description": "localhostProfile indicates a profile loaded on the node that should be used. The profile must be preconfigured on the node to work. Must match the loaded name of the profile. Must be set if and only if type is \"Localhost\"",
+                  "title": "localhostProfile",
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "type": {
+                  "description": "The type for the AppArmor profile, valid values are RuntimeDefault, Localhost(requires localhostProfile), Unconfined (no AppArmor)",
+                  "title": "type",
+                  "type": [
+                    "string"
+                  ]
+                }
+              },
+              "required": [
+                "type"
+              ],
               "title": "appArmorProfile",
               "type": [
                 "object"
@@ -650,7 +669,6 @@
           },
           "required": [
             "allowPrivilegeEscalation",
-            "appArmorProfile",
             "capabilities",
             "privileged",
             "readOnlyRootFilesystem",

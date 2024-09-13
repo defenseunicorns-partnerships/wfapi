@@ -55,7 +55,6 @@ wfapi:
 
   securityContext:
     allowPrivilegeEscalation: false
-    appArmorProfile: {}
     capabilities:
       add: []
       drop: [ALL]
