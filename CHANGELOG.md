@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.13](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.12...0.0.13) (2024-09-13)
+
+
+### Bug Fixes
+
+* appArmor profile ([#87](https://github.com/defenseunicorns-partnerships/wfapi/issues/87)) ([50b6d51](https://github.com/defenseunicorns-partnerships/wfapi/commit/50b6d517c9b4ff3e4bbe29d4daa0fc9e596e4a2c))
+
 ## [0.0.12](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.11...0.0.12) (2024-09-10)
 
 
