@@ -13,10 +13,5 @@ spec:
         host: {{ .Values.wfapi.udsPackage.expose.host }}
         gateway: tenant
         port: 80
-    allow:
-      - direction: Ingress
-        selector:
-          app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
-        ports:
-          - 8080
+        targetPort: 8080
 {{- end }}
