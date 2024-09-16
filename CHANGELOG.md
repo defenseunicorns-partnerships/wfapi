@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.14](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.13...0.0.14) (2024-09-16)
+
+
+### Bug Fixes
+
+* Add AWSSDK.SecurityToken dependency ([#92](https://github.com/defenseunicorns-partnerships/wfapi/issues/92)) ([28608bf](https://github.com/defenseunicorns-partnerships/wfapi/commit/28608bf1a68343c470ce94ae53fcbc4a8973ea31))
+* use targetPort instead of allowing ingress on 8080 ([#91](https://github.com/defenseunicorns-partnerships/wfapi/issues/91)) ([2b43617](https://github.com/defenseunicorns-partnerships/wfapi/commit/2b436176a211cbb3e642bef4e1c15298953914ea))
+
 ## [0.0.13](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.12...0.0.13) (2024-09-13)
 
 
