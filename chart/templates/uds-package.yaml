@@ -4,6 +4,12 @@ kind: Package
 metadata:
   name: {{ include "wfapi.fullname" . }}
 spec:
+  sso:
+    - name: wfapi creds
+      clientId: wfapi
+      standardFlowEnabled: false
+      attributes:
+        oauth2.device.authorization.grant.enabled: "true"
   network:
     expose:
       - description: Expose the app using an Istio VirtualService
