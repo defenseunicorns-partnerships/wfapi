@@ -4,12 +4,14 @@ kind: Package
 metadata:
   name: {{ include "wfapi.fullname" . }}
 spec:
+  {{- if eq .Values.wfapi.ASPNETCORE_ENVIRONMENT "Production" }}
   sso:
-    - name: wfapi creds
+    - name: wfapi-creds
       clientId: wfapi
       standardFlowEnabled: false
       attributes:
         oauth2.device.authorization.grant.enabled: "true"
+  {{- end }}
   network:
     expose:
       - description: Expose the app using an Istio VirtualService
