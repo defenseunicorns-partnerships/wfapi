@@ -4,7 +4,7 @@ kind: Package
 metadata:
   name: {{ include "wfapi.fullname" . }}
 spec:
-  {{- if eq .Values.wfapi.ASPNETCORE_ENVIRONMENT "Development" }}
+  {{- if eq .Values.wfapi.env.ASPNETCORE_ENVIRONMENT "Production" }}
   sso:
     - name: wfapi-creds
       clientId: wfapi
@@ -22,4 +22,10 @@ spec:
         gateway: tenant
         port: 80
         targetPort: 8080
+    allow:
+      - direction: Egress
+        selector:
+          app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
+        ports:
+          - 443
 {{- end }}

@@ -116,14 +116,13 @@ try
                     // THIS IS THE PART TO CHANGE
                     // We've seen Keycloak put roles in the `resource_access` claim. It scopes them to the ClientID.
                     // We've also seen JWTs without roles, but with a `groups` block. We can use that instead, we'll just need to update this code block.
-                    var resourceAccess = JObject.Parse(claimsIdentity.FindFirst("resource_access")?.Value ?? "{}");
-                    var roles = resourceAccess[builder.Configuration.GetValue<string>("Auth:Jwt:Audience")!]?["roles"]?.ToObject<List<string>>();
+                    var client_id = claimsIdentity.FindFirst("client_id")?.Value ?? null;
                     // ^^^^^^^^^ CHANGE THIS STUFF ^^^^^^^^^
 
-                    if (roles == null) return Task.CompletedTask;
-                    foreach (var role in roles)
+                    if (client_id == null) return Task.CompletedTask;
+                    else
                     {
-                        claimsIdentity.AddClaim(new Claim(claimsIdentity.RoleClaimType, role));
+                        claimsIdentity.AddClaim(new Claim(claimsIdentity.RoleClaimType, client_id));
                     }
                     return Task.CompletedTask;
                 }

@@ -1,8 +1,9 @@
 package:
   deploy:
     set:
-      ENV_ASPNETCORE_ENVIRONMENT: "Development"
+      ENV_ASPNETCORE_ENVIRONMENT: "Production"
       ENV_SERILOG__MINIMUMLEVEL__DEFAULT: "Information"
       ENV_AWS_ACCESS_KEY_ID: test-user
       ENV_AWS_SECRET_ACCESS_KEY: test-secret
       ENV_SWAGGER__ENABLE: "true"
+      

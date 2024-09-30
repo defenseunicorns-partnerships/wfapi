@@ -1,5 +1,6 @@
 using System.Net.Mime;
 using System.Web;
+using System.Security.Claims;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Asp.Versioning;
@@ -39,6 +40,10 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     [SwaggerOperation(OperationId = "GetFiles")]
     public async Task<IActionResult> GetFiles(CancellationToken cancellationToken)
     {
+        foreach (Claim claim in User.Claims) {
+            string toLog = $"Subject:{claim.Subject.Name},\nIssuer: {claim.Issuer},\nType: {claim.Type},\nValue: {claim.Value}";
+            log.LogInformation(toLog);
+        }
         var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request
         {
             BucketName = s3Client.BucketName,
