@@ -4,7 +4,7 @@ kind: Package
 metadata:
   name: {{ include "wfapi.fullname" . }}
 spec:
-  {{- if eq .Values.wfapi.ASPNETCORE_ENVIRONMENT "Production" }}
+  {{- if eq .Values.wfapi.ASPNETCORE_ENVIRONMENT "Development" }}
   sso:
     - name: wfapi-creds
       clientId: wfapi
