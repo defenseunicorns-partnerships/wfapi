@@ -19,7 +19,7 @@ SecurityContext holds security configuration that will be applied to a container
 | Property                                              | Type      | Required | Nullable       | Defined by                                                                                                                                                                                              |
 | :---------------------------------------------------- | :-------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [allowPrivilegeEscalation](#allowprivilegeescalation) | `boolean` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-securitycontext-properties-allowprivilegeescalation.md "values.yaml#/properties/wfapi/properties/securityContext/properties/allowPrivilegeEscalation") |
-| [appArmorProfile](#apparmorprofile)                   | `object`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-securitycontext-properties-apparmorprofile.md "values.yaml#/properties/wfapi/properties/securityContext/properties/appArmorProfile")                   |
+| [appArmorProfile](#apparmorprofile)                   | `object`  | Optional | cannot be null | [values.yaml](values-properties-wfapi-properties-securitycontext-properties-apparmorprofile.md "values.yaml#/properties/wfapi/properties/securityContext/properties/appArmorProfile")                   |
 | [capabilities](#capabilities)                         | `object`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-securitycontext-properties-capabilities.md "values.yaml#/properties/wfapi/properties/securityContext/properties/capabilities")                         |
 | [privileged](#privileged)                             | `boolean` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-securitycontext-properties-privileged.md "values.yaml#/properties/wfapi/properties/securityContext/properties/privileged")                             |
 | [readOnlyRootFilesystem](#readonlyrootfilesystem)     | `boolean` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-securitycontext-properties-readonlyrootfilesystem.md "values.yaml#/properties/wfapi/properties/securityContext/properties/readOnlyRootFilesystem")     |
@@ -53,7 +53,7 @@ AppArmor profile. NOTE: This only works if on K8s v1.30.0 or later. If on an ear
 
 `appArmorProfile`
 
-* is required
+* is optional
 
 * Type: `object` ([appArmorProfile](values-properties-wfapi-properties-securitycontext-properties-apparmorprofile.md))
 
@@ -64,14 +64,6 @@ AppArmor profile. NOTE: This only works if on K8s v1.30.0 or later. If on an ear
 ### appArmorProfile Type
 
 `object` ([appArmorProfile](values-properties-wfapi-properties-securitycontext-properties-apparmorprofile.md))
-
-### appArmorProfile Default Value
-
-The default value is:
-
-```json
-{}
-```
 
 ## capabilities
 

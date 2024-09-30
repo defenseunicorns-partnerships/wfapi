@@ -10,14 +10,8 @@ spec:
         service: {{ include "wfapi.fullname" . }}
         selector:
           app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
-        host: {{ .Values.wfapi.udsPackage.expose.host}}
+        host: {{ .Values.wfapi.udsPackage.expose.host }}
         gateway: tenant
         port: 80
-    allow:
-      - direction: Egress
-        selector: {}
-        remoteGenerated: Anywhere
-      - direction: Ingress
-        selector: {}
-        remoteGenerated: Anywhere
+        targetPort: 8080
 {{- end }}
