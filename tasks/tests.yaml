@@ -63,7 +63,7 @@ tasks:
               -F 'file=@openapitools.json' \
               -H "Authorization: Bearer ${JWT}"
   - name: get-file
-    description: Attempts to get an unauthorized file
+    description: Gets the octet-stream for the file we uploaded
     actions:
       - cmd: |
           curl -i -X GET \
@@ -79,7 +79,7 @@ tasks:
               -H 'accept: application/octet-stream' \
               -H "Authorization: Bearer ${JWT}"
   - name: delete-file
-    description: Attempts to get an unauthorized file
+    description: Deletes the uploaded file
     actions:
       - cmd: |
           curl -i -X DELETE \
@@ -87,7 +87,7 @@ tasks:
               -H 'accept: */*' \
               -H "Authorization: Bearer ${JWT}"
   - name: delete-file-unauth
-    description: Test commands for SSO testing
+    description: Attempts to delete an unauthorized file
     actions:
       - cmd: |
           curl -i -X DELETE \
