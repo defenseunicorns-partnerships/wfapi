@@ -6,6 +6,7 @@ using Amazon.S3.Model;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using Org.OpenAPITools.Client;
 using Swashbuckle.AspNetCore.Annotations;
@@ -40,14 +41,14 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     [SwaggerOperation(OperationId = "GetFiles")]
     public async Task<IActionResult> GetFiles(CancellationToken cancellationToken)
     {
-        foreach (Claim claim in User.Claims) {
-            string toLog = $"Subject:{claim.Subject.Name},\nIssuer: {claim.Issuer},\nType: {claim.Type},\nValue: {claim.Value}";
-            log.LogInformation(toLog);
-        }
+
+        string ClientPrefix = $"{PrefixBuilder.New(User.Claims)}/{FilesPrefix}";
+        log.LogInformation(ClientPrefix);
+
         var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request
         {
             BucketName = s3Client.BucketName,
-            Prefix = FilesPrefix
+            Prefix = ClientPrefix
         }, cancellationToken: cancellationToken);
         var files = objects.S3Objects.Select(o => new WfapiFileInfo { FileName = o.Key }).ToList();
         return Ok(files);
