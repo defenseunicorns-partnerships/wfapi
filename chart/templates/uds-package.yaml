@@ -9,8 +9,7 @@ spec:
     - name: wfapi-creds
       clientId: wfapi
       standardFlowEnabled: false
-      attributes:
-        oauth2.device.authorization.grant.enabled: "true"
+      #serviceAccountsEnabled: true #TODO: Add this to UDS Core
   {{- end }}
   network:
     expose:

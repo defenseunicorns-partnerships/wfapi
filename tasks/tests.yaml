@@ -1,3 +1,7 @@
+variables:
+  - name: BASIC
+  - name: JWT
+
 tasks:
   - name: e2e
     description: Run the full end-to-end test suite
@@ -27,3 +31,66 @@ tasks:
             -J ./zap-api-scan.json \
             -c /home/zap/zap-api-scan.conf \
             -d
+
+  - name: get-token
+    description: Test commands for SSO testing
+    actions:
+      - cmd: |
+          curl -X 'POST' \
+            'https://sso.uds.dev/realms/uds/protocol/openid-connect/token' \
+            -d grant_type=client_credentials \
+            -H 'accept: application/json' \
+            -H "Authorization: Basic ${BASIC}" | jq -r '.access_token'
+        setVariables:
+          - name: JWT
+  - name: get-files
+    description: Test commands for SSO testing
+    actions:
+      - cmd: |
+            curl -i -X GET \
+              https://wfapi.uds.dev/api/v1/workflows/files \
+              -H 'accept: application/json' \
+              -H "Authorization: Bearer ${JWT}"
+  - name: upload-file
+    description: Test upload command
+    actions:
+      - cmd: |
+          curl -i -X POST \
+              https://wfapi.uds.dev/api/v1/workflows/files \
+              -H 'accept: application/json' \
+              -H 'Content-Type: multipart/form-data' \
+              -F 'fileName=openapitools.json' \
+              -F 'file=@openapitools.json' \
+              -H "Authorization: Bearer ${JWT}"
+  - name: get-file
+    description: Attempts to get an unauthorized file
+    actions:
+      - cmd: |
+          curl -i -X GET \
+              https://wfapi.uds.dev/api/v1/workflows/files/%2Fwfapi%2Ffiles%2Fopenapitools.json \
+              -H 'accept: application/octet-stream' \
+              -H "Authorization: Bearer ${JWT}"
+  - name: get-file-unauth
+    description: Attempts to get an unauthorized file
+    actions:
+      - cmd: |
+          curl -i -X GET \
+              https://wfapi.uds.dev/api/v1/workflows/files/whoops.png \
+              -H 'accept: application/octet-stream' \
+              -H "Authorization: Bearer ${JWT}"
+  - name: delete-file
+    description: Attempts to get an unauthorized file
+    actions:
+      - cmd: |
+          curl -i -X DELETE \
+              https://wfapi.uds.dev/api/v1/workflows/files/%2Fwfapi%2Ffiles%2Fopenapitools.json \
+              -H 'accept: */*' \
+              -H "Authorization: Bearer ${JWT}"
+  - name: delete-file-unauth
+    description: Test commands for SSO testing
+    actions:
+      - cmd: |
+          curl -i -X DELETE \
+              https://wfapi.uds.dev/api/v1/workflows/files/whoops.png \
+              -H 'accept: */*' \
+              -H "Authorization: Bearer ${JWT}"

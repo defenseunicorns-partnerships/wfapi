@@ -43,7 +43,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     {
 
         string ClientPrefix = $"{PrefixBuilder.New(User.Claims)}/{FilesPrefix}";
-        log.LogInformation(ClientPrefix);
+        log.LogInformation($"Client prefix: {ClientPrefix}");
 
         var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request
         {
@@ -78,6 +78,12 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     public async Task<IActionResult> DownloadFile(string fullFileName, CancellationToken cancellationToken)
     {
         fullFileName = HttpUtility.UrlDecode(fullFileName);
+        string ClientPrefix = $"{PrefixBuilder.New(User.Claims)}/{FilesPrefix}";
+        if (fullFileName.StartsWith("/")) fullFileName = fullFileName.Substring(1);
+        if (! fullFileName.StartsWith(ClientPrefix)) {
+            log.LogWarning($"Client tried to download location {fullFileName}\nClientPrefix={ClientPrefix}");
+            return Forbid();
+        }
         var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request()
         {
             BucketName = s3Client.BucketName,
@@ -115,7 +121,8 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     [Consumes(MediaTypeNames.Multipart.FormData)]
     public async Task<IActionResult> UploadFile([FromForm] string fileName, IFormFile file, CancellationToken cancellationToken)
     {
-        var key = $"{FilesPrefix}{fileName}";
+        string ClientPrefix = $"{PrefixBuilder.New(User.Claims)}/{FilesPrefix}";
+        var key = $"{ClientPrefix}{fileName}";
 
         // Upload the file
         await using var stream = file.OpenReadStream();
@@ -147,6 +154,12 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     public async Task<IActionResult> DeleteFile([FromRoute] string fullFileName, CancellationToken cancellationToken)
     {
         fullFileName = HttpUtility.UrlDecode(fullFileName);
+        string ClientPrefix = $"{PrefixBuilder.New(User.Claims)}/{FilesPrefix}";
+        if (fullFileName.StartsWith("/")) fullFileName = fullFileName.Substring(1);
+        if (! fullFileName.StartsWith(ClientPrefix)) {
+            log.LogWarning($"Client tried to delete location {fullFileName}\nClientPrefix={ClientPrefix}");
+            return Forbid();
+        }
         try
         {
             var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request()

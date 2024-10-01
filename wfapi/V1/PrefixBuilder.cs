@@ -9,7 +9,7 @@ namespace wfapi.V1
    /// Builder for the bucket prefix based on the roleClaim type
    /// </summary>
    /// <param name="claims">User.Claims object from controller</param>
-   public class PrefixBuilder(IEnumerable<Claim> claims, ILogger<PrefixBuilder> log)
+   public class PrefixBuilder(IEnumerable<Claim> claims)
    {
       private const string RoleType = "roles";
       /// <summary>
@@ -20,7 +20,6 @@ namespace wfapi.V1
       public static string New(IEnumerable<Claim> claims)
       {
          Claim claim = claims.Where(x => x.Type == RoleType).FirstOrDefault();
-         log.LogInformation($"Claim prefix: {claim.value}")
          return claim.Value;
       }
    }
