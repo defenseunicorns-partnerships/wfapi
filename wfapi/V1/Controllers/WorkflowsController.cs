@@ -81,7 +81,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
         string ClientPrefix = $"{PrefixBuilder.New(User.Claims)}/{FilesPrefix}";
         if (fullFileName.StartsWith("/")) fullFileName = fullFileName.Substring(1);
         if (! fullFileName.StartsWith(ClientPrefix)) {
-            log.LogWarning($"Client tried to download location {fullFileName}\nClientPrefix={ClientPrefix}");
+            log.LogWarning($"Client tried to download S3 Key {fullFileName} with ClientPrefix={ClientPrefix}");
             return Forbid();
         }
         var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request()
@@ -157,7 +157,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
         string ClientPrefix = $"{PrefixBuilder.New(User.Claims)}/{FilesPrefix}";
         if (fullFileName.StartsWith("/")) fullFileName = fullFileName.Substring(1);
         if (! fullFileName.StartsWith(ClientPrefix)) {
-            log.LogWarning($"Client tried to delete location {fullFileName}\nClientPrefix={ClientPrefix}");
+            log.LogWarning($"Client tried to download S3 Key {fullFileName} with ClientPrefix={ClientPrefix}");
             return Forbid();
         }
         try
