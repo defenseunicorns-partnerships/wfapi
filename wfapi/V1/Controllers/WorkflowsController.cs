@@ -41,8 +41,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     [SwaggerOperation(OperationId = "GetFiles")]
     public async Task<IActionResult> GetFiles(CancellationToken cancellationToken)
     {
-
-        string ClientPrefix = $"{PrefixBuilder.New(User.Claims)}/{FilesPrefix}";
+        string ClientPrefix = PrefixBuilder.New(User.Claims, FilesPrefix);
         log.LogInformation($"Client prefix: {ClientPrefix}");
 
         var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request
@@ -78,7 +77,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     public async Task<IActionResult> DownloadFile(string fullFileName, CancellationToken cancellationToken)
     {
         fullFileName = HttpUtility.UrlDecode(fullFileName);
-        string ClientPrefix = $"{PrefixBuilder.New(User.Claims)}/{FilesPrefix}";
+        string ClientPrefix = PrefixBuilder.New(User.Claims, FilesPrefix);
         if (fullFileName.StartsWith("/")) fullFileName = fullFileName.Substring(1);
         if (! fullFileName.StartsWith(ClientPrefix)) {
             log.LogWarning($"Client tried to download S3 Key {fullFileName} with ClientPrefix={ClientPrefix}");
@@ -121,7 +120,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     [Consumes(MediaTypeNames.Multipart.FormData)]
     public async Task<IActionResult> UploadFile([FromForm] string fileName, IFormFile file, CancellationToken cancellationToken)
     {
-        string ClientPrefix = $"{PrefixBuilder.New(User.Claims)}/{FilesPrefix}";
+        string ClientPrefix = PrefixBuilder.New(User.Claims, FilesPrefix);
         var key = $"{ClientPrefix}{fileName}";
 
         // Upload the file
@@ -154,7 +153,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     public async Task<IActionResult> DeleteFile([FromRoute] string fullFileName, CancellationToken cancellationToken)
     {
         fullFileName = HttpUtility.UrlDecode(fullFileName);
-        string ClientPrefix = $"{PrefixBuilder.New(User.Claims)}/{FilesPrefix}";
+        string ClientPrefix = PrefixBuilder.New(User.Claims, FilesPrefix);
         if (fullFileName.StartsWith("/")) fullFileName = fullFileName.Substring(1);
         if (! fullFileName.StartsWith(ClientPrefix)) {
             log.LogWarning($"Client tried to download S3 Key {fullFileName} with ClientPrefix={ClientPrefix}");
