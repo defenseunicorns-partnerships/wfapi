@@ -9,7 +9,7 @@ spec:
     - name: wfapi-creds
       clientId: wfapi
       standardFlowEnabled: false
-      #serviceAccountsEnabled: true #TODO: Add this to UDS Core
+      serviceAccountsEnabled: true #TODO: Add this to UDS Core
   {{- end }}
   network:
     expose:
