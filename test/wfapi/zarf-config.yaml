@@ -6,4 +6,4 @@ package:
       ENV_AWS_ACCESS_KEY_ID: test-user
       ENV_AWS_SECRET_ACCESS_KEY: test-secret
       ENV_SWAGGER__ENABLE: "true"
-      
+      ENV_AUTH__JWT__AUDIENCE: "wfapi;test;dex;lds"

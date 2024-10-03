@@ -76,6 +76,8 @@ try
     });
 
     // SSO
+    string jwt_auds = builder.Configuration.GetValue<string>("Auth:Jwt:Audience");
+    Log.Information($"Audiences: {jwt_auds}");
     builder.Services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -90,7 +92,7 @@ try
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
                 ValidIssuer = builder.Configuration.GetValue<string>("Auth:Jwt:Authority"),
-                ValidAudience = builder.Configuration.GetValue<string>("Auth:Jwt:Audience"),
+                ValidAudiences = jwt_auds.Split(";"),
                 IssuerSigningKeyResolver = (_, _, _, _) =>
                 {
                     var configurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(
@@ -105,7 +107,6 @@ try
 
             };
             options.Authority = builder.Configuration.GetValue<string>("Auth:Jwt:Authority");
-            options.Audience = builder.Configuration.GetValue<string>("Auth:Jwt:Audience");
             options.RequireHttpsMetadata = builder.Configuration.GetValue<bool>("Auth:Jwt:RequireHttpsMetadata");
             options.Events = new JwtBearerEvents
             {

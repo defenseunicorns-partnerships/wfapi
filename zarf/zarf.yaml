@@ -24,8 +24,8 @@ variables:
     default: "https://sso.uds.dev/realms/uds"
     sensitive: false
   - name: ENV_AUTH__JWT__AUDIENCE
-    description: JWT audience. Corresponds to the Keycloak client associated with this app.
-    default: "wfapi"
+    description: JWT audience. Semi-colon separated list of clients to accept JWTs from
+    default: "wfapi;test"
     sensitive: false
   - name: ENV_AUTH__JWT__REQUIREHTTPSMETADATA
     description: Whether to require HTTPS when interfacing with the IDP.
