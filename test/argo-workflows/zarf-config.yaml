@@ -15,3 +15,5 @@ package:
       S3_BUCKET_NAME: argo
       DEFAULT_ARTIFACT_REPOSITORY: minio-artifact-repository
       DEV_DEPLOYMENT: true
+      WF_TTL_SECONDS_AFTER_SUCCESS: "2"
+      WF_TTL_SECONDS_AFTER_FAILURE: "120"

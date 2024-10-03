@@ -42,7 +42,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     public async Task<IActionResult> GetFiles(CancellationToken cancellationToken)
     {
         string ClientPrefix = PrefixBuilder.New(User.Claims, FilesPrefix);
-        log.LogInformation($"Client prefix: {ClientPrefix}");
+        log.LogInformation($"Attempting to list files with Client prefix: {ClientPrefix}");
 
         var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request
         {
@@ -78,6 +78,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     {
         fullFileName = HttpUtility.UrlDecode(fullFileName);
         string ClientPrefix = PrefixBuilder.New(User.Claims, FilesPrefix);
+        log.LogInformation($"Attempting to download key {fullFileName} with Client prefix: {ClientPrefix}");
         if (fullFileName.StartsWith("/")) fullFileName = fullFileName.Substring(1);
         if (! fullFileName.StartsWith(ClientPrefix)) {
             log.LogWarning($"Client tried to download S3 Key {fullFileName} with ClientPrefix={ClientPrefix}");
@@ -122,6 +123,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     {
         string ClientPrefix = PrefixBuilder.New(User.Claims, FilesPrefix);
         var key = $"{ClientPrefix}{fileName}";
+        log.LogInformation($"Attempting to upload file key {key} with Client Prefix {ClientPrefix}");
 
         // Upload the file
         await using var stream = file.OpenReadStream();
@@ -154,6 +156,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     {
         fullFileName = HttpUtility.UrlDecode(fullFileName);
         string ClientPrefix = PrefixBuilder.New(User.Claims, FilesPrefix);
+        log.LogInformation($"Attempting to delete key {fullFileName} with Client prefix: {ClientPrefix}");
         if (fullFileName.StartsWith("/")) fullFileName = fullFileName.Substring(1);
         if (! fullFileName.StartsWith(ClientPrefix)) {
             log.LogWarning($"Client tried to download S3 Key {fullFileName} with ClientPrefix={ClientPrefix}");

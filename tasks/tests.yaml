@@ -94,3 +94,21 @@ tasks:
               https://wfapi.uds.dev/api/v1/workflows/files/whoops.png \
               -H 'accept: */*' \
               -H "Authorization: Bearer ${JWT}"
+  - name: template-up
+    description: Gets the hello-world WorkflowTemplate into the cluster
+    actions:
+      - cmd: uds zarf tools kubectl apply -f test/hello-world-template.yaml
+  - name: submit-workflow
+    description: Submits the hello-world template workflow via WFAPI
+    actions:
+      - cmd: |
+          curl -i -X 'POST' \
+            'https://wfapi.uds.dev/api/v1/workflows' \
+            -H 'accept: application/json' \
+            -H 'Content-Type: application/json' \
+            -H "Authorization: Bearer ${JWT}" \
+            -d '{
+            "templateName": "hello-world-template",
+            "generateName": "hello-world-",
+            "parameters": []
+            }'
