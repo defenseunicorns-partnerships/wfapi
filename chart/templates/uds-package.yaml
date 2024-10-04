@@ -6,10 +6,31 @@ metadata:
 spec:
   {{- if eq .Values.wfapi.env.ASPNETCORE_ENVIRONMENT "Production" }}
   sso:
-    - name: wfapi-creds
-      clientId: wfapi
+    - name: wfapi-api
+      clientId: wfapi-api
       standardFlowEnabled: false
-      serviceAccountsEnabled: true #TODO: Add this to UDS Core
+      serviceAccountsEnabled: true
+      secretName: client-secret-wfapi-api
+      secretTemplate:
+        clientId: "clientField(clientId)"
+        clientSecret: "clientField(secret)"
+      protocolMappers:
+        - name: audience
+          protocol: "openid-connect"
+          protocolMapper: "oidc-audience-mapper"
+          config:
+            included.client.audience: {{ include "wfapi.fullname" . }}
+            access.token.claim: "true"
+            id.token.claim: "false"
+            lightweight.claim: "false"
+            userinfo.token.claim: "false"
+            introspection.token.claim: "true"
+    - name: {{ include "wfapi.fullname" . }}
+      clientId: {{ include "wfapi.fullname" . }}
+      redirectUris:
+        - "https://wfapi.uds.dev/auth"
+      enableAuthserviceSelector:
+        app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
   {{- end }}
   network:
     expose:
@@ -27,4 +48,10 @@ spec:
           app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
         ports:
           - 443
+      - direction: Egress
+        selector:
+          app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
+        remoteNamespace: keycloak
+        ports:
+          - 8080
 {{- end }}
