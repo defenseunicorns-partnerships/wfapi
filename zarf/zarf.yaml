@@ -25,7 +25,7 @@ variables:
     sensitive: false
   - name: ENV_AUTH__JWT__AUDIENCE
     description: JWT audience. Semi-colon separated list of clients to accept JWTs from
-    default: "wfapi;test"
+    default: "wfapi"
     sensitive: false
   - name: ENV_AUTH__JWT__REQUIREHTTPSMETADATA
     description: Whether to require HTTPS when interfacing with the IDP.

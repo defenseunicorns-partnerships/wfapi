@@ -28,6 +28,7 @@ namespace wfapi.V1
             if (claim is not null) ClaimValue = claim.Value;
          }
          if (FilesPrefix is null) return ClaimValue;
+         else if (ClaimValue == "") return FilesPrefix;
          else return $"{ClaimValue}/{FilesPrefix}";
       }
 

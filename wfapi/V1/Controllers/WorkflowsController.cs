@@ -213,8 +213,10 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
         string template = submission.TemplateName;
         string ClientWorkflowPrefix = PrefixBuilder.New(User.Claims, null);
         log.LogInformation($"Attempting to create workflow with template {template} and client {ClientWorkflowPrefix}");
-        if ( !template.StartsWith(ClientWorkflowPrefix)) return Forbid();
-
+        if ( ClientWorkflowPrefix != "" && !template.StartsWith(ClientWorkflowPrefix)) {
+            log.LogWarning($"WorkflowTemplate and Client mismatch: {template} != {ClientWorkflowPrefix}");
+            return Forbid();
+        }
         var body = new IoArgoprojWorkflowV1alpha1WorkflowSubmitRequest
         {
             ResourceKind = "WorkflowTemplate",
