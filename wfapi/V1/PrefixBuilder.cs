@@ -18,7 +18,7 @@ namespace wfapi.V1
       /// </summary>
       /// <param name="claims">User.Claims object from http context</param>
       /// <param name="FilesPrefix">Optional string of FilesPrefix if building an S3 prefix</param>
-      /// <returns>client_id if FilesPrefix </returns>
+      /// <returns>client_id if FilesPrefix=null, else client_id/FilesPrefix </returns>
       private static string _new(IEnumerable<Claim> claims, string? FilesPrefix)
       {
          string ClaimValue = "";

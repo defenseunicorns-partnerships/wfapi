@@ -6,6 +6,12 @@ metadata:
 spec:
   {{- if eq .Values.wfapi.env.ASPNETCORE_ENVIRONMENT "Production" }}
   sso:
+    - name: {{ include "wfapi.fullname" . }}
+      clientId: {{ include "wfapi.fullname" . }}
+      redirectUris:
+        - "https://wfapi.uds.dev/auth"
+      enableAuthserviceSelector:
+        app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
     - name: wfapi-api
       clientId: wfapi-api
       standardFlowEnabled: false
@@ -25,12 +31,6 @@ spec:
             lightweight.claim: "false"
             userinfo.token.claim: "false"
             introspection.token.claim: "true"
-    - name: {{ include "wfapi.fullname" . }}
-      clientId: {{ include "wfapi.fullname" . }}
-      redirectUris:
-        - "https://wfapi.uds.dev/auth"
-      enableAuthserviceSelector:
-        app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
   {{- end }}
   network:
     expose:

@@ -201,11 +201,20 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
         "Success. The workflow has been submitted. The output is the WorkflowInfo object that you can also query for at any time.",
         typeof(WorkflowInfo),
         "application/json"
-    )]
+    ),
+    SwaggerResponse(
+         StatusCodes.Status403Forbidden,
+         "You don't have permission to reference that workflowTemplate."
+     )]
     [SwaggerOperation(OperationId = "SubmitWorkflow")]
     [Consumes(MediaTypeNames.Application.Json)]
     public IActionResult SubmitWorkflow([FromBody] WorkflowSubmission submission)
     {
+        string template = submission.TemplateName;
+        string ClientWorkflowPrefix = PrefixBuilder.New(User.Claims, null);
+        log.LogInformation($"Attempting to create workflow with template {template} and client {ClientWorkflowPrefix}");
+        if ( !template.StartsWith(ClientWorkflowPrefix)) return Forbid();
+
         var body = new IoArgoprojWorkflowV1alpha1WorkflowSubmitRequest
         {
             ResourceKind = "WorkflowTemplate",
