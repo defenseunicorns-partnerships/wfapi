@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.15](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.14...0.0.15) (2024-10-07)
+
+
+### Miscellaneous Chores
+
+* **deps:** update dependency awssdk.s3 to 3.7.402.8 ([#84](https://github.com/defenseunicorns-partnerships/wfapi/issues/84)) ([c8ed15f](https://github.com/defenseunicorns-partnerships/wfapi/commit/c8ed15fed63285fd6206544c658be36c4041d009))
+* **deps:** update stable fix ([#97](https://github.com/defenseunicorns-partnerships/wfapi/issues/97)) ([c88853b](https://github.com/defenseunicorns-partnerships/wfapi/commit/c88853bef71dd6824eb37ccac0e4892a870ea016))
+
 ## [0.0.14](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.13...0.0.14) (2024-09-16)
 
 
