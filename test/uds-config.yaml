@@ -8,3 +8,7 @@ variables:
       - accessKey: test-user
         secretKey: test-secret
         policy: "readwrite"
+  core-slim-dev:
+    insecure_admin_password_generation: true
+    keycloak_devmode: true
+    
