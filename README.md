@@ -69,7 +69,6 @@ The default auth methods require UDS-core to be installed with Authservice if AS
 2. Get a JWT from keycloak using `uds run tests:get-token --set BASIC=wfapi-api:{client_secret}`, where `client-secret` is the decoded secret from step 1
 3. Use the JWT either in your own curl commands, or with the targets in the `tasks/test.yaml` file. To see a list of these targets use `uds run --list-all` and look at the targets that have `test:xxxx`.
 
-
 ## FAQ
 
 ### What are the main features of this project?
