@@ -1,10 +1,12 @@
 using System.Net.Mime;
 using System.Web;
+using System.Security.Claims;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using Org.OpenAPITools.Client;
 using Swashbuckle.AspNetCore.Annotations;
@@ -39,10 +41,13 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     [SwaggerOperation(OperationId = "GetFiles")]
     public async Task<IActionResult> GetFiles(CancellationToken cancellationToken)
     {
+        string ClientPrefix = PrefixBuilder.New(User.Claims, FilesPrefix);
+        log.LogInformation($"Attempting to list files with Client prefix: {ClientPrefix}");
+
         var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request
         {
             BucketName = s3Client.BucketName,
-            Prefix = FilesPrefix
+            Prefix = ClientPrefix
         }, cancellationToken: cancellationToken);
         var files = objects.S3Objects.Select(o => new WfapiFileInfo { FileName = o.Key }).ToList();
         return Ok(files);
@@ -72,6 +77,13 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     public async Task<IActionResult> DownloadFile(string fullFileName, CancellationToken cancellationToken)
     {
         fullFileName = HttpUtility.UrlDecode(fullFileName);
+        string ClientPrefix = PrefixBuilder.New(User.Claims, FilesPrefix);
+        log.LogInformation($"Attempting to download key {fullFileName} with Client prefix: {ClientPrefix}");
+        if (fullFileName.StartsWith("/")) fullFileName = fullFileName.Substring(1);
+        if (! fullFileName.StartsWith(ClientPrefix)) {
+            log.LogWarning($"Client tried to download S3 Key {fullFileName} with ClientPrefix={ClientPrefix}");
+            return Forbid();
+        }
         var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request()
         {
             BucketName = s3Client.BucketName,
@@ -109,7 +121,9 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     [Consumes(MediaTypeNames.Multipart.FormData)]
     public async Task<IActionResult> UploadFile([FromForm] string fileName, IFormFile file, CancellationToken cancellationToken)
     {
-        var key = $"{FilesPrefix}{fileName}";
+        string ClientPrefix = PrefixBuilder.New(User.Claims, FilesPrefix);
+        var key = $"{ClientPrefix}{fileName}";
+        log.LogInformation($"Attempting to upload file key {key} with Client Prefix {ClientPrefix}");
 
         // Upload the file
         await using var stream = file.OpenReadStream();
@@ -141,6 +155,13 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
     public async Task<IActionResult> DeleteFile([FromRoute] string fullFileName, CancellationToken cancellationToken)
     {
         fullFileName = HttpUtility.UrlDecode(fullFileName);
+        string ClientPrefix = PrefixBuilder.New(User.Claims, FilesPrefix);
+        log.LogInformation($"Attempting to delete key {fullFileName} with Client prefix: {ClientPrefix}");
+        if (fullFileName.StartsWith("/")) fullFileName = fullFileName.Substring(1);
+        if (! fullFileName.StartsWith(ClientPrefix)) {
+            log.LogWarning($"Client tried to download S3 Key {fullFileName} with ClientPrefix={ClientPrefix}");
+            return Forbid();
+        }
         try
         {
             var objects = await s3Client.Client.ListObjectsV2Async(new ListObjectsV2Request()
@@ -180,11 +201,22 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
         "Success. The workflow has been submitted. The output is the WorkflowInfo object that you can also query for at any time.",
         typeof(WorkflowInfo),
         "application/json"
-    )]
+    ),
+    SwaggerResponse(
+         StatusCodes.Status403Forbidden,
+         "You don't have permission to reference that workflowTemplate."
+     )]
     [SwaggerOperation(OperationId = "SubmitWorkflow")]
     [Consumes(MediaTypeNames.Application.Json)]
     public IActionResult SubmitWorkflow([FromBody] WorkflowSubmission submission)
     {
+        string template = submission.TemplateName;
+        string ClientWorkflowPrefix = PrefixBuilder.New(User.Claims, null);
+        log.LogInformation($"Attempting to create workflow with template {template} and client {ClientWorkflowPrefix}");
+        if ( ClientWorkflowPrefix != "" && !template.StartsWith(ClientWorkflowPrefix)) {
+            log.LogWarning($"WorkflowTemplate and Client mismatch: {template} != {ClientWorkflowPrefix}");
+            return Forbid();
+        }
         var body = new IoArgoprojWorkflowV1alpha1WorkflowSubmitRequest
         {
             ResourceKind = "WorkflowTemplate",

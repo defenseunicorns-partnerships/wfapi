@@ -11,7 +11,7 @@ wfapi: # @schema title: wfapi; type: [object]; description: wfapi chart settings
   fullnameOverride: "" # @schema title: fullnameOverride; type: [string]; description: String to fully override wfapi.fullname template with a string. Default is ""; required: true; default: ""
 
   env: # @schema title: env; type: [object]; description: Environment variables to set in the container. Ref: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables; required: true; additionalProperties: false
-    ASPNETCORE_ENVIRONMENT: "Production" # @schema title: ASPNETCORE_ENVIRONMENT; type: [string]; description: ASP.NET Core environment. If "Development", all JWT auth will be disabled; required: true; default: "Production"; enum: [Development, Production]
+    ASPNETCORE_ENVIRONMENT: "Production" # @schema title: ASPNETCORE_ENVIRONMENT; type: [string]; description: ASP.NET Core environment. If "Development", all JWT auth will be disabled; required: true; default: "Production"; enum: [Development, Production, Test]
     Serilog__MinimumLevel__Default: "Information" # @schema title: Serilog__MinimumLevel__Default; type: [string]; description: Serilog minimum log level; required: true; default: "Information"
     Auth__Jwt__WellKnownConfig: "https://sso.uds.dev/realms/uds/.well-known/openid-configuration" # @schema title: Auth__Jwt__WellKnownConfig; type: [string]; description: Well-known configuration URL for the JWT issuer; required: true; default: "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
     Auth__Jwt__Authority: "https://sso.uds.dev/realms/uds" # @schema title: Auth__Jwt__Authority; type: [string]; description: JWT authority; required: true; default: "https://sso.uds.dev/realms/uds"

@@ -9,7 +9,7 @@ variables:
     description: ASP.NET Core environment. If "Development", all JWT auth will be disabled.
     default: "Development"
     sensitive: false
-    pattern: "^(Development|Production)$"
+    pattern: "^(Development|Production|Test)$"
   - name: ENV_SERILOG__MINIMUMLEVEL__DEFAULT
     description: Serilog minimum log level.
     default: "Information"
@@ -24,7 +24,7 @@ variables:
     default: "https://sso.uds.dev/realms/uds"
     sensitive: false
   - name: ENV_AUTH__JWT__AUDIENCE
-    description: JWT audience. Corresponds to the Keycloak client associated with this app.
+    description: JWT audience. Semi-colon separated list of clients to accept JWTs from
     default: "wfapi"
     sensitive: false
   - name: ENV_AUTH__JWT__REQUIREHTTPSMETADATA

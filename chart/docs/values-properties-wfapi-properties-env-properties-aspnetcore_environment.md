@@ -22,6 +22,7 @@ ASP.NET Core environment. If "Development", all JWT auth will be disabled
 | :-------------- | :---------- |
 | `"Development"` |             |
 | `"Production"`  |             |
+| `"Test"`        |             |
 
 ## ASPNETCORE\_ENVIRONMENT Default Value
 
