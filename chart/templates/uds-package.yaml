@@ -4,14 +4,16 @@ kind: Package
 metadata:
   name: {{ include "wfapi.fullname" . }}
 spec:
-  {{- if eq .Values.wfapi.env.ASPNETCORE_ENVIRONMENT "Production" }}
   sso:
+  {{- if ne .Values.wfapi.env.ASPNETCORE_ENVIRONMENT "Development" -}}
     - name: {{ include "wfapi.fullname" . }}
       clientId: {{ include "wfapi.fullname" . }}
       redirectUris:
         - "https://wfapi.uds.dev/auth"
       enableAuthserviceSelector:
         app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
+  {{- end }}
+  {{- if eq .Values.wfapi.env.ASPNETCORE_ENVIRONMENT "Test" }}
     - name: wfapi-api
       clientId: wfapi-api
       standardFlowEnabled: false
