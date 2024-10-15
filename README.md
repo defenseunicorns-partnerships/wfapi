@@ -63,6 +63,13 @@ If variable ASPNETCORE_ENVIRONMENT is set to "Development", the API will not req
 
 If variable ASPNETCORE_ENVIRONMENT is set to anything other than "Development" (like "Production", which is the default) the API requires a JWT token in the Authorization header. The token must be signed by the auth server specified in the configuration (likely Keycloak).
 
+### AuthN / AuthZ with UDS-CORE
+The default auth methods require UDS-core to be installed with Authservice if ASPNETCORE_ENVIRONMENT is set to "Production".  This will create two clients in the `argo` namespace.  One, called `wfapi` is a standard flow client that will create an `authservice` protection for wfapi that expects the `wfapi` audience.  The second client, called `wfapi-api` is a service account that has `wfapi` in the `aud` field.  Follow these steps to test wfapi with the `wfapi-api` client:
+1. Get the client secret from the kubernetes secret in the `argo` namespace `client-secret-wfapi-api`
+2. Get a JWT from keycloak using `uds run tests:get-token --set BASIC=wfapi-api:{client_secret}`, where `client-secret` is the decoded secret from step 1
+3. Use the JWT either in your own curl commands, or with the targets in the `tasks/test.yaml` file. To see a list of these targets use `uds run --list-all` and look at the targets that have `test:xxxx`.
+
+
 ## FAQ
 
 ### What are the main features of this project?
