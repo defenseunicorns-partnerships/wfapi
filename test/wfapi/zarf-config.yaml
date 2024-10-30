@@ -8,3 +8,4 @@ package:
       ENV_SWAGGER__ENABLE: "true"
       CPU_LIMIT: 1
       MEMORY_LIMIT: 2Gi
+      MEMORY_REQUEST: 256Mi

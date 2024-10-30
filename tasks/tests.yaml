@@ -14,6 +14,7 @@ tasks:
           sleep 28
           ./uds zarf tools kubectl get workflows -n argo
           ./uds zarf tools kubectl get pods -n argo
+          ./uds zarf tools kubectl events -n argo
           sleep 10
           ./uds zarf tools kubectl get workflows -n argo
           ./uds zarf tools kubectl get pods -n argo
