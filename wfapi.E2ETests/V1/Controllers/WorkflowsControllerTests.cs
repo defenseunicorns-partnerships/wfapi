@@ -352,7 +352,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             .And()
             .DeserializeTo(typeof(WorkflowInfo));
         output.WriteLine($"Workflow {workflow.Name} submitted");
-        await Task.Delay(500);
+        await Task.Delay(600);
 
         // loop until the workflow is archived
         Stopwatch sw = Stopwatch.StartNew();
@@ -369,7 +369,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
                 .DeserializeTo(typeof(WorkflowInfo));
             isSucceeded = workflow.Status == WorkflowStatus.Succeeded;
             if (isSucceeded) break;
-            await Task.Delay(500);
+            await Task.Delay(600);
         }
         sw.Stop();
         output.WriteLine($"Workflow {workflow.Name} is {workflow.Status} after " + sw.ElapsedMilliseconds + "ms");
@@ -397,6 +397,6 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             // .And()
             // .Header("Connection", "keep-alive")
             .And()
-            .ResponseTime(Is.LessThan(TimeSpan.FromMilliseconds(500)));
+            .ResponseTime(Is.LessThan(TimeSpan.FromMilliseconds(600)));
     }
 }

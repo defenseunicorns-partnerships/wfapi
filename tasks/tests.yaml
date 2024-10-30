@@ -6,9 +6,18 @@ tasks:
   - name: e2e
     description: Run the full end-to-end test suite
     actions:
+      - cmd: ./uds zarf tools kubectl apply -f test/hello-world-template.yaml
+      - task: submit-dev-workflow
       - cmd: |
-          ./uds zarf tools kubectl apply -f test/hello-world-template.yaml
-          dotnet test wfapi.E2ETests --logger "console;verbosity=detailed"
+          ./uds zarf tools kubectl get workflows -n argo
+          ./uds zarf tools kubectl get pods -n argo
+          sleep 28
+          ./uds zarf tools kubectl get workflows -n argo
+          ./uds zarf tools kubectl get pods -n argo
+          sleep 10
+          ./uds zarf tools kubectl get workflows -n argo
+          ./uds zarf tools kubectl get pods -n argo
+      - cmd: dotnet test wfapi.E2ETests --logger "console;verbosity=detailed"
 
   - name: dast
     description: Run DAST tests using OWASP ZAP's API scan
@@ -111,4 +120,17 @@ tasks:
             "templateName": "hello-world-template",
             "generateName": "hello-world-",
             "parameters": []
+            }'
+  - name: submit-dev-workflow
+    description: Submits the hellow-world template via WFAPI without auth
+    actions:
+      - cmd: |
+          curl -i -X 'POST' \
+            'https://wfapi.uds.dev/api/v1/workflows' \
+            -H 'accept: application/json' \
+            -H 'Content-Type: application/json' \
+            -d '{
+            "templateName": "hello-world-template",
+            "generateName": "hello-world-",
+            "parameters": [{"name": "waitSeconds", "value": "30"}]
             }'
