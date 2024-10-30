@@ -26,7 +26,8 @@
               "description": "ASP.NET Core environment. If \"Development\", all JWT auth will be disabled",
               "enum": [
                 "Development",
-                "Production"
+                "Production",
+                "Test"
               ],
               "title": "ASPNETCORE_ENVIRONMENT",
               "type": [

@@ -4,6 +4,37 @@ kind: Package
 metadata:
   name: {{ include "wfapi.fullname" . }}
 spec:
+  sso:
+  {{- if ne .Values.wfapi.env.ASPNETCORE_ENVIRONMENT "Development" }}
+    - name: {{ include "wfapi.fullname" . }}
+      clientId: {{ include "wfapi.fullname" . }}
+      redirectUris:
+      # TODO: automate getting redirect URI
+        - "https://wfapi.uds.dev/auth"
+      enableAuthserviceSelector:
+        app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
+  {{- end }}
+  {{- if eq .Values.wfapi.env.ASPNETCORE_ENVIRONMENT "Test" }}
+    - name: wfapi-api
+      clientId: wfapi-api
+      standardFlowEnabled: false
+      serviceAccountsEnabled: true
+      secretName: client-secret-wfapi-api
+      secretTemplate:
+        clientId: "clientField(clientId)"
+        clientSecret: "clientField(secret)"
+      protocolMappers:
+        - name: audience
+          protocol: "openid-connect"
+          protocolMapper: "oidc-audience-mapper"
+          config:
+            included.client.audience: {{ include "wfapi.fullname" . }}
+            access.token.claim: "true"
+            id.token.claim: "false"
+            lightweight.claim: "false"
+            userinfo.token.claim: "false"
+            introspection.token.claim: "true"
+  {{- end }}
   network:
     expose:
       - description: Expose the app using an Istio VirtualService
@@ -14,4 +45,16 @@ spec:
         gateway: tenant
         port: 80
         targetPort: 8080
+    allow:
+      - direction: Egress
+        selector:
+          app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
+        ports:
+          - 443
+      - direction: Egress
+        selector:
+          app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
+        remoteNamespace: keycloak
+        ports:
+          - 8080
 {{- end }}
