@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.0.16](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.15...0.0.16) (2024-10-31)
+
+
+### Features
+
+* adds SSO support for WFAPI ([#96](https://github.com/defenseunicorns-partnerships/wfapi/issues/96)) ([9eaa647](https://github.com/defenseunicorns-partnerships/wfapi/commit/9eaa647fd008687e5ea7676bf9ab928939462327))
+
+
+### Bug Fixes
+
+* add time to e2e tests for lower resource requests ([#102](https://github.com/defenseunicorns-partnerships/wfapi/issues/102)) ([7e44815](https://github.com/defenseunicorns-partnerships/wfapi/commit/7e44815ba6c64f7e013dad0199aa614e25bbc764))
+
+
+### Miscellaneous Chores
+
+* **deps:** update stable ([#100](https://github.com/defenseunicorns-partnerships/wfapi/issues/100)) ([6ec35ac](https://github.com/defenseunicorns-partnerships/wfapi/commit/6ec35acde84d4d3bcbe92ce3fa86bc69656a7115))
+
 ## [0.0.15](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.14...0.0.15) (2024-10-07)
 
 
