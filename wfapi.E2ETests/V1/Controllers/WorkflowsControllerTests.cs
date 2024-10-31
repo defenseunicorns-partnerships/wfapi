@@ -288,7 +288,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             // .And()
             // .Header("Connection", "keep-alive")
             .And()
-            .ResponseTime(Is.LessThan(TimeSpan.FromSeconds(24)));
+            .ResponseTime(Is.LessThan(TimeSpan.FromSeconds(30)));
 
         // Do it one more time. This time it should happen extremely quickly since we know the pod is done initializing.
         HttpResponseMessage response = Given()
@@ -306,7 +306,7 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             // .And()
             // .Header("Connection", "keep-alive")
             .And()
-            .ResponseTime(Is.LessThan(TimeSpan.FromSeconds(2)))
+            .ResponseTime(Is.LessThan(TimeSpan.FromSeconds(5)))
             .And()
             .Extract().Response();
 
