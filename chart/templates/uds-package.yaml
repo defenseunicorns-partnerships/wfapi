@@ -10,7 +10,7 @@ spec:
       clientId: {{ include "wfapi.fullname" . }}
       redirectUris:
       # TODO: automate getting redirect URI
-        - "https://wfapi.uds.dev/auth"
+        - {{ .Values.wfapi.udsPackage.redirectURI }}
       enableAuthserviceSelector:
         app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
   {{- end }}

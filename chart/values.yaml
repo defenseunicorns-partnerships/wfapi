@@ -42,6 +42,7 @@ wfapi: # @schema title: wfapi; type: [object]; description: wfapi chart settings
     enabled: true # @schema title: enabled; type: [boolean]; description: Specifies whether the UDS package should be enabled; required: true; default: true
     expose: # @schema title: expose; type: [object]; description: Expose settings; additionalProperties: false; required: true
       host: wfapi # @schema title: host; type: [string]; description: Hostname to expose the app on; required: true; default: "wfapi"
+    redirectURI: https://wfapi.uds.dev/auth # @schema title: redirectURI; type[string]; description: Redirect URI for Keycloak client; required: true; default: "https://wfapi.uds.dev/auth"
 
   podAnnotations: {} # @schema title: podAnnotations; type: [object]; description: Annotations to add to the pod. Ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/; required: true; default: {}
   podLabels: {} # @schema title: podLabels; description: Labels to add to the pod. Ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/; type: [object]; required: true; default: {}
