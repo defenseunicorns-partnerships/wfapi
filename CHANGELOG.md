@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.17](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.16...0.0.17) (2024-11-13)
+
+
+### Miscellaneous Chores
+
+* **deps:** update stable ([#101](https://github.com/defenseunicorns-partnerships/wfapi/issues/101)) ([f2e1efb](https://github.com/defenseunicorns-partnerships/wfapi/commit/f2e1efb3da73ac85cfc508db1ec70a622e5dc89a))
+
 ## [0.0.16](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.15...0.0.16) (2024-10-31)
 
 
