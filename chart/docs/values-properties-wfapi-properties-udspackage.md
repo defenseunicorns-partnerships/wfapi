@@ -16,10 +16,11 @@ UDS package settings
 
 # udsPackage Properties
 
-| Property            | Type      | Required | Nullable       | Defined by                                                                                                                                                  |
-| :------------------ | :-------- | :------- | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [enabled](#enabled) | `boolean` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-udspackage-properties-enabled.md "values.yaml#/properties/wfapi/properties/udsPackage/properties/enabled") |
-| [expose](#expose)   | `object`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-udspackage-properties-expose.md "values.yaml#/properties/wfapi/properties/udsPackage/properties/expose")   |
+| Property                    | Type      | Required | Nullable       | Defined by                                                                                                                                                          |
+| :-------------------------- | :-------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [enabled](#enabled)         | `boolean` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-udspackage-properties-enabled.md "values.yaml#/properties/wfapi/properties/udsPackage/properties/enabled")         |
+| [expose](#expose)           | `object`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-udspackage-properties-expose.md "values.yaml#/properties/wfapi/properties/udsPackage/properties/expose")           |
+| [redirectURI](#redirecturi) | `string`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-udspackage-properties-redirecturi.md "values.yaml#/properties/wfapi/properties/udsPackage/properties/redirectURI") |
 
 ## enabled
 
@@ -64,3 +65,29 @@ Expose settings
 ### expose Type
 
 `object` ([expose](values-properties-wfapi-properties-udspackage-properties-expose.md))
+
+## redirectURI
+
+Redirect URI for Keycloak client
+
+`redirectURI`
+
+* is required
+
+* Type: `string` ([redirectURI](values-properties-wfapi-properties-udspackage-properties-redirecturi.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-udspackage-properties-redirecturi.md "values.yaml#/properties/wfapi/properties/udsPackage/properties/redirectURI")
+
+### redirectURI Type
+
+`string` ([redirectURI](values-properties-wfapi-properties-udspackage-properties-redirecturi.md))
+
+### redirectURI Default Value
+
+The default value is:
+
+```json
+"https://wfapi.uds.dev/auth"
+```

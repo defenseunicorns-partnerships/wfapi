@@ -43,6 +43,7 @@ wfapi:
     enabled: ###ZARF_VAR_UDS_PACKAGE_ENABLED###
     expose:
       host: "###ZARF_VAR_UDS_PACKAGE_EXPOSE_HOST###"
+    redirectURI: "###ZARF_VAR_UDS_PACKAGE_REDIRECT_URI###"
 
   podAnnotations: {}
   podLabels: {}

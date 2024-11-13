@@ -861,11 +861,18 @@
               "type": [
                 "object"
               ]
+            },
+            "redirectURI": {
+              "default": "https://wfapi.uds.dev/auth",
+              "description": "Redirect URI for Keycloak client",
+              "title": "redirectURI",
+              "type": "string"
             }
           },
           "required": [
             "enabled",
-            "expose"
+            "expose",
+            "redirectURI"
           ],
           "title": "udsPackage",
           "type": [

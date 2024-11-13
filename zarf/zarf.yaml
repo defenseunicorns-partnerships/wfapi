@@ -96,6 +96,10 @@ variables:
     description: The hostname to use when creating the VirtualService
     default: "wfapi"
     sensitive: false
+  - name: UDS_PACKAGE_REDIRECT_URI
+    description: The redirect URI to send to the keycloak client
+    default: "https://wfapi.uds.dev/auth"
+    sensitive: false
   - name: CPU_REQUEST
     description: The amount of CPU to request for the container.
     default: "100m"
