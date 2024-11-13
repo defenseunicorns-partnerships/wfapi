@@ -20,7 +20,7 @@ package:
       PARALLELISM: 10
       CONTR_MEM_REQ: 64Mi
       CONTR_MEM_LIM: 256Mi
-      CONTR_CPU_REQ: 200m
+      CONTR_CPU_REQ: 100m
       CONTR_CPU_LIM: 500m
       EXEC_MEM_REQ: 64Mi
       EXEC_MEM_LIM: 256Mi
