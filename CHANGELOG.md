@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.18](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.17...0.0.18) (2024-11-14)
+
+
+### Bug Fixes
+
+* Add redirect URI variable to chart / zarf package ([#106](https://github.com/defenseunicorns-partnerships/wfapi/issues/106)) ([2e3bfba](https://github.com/defenseunicorns-partnerships/wfapi/commit/2e3bfbaf2147d05401209709178af8f8c04e2d51))
+* **deps:** lower resource requests ([#108](https://github.com/defenseunicorns-partnerships/wfapi/issues/108)) ([033a6b5](https://github.com/defenseunicorns-partnerships/wfapi/commit/033a6b5a91b6d555a7344ae5a5c4c9213b02d5e4))
+
 ## [0.0.17](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.16...0.0.17) (2024-11-13)
 
 
