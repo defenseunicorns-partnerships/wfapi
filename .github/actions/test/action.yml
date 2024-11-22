@@ -51,7 +51,7 @@ runs:
 
     - name: Install dotnetcore
       shell: bash
-      run: brew install dotnet
+      run: brew install dotnet@8
 
     - name: Run tests
       shell: bash
