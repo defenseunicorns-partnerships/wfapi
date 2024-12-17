@@ -1,0 +1,5 @@
+services:
+  studio:
+    image: apicurio/apicurito-ui:1.2.4
+    ports:
+      - "8888:8080"
