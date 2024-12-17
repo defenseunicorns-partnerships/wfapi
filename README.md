@@ -22,4 +22,3 @@ Since this is an API-FIRST project, we edit the OpenAPI specification file befor
 6. Save the file as `openapi-spec.yaml` in the root of the project. Overwrite the existing file.
 7. Commit the changes
 8. When you're done, run `uds run studio:down` to clean up
-test
