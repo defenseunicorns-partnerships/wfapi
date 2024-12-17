@@ -140,6 +140,8 @@ paths:
                     content:
                         application/x-ndjson: {}
                     description: Success. The workflow log is returned as an NDJSON stream using SSE.
+                '404':
+                    description: The requested workflow was not found.
             summary: Get the log stream of a workflow as an NDJSON stream using Server Side Events (SSE).
             description: >-
                 Get the log stream of a workflow as an NDJSON stream using Server Side Events (SSE). If the
