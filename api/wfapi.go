@@ -31,10 +31,8 @@ func (w2 WorkflowApi) SubmitWorkflow(w http.ResponseWriter, r *http.Request) {
 }
 
 func (w2 WorkflowApi) GetWorkflowFiles(w http.ResponseWriter, r *http.Request) {
-	var result []WfapiFile
-	result = make([]WfapiFile, 0)
-	w.WriteHeader(http.StatusOK)
-	_ = json.NewEncoder(w).Encode(result)
+	//TODO implement me
+	panic("implement me")
 }
 
 func (w2 WorkflowApi) UploadWorkflowFile(w http.ResponseWriter, r *http.Request) {

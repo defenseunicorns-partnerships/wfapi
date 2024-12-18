@@ -9,6 +9,10 @@ This is an API-FIRST project, meaning that the [OpenAPI specification file](open
 - Docker
 - Docker Compose (probably already installed with Docker)
 - [UDS CLI](https://github.com/defenseunicorns/uds-cli)
+- Golang
+
+### oapi-codegen Usage
+This project uses the [oapi-codegen](https://github.com/oapi-codegen/oapi-codegen) tool to generate server code based on the OpenAPI specification file. The generated code has the extension `.gen.go` and should not be modified manually.
 
 ### OpenAPI Studio
 Since this is an API-FIRST project, we edit the OpenAPI specification file before we make code changes. You can edit the OpenAPI Specification file however you want, as long as it stays compatible with the OpenAPI 3.0.2 specification and is editable in the OpenAPI Studio:
@@ -22,3 +26,22 @@ Since this is an API-FIRST project, we edit the OpenAPI specification file befor
 6. Save the file as `openapi-spec.yaml` in the root of the project. Overwrite the existing file.
 7. Commit the changes
 8. When you're done, run `uds run studio:down` to clean up
+
+### Dev Workflow
+1. Run `go mod tidy` to update the dependencies as needed
+2. Run `go generate` to update the generated code whenever the [openapi-spec.yaml](openapi-spec.yaml) file changes
+3. Run `go run main.go` to start the server. It will be available at [http://localhost:8080](http://localhost:8080).
+
+### Known Issues
+
+#### The OpenAPI Studio (Apicurio) does not show "default" responses
+The Apicurio studio does not show "default" responses in the UI. This is a known issue and is not a problem with the OpenAPI specification file. The "default" responses are still present in the OpenAPI specification file and will be used by the code generator. You'll need to add the "default" responses manually in the [openapi-spec.yaml](openapi-spec.yaml) file.
+
+```yaml
+default:
+    description: unexpected error
+    content:
+        application/json:
+            schema:
+                $ref: '#/components/schemas/Error'
+```
