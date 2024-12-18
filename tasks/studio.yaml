@@ -1,0 +1,13 @@
+tasks:
+  - name: up
+    description: Start the OpenAPI Studio, available at http://localhost:8888
+    actions:
+      - dir: openapi-studio
+        cmd: |
+          docker compose up -d \
+          && echo "OpenAPI Studio is available at http://localhost:8888"
+  - name: down
+    description: Stop the OpenAPI Studio
+    actions:
+      - dir: openapi-studio
+        cmd: docker compose down
