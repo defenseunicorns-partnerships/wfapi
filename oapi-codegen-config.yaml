@@ -3,4 +3,7 @@ package: api
 generate:
   chi-server: true
   models: true
-output: ../api/api.gen.go
+  embedded-spec: true
+compatibility:
+  apply-chi-middleware-first-to-last: true
+output: api/api.gen.go

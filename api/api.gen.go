@@ -4,10 +4,17 @@
 package api
 
 import (
+	"bytes"
+	"compress/gzip"
+	"encoding/base64"
 	"fmt"
 	"net/http"
+	"net/url"
+	"path"
+	"strings"
 	"time"
 
+	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/go-chi/chi/v5"
 	"github.com/oapi-codegen/runtime"
 	openapi_types "github.com/oapi-codegen/runtime/types"
@@ -181,8 +188,8 @@ func (siw *ServerInterfaceWrapper) SubmitWorkflow(w http.ResponseWriter, r *http
 		siw.Handler.SubmitWorkflow(w, r)
 	}))
 
-	for _, middleware := range siw.HandlerMiddlewares {
-		handler = middleware(handler)
+	for i := len(siw.HandlerMiddlewares) - 1; i >= 0; i-- {
+		handler = siw.HandlerMiddlewares[i](handler)
 	}
 
 	handler.ServeHTTP(w, r)
@@ -195,8 +202,8 @@ func (siw *ServerInterfaceWrapper) GetWorkflowFiles(w http.ResponseWriter, r *ht
 		siw.Handler.GetWorkflowFiles(w, r)
 	}))
 
-	for _, middleware := range siw.HandlerMiddlewares {
-		handler = middleware(handler)
+	for i := len(siw.HandlerMiddlewares) - 1; i >= 0; i-- {
+		handler = siw.HandlerMiddlewares[i](handler)
 	}
 
 	handler.ServeHTTP(w, r)
@@ -209,8 +216,8 @@ func (siw *ServerInterfaceWrapper) UploadWorkflowFile(w http.ResponseWriter, r *
 		siw.Handler.UploadWorkflowFile(w, r)
 	}))
 
-	for _, middleware := range siw.HandlerMiddlewares {
-		handler = middleware(handler)
+	for i := len(siw.HandlerMiddlewares) - 1; i >= 0; i-- {
+		handler = siw.HandlerMiddlewares[i](handler)
 	}
 
 	handler.ServeHTTP(w, r)
@@ -234,8 +241,8 @@ func (siw *ServerInterfaceWrapper) DeleteWorkflowFile(w http.ResponseWriter, r *
 		siw.Handler.DeleteWorkflowFile(w, r, fullFileName)
 	}))
 
-	for _, middleware := range siw.HandlerMiddlewares {
-		handler = middleware(handler)
+	for i := len(siw.HandlerMiddlewares) - 1; i >= 0; i-- {
+		handler = siw.HandlerMiddlewares[i](handler)
 	}
 
 	handler.ServeHTTP(w, r)
@@ -259,8 +266,8 @@ func (siw *ServerInterfaceWrapper) DownloadWorkflowFile(w http.ResponseWriter, r
 		siw.Handler.DownloadWorkflowFile(w, r, fullFileName)
 	}))
 
-	for _, middleware := range siw.HandlerMiddlewares {
-		handler = middleware(handler)
+	for i := len(siw.HandlerMiddlewares) - 1; i >= 0; i-- {
+		handler = siw.HandlerMiddlewares[i](handler)
 	}
 
 	handler.ServeHTTP(w, r)
@@ -284,8 +291,8 @@ func (siw *ServerInterfaceWrapper) GetApiV1WorkflowsWorkflowName(w http.Response
 		siw.Handler.GetApiV1WorkflowsWorkflowName(w, r, workflowName)
 	}))
 
-	for _, middleware := range siw.HandlerMiddlewares {
-		handler = middleware(handler)
+	for i := len(siw.HandlerMiddlewares) - 1; i >= 0; i-- {
+		handler = siw.HandlerMiddlewares[i](handler)
 	}
 
 	handler.ServeHTTP(w, r)
@@ -318,8 +325,8 @@ func (siw *ServerInterfaceWrapper) GetApiV1WorkflowsWorkflowNamePodsPodNameLogst
 		siw.Handler.GetApiV1WorkflowsWorkflowNamePodsPodNameLogstream(w, r, workflowName, podName)
 	}))
 
-	for _, middleware := range siw.HandlerMiddlewares {
-		handler = middleware(handler)
+	for i := len(siw.HandlerMiddlewares) - 1; i >= 0; i-- {
+		handler = siw.HandlerMiddlewares[i](handler)
 	}
 
 	handler.ServeHTTP(w, r)
@@ -461,4 +468,111 @@ func HandlerWithOptions(si ServerInterface, options ChiServerOptions) http.Handl
 	})
 
 	return r
+}
+
+// Base64 encoded, gzipped, json marshaled Swagger object
+var swaggerSpec = []string{
+
+	"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",
+}
+
+// GetSwagger returns the content of the embedded swagger specification file
+// or error if failed to decode
+func decodeSpec() ([]byte, error) {
+	zipped, err := base64.StdEncoding.DecodeString(strings.Join(swaggerSpec, ""))
+	if err != nil {
+		return nil, fmt.Errorf("error base64 decoding spec: %w", err)
+	}
+	zr, err := gzip.NewReader(bytes.NewReader(zipped))
+	if err != nil {
+		return nil, fmt.Errorf("error decompressing spec: %w", err)
+	}
+	var buf bytes.Buffer
+	_, err = buf.ReadFrom(zr)
+	if err != nil {
+		return nil, fmt.Errorf("error decompressing spec: %w", err)
+	}
+
+	return buf.Bytes(), nil
+}
+
+var rawSpec = decodeSpecCached()
+
+// a naive cached of a decoded swagger spec
+func decodeSpecCached() func() ([]byte, error) {
+	data, err := decodeSpec()
+	return func() ([]byte, error) {
+		return data, err
+	}
+}
+
+// Constructs a synthetic filesystem for resolving external references when loading openapi specifications.
+func PathToRawSpec(pathToFile string) map[string]func() ([]byte, error) {
+	res := make(map[string]func() ([]byte, error))
+	if len(pathToFile) > 0 {
+		res[pathToFile] = rawSpec
+	}
+
+	return res
+}
+
+// GetSwagger returns the Swagger specification corresponding to the generated code
+// in this file. The external references of Swagger specification are resolved.
+// The logic of resolving external references is tightly connected to "import-mapping" feature.
+// Externally referenced files must be embedded in the corresponding golang packages.
+// Urls can be supported but this task was out of the scope.
+func GetSwagger() (swagger *openapi3.T, err error) {
+	resolvePath := PathToRawSpec("")
+
+	loader := openapi3.NewLoader()
+	loader.IsExternalRefsAllowed = true
+	loader.ReadFromURIFunc = func(loader *openapi3.Loader, url *url.URL) ([]byte, error) {
+		pathToFile := url.String()
+		pathToFile = path.Clean(pathToFile)
+		getSpec, ok := resolvePath[pathToFile]
+		if !ok {
+			err1 := fmt.Errorf("path not found: %s", pathToFile)
+			return nil, err1
+		}
+		return getSpec()
+	}
+	var specData []byte
+	specData, err = rawSpec()
+	if err != nil {
+		return
+	}
+	swagger, err = loader.LoadFromData(specData)
+	if err != nil {
+		return
+	}
+	return
 }
