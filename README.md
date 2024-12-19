@@ -29,7 +29,7 @@ Since this is an API-FIRST project, we edit the OpenAPI specification file befor
 
 ### Dev Workflow
 1. Run `go mod tidy` to update the dependencies as needed
-2. Run `go generate` to update the generated code whenever the [openapi-spec.yaml](openapi-spec.yaml) file changes
+2. Run `go generate ./...` to update the generated code whenever the [openapi-spec.yaml](openapi-spec.yaml) file changes
 3. Run `go run main.go` to start the server. It will be available at [http://localhost:8080](http://localhost:8080).
 
 ### Known Issues
