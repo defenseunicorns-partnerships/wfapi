@@ -22,13 +22,13 @@ func NewRootCommand() *cobra.Command {
 - You run Argo Workflows to provide that functionality.
 - But for security reasons you don't want to give those mission apps direct access to the Kubernetes API.
 - And you want more fine-grained control than what the Argo Workflows Server API would provide.`,
-		Args:          cobra.MaximumNArgs(1),
-		SilenceUsage:  true,
-		SilenceErrors: false,
-		Run:           run,
+		Args:              cobra.MaximumNArgs(1),
+		SilenceUsage:      true,
+		SilenceErrors:     false,
+		PersistentPreRunE: preRun,
 	}
 
-	//rootCmd.AddCommand(NewServeCommand())
+	rootCmd.AddCommand(NewServeCommand())
 
 	return rootCmd
 }
@@ -49,14 +49,24 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.wfapi.yaml)")
+	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "Optional config file | Default: $HOME/.wfapi.yaml | Env: WFAPI_CONFIG")
+	err := viper.BindPFlag("config", rootCmd.PersistentFlags().Lookup("config"))
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error binding flag to viper:", err)
+		os.Exit(1)
+	}
 }
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
+	viper.SetEnvPrefix("wfapi")
+	viper.AutomaticEnv()
+
+	cfgEnv := viper.GetString("config")
 	if cfgFile != "" {
-		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
+	} else if cfgEnv != "" {
+		viper.SetConfigFile(cfgEnv)
 	} else {
 		// Find home directory.
 		home, err := os.UserHomeDir()
@@ -68,17 +78,19 @@ func initConfig() {
 		viper.SetConfigName(".wfapi")
 	}
 
-	viper.AutomaticEnv() // read in environment variables that match
-
 	// If a config file is found, read it in.
-	if err := viper.ReadInConfig(); err == nil {
+	err := viper.ReadInConfig()
+	if err == nil {
 		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
+	} else if cfgFile == "" && cfgEnv == "" {
+		fmt.Fprintln(os.Stderr, "Not using a config file")
+	} else {
+		fmt.Fprintln(os.Stderr, "Error reading config file:", err)
+		fmt.Fprintln(os.Stderr, "Use --help flag for more information")
+		os.Exit(1)
 	}
 }
 
-func run(cmd *cobra.Command, _ []string) {
-	err := cmd.Help()
-	if err != nil {
-		_, _ = fmt.Fprintln(os.Stderr, err)
-	}
+func preRun(cmd *cobra.Command, _ []string) error {
+	return nil
 }
