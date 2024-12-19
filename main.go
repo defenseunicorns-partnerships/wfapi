@@ -5,7 +5,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
+	"log/slog"
 	"net"
 	"net/http"
 	"os"
@@ -16,10 +16,14 @@ import (
 )
 
 func main() {
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, nil))
+	slog.SetDefault(logger)
+
 	port := flag.String("port", "8080", "Port for test HTTP server")
 	flag.Parse()
 
 	swagger, err := api.GetSwagger()
+	slog.Debug("Got swagger spec", "swagger", swagger)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error loading swagger spec\n: %s", err)
 		os.Exit(1)
@@ -30,7 +34,7 @@ func main() {
 	swagger.Servers = nil
 
 	// Create an instance of our handler which satisfies the generated interface
-	wfapi := api.NewWorkflowApi()
+	server := api.NewServer()
 
 	// This is how you set up a basic chi router
 	r := chi.NewRouter()
@@ -39,8 +43,8 @@ func main() {
 	// OpenAPI schema.
 	r.Use(middleware.OapiRequestValidator(swagger))
 
-	// We now register our petStore above as the handler for the interface
-	api.HandlerFromMux(wfapi, r)
+	// We now register our server above as the handler for the interface
+	api.HandlerFromMux(server, r)
 
 	s := &http.Server{
 		Handler: r,
@@ -48,5 +52,12 @@ func main() {
 	}
 
 	// And we serve HTTP until the world ends.
-	log.Fatal(s.ListenAndServe())
+	err = s.ListenAndServe()
+	if err != nil {
+		slog.Error("Server failed to start or stopped unexpectedly", "error", err)
+		os.Exit(1)
+	} else {
+		slog.Info("Server stopped")
+		os.Exit(0)
+	}
 }
