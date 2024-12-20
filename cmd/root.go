@@ -3,12 +3,11 @@ package cmd
 import (
 	"github.com/defenseunicorns-partnerships/wfapi/cmd/common"
 	"github.com/defenseunicorns-partnerships/wfapi/pkg/logger"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"log/slog"
 	"os"
 	"strings"
-
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 )
 
 var rootCmd = NewRootCommand()
