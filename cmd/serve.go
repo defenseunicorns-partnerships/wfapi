@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/defenseunicorns-partnerships/wfapi/cmd/common"
 	"github.com/defenseunicorns-partnerships/wfapi/pkg/logger"
+	"github.com/defenseunicorns-partnerships/wfapi/pkg/server"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"os"
@@ -16,9 +17,13 @@ func NewServeCommand() *cobra.Command {
 		Args:          cobra.NoArgs,
 		SilenceUsage:  true,
 		SilenceErrors: true,
-		Run: func(cmd *cobra.Command, _ []string) {
-			logger.Default().Info("Starting WFAPI server", "port", viper.GetInt(common.VServePort))
-			logger.Default().Debug("debug msg")
+		RunE: func(cmd *cobra.Command, _ []string) error {
+			err := server.StartServer()
+			if err != nil {
+				logger.Default().Error("Server failed to start or stopped unexpectedly", "error", err)
+				return err
+			}
+			return nil
 		},
 		PreRunE: func(cmd *cobra.Command, args []string) error {
 			var err error
