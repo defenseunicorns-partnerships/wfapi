@@ -6,4 +6,4 @@ generate:
   embedded-spec: true
 compatibility:
   apply-chi-middleware-first-to-last: true
-output: api/api.gen.go
+output: wfapi.gen.go
