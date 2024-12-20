@@ -1,0 +1,336 @@
+openapi: 3.0.2
+info:
+    title: WFAPI
+    version: 0.0.1
+    description: REST API for interacting with Argo Workflows
+    contact:
+        name: Defense Unicorns
+        url: 'https://defenseunicorns.com'
+        email: navy@defenseunicorns.com
+    license:
+        name: Apache 2.0
+        url: 'https://www.apache.org/licenses/LICENSE-2.0'
+paths:
+    /api/v1/workflows/files:
+        get:
+            tags:
+                - Workflows
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/WfapiFileMetadata'
+                    description: Success. The list of files is returned
+                default:
+                    description: unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+            operationId: getWorkflowFiles
+            summary: Get a list of all files present and ready to be consumed by a workflow
+            description: ''
+        post:
+            requestBody:
+                content:
+                    multipart/form-data:
+                        schema:
+                            $ref: '#/components/schemas/WfapiFile'
+                required: true
+            tags:
+                - Workflows
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/WfapiFileMetadata'
+                    description: Success. The file has been uploaded
+                '409':
+                    description: A file with the same name already exists
+                default:
+                    description: unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+            operationId: uploadWorkflowFile
+            summary: Upload a file to be used in a workflow.
+    '/api/v1/workflows/files/{fullFileName}':
+        get:
+            tags:
+                - Workflows
+            responses:
+                '200':
+                    content:
+                        application/octet-stream:
+                            schema:
+                                format: binary
+                                type: string
+                    description: Success. The file is returned.
+                '403':
+                    description: You don't have permission to download that file.
+                '404':
+                    description: The requested file was not found.
+                default:
+                    description: unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+            operationId: downloadWorkflowFile
+            summary: Download a file that was previously uploaded
+        delete:
+            tags:
+                - Workflows
+            responses:
+                '204':
+                    description: Success. The file has been deleted.
+                '403':
+                    description: You don't have permission to delete that file.
+                '404':
+                    description: The requested file was not found.
+                default:
+                    description: unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+            operationId: deleteWorkflowFile
+            summary: Delete a file that was previously uploaded
+        parameters:
+            -
+                examples:
+                    Example Filename:
+                        value: files%2Fmyfile.txt
+                name: fullFileName
+                description: The fully qualified filename. Must be URLEncoded.
+                schema:
+                    type: string
+                in: path
+                required: true
+    /api/v1/workflows:
+        post:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/WorkflowSubmission'
+                required: true
+            tags:
+                - Workflows
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/WorkflowInfo'
+                    description: >-
+                        Success. The workflow has been submitted. The output is the WorkflowInfo object that
+                        you can also query for at any time.
+                default:
+                    description: unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+            operationId: submitWorkflow
+            summary: Submit a workflow by providing the template to use and the parameters to use with it.
+    '/api/v1/workflows/{workflowName}':
+        get:
+            tags:
+                - Workflows
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/WorkflowInfo'
+                    description: Success. The WorkflowInfo is returned.
+                '404':
+                    description: The requested workflow was not found.
+                default:
+                    description: unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+            summary: Get the Info object of a workflow that contains the status and other information
+        parameters:
+            -
+                name: workflowName
+                description: The name of the workflow
+                schema:
+                    type: string
+                in: path
+                required: true
+    '/api/v1/workflows/{workflowName}/pods/{podName}/logstream':
+        get:
+            tags:
+                - Workflows
+            responses:
+                '200':
+                    content:
+                        application/x-ndjson: {}
+                    description: Success. The workflow log is returned as an NDJSON stream using SSE.
+                '404':
+                    description: The requested workflow was not found.
+                default:
+                    description: unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+            summary: Get the log stream of a workflow as an NDJSON stream using Server Side Events (SSE).
+            description: >-
+                Get the log stream of a workflow as an NDJSON stream using Server Side Events (SSE). If the
+                workflow is active in the cluster it will stream the logs from there. If it isn't, it will
+                look for the logs in the archive.
+        parameters:
+            -
+                name: workflowName
+                description: The name of the workflow you want the log(s) for.
+                schema:
+                    type: string
+                in: path
+                required: true
+            -
+                name: podName
+                description: >-
+                    The name of the pod that you want the log(s) for. If the workflow only had one step then
+                    the podname will be the same as the workflow name.
+                schema:
+                    type: string
+                in: path
+                required: true
+components:
+    schemas:
+        WfapiFile:
+            description: A File to be uploaded
+            required:
+                - fileName
+                - file
+            type: object
+            properties:
+                fileName:
+                    description: ''
+                    type: string
+                file:
+                    format: binary
+                    description: ''
+                    type: string
+        WfapiFileMetadata:
+            description: Metadata for a file
+            required:
+                - fileName
+            type: object
+            properties:
+                fileName:
+                    description: The fully qualified filename
+                    type: string
+        WorkflowParameter:
+            description: WorkflowParameter model
+            required:
+                - name
+                - value
+            type: object
+            properties:
+                name:
+                    description: Parameter name
+                    type: string
+                value:
+                    description: Parameter value
+                    type: string
+        WorkflowSubmission:
+            description: WorkflowSubmission model
+            required:
+                - templateName
+                - generateName
+            type: object
+            properties:
+                templateName:
+                    description: Name of the WorkflowTemplate to use
+                    type: string
+                generateName:
+                    description: >-
+                        Name prefix for the generated workflow. The actual name will be the prefix followed by
+                        a random string.
+                    type: string
+                parameters:
+                    description: Parameters for the WorkflowTemplate
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/WorkflowParameter'
+            example:
+                templateName: hello-world-template
+                generateName: hello-world-
+                parameters:
+                    -
+                        name: waitSeconds
+                        value: '1'
+        WorkflowStatus:
+            description: WorkflowStatus enum
+            enum:
+                - Pending
+                - Running
+                - Succeeded
+                - Failed
+                - Error
+            type: string
+        WorkflowInfo:
+            description: WorkflowInfo model
+            required:
+                - name
+                - uid
+                - status
+                - created
+            type: object
+            properties:
+                name:
+                    description: Unique workflow name
+                    type: string
+                uid:
+                    description: Unique workflow ID
+                    type: string
+                status:
+                    $ref: '#/components/schemas/WorkflowStatus'
+                    description: Status of the workflow test
+                message:
+                    description: Status message
+                    type: string
+                created:
+                    format: date-time
+                    description: DateTime the workflow was created
+                    type: string
+                started:
+                    format: date-time
+                    description: DateTime the workflow was started
+                    type: string
+                finished:
+                    format: date-time
+                    description: DateTime the workflow was finished
+                    type: string
+                duration:
+                    format: int32
+                    description: Time it took to finish the workflow in seconds
+                    type: integer
+                progress:
+                    description: >-
+                        Progress of the workflow in the format of "X/Y" where X is the number of tasks
+                        completed and Y is the total number of tasks
+                    type: string
+        Error:
+            required:
+                - code
+                - message
+            properties:
+                code:
+                    type: integer
+                    format: int32
+                    description: Error code
+                message:
+                    type: string
+                    description: Error message
