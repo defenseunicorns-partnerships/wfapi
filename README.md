@@ -1,7 +1,7 @@
 # WFAPI
 WIP Golang implementation of https://github.com/defenseunicorns-partnerships/wfapi
 
-This is an API-FIRST project, meaning that the [OpenAPI specification file](openapi-spec.yaml) is the source of truth. The codebase is generated/written based on the OpenAPI specification file.
+This is an API-FIRST project, meaning that the [OpenAPI specification file](api/openapi-spec.yaml) is the source of truth. The codebase is generated/written based on the OpenAPI specification file.
 
 ## Development
 
@@ -46,7 +46,7 @@ go run main.go serve --help
 ### Known Issues
 
 #### The OpenAPI Studio (Apicurio) does not show "default" responses
-The Apicurio studio does not show "default" responses in the UI. This is a known issue and is not a problem with the OpenAPI specification file. The "default" responses are still present in the OpenAPI specification file and will be used by the code generator. You'll need to add the "default" responses manually in the [openapi-spec.yaml](openapi-spec.yaml) file.
+The Apicurio studio does not show "default" responses in the UI. This is a known issue and is not a problem with the OpenAPI specification file. The "default" responses are still present in the OpenAPI specification file and will be used by the code generator. You'll need to add the "default" responses manually in the [openapi-spec.yaml](api/openapi-spec.yaml) file.
 
 ```yaml
 default:

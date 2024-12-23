@@ -25,11 +25,11 @@ paths:
                                     $ref: '#/components/schemas/WfapiFileMetadata'
                     description: Success. The list of files is returned
                 default:
-                    description: unexpected error
                     content:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Error'
+                    description: unexpected error
             operationId: getWorkflowFiles
             summary: Get a list of all files present and ready to be consumed by a workflow
             description: ''
@@ -52,11 +52,11 @@ paths:
                 '409':
                     description: A file with the same name already exists
                 default:
-                    description: unexpected error
                     content:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Error'
+                    description: unexpected error
             operationId: uploadWorkflowFile
             summary: Upload a file to be used in a workflow.
     '/api/v1/workflows/files/{fullFileName}':
@@ -76,11 +76,11 @@ paths:
                 '404':
                     description: The requested file was not found.
                 default:
-                    description: unexpected error
                     content:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Error'
+                    description: unexpected error
             operationId: downloadWorkflowFile
             summary: Download a file that was previously uploaded
         delete:
@@ -94,11 +94,11 @@ paths:
                 '404':
                     description: The requested file was not found.
                 default:
-                    description: unexpected error
                     content:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Error'
+                    description: unexpected error
             operationId: deleteWorkflowFile
             summary: Delete a file that was previously uploaded
         parameters:
@@ -132,11 +132,11 @@ paths:
                         Success. The workflow has been submitted. The output is the WorkflowInfo object that
                         you can also query for at any time.
                 default:
-                    description: unexpected error
                     content:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Error'
+                    description: unexpected error
             operationId: submitWorkflow
             summary: Submit a workflow by providing the template to use and the parameters to use with it.
     '/api/v1/workflows/{workflowName}':
@@ -153,11 +153,11 @@ paths:
                 '404':
                     description: The requested workflow was not found.
                 default:
-                    description: unexpected error
                     content:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Error'
+                    description: unexpected error
             summary: Get the Info object of a workflow that contains the status and other information
         parameters:
             -
@@ -179,11 +179,11 @@ paths:
                 '404':
                     description: The requested workflow was not found.
                 default:
-                    description: unexpected error
                     content:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Error'
+                    description: unexpected error
             summary: Get the log stream of a workflow as an NDJSON stream using Server Side Events (SSE).
             description: >-
                 Get the log stream of a workflow as an NDJSON stream using Server Side Events (SSE). If the
@@ -206,6 +206,23 @@ paths:
                     type: string
                 in: path
                 required: true
+    /swagger:
+        get:
+            tags:
+                - Docs
+            responses:
+                '200':
+                    content:
+                        text/html: {}
+                    description: Success
+                default:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                    description: unexpected error
+            operationId: getSwaggerUi
+            summary: Show the API documentation page
 components:
     schemas:
         WfapiFile:
@@ -328,9 +345,9 @@ components:
                 - message
             properties:
                 code:
-                    type: integer
                     format: int32
                     description: Error code
+                    type: integer
                 message:
-                    type: string
                     description: Error message
+                    type: string

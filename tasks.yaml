@@ -1,2 +1,3 @@
 includes:
   - studio: ./tasks/studio.yaml
+  - app: ./tasks/app.yaml
