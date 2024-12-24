@@ -39,6 +39,12 @@ go generate ./...
 # Start the server. It will be available at http://localhost:8080
 go run main.go serve
 
+# Build the binary
+uds run app:build
+
+# Start the server using Air for hot reloading. It will be available at http://localhost:8081. The browser should automatically refresh when changes are made. Also automatically runs `go generate ./...` whenever the openapi-spec.yaml file changes
+uds run app:run-dev
+
 # See the available commands and flags
 go run main.go serve --help
 ```

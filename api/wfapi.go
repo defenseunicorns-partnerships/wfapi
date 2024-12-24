@@ -1,4 +1,4 @@
-//go:generate go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen --config=oapi-codegen-config.yaml ../openapi-spec.yaml
+//go:generate go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen --config=oapi-codegen-config.yaml openapi-spec.yaml
 
 package api
 
@@ -60,7 +60,7 @@ func (s Server) GetSwaggerUi(w http.ResponseWriter, r *http.Request) {
     <elements-api
       id="docs"
       router="memory"
-      layout="sidebar"
+      layout="responsive"
     />
    	<script>
 	  (async () => {

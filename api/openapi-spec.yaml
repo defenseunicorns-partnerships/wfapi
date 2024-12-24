@@ -14,7 +14,7 @@ paths:
     /api/v1/workflows/files:
         get:
             tags:
-                - Workflows
+                - Workflows/Files
             responses:
                 '200':
                     content:
@@ -31,8 +31,8 @@ paths:
                                 $ref: '#/components/schemas/Error'
                     description: unexpected error
             operationId: getWorkflowFiles
-            summary: Get a list of all files present and ready to be consumed by a workflow
-            description: ''
+            summary: GET /api/v1/workflows/files
+            description: 'Get a list of all files present and ready to be consumed by a workflow'
         post:
             requestBody:
                 content:
@@ -58,11 +58,12 @@ paths:
                                 $ref: '#/components/schemas/Error'
                     description: unexpected error
             operationId: uploadWorkflowFile
-            summary: Upload a file to be used in a workflow.
+            summary: POST /api/v1/workflows/files
+            description: Upload a file to be used in a workflow.
     '/api/v1/workflows/files/{fullFileName}':
         get:
             tags:
-                - Workflows
+                - Workflows/Files
             responses:
                 '200':
                     content:
@@ -82,10 +83,11 @@ paths:
                                 $ref: '#/components/schemas/Error'
                     description: unexpected error
             operationId: downloadWorkflowFile
-            summary: Download a file that was previously uploaded
+            summary: GET /api/v1/workflows/files/{fullFileName}
+            description: Download a file that was previously uploaded
         delete:
             tags:
-                - Workflows
+                - Workflows/Files
             responses:
                 '204':
                     description: Success. The file has been deleted.
@@ -100,7 +102,8 @@ paths:
                                 $ref: '#/components/schemas/Error'
                     description: unexpected error
             operationId: deleteWorkflowFile
-            summary: Delete a file that was previously uploaded
+            summary: DELETE /api/v1/workflows/files/{fullFileName}
+            description: Delete a file that was previously uploaded
         parameters:
             -
                 examples:
@@ -138,7 +141,8 @@ paths:
                                 $ref: '#/components/schemas/Error'
                     description: unexpected error
             operationId: submitWorkflow
-            summary: Submit a workflow by providing the template to use and the parameters to use with it.
+            summary: POST /api/v1/workflows
+            description: Submit a workflow by providing the template to use and the parameters to use with it.
     '/api/v1/workflows/{workflowName}':
         get:
             tags:
@@ -158,7 +162,8 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/Error'
                     description: unexpected error
-            summary: Get the Info object of a workflow that contains the status and other information
+            summary: GET /api/v1/workflows/{workflowName}
+            description: Get the Info object of a workflow that contains the status and other information
         parameters:
             -
                 name: workflowName
@@ -184,7 +189,7 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/Error'
                     description: unexpected error
-            summary: Get the log stream of a workflow as an NDJSON stream using Server Side Events (SSE).
+            summary: GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream
             description: >-
                 Get the log stream of a workflow as an NDJSON stream using Server Side Events (SSE). If the
                 workflow is active in the cluster it will stream the logs from there. If it isn't, it will

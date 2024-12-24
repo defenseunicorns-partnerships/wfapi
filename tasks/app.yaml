@@ -8,9 +8,4 @@ tasks:
   - name: run-dev
     description: Run the API in dev mode using the `air` tool, which does live reload. Run `go mod tidy` first to make sure you have it downloaded.
     actions:
-      - cmd: go run main.go serve
-        env:
-          - WFAPI_SERVE_PORT=8080
-          - WFAPI_LOG_FORMAT=dev
-          - WFAPI_LOG_LEVEL=debug
-          - WFAPI_NO_COLOR=false
+      - cmd: go run github.com/air-verse/air
