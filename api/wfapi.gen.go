@@ -112,28 +112,28 @@ type UploadWorkflowFileMultipartRequestBody = WfapiFile
 
 // ServerInterface represents all server handlers.
 type ServerInterface interface {
-	// POST /api/v1/workflows
+	// POST /api/v1/workflows - Submit Workflow
 	// (POST /api/v1/workflows)
 	SubmitWorkflow(w http.ResponseWriter, r *http.Request)
-	// GET /api/v1/workflows/files
+	// GET /api/v1/workflows/files - List Files
 	// (GET /api/v1/workflows/files)
 	GetWorkflowFiles(w http.ResponseWriter, r *http.Request)
-	// POST /api/v1/workflows/files
+	// POST /api/v1/workflows/files - Upload File
 	// (POST /api/v1/workflows/files)
 	UploadWorkflowFile(w http.ResponseWriter, r *http.Request)
-	// DELETE /api/v1/workflows/files/{fullFileName}
+	// DELETE /api/v1/workflows/files/{fullFileName} - Delete File
 	// (DELETE /api/v1/workflows/files/{fullFileName})
 	DeleteWorkflowFile(w http.ResponseWriter, r *http.Request, fullFileName string)
-	// GET /api/v1/workflows/files/{fullFileName}
+	// GET /api/v1/workflows/files/{fullFileName} - Download File
 	// (GET /api/v1/workflows/files/{fullFileName})
 	DownloadWorkflowFile(w http.ResponseWriter, r *http.Request, fullFileName string)
-	// GET /api/v1/workflows/{workflowName}
+	// GET /api/v1/workflows/{workflowName} - Get Workflow Info
 	// (GET /api/v1/workflows/{workflowName})
 	GetApiV1WorkflowsWorkflowName(w http.ResponseWriter, r *http.Request, workflowName string)
-	// GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream
+	// GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream - Get Workflow Log Stream
 	// (GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream)
 	GetApiV1WorkflowsWorkflowNamePodsPodNameLogstream(w http.ResponseWriter, r *http.Request, workflowName string, podName string)
-	// Show the API documentation page
+	// GET /swagger - Swagger UI
 	// (GET /swagger)
 	GetSwaggerUi(w http.ResponseWriter, r *http.Request)
 }
@@ -142,49 +142,49 @@ type ServerInterface interface {
 
 type Unimplemented struct{}
 
-// POST /api/v1/workflows
+// POST /api/v1/workflows - Submit Workflow
 // (POST /api/v1/workflows)
 func (_ Unimplemented) SubmitWorkflow(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GET /api/v1/workflows/files
+// GET /api/v1/workflows/files - List Files
 // (GET /api/v1/workflows/files)
 func (_ Unimplemented) GetWorkflowFiles(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// POST /api/v1/workflows/files
+// POST /api/v1/workflows/files - Upload File
 // (POST /api/v1/workflows/files)
 func (_ Unimplemented) UploadWorkflowFile(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// DELETE /api/v1/workflows/files/{fullFileName}
+// DELETE /api/v1/workflows/files/{fullFileName} - Delete File
 // (DELETE /api/v1/workflows/files/{fullFileName})
 func (_ Unimplemented) DeleteWorkflowFile(w http.ResponseWriter, r *http.Request, fullFileName string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GET /api/v1/workflows/files/{fullFileName}
+// GET /api/v1/workflows/files/{fullFileName} - Download File
 // (GET /api/v1/workflows/files/{fullFileName})
 func (_ Unimplemented) DownloadWorkflowFile(w http.ResponseWriter, r *http.Request, fullFileName string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GET /api/v1/workflows/{workflowName}
+// GET /api/v1/workflows/{workflowName} - Get Workflow Info
 // (GET /api/v1/workflows/{workflowName})
 func (_ Unimplemented) GetApiV1WorkflowsWorkflowName(w http.ResponseWriter, r *http.Request, workflowName string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream
+// GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream - Get Workflow Log Stream
 // (GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream)
 func (_ Unimplemented) GetApiV1WorkflowsWorkflowNamePodsPodNameLogstream(w http.ResponseWriter, r *http.Request, workflowName string, podName string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
-// Show the API documentation page
+// GET /swagger - Swagger UI
 // (GET /swagger)
 func (_ Unimplemented) GetSwaggerUi(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotImplemented)
@@ -508,39 +508,40 @@ func HandlerWithOptions(si ServerInterface, options ChiServerOptions) http.Handl
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
+	"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",
+	"Fe6uWkC/MFloTbfbfwYAAP//Tw5FMl4hAAA=",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file

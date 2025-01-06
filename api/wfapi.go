@@ -80,11 +80,13 @@ func (s Server) GetSwaggerUi(w http.ResponseWriter, r *http.Request) {
 	_, _ = w.Write([]byte(fmt.Sprintf(html, openApiSpecJson)))
 }
 
+// SubmitWorkflow implements POST /api/v1/workflows - Submit Workflow
 func (s Server) SubmitWorkflow(w http.ResponseWriter, r *http.Request) {
 	//TODO implement me
 	panic("implement me")
 }
 
+// GetWorkflowFiles implements GET /api/v1/workflows/files - List Files
 func (s Server) GetWorkflowFiles(w http.ResponseWriter, r *http.Request) {
 	//TODO implement me
 	panic("implement me")
