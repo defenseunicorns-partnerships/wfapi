@@ -1,0 +1,11 @@
+tasks:
+  - name: build
+    description: Build the app binary
+    actions:
+      - cmd: go generate ./...
+      - cmd: go build
+
+  - name: run-dev
+    description: Run the API in dev mode using the `air` tool, which does live reload. Run `go mod tidy` first to make sure you have it downloaded.
+    actions:
+      - cmd: go run github.com/air-verse/air
