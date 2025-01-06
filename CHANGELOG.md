@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.0.20](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.19...0.0.20) (2024-12-09)
+
+
+### Miscellaneous Chores
+
+* **deps:** update stable ([#112](https://github.com/defenseunicorns-partnerships/wfapi/issues/112)) ([d98bc29](https://github.com/defenseunicorns-partnerships/wfapi/commit/d98bc299601932a760c229e87a2b5032ec6815b6))
+
+## [0.0.19](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.18...0.0.19) (2024-12-02)
+
+
+### Miscellaneous Chores
+
+* **deps:** update stable ([#109](https://github.com/defenseunicorns-partnerships/wfapi/issues/109)) ([11d467c](https://github.com/defenseunicorns-partnerships/wfapi/commit/11d467caf9c9f6bfd7d501784e53e1a814a687ef))
+
 ## [0.0.18](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.17...0.0.18) (2024-11-14)
 
 

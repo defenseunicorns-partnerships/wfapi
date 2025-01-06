@@ -12,8 +12,8 @@
     <ItemGroup>
         <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
         <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.301" />
-        <PackageReference Include="AWSSDK.S3" Version="3.7.407" />
-        <PackageReference Include="AWSSDK.SecurityToken" Version="3.7.401.5" />
+        <PackageReference Include="AWSSDK.S3" Version="3.7.411" />
+        <PackageReference Include="AWSSDK.SecurityToken" Version="3.7.401.21" />
         <PackageReference Include="JsonSubTypes" Version="2.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.11" />
