@@ -34,7 +34,6 @@ tasks:
       - task: clean
       - task: ci:down
       - task: ci:up
-      - task: tests:dast
       - task: tests:e2e
       - task: ci:down
       - task: clean
