@@ -32,7 +32,7 @@ paths:
                     description: unexpected error
             operationId: getWorkflowFiles
             summary: GET /api/v1/workflows/files - List Files
-            description: 'Get a list of all files present and ready to be consumed by a workflow'
+            description: Get a list of all files present and ready to be consumed by a workflow
         post:
             requestBody:
                 content:
@@ -83,7 +83,7 @@ paths:
                                 $ref: '#/components/schemas/Error'
                     description: unexpected error
             operationId: downloadWorkflowFile
-            summary: GET /api/v1/workflows/files/{fullFileName} - Download File
+            summary: 'GET /api/v1/workflows/files/{fullFileName} - Download File'
             description: Download a file that was previously uploaded
         delete:
             tags:
@@ -102,7 +102,7 @@ paths:
                                 $ref: '#/components/schemas/Error'
                     description: unexpected error
             operationId: deleteWorkflowFile
-            summary: DELETE /api/v1/workflows/files/{fullFileName} - Delete File
+            summary: 'DELETE /api/v1/workflows/files/{fullFileName} - Delete File'
             description: Delete a file that was previously uploaded
         parameters:
             -
@@ -162,7 +162,8 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/Error'
                     description: unexpected error
-            summary: GET /api/v1/workflows/{workflowName} - Get Workflow Info
+            operationId: GetWorkflowInfo
+            summary: 'GET /api/v1/workflows/{workflowName} - Get Workflow Info'
             description: Get the Info object of a workflow that contains the status and other information
         parameters:
             -
@@ -189,7 +190,8 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/Error'
                     description: unexpected error
-            summary: GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream - Get Workflow Log Stream
+            operationId: GetWorkflowLogStreamAsSse
+            summary: 'GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream - Get Workflow Log Stream'
             description: >-
                 Get the log stream of a workflow as an NDJSON stream using Server Side Events (SSE). If the
                 workflow is active in the cluster it will stream the logs from there. If it isn't, it will
@@ -295,7 +297,7 @@ components:
                         name: waitSeconds
                         value: '1'
         WorkflowStatus:
-            description: WorkflowStatus enum
+            description: WorkflowStatus enum that states the status of a workflow
             enum:
                 - Pending
                 - Running
@@ -320,7 +322,6 @@ components:
                     type: string
                 status:
                     $ref: '#/components/schemas/WorkflowStatus'
-                    description: Status of the workflow test
                 message:
                     description: Status message
                     type: string

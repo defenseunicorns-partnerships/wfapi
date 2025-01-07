@@ -73,7 +73,7 @@ type WorkflowInfo struct {
 	// Started DateTime the workflow was started
 	Started *time.Time `json:"started,omitempty"`
 
-	// Status WorkflowStatus enum
+	// Status WorkflowStatus enum that states the status of a workflow
 	Status WorkflowStatus `json:"status"`
 
 	// Uid Unique workflow ID
@@ -89,7 +89,7 @@ type WorkflowParameter struct {
 	Value string `json:"value"`
 }
 
-// WorkflowStatus WorkflowStatus enum
+// WorkflowStatus WorkflowStatus enum that states the status of a workflow
 type WorkflowStatus string
 
 // WorkflowSubmission WorkflowSubmission model
@@ -129,10 +129,10 @@ type ServerInterface interface {
 	DownloadWorkflowFile(w http.ResponseWriter, r *http.Request, fullFileName string)
 	// GET /api/v1/workflows/{workflowName} - Get Workflow Info
 	// (GET /api/v1/workflows/{workflowName})
-	GetApiV1WorkflowsWorkflowName(w http.ResponseWriter, r *http.Request, workflowName string)
+	GetWorkflowInfo(w http.ResponseWriter, r *http.Request, workflowName string)
 	// GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream - Get Workflow Log Stream
 	// (GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream)
-	GetApiV1WorkflowsWorkflowNamePodsPodNameLogstream(w http.ResponseWriter, r *http.Request, workflowName string, podName string)
+	GetWorkflowLogStreamAsSse(w http.ResponseWriter, r *http.Request, workflowName string, podName string)
 	// GET /swagger - Swagger UI
 	// (GET /swagger)
 	GetSwaggerUi(w http.ResponseWriter, r *http.Request)
@@ -174,13 +174,13 @@ func (_ Unimplemented) DownloadWorkflowFile(w http.ResponseWriter, r *http.Reque
 
 // GET /api/v1/workflows/{workflowName} - Get Workflow Info
 // (GET /api/v1/workflows/{workflowName})
-func (_ Unimplemented) GetApiV1WorkflowsWorkflowName(w http.ResponseWriter, r *http.Request, workflowName string) {
+func (_ Unimplemented) GetWorkflowInfo(w http.ResponseWriter, r *http.Request, workflowName string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
 // GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream - Get Workflow Log Stream
 // (GET /api/v1/workflows/{workflowName}/pods/{podName}/logstream)
-func (_ Unimplemented) GetApiV1WorkflowsWorkflowNamePodsPodNameLogstream(w http.ResponseWriter, r *http.Request, workflowName string, podName string) {
+func (_ Unimplemented) GetWorkflowLogStreamAsSse(w http.ResponseWriter, r *http.Request, workflowName string, podName string) {
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
@@ -291,8 +291,8 @@ func (siw *ServerInterfaceWrapper) DownloadWorkflowFile(w http.ResponseWriter, r
 	handler.ServeHTTP(w, r)
 }
 
-// GetApiV1WorkflowsWorkflowName operation middleware
-func (siw *ServerInterfaceWrapper) GetApiV1WorkflowsWorkflowName(w http.ResponseWriter, r *http.Request) {
+// GetWorkflowInfo operation middleware
+func (siw *ServerInterfaceWrapper) GetWorkflowInfo(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 
@@ -306,7 +306,7 @@ func (siw *ServerInterfaceWrapper) GetApiV1WorkflowsWorkflowName(w http.Response
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetApiV1WorkflowsWorkflowName(w, r, workflowName)
+		siw.Handler.GetWorkflowInfo(w, r, workflowName)
 	}))
 
 	for i := len(siw.HandlerMiddlewares) - 1; i >= 0; i-- {
@@ -316,8 +316,8 @@ func (siw *ServerInterfaceWrapper) GetApiV1WorkflowsWorkflowName(w http.Response
 	handler.ServeHTTP(w, r)
 }
 
-// GetApiV1WorkflowsWorkflowNamePodsPodNameLogstream operation middleware
-func (siw *ServerInterfaceWrapper) GetApiV1WorkflowsWorkflowNamePodsPodNameLogstream(w http.ResponseWriter, r *http.Request) {
+// GetWorkflowLogStreamAsSse operation middleware
+func (siw *ServerInterfaceWrapper) GetWorkflowLogStreamAsSse(w http.ResponseWriter, r *http.Request) {
 
 	var err error
 
@@ -340,7 +340,7 @@ func (siw *ServerInterfaceWrapper) GetApiV1WorkflowsWorkflowNamePodsPodNameLogst
 	}
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetApiV1WorkflowsWorkflowNamePodsPodNameLogstream(w, r, workflowName, podName)
+		siw.Handler.GetWorkflowLogStreamAsSse(w, r, workflowName, podName)
 	}))
 
 	for i := len(siw.HandlerMiddlewares) - 1; i >= 0; i-- {
@@ -493,10 +493,10 @@ func HandlerWithOptions(si ServerInterface, options ChiServerOptions) http.Handl
 		r.Get(options.BaseURL+"/api/v1/workflows/files/{fullFileName}", wrapper.DownloadWorkflowFile)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/api/v1/workflows/{workflowName}", wrapper.GetApiV1WorkflowsWorkflowName)
+		r.Get(options.BaseURL+"/api/v1/workflows/{workflowName}", wrapper.GetWorkflowInfo)
 	})
 	r.Group(func(r chi.Router) {
-		r.Get(options.BaseURL+"/api/v1/workflows/{workflowName}/pods/{podName}/logstream", wrapper.GetApiV1WorkflowsWorkflowNamePodsPodNameLogstream)
+		r.Get(options.BaseURL+"/api/v1/workflows/{workflowName}/pods/{podName}/logstream", wrapper.GetWorkflowLogStreamAsSse)
 	})
 	r.Group(func(r chi.Router) {
 		r.Get(options.BaseURL+"/swagger", wrapper.GetSwaggerUi)
@@ -508,40 +508,40 @@ func HandlerWithOptions(si ServerInterface, options ChiServerOptions) http.Handl
 // Base64 encoded, gzipped, json marshaled Swagger object
 var swaggerSpec = []string{
 
-	"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",
-	"Fe6uWkC/MFloTbfbfwYAAP//Tw5FMl4hAAA=",
+	"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",
+	"AvqFyULTud3+IwAA//8USFLgXSEAAA==",
 }
 
 // GetSwagger returns the content of the embedded swagger specification file
