@@ -56,7 +56,7 @@ tasks:
     description: Get the JWT token for a given keycloak client
     actions:
       - cmd: |
-          curl -v -X 'POST' \
+          curl -X 'POST' \
             'https://sso.uds.dev/realms/uds/protocol/openid-connect/token' \
             -d grant_type=client_credentials \
             -H 'accept: application/json' \
