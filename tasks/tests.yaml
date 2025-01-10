@@ -42,17 +42,37 @@ tasks:
             -c /home/zap/zap-api-scan.conf \
             -d
 
+  - name: get-test-basic-auth
+    description: Get the basic auth string for getting a JWT when SSO testing using the test client
+    actions:
+      - cmd: echo "$(./uds zarf tools kubectl get secret client-secret-wfapi-api -n argo -o json | jq -r .data.clientId | base64 -d):$(./uds zarf tools kubectl get secret client-secret-wfapi-api -n argo -o json | jq -r .data.clientSecret | base64 -d)"
+        shell:
+          darwin: bash
+          linux: bash
+        setVariables:
+          - name: BASIC
+
   - name: get-token
-    description: Test commands for SSO testing
+    description: Get the JWT token for a given keycloak client
     actions:
       - cmd: |
           curl -X 'POST' \
             'https://sso.uds.dev/realms/uds/protocol/openid-connect/token' \
             -d grant_type=client_credentials \
             -H 'accept: application/json' \
-            -H "Authorization: Basic ${BASIC}" | jq -r '.access_token'
+            -H "Authorization: Basic $(echo -n ${BASIC} | base64)" | jq -r '.access_token'
+        shell: 
+          darwin: bash
+          linux: bash
         setVariables:
           - name: JWT
+  
+  - name: get-test-token
+    description: Gets the JWT token for SSO testing using the test client
+    actions:
+      - task: get-test-basic-auth
+      - task: get-token
+  
   - name: get-files
     description: Test commands for SSO testing
     actions:
