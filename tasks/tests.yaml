@@ -60,7 +60,7 @@ tasks:
             'https://sso.uds.dev/realms/uds/protocol/openid-connect/token' \
             -d grant_type=client_credentials \
             -H 'accept: application/json' \
-            -H "Authorization: Basic $(echo -n ${BASIC} | base64)" | jq -r .access_token
+            -H "Authorization: Basic $(echo -n ${BASIC} | base64)" | jq -r '.access_token'
         shell: 
           darwin: bash
           linux: bash
