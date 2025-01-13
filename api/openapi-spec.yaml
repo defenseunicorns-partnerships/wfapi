@@ -251,11 +251,23 @@ components:
             description: Metadata for a file
             required:
                 - fileName
+                - lastModified
+                - size
             type: object
             properties:
                 fileName:
                     description: The fully qualified filename
                     type: string
+                lastModified:
+                    format: date-time
+                    description: >-
+                        Creation date of the object. If the creation date of the object wasn't able to
+                        returned the "zero value" will be used, which is 0001-01-01T00:00:00Z.
+                    type: string
+                size:
+                    format: int64
+                    description: The size of the object in bytes.
+                    type: integer
         WorkflowParameter:
             description: WorkflowParameter model
             required:

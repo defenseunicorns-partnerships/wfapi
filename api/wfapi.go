@@ -3,12 +3,21 @@
 package api
 
 import (
+	"context"
 	_ "embed"
 	"encoding/json"
 	"fmt"
+	"github.com/MicahParks/keyfunc/v3"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/defenseunicorns-partnerships/wfapi/pkg/environment"
 	"github.com/defenseunicorns-partnerships/wfapi/pkg/logger"
+	"github.com/golang-jwt/jwt/v5"
+	"io"
 	"net/http"
 	"sigs.k8s.io/yaml"
+	"strings"
+	"time"
 )
 
 //region Boilerplate
@@ -16,16 +25,27 @@ import (
 //go:embed openapi-spec.yaml
 var openApiSpec string
 
-// Server is the implementation of the ServerInterface
 type Server struct {
+	// S3Client is a Pointer to an S3 client
+	S3Client *s3.Client
+
+	// BucketName is the name of the bucket to use
+	BucketName string
+
+	// Environment specifies the deployment environment such as Development, Test, or Production.
+	Environment environment.Enum
 }
 
 // Make sure we conform to ServerInterface
 var _ ServerInterface = (*Server)(nil)
 
 // NewServer creates a new instance of the Server
-func NewServer() *Server {
-	return &Server{}
+func NewServer(s3Client *s3.Client, bucketName string, env environment.Enum) *Server {
+	return &Server{
+		S3Client:    s3Client,
+		BucketName:  bucketName,
+		Environment: env,
+	}
 }
 
 // sendServerError wraps sending of an error in the Error format, and handling the failure to marshal that.
@@ -44,8 +64,107 @@ func sendServerError(w http.ResponseWriter, code int, message string) {
 
 // GetWorkflowFiles implements GET /api/v1/workflows/files - List Files
 func (s Server) GetWorkflowFiles(w http.ResponseWriter, r *http.Request) {
-	//TODO implement me
-	panic("implement me")
+	objectPrefix := "files/"
+	if s.Environment != environment.Development {
+		// Extract the client_id claim out of the JWT and change objectPrefix to "<client_id>/files/". If there's no JWT or the client_id claim is missing, error out.
+		// Extract the client_id from the JWT
+		authHeader := r.Header.Get("Authorization")
+		if authHeader == "" {
+			sendServerError(w, http.StatusUnauthorized, "missing Authorization header")
+			return
+		}
+
+		tokenString := strings.TrimPrefix(authHeader, "Bearer ")
+		if tokenString == authHeader {
+			sendServerError(w, http.StatusBadRequest, "invalid Authorization header format")
+			return
+		}
+
+		// Parse the JWT
+		openIDConfigURL := "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
+
+		// Fetch the OpenID configuration
+		resp, err := http.Get(openIDConfigURL)
+		if err != nil || resp.StatusCode != http.StatusOK {
+			sendServerError(w, http.StatusInternalServerError, fmt.Sprintf("failed to fetch OpenID configuration: %v", err))
+			return
+		}
+		defer func(Body io.ReadCloser) {
+			_ = Body.Close()
+		}(resp.Body)
+
+		var openIDConfig struct {
+			JwksURI string `json:"jwks_uri"`
+		}
+
+		// Decode the OpenID configuration
+		if err := json.NewDecoder(resp.Body).Decode(&openIDConfig); err != nil {
+			sendServerError(w, http.StatusInternalServerError, fmt.Sprintf("failed to decode OpenID configuration: %v", err))
+			return
+		}
+
+		jwks, err := keyfunc.NewDefault([]string{openIDConfig.JwksURI})
+		if err != nil {
+			sendServerError(w, http.StatusInternalServerError, fmt.Sprintf("Failed to create JWK Set from resource at the given URL.\nError: %s", err))
+			return
+		}
+
+		token, err := jwt.Parse(tokenString, jwks.Keyfunc)
+		if err != nil || !token.Valid {
+			sendServerError(w, http.StatusUnauthorized, "invalid token")
+			return
+		}
+
+		// Extract claims
+		claims, ok := token.Claims.(jwt.MapClaims)
+		if !ok {
+			sendServerError(w, http.StatusUnauthorized, "unable to parse token claims")
+			return
+		}
+
+		clientID, ok := claims["client_id"].(string)
+		if !ok || clientID == "" {
+			sendServerError(w, http.StatusBadRequest, "client_id claim is missing in token")
+			return
+		}
+
+		// Set objectPrefix based on client_id
+		objectPrefix = fmt.Sprintf("%s/files/", clientID)
+	}
+
+	// List objects in the bucket with the specified prefix
+	input := &s3.ListObjectsV2Input{
+		Bucket: aws.String(s.BucketName),
+		Prefix: aws.String(objectPrefix),
+	}
+	output, err := s.S3Client.ListObjectsV2(context.TODO(), input)
+	if err != nil {
+		sendServerError(w, http.StatusInternalServerError, fmt.Sprintf("failed to list files: %v", err))
+		return
+	}
+
+	// Transform S3 objects to WfapiFileMetadata
+	var files []WfapiFileMetadata
+	for _, obj := range output.Contents {
+		files = append(files, WfapiFileMetadata{
+			FileName: *obj.Key,
+			Size:     *obj.Size,
+			LastModified: func() time.Time {
+				if obj.LastModified != nil {
+					return *obj.LastModified
+				}
+				return time.Time{}
+			}(),
+		})
+	}
+
+	// Write JSON response
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(files); err != nil {
+		sendServerError(w, http.StatusInternalServerError, fmt.Sprintf("failed to encode files response: %v", err))
+		return
+	}
 }
 
 // DownloadWorkflowFile implements GET /api/v1/workflows/files/{fullFileName} - Download File

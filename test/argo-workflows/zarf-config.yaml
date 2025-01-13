@@ -1,0 +1,28 @@
+package:
+  deploy:
+    set:
+      DEPLOY_POSTGRESQL: true
+      PG_USER: argo
+      PG_USER_PASSWORD: argo
+      PG_DB: argo_workflows
+      PG_HOST: postgresql.argo.svc.cluster.local
+      PG_PORT: 5432
+      PG_PASSWORD: pgadmin
+      S3_ENDPOINT: minio.uds-dev-stack.svc.cluster.local:9000
+      S3_PORT: 9000
+      S3_ACCESS_KEY: test-user
+      S3_SECRET_KEY: test-secret
+      S3_BUCKET_NAME: argo
+      DEFAULT_ARTIFACT_REPOSITORY: minio-artifact-repository
+      DEV_DEPLOYMENT: true
+      WF_TTL_SECONDS_AFTER_SUCCESS: "1"
+      WF_TTL_SECONDS_AFTER_FAILURE: "4"
+      PARALLELISM: 10
+      CONTR_MEM_REQ: 64Mi
+      CONTR_MEM_LIM: 256Mi
+      CONTR_CPU_REQ: 100m
+      CONTR_CPU_LIM: 500m
+      EXEC_MEM_REQ: 64Mi
+      EXEC_MEM_LIM: 256Mi
+      EXEC_CPU_REQ: 100m
+      EXEC_CPU_LIM: 200m

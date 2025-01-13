@@ -1,3 +1,4 @@
 includes:
   - studio: ./tasks/studio.yaml
   - app: ./tasks/app.yaml
+  - ci: ./tasks/ci.yaml

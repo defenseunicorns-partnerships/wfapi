@@ -30,3 +30,6 @@ go.work.sum
 # App binary
 /wfapi
 /tmp
+
+# Zarf stuff
+**/zarf-sbom
