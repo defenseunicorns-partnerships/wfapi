@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "build": "uds run app:build --no-progress"
+  },
+  "image": "ghcr.io/defenseunicorns/build-harness/build-harness:2.0.50"
+}
