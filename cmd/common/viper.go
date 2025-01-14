@@ -45,10 +45,10 @@ Disable colorized output`
 	VEnvironment        = "environment"
 	VEnvironmentLong    = "environment"
 	VEnvironmentShort   = "e"
-	VEnvironmentDefault = "Production"
+	VEnvironmentDefault = "production"
 	VEnvironmentUsage   = `Env: WFAPI_ENVIRONMENT
 CfgFile: environment
-Environment to use for logging and other purposes`
+Deploy environment [development, test, production]`
 
 	// Serve config keys
 
@@ -74,12 +74,19 @@ Region of the S3-compatible bucket to use`
 CfgFile: serve.bucket.service-url
 URL of the S3-compatible object storage service`
 
-	VServiceBucketName      = "serve.bucket.name"
-	VServiceBucketNameLong  = "bucket-name"
-	VServiceBucketNameShort = "b"
-	VServiceBucketNameUsage = `Env: WFAPI_SERVE_BUCKET_NAME
+	VServeBucketName      = "serve.bucket.name"
+	VServeBucketNameLong  = "bucket-name"
+	VServeBucketNameShort = "b"
+	VServeBucketNameUsage = `Env: WFAPI_SERVE_BUCKET_NAME
 CfgFile: serve.bucket.name
 Name of the S3-compatible bucket to use`
+
+	VServeWellKnownConfigUrl      = "serve.well-known-config-url"
+	VServeWellKnownConfigUrlLong  = "well-known-config-url"
+	VServeWellKnownConfigUrlShort = "w"
+	VServeWellKnownConfigUrlUsage = `Env: WFAPI_SERVE_WELL_KNOWN_CONFIG_URL
+CfgFile: serve.well-known-config-url
+URL of the well-known configuration file`
 )
 
 func ValidateEnvironment(input string) error {
@@ -201,5 +208,14 @@ func ValidateServeBucketName(bucketName string) error {
 	}
 
 	// All checks passed
+	return nil
+}
+
+func ValidateWellKnownConfigUrl(wellKnownConfigUrl string) error {
+	// Parse the input string as a URL
+	_, err := url.Parse(wellKnownConfigUrl)
+	if err != nil {
+		return fmt.Errorf("invalid URL format: %w", err)
+	}
 	return nil
 }

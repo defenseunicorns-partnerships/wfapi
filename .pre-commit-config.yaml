@@ -1,0 +1,37 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=1024"]
+      - id: check-merge-conflict
+      - id: detect-aws-credentials
+        args:
+          - "--allow-missing-credentials"
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+        exclude: '^chart\/docs\/.*\.md'
+      - id: mixed-line-ending
+        args: [--fix=lf]
+  - repo: https://github.com/sirosen/fix-smartquotes
+    rev: 0.2.0
+    hooks:
+      - id: fix-smartquotes
+  - # noinspection YAMLSchemaValidation
+    repo: local
+    hooks:
+      - id: helm-schema
+        name: helm-schema
+        entry: scripts/helm_schema.sh
+        language: script
+        files: chart/values.yaml
+        types: [yaml]
+      - id: jsonschema2md
+        name: jsonschema2md
+        entry: scripts/jsonschema2md.sh
+        language: script
+        files: chart/values.schema.json
+        types: [json]

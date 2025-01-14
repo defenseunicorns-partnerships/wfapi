@@ -34,17 +34,21 @@ type Server struct {
 
 	// Environment specifies the deployment environment such as Development, Test, or Production.
 	Environment environment.Enum
+
+	// WellKnownConfigUrl is the URL of the OpenID WellKnownConfig
+	WellKnownConfigUrl string
 }
 
 // Make sure we conform to ServerInterface
 var _ ServerInterface = (*Server)(nil)
 
 // NewServer creates a new instance of the Server
-func NewServer(s3Client *s3.Client, bucketName string, env environment.Enum) *Server {
+func NewServer(s3Client *s3.Client, bucketName string, env environment.Enum, wellKnownConfigUrl string) *Server {
 	return &Server{
-		S3Client:    s3Client,
-		BucketName:  bucketName,
-		Environment: env,
+		S3Client:           s3Client,
+		BucketName:         bucketName,
+		Environment:        env,
+		WellKnownConfigUrl: wellKnownConfigUrl,
 	}
 }
 
@@ -81,10 +85,10 @@ func (s Server) GetWorkflowFiles(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Parse the JWT
-		openIDConfigURL := "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
+		//openIDConfigURL := "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
 
 		// Fetch the OpenID configuration
-		resp, err := http.Get(openIDConfigURL)
+		resp, err := http.Get(s.WellKnownConfigUrl)
 		if err != nil || resp.StatusCode != http.StatusOK {
 			sendServerError(w, http.StatusInternalServerError, fmt.Sprintf("failed to fetch OpenID configuration: %v", err))
 			return
@@ -110,6 +114,7 @@ func (s Server) GetWorkflowFiles(w http.ResponseWriter, r *http.Request) {
 		}
 
 		token, err := jwt.Parse(tokenString, jwks.Keyfunc)
+		//token, err := jwt.Parse(tokenString, jwks.Keyfunc, jwt.WithIssuedAt(), jwt.WithAudience(audience), jwt.WithIssuer())
 		if err != nil || !token.Valid {
 			sendServerError(w, http.StatusUnauthorized, "invalid token")
 			return

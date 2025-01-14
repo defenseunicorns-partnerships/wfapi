@@ -12,7 +12,7 @@ WFAPI is a REST API service originally written in C# / ASP.NET Core, where it fo
 
 - Lack of Mature Code-First Support: Golang lacks a clearly favored Code-First library. While some open-source libraries exist, many do not support OpenAPI v3, which limits our ability to generate up-to-date API specifications directly from code.
 - Intentional API Design: We want to make the API specification the primary source of truth for our application, treating it as a contract that guides development. This approach helps ensure consistency, promotes design-first thinking, and facilitates smoother collaboration across teams.
-- Tooling Availability: Our decision was made easier with the discovery of Apicurio, a UI-based editor that supports OpenAPI v3. Apicurio enables us to collaboratively define and maintain an OpenAPI spec, making it easier to manage the API’s structure and documentation from the outset.
+- Tooling Availability: Our decision was made easier with the discovery of Apicurio, a UI-based editor that supports OpenAPI v3. Apicurio enables us to collaboratively define and maintain an OpenAPI spec, making it easier to manage the API's structure and documentation from the outset.
 
 For these reasons, we decided to adopt an API-First approach for the new Golang-based version of WFAPI.
 
