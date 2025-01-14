@@ -25,6 +25,7 @@ import (
 //go:embed openapi-spec.yaml
 var openApiSpec string
 
+// Server is the implementation of the ServerInterface
 type Server struct {
 	// S3Client is a Pointer to an S3 client
 	S3Client *s3.Client
