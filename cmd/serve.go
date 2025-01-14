@@ -83,11 +83,6 @@ func NewServeCommand() *cobra.Command {
 	}
 
 	cmd.Flags().StringP(common.VServeBucketRegionLong, common.VServeBucketRegionShort, "", common.VServeBucketRegionUsage)
-	err = cmd.MarkFlagRequired(common.VServeBucketRegionLong)
-	if err != nil {
-		logger.Default().Error("Error marking flag as required:", err)
-		os.Exit(1)
-	}
 	err = viper.BindPFlag(common.VServeBucketRegion, cmd.Flags().Lookup(common.VServeBucketRegionLong))
 	if err != nil {
 		logger.Default().Error("Error binding flag to viper:", err)
@@ -95,11 +90,6 @@ func NewServeCommand() *cobra.Command {
 	}
 
 	cmd.Flags().StringP(common.VServeBucketServiceUrlLong, common.VServeBucketServiceUrlShort, "", common.VServeBucketServiceUrlUsage)
-	err = cmd.MarkFlagRequired(common.VServeBucketServiceUrlLong)
-	if err != nil {
-		logger.Default().Error("Error marking flag as required:", err)
-		os.Exit(1)
-	}
 	err = viper.BindPFlag(common.VServeBucketServiceUrl, cmd.Flags().Lookup(common.VServeBucketServiceUrlLong))
 	if err != nil {
 		logger.Default().Error("Error binding flag to viper:", err)
@@ -107,11 +97,6 @@ func NewServeCommand() *cobra.Command {
 	}
 
 	cmd.Flags().StringP(common.VServeBucketNameLong, common.VServeBucketNameShort, "", common.VServeBucketNameUsage)
-	err = cmd.MarkFlagRequired(common.VServeBucketNameLong)
-	if err != nil {
-		logger.Default().Error("Error marking flag as required:", err)
-		os.Exit(1)
-	}
 	err = viper.BindPFlag(common.VServeBucketName, cmd.Flags().Lookup(common.VServeBucketNameLong))
 	if err != nil {
 		logger.Default().Error("Error binding flag to viper:", err)
@@ -119,11 +104,6 @@ func NewServeCommand() *cobra.Command {
 	}
 
 	cmd.Flags().StringP(common.VServeWellKnownConfigUrlLong, common.VServeWellKnownConfigUrlShort, "", common.VServeWellKnownConfigUrlUsage)
-	err = cmd.MarkFlagRequired(common.VServeWellKnownConfigUrlLong)
-	if err != nil {
-		logger.Default().Error("Error marking flag as required:", err)
-		os.Exit(1)
-	}
 	err = viper.BindPFlag(common.VServeWellKnownConfigUrl, cmd.Flags().Lookup(common.VServeWellKnownConfigUrlLong))
 	if err != nil {
 		logger.Default().Error("Error binding flag to viper:", err)

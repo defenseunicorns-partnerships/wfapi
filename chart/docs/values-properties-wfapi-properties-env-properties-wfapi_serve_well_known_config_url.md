@@ -1,7 +1,7 @@
-# Auth\_\_Jwt\_\_WellKnownConfig Schema
+# WFAPI\_SERVE\_WELL\_KNOWN\_CONFIG\_URL Schema
 
 ```txt
-values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__WellKnownConfig
+values.yaml#/properties/wfapi/properties/env/properties/WFAPI_SERVE_WELL_KNOWN_CONFIG_URL
 ```
 
 Well-known configuration URL for the JWT issuer
@@ -10,11 +10,11 @@ Well-known configuration URL for the JWT issuer
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------- |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [values.schema.json\*](../values.schema.json "open original schema") |
 
-## Auth\_\_Jwt\_\_WellKnownConfig Type
+## WFAPI\_SERVE\_WELL\_KNOWN\_CONFIG\_URL Type
 
-`string` ([Auth\_\_Jwt\_\_WellKnownConfig](values-properties-wfapi-properties-env-properties-auth__jwt__wellknownconfig.md))
+`string` ([WFAPI\_SERVE\_WELL\_KNOWN\_CONFIG\_URL](values-properties-wfapi-properties-env-properties-wfapi_serve_well_known_config_url.md))
 
-## Auth\_\_Jwt\_\_WellKnownConfig Default Value
+## WFAPI\_SERVE\_WELL\_KNOWN\_CONFIG\_URL Default Value
 
 The default value is:
 

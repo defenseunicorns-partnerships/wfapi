@@ -1,23 +1,23 @@
-# Bucket\_\_Name Schema
+# WFAPI\_SERVE\_BUCKET\_SERVICE\_URL Schema
 
 ```txt
-values.yaml#/properties/wfapi/properties/env/properties/Bucket__Name
+values.yaml#/properties/wfapi/properties/env/properties/WFAPI_SERVE_BUCKET_SERVICE_URL
 ```
 
-Bucket name
+Bucket service URL
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                           |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------- |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [values.schema.json\*](../values.schema.json "open original schema") |
 
-## Bucket\_\_Name Type
+## WFAPI\_SERVE\_BUCKET\_SERVICE\_URL Type
 
-`string` ([Bucket\_\_Name](values-properties-wfapi-properties-env-properties-bucket__name.md))
+`string` ([WFAPI\_SERVE\_BUCKET\_SERVICE\_URL](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_service_url.md))
 
-## Bucket\_\_Name Default Value
+## WFAPI\_SERVE\_BUCKET\_SERVICE\_URL Default Value
 
 The default value is:
 
 ```json
-"argo"
+"http://minio.uds-dev-stack.svc.cluster.local:9000"
 ```

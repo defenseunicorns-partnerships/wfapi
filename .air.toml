@@ -12,7 +12,7 @@ tmp_dir = "tmp"
   exclude_regex = ["_test\\.go$", "\\.gen\\.go$"]
   exclude_unchanged = false
   follow_symlink = false
-  full_bin = "WFAPI_SERVE_PORT=8080 WFAPI_LOG_FORMAT=dev WFAPI_LOG_LEVEL=debug WFAPI_NO_COLOR=false ./tmp/main"
+  full_bin = "WFAPI_SERVE_PORT=8080 WFAPI_LOG_FORMAT=dev WFAPI_LOG_LEVEL=debug WFAPI_NO_COLOR=false WFAPI_SERVE_BUCKET_NAME=argo WFAPI_SERVE_BUCKET_REGION=minio WFAPI_SERVE_BUCKET_SERVICE_URL=https://minio.uds.dev WFAPI_SERVE_WELL_KNOWN_CONFIG_URL=https://sso.uds.dev/realms/uds/.well-known/openid-configuration ./tmp/main"
   include_dir = []
   include_ext = ["go", "tpl", "tmpl", "html", "yaml", "mod", "sum"]
   include_file = []

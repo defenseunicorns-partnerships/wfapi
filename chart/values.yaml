@@ -12,8 +12,9 @@ wfapi: # @schema title: wfapi; type: [object]; description: wfapi chart settings
 
   env: # @schema title: env; type: [object]; description: Environment variables to set in the container. Ref: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables; required: true; additionalProperties: false
     WFAPI_ENVIRONMENT: "production" # @schema title: WFAPI_ENVIRONMENT; type: [string]; description: Deploy environment. If "Development", all JWT auth will be disabled. If "test", a keycloak service account named "wfapi-api" will be created for testing purposes.; required: true; default: "production"; enum: [development, test, production]
-    Serilog__MinimumLevel__Default: "Information" # @schema title: Serilog__MinimumLevel__Default; type: [string]; description: Serilog minimum log level; required: true; default: "Information"
-    Auth__Jwt__WellKnownConfig: "https://sso.uds.dev/realms/uds/.well-known/openid-configuration" # @schema title: Auth__Jwt__WellKnownConfig; type: [string]; description: Well-known configuration URL for the JWT issuer; required: true; default: "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
+    WFAPI_LOG_FORMAT: "console" # @schema title: WFAPI_LOG_FORMAT; type: [string]; description: Log format.; required: true; default: "console"; enum: [console, json, dev, none]
+    WFAPI_LOG_LEVEL: "info" # @schema title: WFAPI_LOG_LEVEL; type: [string]; description: Log level for the application.; required: true; default: "info"; enum: [debug, info, warn, error]
+    WFAPI_SERVE_WELL_KNOWN_CONFIG_URL: "https://sso.uds.dev/realms/uds/.well-known/openid-configuration" # @schema title: WFAPI_SERVE_WELL_KNOWN_CONFIG_URL; type: [string]; description: Well-known configuration URL for the JWT issuer; required: true; default: "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
     Auth__Jwt__Authority: "https://sso.uds.dev/realms/uds" # @schema title: Auth__Jwt__Authority; type: [string]; description: JWT authority; required: true; default: "https://sso.uds.dev/realms/uds"
     Auth__Jwt__Audience: "wfapi" # @schema title: Auth__Jwt__Audience; type: [string]; description: JWT audience. Corresponds to the Keycloak client associated with this app.; required: true; default: "wfapi"
     Auth__Jwt__RequireHttpsMetadata: "true" # @schema title: Auth__Jwt__RequireHttpsMetadata; type: [string]; description: Require HTTPS when interfacing with the IDP; required: true; default: "true"
@@ -21,9 +22,9 @@ wfapi: # @schema title: wfapi; type: [object]; description: wfapi chart settings
     Argo__ApiUrl: "http://argo-workflows-server:2746" # @schema title: Argo__ApiUrl; type: [string]; description: Argo API URL; required: true; default: "http://argo-workflows-server:2746"
     Argo__Token: "" # @schema title: Argo__Token; type: [string]; description: Optional Argo API token. Not necessary in most cases as the app will fetch the token that is mounted to the filesystem. Leave as an empty string.; required: true; default: ""
     Argo__Namespace: "argo" # @schema title: Argo__Namespace; type: [string]; description: Namespace where workflows should be created; required: true; default: "argo"
-    Bucket__Region: "minio" # @schema title: Bucket__Region; type: [string]; description: Bucket region; required: true; default: "minio"
-    Bucket__ServiceUrl: "http://minio.uds-dev-stack.svc.cluster.local:9000" # @schema title: Bucket__ServiceUrl; type: [string]; description: Bucket service URL; required: true; default: "http://minio.uds-dev-stack.svc.cluster.local:9000"
-    Bucket__Name: "argo" # @schema title: Bucket__Name; type: [string]; description: Bucket name; required: true; default: "argo"
+    WFAPI_SERVE_BUCKET_REGION: "minio" # @schema title: WFAPI_SERVE_BUCKET_REGION; type: [string]; description: Bucket region; required: true; default: "minio"
+    WFAPI_SERVE_BUCKET_SERVICE_URL: "http://minio.uds-dev-stack.svc.cluster.local:9000" # @schema title: WFAPI_SERVE_BUCKET_SERVICE_URL; type: [string]; description: Bucket service URL; required: true; default: "http://minio.uds-dev-stack.svc.cluster.local:9000"
+    WFAPI_SERVE_BUCKET_NAME: "argo" # @schema title: WFAPI_SERVE_BUCKET_NAME; type: [string]; description: Bucket name; required: true; default: "argo"
     AWS_ACCESS_KEY_ID: "" # @schema title: AWS_ACCESS_KEY_ID; type: [string]; description: AWS access key ID. Leave as empty string if using IRSA; required: true; default: ""
     AWS_SECRET_ACCESS_KEY: "" # @schema title: AWS_SECRET_ACCESS_KEY; type: [string]; description: AWS secret access key. Leave as empty string if using IRSA; required: true; default: ""
     Swagger__Enable: "false" # @schema title: Swagger__Enable; type: [string]; description: Whether to enable Swagger. If true, the SwaggerUI can be reached at <url>/swagger; required: true; default: "false"

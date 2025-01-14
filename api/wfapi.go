@@ -214,7 +214,7 @@ func (s Server) GetWorkflowLogStreamAsSse(w http.ResponseWriter, r *http.Request
 
 //endregion
 
-//region Docs
+//region Internal
 
 // GetSwaggerUi implements GET /swagger - Swagger UI
 func (s Server) GetSwaggerUi(w http.ResponseWriter, r *http.Request) {
@@ -258,6 +258,11 @@ func (s Server) GetSwaggerUi(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	w.WriteHeader(http.StatusOK)
 	_, _ = w.Write([]byte(fmt.Sprintf(html, openApiSpecJson)))
+}
+
+// GetHealthz implements GET /healthz - Healthcheck
+func (s Server) GetHealthz(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusNoContent)
 }
 
 //endregion

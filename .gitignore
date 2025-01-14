@@ -33,3 +33,4 @@ go.work.sum
 
 # Zarf stuff
 **/zarf-sbom
+*.tar.zst

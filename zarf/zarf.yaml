@@ -20,7 +20,7 @@ variables:
     default: "info"
     sensitive: false
     pattern: "^(debug|info|warn|error)$"
-  - name: WFAPI_WELL_KNOWN_CONFIG_URL
+  - name: WFAPI_SERVE_WELL_KNOWN_CONFIG_URL
     description: Well-known configuration URL for the JWT issuer.
     default: "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
     sensitive: false
@@ -54,15 +54,15 @@ variables:
     description: Optional Argo API token. Not necessary in most cases as the app will fetch the token that is mounted to the filesystem. Leave as an empty string.
     default: ""
     sensitive: true
-  - name: ENV_BUCKET__REGION
+  - name: WFAPI_SERVE_BUCKET_REGION
     description: The region of the bucket that WFAPI will interact with.
     default: "minio"
     sensitive: false
-  - name: ENV_BUCKET__SERVICEURL
+  - name: WFAPI_SERVE_BUCKET_SERVICE_URL
     description: The URL of the S3 service that WFAPI will interact with.
     default: "http://minio.uds-dev-stack.svc.cluster.local:9000"
     sensitive: false
-  - name: ENV_BUCKET__NAME
+  - name: WFAPI_SERVE_BUCKET_NAME
     description: The name of the bucket that WFAPI will interact with.
     default: "argo"
     sensitive: false

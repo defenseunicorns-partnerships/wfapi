@@ -12,13 +12,14 @@ tasks:
   - name: uds-up
     description: Brings up uds-slim-dev
     actions:
-      - dir: test
+      - dir: test/k3d-core-slim-dev
         shell:
           darwin: bash
           linux: bash
         cmd: |
-          set -a; source ../.env; set +a
+          set -a; source ../../.env; set +a
           ./uds deploy k3d-core-slim-dev:${UDS_CORE_VERSION} --confirm
+      - cmd: ./uds zarf tools kubectl apply -f test/k3d-core-slim-dev/minio/virtual-service.yaml
   - name: uds-down
     description: Brings down uds-slim-dev
     actions:

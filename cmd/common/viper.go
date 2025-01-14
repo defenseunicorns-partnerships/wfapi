@@ -90,6 +90,10 @@ URL of the well-known configuration file`
 )
 
 func ValidateEnvironment(input string) error {
+	if input == "" {
+		return fmt.Errorf("environment value cannot be empty")
+	}
+	// Parse the input string as an environment.Enum
 	_, err := environment.ParseEnum(input)
 	if err != nil {
 		return fmt.Errorf("invalid environment value: %w", err)
@@ -98,6 +102,9 @@ func ValidateEnvironment(input string) error {
 }
 
 func ValidateConfig(configPath string) error {
+	if configPath == "" {
+		return fmt.Errorf("config path cannot be empty")
+	}
 	// Check if the file exists
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
 		return fmt.Errorf("config file does not exist: %s", configPath)
@@ -139,6 +146,10 @@ func ValidateServeBucketRegion(region string) error {
 }
 
 func ValidateServeBucketServiceUrl(inputUrl string) error {
+	if inputUrl == "" {
+		return fmt.Errorf("bucket service URL cannot be empty")
+	}
+
 	// Parse the input string as a URL
 	parsedUrl, err := url.Parse(inputUrl)
 	if err != nil {
@@ -212,8 +223,14 @@ func ValidateServeBucketName(bucketName string) error {
 }
 
 func ValidateWellKnownConfigUrl(wellKnownConfigUrl string) error {
+	if wellKnownConfigUrl == "" {
+		return fmt.Errorf("well-known config URL cannot be empty")
+	}
+	// Check if the URL is valid
+	_, err := url.ParseRequestURI(wellKnownConfigUrl)
+
 	// Parse the input string as a URL
-	_, err := url.Parse(wellKnownConfigUrl)
+	_, err = url.Parse(wellKnownConfigUrl)
 	if err != nil {
 		return fmt.Errorf("invalid URL format: %w", err)
 	}

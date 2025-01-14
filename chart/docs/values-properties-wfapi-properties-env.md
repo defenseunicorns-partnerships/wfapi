@@ -16,24 +16,25 @@ Environment variables to set in the container. Ref: <https://kubernetes.io/docs/
 
 # env Properties
 
-| Property                                                                | Type     | Required | Nullable       | Defined by                                                                                                                                                                                    |
-| :---------------------------------------------------------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [AWS\_ACCESS\_KEY\_ID](#aws_access_key_id)                              | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-aws_access_key_id.md "values.yaml#/properties/wfapi/properties/env/properties/AWS_ACCESS_KEY_ID")                             |
-| [AWS\_SECRET\_ACCESS\_KEY](#aws_secret_access_key)                      | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-aws_secret_access_key.md "values.yaml#/properties/wfapi/properties/env/properties/AWS_SECRET_ACCESS_KEY")                     |
-| [Argo\_\_ApiUrl](#argo__apiurl)                                         | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__apiurl.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__ApiUrl")                                       |
-| [Argo\_\_Namespace](#argo__namespace)                                   | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__namespace.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__Namespace")                                 |
-| [Argo\_\_Token](#argo__token)                                           | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__token.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__Token")                                         |
-| [Auth\_\_Jwt\_\_Audience](#auth__jwt__audience)                         | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__audience.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__Audience")                         |
-| [Auth\_\_Jwt\_\_Authority](#auth__jwt__authority)                       | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__authority.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__Authority")                       |
-| [Auth\_\_Jwt\_\_RequireHttpsMetadata](#auth__jwt__requirehttpsmetadata) | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__requirehttpsmetadata.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__RequireHttpsMetadata") |
-| [Auth\_\_Jwt\_\_ValidateIssuer](#auth__jwt__validateissuer)             | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__validateissuer.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__ValidateIssuer")             |
-| [Auth\_\_Jwt\_\_WellKnownConfig](#auth__jwt__wellknownconfig)           | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__wellknownconfig.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__WellKnownConfig")           |
-| [Bucket\_\_Name](#bucket__name)                                         | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-bucket__name.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__Name")                                       |
-| [Bucket\_\_Region](#bucket__region)                                     | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-bucket__region.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__Region")                                   |
-| [Bucket\_\_ServiceUrl](#bucket__serviceurl)                             | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-bucket__serviceurl.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__ServiceUrl")                           |
-| [Serilog\_\_MinimumLevel\_\_Default](#serilog__minimumlevel__default)   | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-serilog__minimumlevel__default.md "values.yaml#/properties/wfapi/properties/env/properties/Serilog__MinimumLevel__Default")   |
-| [Swagger\_\_Enable](#swagger__enable)                                   | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-swagger__enable.md "values.yaml#/properties/wfapi/properties/env/properties/Swagger__Enable")                                 |
-| [WFAPI\_ENVIRONMENT](#wfapi_environment)                                | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_environment.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_ENVIRONMENT")                             |
+| Property                                                                     | Type     | Required | Nullable       | Defined by                                                                                                                                                                                        |
+| :--------------------------------------------------------------------------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [AWS\_ACCESS\_KEY\_ID](#aws_access_key_id)                                   | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-aws_access_key_id.md "values.yaml#/properties/wfapi/properties/env/properties/AWS_ACCESS_KEY_ID")                                 |
+| [AWS\_SECRET\_ACCESS\_KEY](#aws_secret_access_key)                           | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-aws_secret_access_key.md "values.yaml#/properties/wfapi/properties/env/properties/AWS_SECRET_ACCESS_KEY")                         |
+| [Argo\_\_ApiUrl](#argo__apiurl)                                              | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__apiurl.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__ApiUrl")                                           |
+| [Argo\_\_Namespace](#argo__namespace)                                        | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__namespace.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__Namespace")                                     |
+| [Argo\_\_Token](#argo__token)                                                | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-argo__token.md "values.yaml#/properties/wfapi/properties/env/properties/Argo__Token")                                             |
+| [Auth\_\_Jwt\_\_Audience](#auth__jwt__audience)                              | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__audience.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__Audience")                             |
+| [Auth\_\_Jwt\_\_Authority](#auth__jwt__authority)                            | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__authority.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__Authority")                           |
+| [Auth\_\_Jwt\_\_RequireHttpsMetadata](#auth__jwt__requirehttpsmetadata)      | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__requirehttpsmetadata.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__RequireHttpsMetadata")     |
+| [Auth\_\_Jwt\_\_ValidateIssuer](#auth__jwt__validateissuer)                  | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__validateissuer.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__ValidateIssuer")                 |
+| [Swagger\_\_Enable](#swagger__enable)                                        | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-swagger__enable.md "values.yaml#/properties/wfapi/properties/env/properties/Swagger__Enable")                                     |
+| [WFAPI\_ENVIRONMENT](#wfapi_environment)                                     | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_environment.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_ENVIRONMENT")                                 |
+| [WFAPI\_LOG\_FORMAT](#wfapi_log_format)                                      | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_log_format.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_LOG_FORMAT")                                   |
+| [WFAPI\_LOG\_LEVEL](#wfapi_log_level)                                        | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_log_level.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_LOG_LEVEL")                                     |
+| [WFAPI\_SERVE\_BUCKET\_NAME](#wfapi_serve_bucket_name)                       | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_name.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_SERVE_BUCKET_NAME")                     |
+| [WFAPI\_SERVE\_BUCKET\_REGION](#wfapi_serve_bucket_region)                   | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_region.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_SERVE_BUCKET_REGION")                 |
+| [WFAPI\_SERVE\_BUCKET\_SERVICE\_URL](#wfapi_serve_bucket_service_url)        | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_service_url.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_SERVE_BUCKET_SERVICE_URL")       |
+| [WFAPI\_SERVE\_WELL\_KNOWN\_CONFIG\_URL](#wfapi_serve_well_known_config_url) | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_serve_well_known_config_url.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_SERVE_WELL_KNOWN_CONFIG_URL") |
 
 ## AWS\_ACCESS\_KEY\_ID
 
@@ -245,136 +246,6 @@ The default value is:
 "true"
 ```
 
-## Auth\_\_Jwt\_\_WellKnownConfig
-
-Well-known configuration URL for the JWT issuer
-
-`Auth__Jwt__WellKnownConfig`
-
-* is required
-
-* Type: `string` ([Auth\_\_Jwt\_\_WellKnownConfig](values-properties-wfapi-properties-env-properties-auth__jwt__wellknownconfig.md))
-
-* cannot be null
-
-* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__wellknownconfig.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__WellKnownConfig")
-
-### Auth\_\_Jwt\_\_WellKnownConfig Type
-
-`string` ([Auth\_\_Jwt\_\_WellKnownConfig](values-properties-wfapi-properties-env-properties-auth__jwt__wellknownconfig.md))
-
-### Auth\_\_Jwt\_\_WellKnownConfig Default Value
-
-The default value is:
-
-```json
-"https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
-```
-
-## Bucket\_\_Name
-
-Bucket name
-
-`Bucket__Name`
-
-* is required
-
-* Type: `string` ([Bucket\_\_Name](values-properties-wfapi-properties-env-properties-bucket__name.md))
-
-* cannot be null
-
-* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-bucket__name.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__Name")
-
-### Bucket\_\_Name Type
-
-`string` ([Bucket\_\_Name](values-properties-wfapi-properties-env-properties-bucket__name.md))
-
-### Bucket\_\_Name Default Value
-
-The default value is:
-
-```json
-"argo"
-```
-
-## Bucket\_\_Region
-
-Bucket region
-
-`Bucket__Region`
-
-* is required
-
-* Type: `string` ([Bucket\_\_Region](values-properties-wfapi-properties-env-properties-bucket__region.md))
-
-* cannot be null
-
-* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-bucket__region.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__Region")
-
-### Bucket\_\_Region Type
-
-`string` ([Bucket\_\_Region](values-properties-wfapi-properties-env-properties-bucket__region.md))
-
-### Bucket\_\_Region Default Value
-
-The default value is:
-
-```json
-"minio"
-```
-
-## Bucket\_\_ServiceUrl
-
-Bucket service URL
-
-`Bucket__ServiceUrl`
-
-* is required
-
-* Type: `string` ([Bucket\_\_ServiceUrl](values-properties-wfapi-properties-env-properties-bucket__serviceurl.md))
-
-* cannot be null
-
-* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-bucket__serviceurl.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__ServiceUrl")
-
-### Bucket\_\_ServiceUrl Type
-
-`string` ([Bucket\_\_ServiceUrl](values-properties-wfapi-properties-env-properties-bucket__serviceurl.md))
-
-### Bucket\_\_ServiceUrl Default Value
-
-The default value is:
-
-```json
-"http://minio.uds-dev-stack.svc.cluster.local:9000"
-```
-
-## Serilog\_\_MinimumLevel\_\_Default
-
-Serilog minimum log level
-
-`Serilog__MinimumLevel__Default`
-
-* is required
-
-* Type: `string` ([Serilog\_\_MinimumLevel\_\_Default](values-properties-wfapi-properties-env-properties-serilog__minimumlevel__default.md))
-
-* cannot be null
-
-* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-serilog__minimumlevel__default.md "values.yaml#/properties/wfapi/properties/env/properties/Serilog__MinimumLevel__Default")
-
-### Serilog\_\_MinimumLevel\_\_Default Type
-
-`string` ([Serilog\_\_MinimumLevel\_\_Default](values-properties-wfapi-properties-env-properties-serilog__minimumlevel__default.md))
-
-### Serilog\_\_MinimumLevel\_\_Default Default Value
-
-The default value is:
-
-```json
-"Information"
-```
-
 ## Swagger\_\_Enable
 
 Whether to enable Swagger. If true, the SwaggerUI can be reached at <url>/swagger
@@ -435,4 +306,182 @@ The default value is:
 
 ```json
 "production"
+```
+
+## WFAPI\_LOG\_FORMAT
+
+Log format.
+
+`WFAPI_LOG_FORMAT`
+
+* is required
+
+* Type: `string` ([WFAPI\_LOG\_FORMAT](values-properties-wfapi-properties-env-properties-wfapi_log_format.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_log_format.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_LOG_FORMAT")
+
+### WFAPI\_LOG\_FORMAT Type
+
+`string` ([WFAPI\_LOG\_FORMAT](values-properties-wfapi-properties-env-properties-wfapi_log_format.md))
+
+### WFAPI\_LOG\_FORMAT Constraints
+
+**enum**: the value of this property must be equal to one of the following values:
+
+| Value       | Explanation |
+| :---------- | :---------- |
+| `"console"` |             |
+| `"json"`    |             |
+| `"dev"`     |             |
+| `"none"`    |             |
+
+### WFAPI\_LOG\_FORMAT Default Value
+
+The default value is:
+
+```json
+"console"
+```
+
+## WFAPI\_LOG\_LEVEL
+
+Log level for the application.
+
+`WFAPI_LOG_LEVEL`
+
+* is required
+
+* Type: `string` ([WFAPI\_LOG\_LEVEL](values-properties-wfapi-properties-env-properties-wfapi_log_level.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_log_level.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_LOG_LEVEL")
+
+### WFAPI\_LOG\_LEVEL Type
+
+`string` ([WFAPI\_LOG\_LEVEL](values-properties-wfapi-properties-env-properties-wfapi_log_level.md))
+
+### WFAPI\_LOG\_LEVEL Constraints
+
+**enum**: the value of this property must be equal to one of the following values:
+
+| Value     | Explanation |
+| :-------- | :---------- |
+| `"debug"` |             |
+| `"info"`  |             |
+| `"warn"`  |             |
+| `"error"` |             |
+
+### WFAPI\_LOG\_LEVEL Default Value
+
+The default value is:
+
+```json
+"info"
+```
+
+## WFAPI\_SERVE\_BUCKET\_NAME
+
+Bucket name
+
+`WFAPI_SERVE_BUCKET_NAME`
+
+* is required
+
+* Type: `string` ([WFAPI\_SERVE\_BUCKET\_NAME](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_name.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_name.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_SERVE_BUCKET_NAME")
+
+### WFAPI\_SERVE\_BUCKET\_NAME Type
+
+`string` ([WFAPI\_SERVE\_BUCKET\_NAME](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_name.md))
+
+### WFAPI\_SERVE\_BUCKET\_NAME Default Value
+
+The default value is:
+
+```json
+"argo"
+```
+
+## WFAPI\_SERVE\_BUCKET\_REGION
+
+Bucket region
+
+`WFAPI_SERVE_BUCKET_REGION`
+
+* is required
+
+* Type: `string` ([WFAPI\_SERVE\_BUCKET\_REGION](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_region.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_region.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_SERVE_BUCKET_REGION")
+
+### WFAPI\_SERVE\_BUCKET\_REGION Type
+
+`string` ([WFAPI\_SERVE\_BUCKET\_REGION](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_region.md))
+
+### WFAPI\_SERVE\_BUCKET\_REGION Default Value
+
+The default value is:
+
+```json
+"minio"
+```
+
+## WFAPI\_SERVE\_BUCKET\_SERVICE\_URL
+
+Bucket service URL
+
+`WFAPI_SERVE_BUCKET_SERVICE_URL`
+
+* is required
+
+* Type: `string` ([WFAPI\_SERVE\_BUCKET\_SERVICE\_URL](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_service_url.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_service_url.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_SERVE_BUCKET_SERVICE_URL")
+
+### WFAPI\_SERVE\_BUCKET\_SERVICE\_URL Type
+
+`string` ([WFAPI\_SERVE\_BUCKET\_SERVICE\_URL](values-properties-wfapi-properties-env-properties-wfapi_serve_bucket_service_url.md))
+
+### WFAPI\_SERVE\_BUCKET\_SERVICE\_URL Default Value
+
+The default value is:
+
+```json
+"http://minio.uds-dev-stack.svc.cluster.local:9000"
+```
+
+## WFAPI\_SERVE\_WELL\_KNOWN\_CONFIG\_URL
+
+Well-known configuration URL for the JWT issuer
+
+`WFAPI_SERVE_WELL_KNOWN_CONFIG_URL`
+
+* is required
+
+* Type: `string` ([WFAPI\_SERVE\_WELL\_KNOWN\_CONFIG\_URL](values-properties-wfapi-properties-env-properties-wfapi_serve_well_known_config_url.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-wfapi_serve_well_known_config_url.md "values.yaml#/properties/wfapi/properties/env/properties/WFAPI_SERVE_WELL_KNOWN_CONFIG_URL")
+
+### WFAPI\_SERVE\_WELL\_KNOWN\_CONFIG\_URL Type
+
+`string` ([WFAPI\_SERVE\_WELL\_KNOWN\_CONFIG\_URL](values-properties-wfapi-properties-env-properties-wfapi_serve_well_known_config_url.md))
+
+### WFAPI\_SERVE\_WELL\_KNOWN\_CONFIG\_URL Default Value
+
+The default value is:
+
+```json
+"https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
 ```

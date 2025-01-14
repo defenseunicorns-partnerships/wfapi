@@ -93,46 +93,6 @@
                 "string"
               ]
             },
-            "Auth__Jwt__WellKnownConfig": {
-              "default": "https://sso.uds.dev/realms/uds/.well-known/openid-configuration",
-              "description": "Well-known configuration URL for the JWT issuer",
-              "title": "Auth__Jwt__WellKnownConfig",
-              "type": [
-                "string"
-              ]
-            },
-            "Bucket__Name": {
-              "default": "argo",
-              "description": "Bucket name",
-              "title": "Bucket__Name",
-              "type": [
-                "string"
-              ]
-            },
-            "Bucket__Region": {
-              "default": "minio",
-              "description": "Bucket region",
-              "title": "Bucket__Region",
-              "type": [
-                "string"
-              ]
-            },
-            "Bucket__ServiceUrl": {
-              "default": "http://minio.uds-dev-stack.svc.cluster.local:9000",
-              "description": "Bucket service URL",
-              "title": "Bucket__ServiceUrl",
-              "type": [
-                "string"
-              ]
-            },
-            "Serilog__MinimumLevel__Default": {
-              "default": "Information",
-              "description": "Serilog minimum log level",
-              "title": "Serilog__MinimumLevel__Default",
-              "type": [
-                "string"
-              ]
-            },
             "Swagger__Enable": {
               "default": "false",
               "description": "Whether to enable Swagger. If true, the SwaggerUI can be reached at \u003curl\u003e/swagger",
@@ -153,12 +113,73 @@
               "type": [
                 "string"
               ]
+            },
+            "WFAPI_LOG_FORMAT": {
+              "default": "console",
+              "description": "Log format.",
+              "enum": [
+                "console",
+                "json",
+                "dev",
+                "none"
+              ],
+              "title": "WFAPI_LOG_FORMAT",
+              "type": [
+                "string"
+              ]
+            },
+            "WFAPI_LOG_LEVEL": {
+              "default": "info",
+              "description": "Log level for the application.",
+              "enum": [
+                "debug",
+                "info",
+                "warn",
+                "error"
+              ],
+              "title": "WFAPI_LOG_LEVEL",
+              "type": [
+                "string"
+              ]
+            },
+            "WFAPI_SERVE_BUCKET_NAME": {
+              "default": "argo",
+              "description": "Bucket name",
+              "title": "WFAPI_SERVE_BUCKET_NAME",
+              "type": [
+                "string"
+              ]
+            },
+            "WFAPI_SERVE_BUCKET_REGION": {
+              "default": "minio",
+              "description": "Bucket region",
+              "title": "WFAPI_SERVE_BUCKET_REGION",
+              "type": [
+                "string"
+              ]
+            },
+            "WFAPI_SERVE_BUCKET_SERVICE_URL": {
+              "default": "http://minio.uds-dev-stack.svc.cluster.local:9000",
+              "description": "Bucket service URL",
+              "title": "WFAPI_SERVE_BUCKET_SERVICE_URL",
+              "type": [
+                "string"
+              ]
+            },
+            "WFAPI_SERVE_WELL_KNOWN_CONFIG_URL": {
+              "default": "https://sso.uds.dev/realms/uds/.well-known/openid-configuration",
+              "description": "Well-known configuration URL for the JWT issuer",
+              "title": "WFAPI_SERVE_WELL_KNOWN_CONFIG_URL",
+              "type": [
+                "string"
+              ]
             }
           },
           "required": [
             "WFAPI_ENVIRONMENT",
-            "Serilog__MinimumLevel__Default",
-            "Auth__Jwt__WellKnownConfig",
+            "WFAPI_LOG_FORMAT",
+            "WFAPI_LOG_LEVEL",
+            "WFAPI_SERVE_WELL_KNOWN_CONFIG_URL",
             "Auth__Jwt__Authority",
             "Auth__Jwt__Audience",
             "Auth__Jwt__RequireHttpsMetadata",
@@ -166,9 +187,9 @@
             "Argo__ApiUrl",
             "Argo__Token",
             "Argo__Namespace",
-            "Bucket__Region",
-            "Bucket__ServiceUrl",
-            "Bucket__Name",
+            "WFAPI_SERVE_BUCKET_REGION",
+            "WFAPI_SERVE_BUCKET_SERVICE_URL",
+            "WFAPI_SERVE_BUCKET_NAME",
             "AWS_ACCESS_KEY_ID",
             "AWS_SECRET_ACCESS_KEY",
             "Swagger__Enable"

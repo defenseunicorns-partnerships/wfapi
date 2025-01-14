@@ -71,7 +71,7 @@ fi
 sleep 3
 
 # Build and push the image
-if ! docker buildx build -f wfapi/Dockerfile -t "${LOCAL_DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}" --push .; then
+if ! docker buildx build -f Dockerfile -t "${LOCAL_DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}" --push .; then
   echo "Failed to build and push the image."
   exit 1
 fi
