@@ -13,13 +13,13 @@ const (
 func (e Enum) ToString() string {
 	switch e {
 	case Development:
-		return "Development"
+		return "development"
 	case Test:
-		return "Test"
+		return "test"
 	case Production:
-		return "Production"
+		return "production"
 	default:
-		return "Unknown"
+		return "unknown"
 	}
 }
 

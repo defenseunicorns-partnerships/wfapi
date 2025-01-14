@@ -216,7 +216,7 @@ paths:
     /swagger:
         get:
             tags:
-                - Docs
+                - Internal
             responses:
                 '200':
                     content:
@@ -231,6 +231,16 @@ paths:
             operationId: getSwaggerUi
             summary: GET /swagger - Swagger UI
             description: Show the API documentation page
+    /healthz:
+        get:
+            tags:
+                - Internal
+            responses:
+                '204':
+                    description: Success.
+            operationId: GetHealthz
+            summary: GET /healthz - Healthcheck
+            description: Healthcheck endpoint
 components:
     schemas:
         WfapiFile:

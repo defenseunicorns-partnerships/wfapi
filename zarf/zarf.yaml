@@ -1,0 +1,141 @@
+kind: ZarfPackageConfig
+metadata:
+  name: wfapi
+  description: Deploy WFAPI
+  version: 0.0.20 # x-release-please-version
+
+variables:
+  - name: WFAPI_ENVIRONMENT
+    description: If "development", all JWT auth will be disabled. If "test", a keycloak service account client named "wfapi-api" will be created for testing purposes. [development, test, production]
+    default: "production"
+    sensitive: false
+    pattern: "^(development|production|test)$"
+  - name: WFAPI_LOG_FORMAT
+    description: Log format [console, json, dev, none]
+    default: "console"
+    sensitive: false
+    pattern: "^(console|json|dev|none)$"
+  - name: WFAPI_LOG_LEVEL
+    description: Log level [debug, info, warn, error]
+    default: "info"
+    sensitive: false
+    pattern: "^(debug|info|warn|error)$"
+  - name: WFAPI_SERVE_WELL_KNOWN_CONFIG_URL
+    description: Well-known configuration URL for the JWT issuer.
+    default: "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
+    sensitive: false
+  - name: ENV_AUTH__JWT__AUTHORITY
+    description: JWT authority.
+    default: "https://sso.uds.dev/realms/uds"
+    sensitive: false
+  - name: ENV_AUTH__JWT__AUDIENCE
+    description: JWT audience. Semi-colon separated list of clients to accept JWTs from
+    default: "wfapi"
+    sensitive: false
+  - name: ENV_AUTH__JWT__REQUIREHTTPSMETADATA
+    description: Whether to require HTTPS when interfacing with the IDP.
+    default: "true"
+    sensitive: false
+    pattern: "^(true|false)$"
+  - name: ENV_AUTH__JWT__VALIDATEISSUER
+    description: Whether to validate the JWT issuer.
+    default: "true"
+    sensitive: false
+    pattern: "^(true|false)$"
+  - name: ENV_ARGO__APIURL
+    description: Argo Server API URL.
+    default: "http://argo-workflows-server:2746"
+    sensitive: false
+  - name: ENV_ARGO__NAMESPACE
+    description: The K8s namespace that workflows should be created in.
+    default: "argo"
+    sensitive: false
+  - name: ENV_ARGO__TOKEN
+    description: Optional Argo API token. Not necessary in most cases as the app will fetch the token that is mounted to the filesystem. Leave as an empty string.
+    default: ""
+    sensitive: true
+  - name: WFAPI_SERVE_BUCKET_REGION
+    description: The region of the bucket that WFAPI will interact with.
+    default: "minio"
+    sensitive: false
+  - name: WFAPI_SERVE_BUCKET_SERVICE_URL
+    description: The URL of the S3 service that WFAPI will interact with.
+    default: "http://minio.uds-dev-stack.svc.cluster.local:9000"
+    sensitive: false
+  - name: WFAPI_SERVE_BUCKET_NAME
+    description: The name of the bucket that WFAPI will interact with.
+    default: "argo"
+    sensitive: false
+  - name: ENV_AWS_ACCESS_KEY_ID
+    description: The AWS access key ID. Leave as an empty string if using IRSA.
+    default: ""
+    sensitive: true
+  - name: ENV_AWS_SECRET_ACCESS_KEY
+    description: The AWS secret access key. Leave as an empty string if using IRSA.
+    default: ""
+    sensitive: true
+  - name: ENV_SWAGGER__ENABLE
+    description: Whether to enable the Swagger UI.
+    default: "false"
+    sensitive: false
+    pattern: "^(true|false)$"
+  - name: IRSA_ROLE_ARN
+    description: Set this if you are using IRSA. This is the ARN of the IAM role to associate with the service account for IRSA.
+    default: ""
+    sensitive: true
+  - name: CREATE_ROLE_BINDING
+    description: Whether to create a role binding for the service account.
+    default: "true"
+    sensitive: false
+    pattern: "^(true|false)$"
+  - name: EXISTING_ROLE_NAME
+    description: The name of an existing role to bind to the service account.
+    default: "server-role"
+    sensitive: false
+  - name: UDS_PACKAGE_ENABLED
+    description: Whether to enable the UDS package custom resource
+    default: "true"
+    sensitive: false
+    pattern: "^(true|false)$"
+  - name: UDS_PACKAGE_EXPOSE_HOST
+    description: The hostname to use when creating the VirtualService
+    default: "wfapi"
+    sensitive: false
+  - name: UDS_PACKAGE_REDIRECT_URI
+    description: The redirect URI to send to the keycloak client
+    default: "https://wfapi.uds.dev/auth"
+    sensitive: false
+  - name: CPU_REQUEST
+    description: The amount of CPU to request for the container.
+    default: "100m"
+    sensitive: false
+  - name: MEMORY_REQUEST
+    description: The amount of memory to request for the container.
+    default: "512Mi"
+    sensitive: false
+  - name: CPU_LIMIT
+    description: The amount of CPU to limit the container to.
+    default: "100"
+    sensitive: false
+  - name: MEMORY_LIMIT
+    description: The amount of memory to limit the container to.
+    default: "100Gi"
+    sensitive: false
+
+components:
+  - name: wfapi
+    required: true
+    charts:
+      - name: wfapi
+        localPath: ../chart
+        namespace: argo
+        version: 0.0.20 # x-release-please-version
+        valuesFiles:
+          - values.yaml
+    actions:
+      onDeploy:
+        onSuccess:
+          - description: Restart the deployment
+            cmd: ./zarf tools kubectl rollout restart deployment wfapi -n argo
+    images:
+      - ghcr.io/defenseunicorns-partnerships/wfapi/containers/wfapi:0.0.20 # x-release-please-version

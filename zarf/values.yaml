@@ -1,0 +1,110 @@
+wfapi:
+  replicaCount: 1
+
+  image:
+    repository: ghcr.io/defenseunicorns-partnerships/wfapi/containers/wfapi
+    pullPolicy: Always
+    tag: ""
+
+  imagePullSecrets: []
+  nameOverride: ""
+  fullnameOverride: ""
+
+  env:
+    # noinspection YAMLSchemaValidation
+    WFAPI_ENVIRONMENT: "###ZARF_VAR_WFAPI_ENVIRONMENT###"
+    # noinspection YAMLSchemaValidation
+    WFAPI_LOG_FORMAT: "###ZARF_VAR_WFAPI_LOG_FORMAT###"
+    # noinspection YAMLSchemaValidation
+    WFAPI_LOG_LEVEL: "###ZARF_VAR_WFAPI_LOG_LEVEL###"
+    WFAPI_SERVE_WELL_KNOWN_CONFIG_URL: "###ZARF_VAR_WFAPI_SERVE_WELL_KNOWN_CONFIG_URL###"
+    Auth__Jwt__Authority: "###ZARF_VAR_ENV_AUTH__JWT__AUTHORITY###"
+    Auth__Jwt__Audience: "###ZARF_VAR_ENV_AUTH__JWT__AUDIENCE###"
+    Auth__Jwt__RequireHttpsMetadata: "###ZARF_VAR_ENV_AUTH__JWT__REQUIREHTTPSMETADATA###"
+    Auth__Jwt__ValidateIssuer: "###ZARF_VAR_ENV_AUTH__JWT__VALIDATEISSUER###"
+    Argo__ApiUrl: "###ZARF_VAR_ENV_ARGO__APIURL###"
+    Argo__Namespace: "###ZARF_VAR_ENV_ARGO__NAMESPACE###"
+    Argo__Token: "###ZARF_VAR_ENV_ARGO__TOKEN###"
+    WFAPI_SERVE_BUCKET_REGION: "###ZARF_VAR_WFAPI_SERVE_BUCKET_REGION###"
+    WFAPI_SERVE_BUCKET_SERVICE_URL: "###ZARF_VAR_WFAPI_SERVE_BUCKET_SERVICE_URL###"
+    WFAPI_SERVE_BUCKET_NAME: "###ZARF_VAR_WFAPI_SERVE_BUCKET_NAME###"
+    AWS_ACCESS_KEY_ID: "###ZARF_VAR_ENV_AWS_ACCESS_KEY_ID###"
+    AWS_SECRET_ACCESS_KEY: "###ZARF_VAR_ENV_AWS_SECRET_ACCESS_KEY###"
+    Swagger__Enable: "###ZARF_VAR_ENV_SWAGGER__ENABLE###"
+
+  serviceAccount:
+    create: true
+    automount: true
+    annotations:
+      eks.amazonaws.com/role-arn: "###ZARF_VAR_IRSA_ROLE_ARN###"
+    name: ""
+
+  # noinspection YAMLSchemaValidation
+  roleBinding:
+    create: ###ZARF_VAR_CREATE_ROLE_BINDING###
+    roleName: "###ZARF_VAR_EXISTING_ROLE_NAME###"
+
+  # noinspection YAMLSchemaValidation
+  udsPackage:
+    enabled: ###ZARF_VAR_UDS_PACKAGE_ENABLED###
+    expose:
+      host: "###ZARF_VAR_UDS_PACKAGE_EXPOSE_HOST###"
+    redirectURI: "###ZARF_VAR_UDS_PACKAGE_REDIRECT_URI###"
+
+  podAnnotations: {}
+  podLabels: {}
+
+  podSecurityContext:
+    fsGroup: 1654
+    fsGroupChangePolicy: Always
+    supplementalGroups: []
+    sysctls: []
+
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      add: []
+      drop: [ALL]
+    privileged: false
+    readOnlyRootFilesystem: true
+    runAsGroup: 1654
+    runAsNonRoot: true
+    runAsUser: 1654
+    seLinuxOptions: {}
+    seccompProfile: null
+
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 8080
+
+  resources:
+    requests:
+      cpu: "###ZARF_VAR_CPU_REQUEST###"
+      memory: "###ZARF_VAR_MEMORY_REQUEST###"
+    limits:
+      cpu: "###ZARF_VAR_CPU_LIMIT###"
+      memory: "###ZARF_VAR_MEMORY_LIMIT###"
+
+  startupProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+  livenessProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+  readinessProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+
+  volumes: []
+
+  volumeMounts: []
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}

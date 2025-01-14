@@ -40,7 +40,7 @@ func NewServeCommand() *cobra.Command {
 			}
 
 			// Get and validate the bucket name
-			bucketName := viper.GetString(common.VServiceBucketName)
+			bucketName := viper.GetString(common.VServeBucketName)
 			if err := common.ValidateServeBucketName(bucketName); err != nil {
 				logger.Default().Error("Error validating bucket name", "name", bucketName, "error", err)
 				return err
@@ -59,7 +59,14 @@ func NewServeCommand() *cobra.Command {
 				return err
 			}
 
-			err = server.StartServer(port, bucketRegion, bucketServiceUrl, bucketName, envEnum)
+			// Get and validate the wellKnownConfigUrl
+			wellKnownConfigUrl := viper.GetString(common.VServeWellKnownConfigUrl)
+			if err := common.ValidateWellKnownConfigUrl(wellKnownConfigUrl); err != nil {
+				logger.Default().Error("Error validating wellKnownConfigUrl", "url", wellKnownConfigUrl, "error", err)
+				return err
+			}
+
+			err = server.StartServer(port, bucketRegion, bucketServiceUrl, bucketName, envEnum, wellKnownConfigUrl)
 			if err != nil {
 				logger.Default().Error("Server failed to start or stopped unexpectedly", "error", err)
 				return err
@@ -76,11 +83,6 @@ func NewServeCommand() *cobra.Command {
 	}
 
 	cmd.Flags().StringP(common.VServeBucketRegionLong, common.VServeBucketRegionShort, "", common.VServeBucketRegionUsage)
-	err = cmd.MarkFlagRequired(common.VServeBucketRegionLong)
-	if err != nil {
-		logger.Default().Error("Error marking flag as required:", err)
-		os.Exit(1)
-	}
 	err = viper.BindPFlag(common.VServeBucketRegion, cmd.Flags().Lookup(common.VServeBucketRegionLong))
 	if err != nil {
 		logger.Default().Error("Error binding flag to viper:", err)
@@ -88,24 +90,21 @@ func NewServeCommand() *cobra.Command {
 	}
 
 	cmd.Flags().StringP(common.VServeBucketServiceUrlLong, common.VServeBucketServiceUrlShort, "", common.VServeBucketServiceUrlUsage)
-	err = cmd.MarkFlagRequired(common.VServeBucketServiceUrlLong)
-	if err != nil {
-		logger.Default().Error("Error marking flag as required:", err)
-		os.Exit(1)
-	}
 	err = viper.BindPFlag(common.VServeBucketServiceUrl, cmd.Flags().Lookup(common.VServeBucketServiceUrlLong))
 	if err != nil {
 		logger.Default().Error("Error binding flag to viper:", err)
 		os.Exit(1)
 	}
 
-	cmd.Flags().StringP(common.VServiceBucketNameLong, common.VServiceBucketNameShort, "", common.VServiceBucketNameUsage)
-	err = cmd.MarkFlagRequired(common.VServiceBucketNameLong)
+	cmd.Flags().StringP(common.VServeBucketNameLong, common.VServeBucketNameShort, "", common.VServeBucketNameUsage)
+	err = viper.BindPFlag(common.VServeBucketName, cmd.Flags().Lookup(common.VServeBucketNameLong))
 	if err != nil {
-		logger.Default().Error("Error marking flag as required:", err)
+		logger.Default().Error("Error binding flag to viper:", err)
 		os.Exit(1)
 	}
-	err = viper.BindPFlag(common.VServiceBucketName, cmd.Flags().Lookup(common.VServiceBucketNameLong))
+
+	cmd.Flags().StringP(common.VServeWellKnownConfigUrlLong, common.VServeWellKnownConfigUrlShort, "", common.VServeWellKnownConfigUrlUsage)
+	err = viper.BindPFlag(common.VServeWellKnownConfigUrl, cmd.Flags().Lookup(common.VServeWellKnownConfigUrlLong))
 	if err != nil {
 		logger.Default().Error("Error binding flag to viper:", err)
 		os.Exit(1)

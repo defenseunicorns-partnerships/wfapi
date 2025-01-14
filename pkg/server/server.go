@@ -16,7 +16,7 @@ import (
 	"strconv"
 )
 
-func StartServer(port int, bucketRegion string, bucketServiceUrl string, bucketName string, env environment.Enum) error {
+func StartServer(port int, bucketRegion string, bucketServiceUrl string, bucketName string, env environment.Enum, wellKnownConfigUrl string) error {
 	// Validate the port
 	if err := common.ValidateServePort(port); err != nil {
 		logger.Default().Error("Error validating port", "port", port, "error", err)
@@ -38,6 +38,12 @@ func StartServer(port int, bucketRegion string, bucketServiceUrl string, bucketN
 	// Validate the bucket name
 	if err := common.ValidateServeBucketName(bucketName); err != nil {
 		logger.Default().Error("Error validating bucket name", "name", bucketName, "error", err)
+		return err
+	}
+
+	// Validate the wellKnownConfigUrl
+	if err := common.ValidateWellKnownConfigUrl(wellKnownConfigUrl); err != nil {
+		logger.Default().Error("Error validating wellKnownConfigUrl", "url", wellKnownConfigUrl, "error", err)
 		return err
 	}
 
@@ -70,7 +76,7 @@ func StartServer(port int, bucketRegion string, bucketServiceUrl string, bucketN
 	})
 
 	// Create an instance of our handler which satisfies the generated interface
-	server := api.NewServer(s3Client, bucketName, env)
+	server := api.NewServer(s3Client, bucketName, env, wellKnownConfigUrl)
 
 	// This is how you set up a basic chi router
 	r := chi.NewRouter()
