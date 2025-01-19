@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.21](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.20...0.0.21) (2025-01-19)
+
+
+### Miscellaneous Chores
+
+* add `tests:get-test-token` task for easier SSO testing ([#123](https://github.com/defenseunicorns-partnerships/wfapi/issues/123)) ([f41404a](https://github.com/defenseunicorns-partnerships/wfapi/commit/f41404ad11841e9dc8f3206cfddd9f2a096d64b3))
+* **deps:** update stable ([#114](https://github.com/defenseunicorns-partnerships/wfapi/issues/114)) ([1c506a0](https://github.com/defenseunicorns-partnerships/wfapi/commit/1c506a01c5989d7a02f6fcedba458422b4583614))
+
 ## [0.0.20](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.19...0.0.20) (2024-12-09)
 
 
