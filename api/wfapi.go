@@ -45,6 +45,11 @@ var _ ServerInterface = (*Server)(nil)
 
 // NewServer creates a new instance of the Server
 func NewServer(s3Client *s3.Client, bucketName string, env environment.Enum, wellKnownConfigUrl string) *Server {
+	logger.Default().Debug("creating new server",
+		"s3Client.Options.BaseEndpoint", *s3Client.Options().BaseEndpoint,
+		"bucketName", bucketName,
+		"env", env.ToString(),
+		"wellKnownConfigUrl", wellKnownConfigUrl)
 	return &Server{
 		S3Client:           s3Client,
 		BucketName:         bucketName,
@@ -54,11 +59,12 @@ func NewServer(s3Client *s3.Client, bucketName string, env environment.Enum, wel
 }
 
 // sendServerError wraps sending of an error in the Error format, and handling the failure to marshal that.
-func sendServerError(w http.ResponseWriter, code int, message string) {
+func sendServerError(w http.ResponseWriter, code int, message string, err error) {
 	wfapiErr := Error{
 		Code:    int32(code),
 		Message: message,
 	}
+	logger.Default().Debug("sendServerError", "error", err, "code", code, "message", message)
 	w.WriteHeader(code)
 	_ = json.NewEncoder(w).Encode(wfapiErr)
 }
@@ -71,27 +77,26 @@ func sendServerError(w http.ResponseWriter, code int, message string) {
 func (s Server) GetWorkflowFiles(w http.ResponseWriter, r *http.Request) {
 	objectPrefix := "files/"
 	if s.Environment != environment.Development {
+		logger.Default().Debug("Validating JWT")
 		// Extract the client_id claim out of the JWT and change objectPrefix to "<client_id>/files/". If there's no JWT or the client_id claim is missing, error out.
 		// Extract the client_id from the JWT
 		authHeader := r.Header.Get("Authorization")
 		if authHeader == "" {
-			sendServerError(w, http.StatusUnauthorized, "missing Authorization header")
+			sendServerError(w, http.StatusUnauthorized, "Missing Authorization header", nil)
 			return
 		}
 
 		tokenString := strings.TrimPrefix(authHeader, "Bearer ")
 		if tokenString == authHeader {
-			sendServerError(w, http.StatusBadRequest, "invalid Authorization header format")
+			sendServerError(w, http.StatusBadRequest, "Invalid Authorization header format", nil)
 			return
 		}
 
 		// Parse the JWT
-		//openIDConfigURL := "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
-
 		// Fetch the OpenID configuration
 		resp, err := http.Get(s.WellKnownConfigUrl)
 		if err != nil || resp.StatusCode != http.StatusOK {
-			sendServerError(w, http.StatusInternalServerError, fmt.Sprintf("failed to fetch OpenID configuration: %v", err))
+			sendServerError(w, http.StatusInternalServerError, "failed to fetch OpenID configuration", err)
 			return
 		}
 		defer func(Body io.ReadCloser) {
@@ -104,33 +109,33 @@ func (s Server) GetWorkflowFiles(w http.ResponseWriter, r *http.Request) {
 
 		// Decode the OpenID configuration
 		if err := json.NewDecoder(resp.Body).Decode(&openIDConfig); err != nil {
-			sendServerError(w, http.StatusInternalServerError, fmt.Sprintf("failed to decode OpenID configuration: %v", err))
+			sendServerError(w, http.StatusInternalServerError, "failed to decode OpenID configuration", err)
 			return
 		}
 
 		jwks, err := keyfunc.NewDefault([]string{openIDConfig.JwksURI})
 		if err != nil {
-			sendServerError(w, http.StatusInternalServerError, fmt.Sprintf("Failed to create JWK Set from resource at the given URL.\nError: %s", err))
+			sendServerError(w, http.StatusInternalServerError, "Failed to create JWK Set from resource at the given URL", err)
 			return
 		}
 
 		token, err := jwt.Parse(tokenString, jwks.Keyfunc)
 		//token, err := jwt.Parse(tokenString, jwks.Keyfunc, jwt.WithIssuedAt(), jwt.WithAudience(audience), jwt.WithIssuer())
 		if err != nil || !token.Valid {
-			sendServerError(w, http.StatusUnauthorized, "invalid token")
+			sendServerError(w, http.StatusUnauthorized, "invalid token", err)
 			return
 		}
 
 		// Extract claims
 		claims, ok := token.Claims.(jwt.MapClaims)
 		if !ok {
-			sendServerError(w, http.StatusUnauthorized, "unable to parse token claims")
+			sendServerError(w, http.StatusUnauthorized, "unable to parse token claims", nil)
 			return
 		}
 
 		clientID, ok := claims["client_id"].(string)
 		if !ok || clientID == "" {
-			sendServerError(w, http.StatusBadRequest, "client_id claim is missing in token")
+			sendServerError(w, http.StatusBadRequest, "client_id claim is missing in token", nil)
 			return
 		}
 
@@ -145,12 +150,12 @@ func (s Server) GetWorkflowFiles(w http.ResponseWriter, r *http.Request) {
 	}
 	output, err := s.S3Client.ListObjectsV2(context.TODO(), input)
 	if err != nil {
-		sendServerError(w, http.StatusInternalServerError, fmt.Sprintf("failed to list files: %v", err))
+		sendServerError(w, http.StatusInternalServerError, "failed to list files", err)
 		return
 	}
 
 	// Transform S3 objects to WfapiFileMetadata
-	var files []WfapiFileMetadata
+	files := make([]WfapiFileMetadata, 0)
 	for _, obj := range output.Contents {
 		files = append(files, WfapiFileMetadata{
 			FileName: *obj.Key,
@@ -164,11 +169,12 @@ func (s Server) GetWorkflowFiles(w http.ResponseWriter, r *http.Request) {
 		})
 	}
 
+	logger.Default().Debug("listObjects", "files", files, "bucketName", s.BucketName, "objectPrefix", objectPrefix)
 	// Write JSON response
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(files); err != nil {
-		sendServerError(w, http.StatusInternalServerError, fmt.Sprintf("failed to encode files response: %v", err))
+		sendServerError(w, http.StatusInternalServerError, "failed to encode files response", err)
 		return
 	}
 }
@@ -221,12 +227,12 @@ func (s Server) GetWorkflowLogStreamAsSse(w http.ResponseWriter, r *http.Request
 func (s Server) GetSwaggerUi(w http.ResponseWriter, r *http.Request) {
 	openApiSpecYaml, err := yaml.Marshal(openApiSpec)
 	if err != nil {
-		sendServerError(w, http.StatusInternalServerError, "failed to marshal openapi spec")
+		sendServerError(w, http.StatusInternalServerError, "failed to marshal openapi spec", err)
 		return
 	}
 	openApiSpecJson, err := yaml.YAMLToJSON(openApiSpecYaml)
 	if err != nil {
-		sendServerError(w, http.StatusInternalServerError, "failed to convert yaml to json")
+		sendServerError(w, http.StatusInternalServerError, "failed to convert yaml to json", err)
 		return
 	}
 	html := `<!doctype html>

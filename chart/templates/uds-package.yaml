@@ -5,7 +5,7 @@ metadata:
   name: {{ include "wfapi.fullname" . }}
 spec:
   sso:
-  {{- if ne .Values.wfapi.env.WFAPI_ENVIRONMENT "Development" }}
+  {{- if ne .Values.wfapi.env.WFAPI_ENVIRONMENT "development" }}
     - name: {{ include "wfapi.fullname" . }}
       clientId: {{ include "wfapi.fullname" . }}
       redirectUris:
@@ -57,4 +57,10 @@ spec:
         remoteNamespace: keycloak
         ports:
           - 8080
+      - direction: Egress
+        selector:
+          app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
+        remoteNamespace: uds-dev-stack
+        ports:
+          - 9000
 {{- end }}

@@ -128,7 +128,7 @@ components:
     charts:
       - name: wfapi
         localPath: ../chart
-        namespace: argo
+        namespace: wfapi
         version: 0.0.20 # x-release-please-version
         valuesFiles:
           - values.yaml
@@ -136,6 +136,6 @@ components:
       onDeploy:
         onSuccess:
           - description: Restart the deployment
-            cmd: ./zarf tools kubectl rollout restart deployment wfapi -n argo
+            cmd: ./zarf tools kubectl rollout restart deployment wfapi -n wfapi
     images:
       - ghcr.io/defenseunicorns-partnerships/wfapi/containers/wfapi:0.0.20 # x-release-please-version

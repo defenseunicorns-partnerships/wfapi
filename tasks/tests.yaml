@@ -45,7 +45,7 @@ tasks:
   - name: get-test-basic-auth
     description: Get the basic auth string for getting a JWT when SSO testing using the test client
     actions:
-      - cmd: echo "$(./uds zarf tools kubectl get secret client-secret-wfapi-api -n argo -o json | jq -r .data.clientId | base64 -d):$(./uds zarf tools kubectl get secret client-secret-wfapi-api -n argo -o json | jq -r .data.clientSecret | base64 -d)"
+      - cmd: echo "$(./uds zarf tools kubectl get secret client-secret-wfapi-api -n wfapi -o json | jq -r .data.clientId | base64 -d):$(./uds zarf tools kubectl get secret client-secret-wfapi-api -n wfapi -o json | jq -r .data.clientSecret | base64 -d)"
         shell:
           darwin: bash
           linux: bash
@@ -74,13 +74,25 @@ tasks:
       - task: get-token
 
   - name: get-files
-    description: Test commands for SSO testing
+    description: Test commands for SSO testing using https://wfapi.uds.dev
     actions:
+      - task: get-test-token
       - cmd: |
             curl -i -X GET \
               https://wfapi.uds.dev/api/v1/workflows/files \
               -H 'accept: application/json' \
               -H "Authorization: Bearer ${JWT}"
+
+  - name: get-local-files
+    description: Test commands for SSO testing using http://localhost:8080
+    actions:
+      - task: get-test-token
+      - cmd: |
+          curl -i -X GET \
+            http://localhost:8080/api/v1/workflows/files \
+            -H 'accept: application/json' \
+            -H "Authorization: Bearer ${JWT}"
+
   - name: upload-file
     description: Test upload command
     actions:

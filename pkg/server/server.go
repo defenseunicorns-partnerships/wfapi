@@ -47,8 +47,6 @@ func StartServer(port int, bucketRegion string, bucketServiceUrl string, bucketN
 		return err
 	}
 
-	logger.Default().Debug("Starting API Server", "port", port, "bucketRegion", bucketRegion, "bucketServiceUrl", bucketServiceUrl, "bucketName", bucketName, "environment", env.ToString())
-
 	swagger, err := api.GetSwagger()
 	if err != nil {
 		logger.Default().Error("Error getting swagger spec", "error", err)
@@ -70,6 +68,7 @@ func StartServer(port int, bucketRegion string, bucketServiceUrl string, bucketN
 	}
 
 	// Create S3 client
+	logger.Default().Debug("Creating S3 Client", "region", bucketRegion, "bucketServiceUrl", bucketServiceUrl)
 	s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
 		o.BaseEndpoint = aws.String(bucketServiceUrl)
 		o.UsePathStyle = true
