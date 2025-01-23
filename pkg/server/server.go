@@ -1,24 +1,50 @@
 package server
 
 import (
-	"fmt"
+	"context"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/defenseunicorns-partnerships/wfapi/api"
 	"github.com/defenseunicorns-partnerships/wfapi/cmd/common"
+	"github.com/defenseunicorns-partnerships/wfapi/pkg/environment"
 	"github.com/defenseunicorns-partnerships/wfapi/pkg/logger"
 	"github.com/go-chi/chi/v5"
 	middleware "github.com/oapi-codegen/nethttp-middleware"
-	"github.com/spf13/viper"
 	"net"
 	"net/http"
 	"strconv"
 )
 
-func StartServer() error {
-	// Get the port and validate it
-	port := viper.GetInt(common.VServePort)
-	if port < 1 || port > 65535 {
-		logger.Default().Error("Port must be between 1 and 65535", "port", port)
-		return fmt.Errorf("port must be between 1 and 65535, got %d", port)
+func StartServer(port int, bucketRegion string, bucketServiceUrl string, bucketName string, env environment.Enum, wellKnownConfigUrl string) error {
+	// Validate the port
+	if err := common.ValidateServePort(port); err != nil {
+		logger.Default().Error("Error validating port", "port", port, "error", err)
+		return err
+	}
+
+	// Validate the bucket region
+	if err := common.ValidateServeBucketRegion(bucketRegion); err != nil {
+		logger.Default().Error("Error validating bucket region", "region", bucketRegion, "error", err)
+		return err
+	}
+
+	// Validate the bucket service URL
+	if err := common.ValidateServeBucketServiceUrl(bucketServiceUrl); err != nil {
+		logger.Default().Error("Error validating bucket service URL", "url", bucketServiceUrl, "error", err)
+		return err
+	}
+
+	// Validate the bucket name
+	if err := common.ValidateServeBucketName(bucketName); err != nil {
+		logger.Default().Error("Error validating bucket name", "name", bucketName, "error", err)
+		return err
+	}
+
+	// Validate the wellKnownConfigUrl
+	if err := common.ValidateWellKnownConfigUrl(wellKnownConfigUrl); err != nil {
+		logger.Default().Error("Error validating wellKnownConfigUrl", "url", wellKnownConfigUrl, "error", err)
+		return err
 	}
 
 	swagger, err := api.GetSwagger()
@@ -31,8 +57,25 @@ func StartServer() error {
 	// that server names match. We don't know how this thing will be run.
 	swagger.Servers = nil
 
+	// Establish an AWS S3 client
+	// Load default AWS configuration
+	cfg, err := config.LoadDefaultConfig(context.TODO(),
+		config.WithRegion(bucketRegion),
+	)
+	if err != nil {
+		logger.Default().Error("unable to load AWS SDK config", "error", err)
+		return err
+	}
+
+	// Create S3 client
+	logger.Default().Debug("Creating S3 Client", "region", bucketRegion, "bucketServiceUrl", bucketServiceUrl)
+	s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
+		o.BaseEndpoint = aws.String(bucketServiceUrl)
+		o.UsePathStyle = true
+	})
+
 	// Create an instance of our handler which satisfies the generated interface
-	server := api.NewServer()
+	server := api.NewServer(s3Client, bucketName, env, wellKnownConfigUrl)
 
 	// This is how you set up a basic chi router
 	r := chi.NewRouter()

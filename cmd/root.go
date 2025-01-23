@@ -23,8 +23,8 @@ func NewRootCommand() *cobra.Command {
 - But for security reasons you don't want to give those mission apps direct access to the Kubernetes API.
 - And you want more fine-grained control than what the Argo Workflows Server API would provide.`,
 		Args:              cobra.MaximumNArgs(1),
-		SilenceUsage:      true,
-		SilenceErrors:     true, // If false, Cobra will emit unstructured logs. We want to use our logger.
+		SilenceUsage:      false,
+		SilenceErrors:     false,
 		PersistentPreRunE: preRun,
 	}
 
@@ -72,6 +72,13 @@ func init() {
 		logger.Default().Error("Error binding flag to viper:", err)
 		os.Exit(1)
 	}
+
+	rootCmd.PersistentFlags().StringP(common.VEnvironmentLong, common.VEnvironmentShort, common.VEnvironmentDefault, common.VEnvironmentUsage)
+	err = viper.BindPFlag(common.VEnvironment, rootCmd.PersistentFlags().Lookup(common.VEnvironmentLong))
+	if err != nil {
+		logger.Default().Error("Error binding flag to viper:", err)
+		os.Exit(1)
+	}
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -82,6 +89,11 @@ func initConfig() {
 
 	configFile := viper.GetString(common.VConfig)
 	if configFile != "" {
+		err := common.ValidateConfig(configFile)
+		if err != nil {
+			logger.Default().Error("Error validating config file", "cfgFile", configFile, "err", err)
+			os.Exit(1)
+		}
 		viper.SetConfigFile(configFile)
 	} else {
 		// Find home directory.

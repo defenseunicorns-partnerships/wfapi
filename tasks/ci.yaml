@@ -1,0 +1,63 @@
+tasks:
+  - name: up
+    description: Bring up everything from scratch (uds-slim-dev included)
+    actions:
+      - task: uds-up
+      - task: argo-up
+      - task: package-up
+  - name: down
+    description: Bring everything down
+    actions:
+      - task: uds-down
+  - name: uds-up
+    description: Brings up uds-slim-dev
+    actions:
+      - dir: test/k3d-core-slim-dev
+        shell:
+          darwin: bash
+          linux: bash
+        cmd: |
+          set -a; source ../../.env; set +a
+          ./uds deploy k3d-core-slim-dev:${UDS_CORE_VERSION} --confirm --no-progress
+      - cmd: ./uds zarf tools kubectl apply -f test/k3d-core-slim-dev/minio/virtual-service.yaml
+  - name: uds-down
+    description: Brings down uds-slim-dev
+    actions:
+      - cmd: k3d cluster delete uds
+  - name: argo-up
+    description: Deploy a test instance of Argo Workflows
+    actions:
+      - dir: test/argo-workflows
+        shell:
+          darwin: bash
+          linux: bash
+        cmd: |
+          set -a; source ../../.env; set +a
+          ./uds zarf package deploy -l debug oci://ghcr.io/defenseunicorns-partnerships/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --components=dev-setup --confirm --no-progress
+  - name: argo-down
+    description: Bring down the test instance of Argo Workflows
+    actions:
+      - dir: test/argo-workflows
+        shell:
+          darwin: bash
+          linux: bash
+        cmd: |
+          set -a; source ../../.env; set +a
+          ./uds zarf package remove -l debug oci://ghcr.io/defenseunicorns-partnerships/argo-wf-zarf/argo-workflows:${ARGO_WORKFLOWS_VERSION}-vanilla --confirm --no-progress
+  - name: package-up
+    description: Build and deploy the zarf package
+    actions:
+      - dir: zarf
+        cmd: rm -f zarf-package-*.tar.zst
+      - cmd: scripts/build_zarf_package.sh
+      - dir: test/wfapi
+        cmd: ./uds zarf -l debug package deploy ../../zarf/zarf-package-*.tar.zst --confirm --no-progress
+  - name: package-down
+    description: Remove the zarf package
+    actions:
+      - cmd: ./uds zarf package remove zarf/zarf-package-*.tar.zst --confirm --no-progress
+  - name: package-recycle
+    description: Remove and redeploy the zarf package
+    actions:
+      - task: package-down
+      - task: package-up
