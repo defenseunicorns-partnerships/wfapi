@@ -34,15 +34,15 @@
       "extra-files": [
         {
           "type": "generic",
-          "path": "chart/Chart.yaml"
+          "path": "dotnet/chart/Chart.yaml"
         },
         {
           "type": "generic",
-          "path": "zarf/zarf.yaml"
+          "path": "dotnet/zarf/zarf.yaml"
         },
         {
           "type": "generic",
-          "path": "wfapi/ConfigureSwaggerOptions.cs"
+          "path": "dotnet/wfapi/ConfigureSwaggerOptions.cs"
         }
       ]
     }

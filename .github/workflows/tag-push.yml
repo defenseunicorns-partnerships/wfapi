@@ -42,10 +42,10 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build and push the Docker image
-        run: docker buildx build --platform "linux/amd64,linux/arm64" -f "wfapi/Dockerfile" -t "${{env.REGISTRY}}/${{env.IMAGE_NAME}}:$(yq e '.metadata.version' zarf/zarf.yaml)" --push .
+        run: cd dotnet && docker buildx build --platform "linux/amd64,linux/arm64" -f "wfapi/Dockerfile" -t "${{env.REGISTRY}}/${{env.IMAGE_NAME}}:$(yq e '.metadata.version' zarf/zarf.yaml)" --push .
 
       - name: Build the zarf package
-        run: uds zarf package create zarf -o zarf --confirm
+        run: cd dotnet && uds zarf package create zarf -o zarf --confirm
 
       - name: Publish the zarf package
-        run: uds zarf package publish zarf/zarf-package-*.tar.zst oci://${{env.REGISTRY}}/${{env.ZARF_PACKAGE_NAMESPACE}}
+        run: cd dotnet && uds zarf package publish zarf/zarf-package-*.tar.zst oci://${{env.REGISTRY}}/${{env.ZARF_PACKAGE_NAMESPACE}}

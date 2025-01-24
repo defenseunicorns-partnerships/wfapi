@@ -34,4 +34,7 @@ Global
 		{FA5DACBD-C4A3-4430-A549-4AF4B41095DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA5DACBD-C4A3-4430-A549-4AF4B41095DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(RiderSharedRunConfigurations) = postSolution
+		File = dotnet\.run\test_ Compose Deployment.run.xml
+	EndGlobalSection
 EndGlobal
