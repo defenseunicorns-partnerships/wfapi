@@ -65,7 +65,7 @@ If variable ASPNETCORE_ENVIRONMENT is set to anything other than "Development" (
 
 ### AuthN / AuthZ with UDS-CORE
 The default auth methods require UDS-core to be installed with Authservice if ASPNETCORE_ENVIRONMENT is set to "Test".  This will create two clients in the `argo` namespace.  One, called `wfapi`, is a standard flow client that will create an `authservice` protection for wfapi if ASPNETCORE_ENVIRONMENT is NOT set to "Development".  Authservice expects the `wfapi` audience to be present in the JWT.  The second client, called `wfapi-api`, is created if ASPNETCORE_ENVIRONMENT is set to "Test".  This client is a service account that has `wfapi` in the `aud` field.  Follow these steps to test wfapi with the `wfapi-api` client:
-1. Get a JWT from keycloak using `uds run tests:get-test-token`. 
+1. Get a JWT from keycloak using `uds run tests:get-test-token`.
 2. Use the JWT either in your own curl commands, or with the targets in the `tasks/test.yaml` file. To see a list of these targets use `uds run --list-all` and look at the targets that have `tests:xxxx`.
 
 ## FAQ
