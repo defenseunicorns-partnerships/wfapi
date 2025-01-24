@@ -86,7 +86,7 @@ C# .NET Core Web API
 
 ### Why did you choose .NET Core Web API?
 
-See the [ADR](docs/decisions/0002-programming-language-and-framework.md) for more information.
+See the [ADR](../docs/decisions/0002-programming-language-and-framework.md) for more information.
 
 ### Will you ever support other workflow orchestrators?
 
