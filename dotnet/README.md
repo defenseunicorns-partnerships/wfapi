@@ -27,7 +27,7 @@ This project is a REST API for interacting with Argo Workflows. You'll want to u
 - If we handle auth using this API we can keep Argo Workflows Server API in "dumb mode" and not have to deal with integrating it with Keycloak/Authservice.
 - If we want to expose the workflow orchestration functionality to other clusters or the internet, we can do so without exposing Argo Server, which would be a much larger thing to have to STIG/vet/approve.
 
-![C4 Container Diagram](docs/diagrams/c4_container-0.png)
+![C4 Container Diagram](../docs/diagrams/c4_container-0.png)
 
 ## Prerequisites
 
