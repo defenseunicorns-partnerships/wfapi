@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: minio
+  namespace: uds-dev-stack
+spec:
+  gateways:
+  - istio-tenant-gateway/tenant-gateway
+  hosts:
+  - minio.uds.dev
+  http:
+  - route:
+    - destination:
+        host: minio.uds-dev-stack.svc.cluster.local
+        port:
+          number: 9000
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: minio-console
+  namespace: uds-dev-stack
+spec:
+  gateways:
+    - istio-tenant-gateway/tenant-gateway
+  hosts:
+    - minio-console.uds.dev
+  http:
+    - route:
+        - destination:
+            host: minio-console.uds-dev-stack.svc.cluster.local
+            port:
+              number: 9001

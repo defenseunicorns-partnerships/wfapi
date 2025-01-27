@@ -1,0 +1,5 @@
+tasks:
+  - name: build
+    description: Build the app binary
+    actions:
+      - cmd: docker build -t local .

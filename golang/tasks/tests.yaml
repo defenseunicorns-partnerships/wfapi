@@ -1,0 +1,169 @@
+variables:
+  - name: BASIC
+  - name: JWT
+
+tasks:
+  - name: e2e
+    description: Run the full end-to-end test suite
+    actions:
+      - cmd: ./uds zarf tools kubectl apply -f test/hello-world-template.yaml
+      - task: submit-dev-workflow
+      - cmd: |
+          ./uds zarf tools kubectl get workflows -n argo
+          ./uds zarf tools kubectl get pods -n argo
+          sleep 28
+          ./uds zarf tools kubectl get workflows -n argo
+          ./uds zarf tools kubectl get pods -n argo
+          ./uds zarf tools kubectl events -n argo
+          sleep 10
+          ./uds zarf tools kubectl get workflows -n argo
+          ./uds zarf tools kubectl get pods -n argo
+      - cmd: dotnet test wfapi.E2ETests --logger "console;verbosity=detailed"
+
+  - name: dast
+    description: Run DAST tests using OWASP ZAP's API scan
+    actions:
+      - cmd: rm -rf zap/wrk
+      - cmd: mkdir -p zap/wrk
+      - cmd: scripts/check_swagger_status.sh
+      - cmd: |
+          docker run -t --rm \
+          --network="host" \
+          -v $PWD/zap/zap-api-scan.conf:/home/zap/zap-api-scan.conf \
+          -v $PWD/zap/wrk:/zap/wrk:rw \
+          -w /zap/wrk \
+          ghcr.io/zaproxy/zaproxy:stable \
+            zap-api-scan.py \
+            -t https://wfapi.uds.dev \
+            -f openapi \
+            --schema https://wfapi.uds.dev/swagger/v1/swagger.json \
+            -r ./zap-api-scan.html \
+            -J ./zap-api-scan.json \
+            -c /home/zap/zap-api-scan.conf \
+            -d
+
+  - name: get-test-basic-auth
+    description: Get the basic auth string for getting a JWT when SSO testing using the test client
+    actions:
+      - cmd: echo "$(./uds zarf tools kubectl get secret client-secret-wfapi-api -n wfapi -o json | jq -r .data.clientId | base64 -d):$(./uds zarf tools kubectl get secret client-secret-wfapi-api -n wfapi -o json | jq -r .data.clientSecret | base64 -d)"
+        shell:
+          darwin: bash
+          linux: bash
+        setVariables:
+          - name: BASIC
+
+  - name: get-token
+    description: Get the JWT token for a given keycloak client
+    actions:
+      - cmd: |
+          curl -X 'POST' \
+            'https://sso.uds.dev/realms/uds/protocol/openid-connect/token' \
+            -d grant_type=client_credentials \
+            -H 'accept: application/json' \
+            -H "Authorization: Basic $(echo -n ${BASIC} | base64)" | jq -r '.access_token'
+        shell:
+          darwin: bash
+          linux: bash
+        setVariables:
+          - name: JWT
+
+  - name: get-test-token
+    description: Gets the JWT token for SSO testing using the test client
+    actions:
+      - task: get-test-basic-auth
+      - task: get-token
+
+  - name: get-files
+    description: Test commands for SSO testing using https://wfapi.uds.dev
+    actions:
+      - task: get-test-token
+      - cmd: |
+            curl -i -X GET \
+              https://wfapi.uds.dev/api/v1/workflows/files \
+              -H 'accept: application/json' \
+              -H "Authorization: Bearer ${JWT}"
+
+  - name: get-local-files
+    description: Test commands for SSO testing using http://localhost:8080
+    actions:
+      - task: get-test-token
+      - cmd: |
+          curl -i -X GET \
+            http://localhost:8080/api/v1/workflows/files \
+            -H 'accept: application/json' \
+            -H "Authorization: Bearer ${JWT}"
+
+  - name: upload-file
+    description: Test upload command
+    actions:
+      - cmd: |
+          curl -i -X POST \
+              https://wfapi.uds.dev/api/v1/workflows/files \
+              -H 'accept: application/json' \
+              -H 'Content-Type: multipart/form-data' \
+              -F 'fileName=openapitools.json' \
+              -F 'file=@openapitools.json' \
+              -H "Authorization: Bearer ${JWT}"
+  - name: get-file
+    description: Gets the octet-stream for the file we uploaded
+    actions:
+      - cmd: |
+          curl -i -X GET \
+              https://wfapi.uds.dev/api/v1/workflows/files/%2Fwfapi%2Ffiles%2Fopenapitools.json \
+              -H 'accept: application/octet-stream' \
+              -H "Authorization: Bearer ${JWT}"
+  - name: get-file-unauth
+    description: Attempts to get an unauthorized file
+    actions:
+      - cmd: |
+          curl -i -X GET \
+              https://wfapi.uds.dev/api/v1/workflows/files/whoops.png \
+              -H 'accept: application/octet-stream' \
+              -H "Authorization: Bearer ${JWT}"
+  - name: delete-file
+    description: Deletes the uploaded file
+    actions:
+      - cmd: |
+          curl -i -X DELETE \
+              https://wfapi.uds.dev/api/v1/workflows/files/%2Fwfapi%2Ffiles%2Fopenapitools.json \
+              -H 'accept: */*' \
+              -H "Authorization: Bearer ${JWT}"
+  - name: delete-file-unauth
+    description: Attempts to delete an unauthorized file
+    actions:
+      - cmd: |
+          curl -i -X DELETE \
+              https://wfapi.uds.dev/api/v1/workflows/files/whoops.png \
+              -H 'accept: */*' \
+              -H "Authorization: Bearer ${JWT}"
+  - name: template-up
+    description: Gets the hello-world WorkflowTemplate into the cluster
+    actions:
+      - cmd: uds zarf tools kubectl apply -f test/hello-world-template.yaml
+  - name: submit-workflow
+    description: Submits the hello-world template workflow via WFAPI
+    actions:
+      - cmd: |
+          curl -i -X 'POST' \
+            'https://wfapi.uds.dev/api/v1/workflows' \
+            -H 'accept: application/json' \
+            -H 'Content-Type: application/json' \
+            -H "Authorization: Bearer ${JWT}" \
+            -d '{
+            "templateName": "hello-world-template",
+            "generateName": "hello-world-",
+            "parameters": []
+            }'
+  - name: submit-dev-workflow
+    description: Submits the hellow-world template via WFAPI without auth
+    actions:
+      - cmd: |
+          curl -i -X 'POST' \
+            'https://wfapi.uds.dev/api/v1/workflows' \
+            -H 'accept: application/json' \
+            -H 'Content-Type: application/json' \
+            -d '{
+            "templateName": "hello-world-template",
+            "generateName": "hello-world-",
+            "parameters": [{"name": "waitSeconds", "value": "30"}]
+            }'
