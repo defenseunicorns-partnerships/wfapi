@@ -55,7 +55,7 @@ runs:
 
     - name: Run tests
       shell: bash
-      run: uds run test --no-progress
+      run: cd dotnet && uds run test --no-progress
 
     - name: Update GitHub Status for success
       if: ${{ success() }}

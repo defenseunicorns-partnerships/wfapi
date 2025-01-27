@@ -39,34 +39,13 @@ This project is a REST API for interacting with Argo Workflows. You'll want to u
 
 Windows is not supported at this time. We recommend using WSL2. Please let us know if you run into any issues when using WSL2.
 
-ARM64 is not supported at this time, but only because we don't know of anyone wanting to use it. Please let us know if ARM64 support is important to you.
-
 ## Installation
 
 WFAPI is published as a [Docker image](https://github.com/defenseunicorns-partnerships/wfapi/pkgs/container/wfapi%2Fcontainers%2Fwfapi) as well as a [Zarf Package](https://github.com/defenseunicorns-partnerships/wfapi/pkgs/container/wfapi%2Fpackages%2Fwfapi) published as an OCI artifact. We recommend using the Zarf Package. See the [Zarf Docs](https://docs.zarf.dev/getting-started/) for details on how to deploy a Zarf Package. Use [Zarf config variables](https://docs.zarf.dev/ref/config-files/) for configuration. See [zarf.yaml](zarf/zarf.yaml) for all available configuration options.
 
 ## Usage
 
-WFAPI uses Swagger for API documentation. The best way to see the Swagger UI or get the `swagger.json` right now is to run WFAPI locally and navigate to [https://wfapi.uds.dev/swagger](https://wfapi.uds.dev/swagger). We intend to make it much easier to access the Swagger UI in the future.
-
-The easiest way to spin up WFAPI locally is to use the testing UDS Task. This will spin up Argo Workflows and WFAPI in a local Kubernetes cluster powered by K3d. You need Docker, K3d, and UDS CLI installed. This is also the recommended approach for local development of applications that intend to interact with WFAPI.
-
-```shell
-uds run ci:up
-```
-
-If everything worked successfully, WFAPI will be available at [https://wfapi.uds.dev](https://wfapi.uds.dev).
-
-## Authentication/Authorization
-
-If variable ASPNETCORE_ENVIRONMENT is set to "Development", the API will not require authn/authz. This is useful for local development.
-
-If variable ASPNETCORE_ENVIRONMENT is set to anything other than "Development" (like "Production", which is the default) the API requires a JWT token in the Authorization header. The token must be signed by the auth server specified in the configuration (likely Keycloak).
-
-### AuthN / AuthZ with UDS-CORE
-The default auth methods require UDS-core to be installed with Authservice if ASPNETCORE_ENVIRONMENT is set to "Test".  This will create two clients in the `argo` namespace.  One, called `wfapi`, is a standard flow client that will create an `authservice` protection for wfapi if ASPNETCORE_ENVIRONMENT is NOT set to "Development".  Authservice expects the `wfapi` audience to be present in the JWT.  The second client, called `wfapi-api`, is created if ASPNETCORE_ENVIRONMENT is set to "Test".  This client is a service account that has `wfapi` in the `aud` field.  Follow these steps to test wfapi with the `wfapi-api` client:
-1. Get a JWT from keycloak using `uds run tests:get-test-token`. 
-2. Use the JWT either in your own curl commands, or with the targets in the `tasks/test.yaml` file. To see a list of these targets use `uds run --list-all` and look at the targets that have `tests:xxxx`.
+See [dotnet/README.md](dotnet/README.md).
 
 ## FAQ
 
@@ -82,11 +61,7 @@ Likely not. The plan for now is to only allow workflow runs that utilize an exis
 
 ### What languages and frameworks are used in this project?
 
-C# .NET Core Web API
-
-### Why did you choose .NET Core Web API?
-
-See the [ADR](docs/decisions/0002-programming-language-and-framework.md) for more information.
+C# .NET Core Web API. We are working on migrating to Golang. The .NET codebase is in the `dotnet` folder. The Golang codebase is in the `golang` folder. When the Golang codebase reaches feature parity with the .NET codebase the .NET codebase will be deleted.
 
 ### Will you ever support other workflow orchestrators?
 
