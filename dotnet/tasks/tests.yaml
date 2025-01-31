@@ -61,18 +61,18 @@ tasks:
             -d grant_type=client_credentials \
             -H 'accept: application/json' \
             -H "Authorization: Basic $(echo -n ${BASIC} | base64)" | jq -r '.access_token'
-        shell: 
+        shell:
           darwin: bash
           linux: bash
         setVariables:
           - name: JWT
-  
+
   - name: get-test-token
     description: Gets the JWT token for SSO testing using the test client
     actions:
       - task: get-test-basic-auth
       - task: get-token
-  
+
   - name: get-files
     description: Test commands for SSO testing
     actions:
