@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.22](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.21...0.0.22) (2025-02-04)
+
+
+### Bug Fixes
+
+* increase response time for archived workflow logs ([#132](https://github.com/defenseunicorns-partnerships/wfapi/issues/132)) ([2e6f861](https://github.com/defenseunicorns-partnerships/wfapi/commit/2e6f861bfd40bf9e59b7935d4bfe8aaf154e564e))
+
+
+### Miscellaneous Chores
+
+* **deps:** update stable ([#127](https://github.com/defenseunicorns-partnerships/wfapi/issues/127)) ([1e28ca3](https://github.com/defenseunicorns-partnerships/wfapi/commit/1e28ca31c9ea530ea1cbcd0cd180e02ed95e68ba))
+* Move .NET codebase to `dotnet` folder ([#128](https://github.com/defenseunicorns-partnerships/wfapi/issues/128)) ([9d197f8](https://github.com/defenseunicorns-partnerships/wfapi/commit/9d197f8adf8282e845d354558f9aeff7901bbdce))
+
 ## [0.0.21](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.20...0.0.21) (2025-01-19)
 
 
