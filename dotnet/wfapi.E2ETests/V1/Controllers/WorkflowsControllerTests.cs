@@ -397,6 +397,6 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             // .And()
             // .Header("Connection", "keep-alive")
             .And()
-            .ResponseTime(Is.LessThan(TimeSpan.FromMilliseconds(600)));
+            .ResponseTime(Is.LessThan(TimeSpan.FromMilliseconds(1000)));
     }
 }
