@@ -27,6 +27,7 @@ Environment variables to set in the container. Ref: <https://kubernetes.io/docs/
 | [Auth\_\_Jwt\_\_Audience](#auth__jwt__audience)                         | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__audience.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__Audience")                         |
 | [Auth\_\_Jwt\_\_Authority](#auth__jwt__authority)                       | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__authority.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__Authority")                       |
 | [Auth\_\_Jwt\_\_RequireHttpsMetadata](#auth__jwt__requirehttpsmetadata) | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__requirehttpsmetadata.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__RequireHttpsMetadata") |
+| [Auth\_\_Jwt\_\_Token](#auth__jwt__token)                               | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__token.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__Token")                               |
 | [Auth\_\_Jwt\_\_ValidateIssuer](#auth__jwt__validateissuer)             | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__validateissuer.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__ValidateIssuer")             |
 | [Auth\_\_Jwt\_\_WellKnownConfig](#auth__jwt__wellknownconfig)           | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__wellknownconfig.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__WellKnownConfig")           |
 | [Bucket\_\_Name](#bucket__name)                                         | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-bucket__name.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__Name")                                       |
@@ -253,6 +254,32 @@ The default value is:
 
 ```json
 "true"
+```
+
+## Auth\_\_Jwt\_\_Token
+
+Token endpoint to get client credentials
+
+`Auth__Jwt__Token`
+
+* is required
+
+* Type: `string` ([Auth\_\_Jwt\_\_Token](values-properties-wfapi-properties-env-properties-auth__jwt__token.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__token.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__Token")
+
+### Auth\_\_Jwt\_\_Token Type
+
+`string` ([Auth\_\_Jwt\_\_Token](values-properties-wfapi-properties-env-properties-auth__jwt__token.md))
+
+### Auth\_\_Jwt\_\_Token Default Value
+
+The default value is:
+
+```json
+"https://sso.uds.dev/realms/uds/protocol/openid-connect/token"
 ```
 
 ## Auth\_\_Jwt\_\_ValidateIssuer

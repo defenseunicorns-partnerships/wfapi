@@ -20,6 +20,7 @@ wfapi chart settings
 | :---------------------------------------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | [affinity](#affinity)                     | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-affinity.md "values.yaml#/properties/wfapi/properties/affinity")                     |
 | [env](#env)                               | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env.md "values.yaml#/properties/wfapi/properties/env")                               |
+| [envFromSecrets](#envfromsecrets)         | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-envfromsecrets.md "values.yaml#/properties/wfapi/properties/envFromSecrets")         |
 | [fullnameOverride](#fullnameoverride)     | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-fullnameoverride.md "values.yaml#/properties/wfapi/properties/fullnameOverride")     |
 | [image](#image)                           | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-image.md "values.yaml#/properties/wfapi/properties/image")                           |
 | [imagePullSecrets](#imagepullsecrets)     | `array`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-imagepullsecrets.md "values.yaml#/properties/wfapi/properties/imagePullSecrets")     |
@@ -85,6 +86,24 @@ Environment variables to set in the container. Ref: <https://kubernetes.io/docs/
 ### env Type
 
 `object` ([env](values-properties-wfapi-properties-env.md))
+
+## envFromSecrets
+
+Environment variabels to mount from secrets form secretName: key. Ref: <https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables>
+
+`envFromSecrets`
+
+* is required
+
+* Type: `object` ([envFromSecrets](values-properties-wfapi-properties-envfromsecrets.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-envfromsecrets.md "values.yaml#/properties/wfapi/properties/envFromSecrets")
+
+### envFromSecrets Type
+
+`object` ([envFromSecrets](values-properties-wfapi-properties-envfromsecrets.md))
 
 ## fullnameOverride
 

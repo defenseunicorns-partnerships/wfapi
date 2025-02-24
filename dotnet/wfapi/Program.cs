@@ -11,6 +11,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Client;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Org.OpenAPITools.Api;
@@ -141,6 +142,9 @@ try
     var argoConfig = new Configuration
     {
         BasePath = builder.Configuration.GetValue<string>("Argo:ApiUrl") ?? throw new InvalidOperationException()
+        IdentityPath = builder.Configuration.GetValue<string>("Auth:Jwt:Token");
+        ClientId = builder.Configuration.GetValue<string>("clientId");
+        ClientSecret = builder.configuration.GetValue<string>("secret");
     };
     var token = builder.Configuration.GetValue<string>("Argo:Token");
     if (String.IsNullOrWhiteSpace(token))
@@ -152,8 +156,8 @@ try
     {
         Log.Information("Using token from configuration");
     }
-    argoConfig.AddApiKey("Authorization", token);
-    argoConfig.AddApiKeyPrefix("Authorization", "Bearer");
+    //argoConfig.AddApiKey("Authorization", token);
+    //argoConfig.AddApiKeyPrefix("Authorization", "Bearer");
     var varNamespace = builder.Configuration.GetValue<string>("Argo:Namespace") ?? throw new InvalidOperationException();
     builder.Services.AddSingleton(new ArgoClient(varNamespace, argoConfig));
 
