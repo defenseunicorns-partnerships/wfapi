@@ -11,7 +11,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.IdentityModel.Client;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Org.OpenAPITools.Api;
@@ -142,11 +141,12 @@ try
     var argoConfig = new Configuration
     {
         BasePath = builder.Configuration.GetValue<string>("Argo:ApiUrl") ?? throw new InvalidOperationException()
-        IdentityPath = builder.Configuration.GetValue<string>("Auth:Jwt:Token");
-        ClientId = builder.Configuration.GetValue<string>("clientId");
-        ClientSecret = builder.configuration.GetValue<string>("secret");
     };
+    string identityPath = builder.Configuration.GetValue<string>("Auth:Jwt:Token") ?? throw new InvalidOperationException();
+    string ClientId = builder.Configuration.GetValue<string>("clientId") ?? throw new InvalidOperationException();
+    string ClientSecret = builder.Configuration.GetValue<string>("secret") ?? throw new InvalidOperationException();
     var token = builder.Configuration.GetValue<string>("Argo:Token");
+    ClientCredentials OidcClient = new ClientCredentials(identityPath, ClientId, ClientSecret);
     if (String.IsNullOrWhiteSpace(token))
     {
         token = File.ReadAllText("/var/run/secrets/kubernetes.io/serviceaccount/token");
@@ -159,7 +159,7 @@ try
     //argoConfig.AddApiKey("Authorization", token);
     //argoConfig.AddApiKeyPrefix("Authorization", "Bearer");
     var varNamespace = builder.Configuration.GetValue<string>("Argo:Namespace") ?? throw new InvalidOperationException();
-    builder.Services.AddSingleton(new ArgoClient(varNamespace, argoConfig));
+    builder.Services.AddSingleton(new ArgoClient(varNamespace, argoConfig, OidcClient));
 
     // Object Storage setup. Officially supported object storage providers are AWS S3 and MinIO.
     var bucketRegion = builder.Configuration.GetValue<string>("Bucket:Region") ?? throw new InvalidOperationException();
