@@ -34,6 +34,7 @@ public class ClientCredentials{
 /// <exception cref="ApiException"></exception>
    public async Task<string> GetClientCredentialToken()
    {
+
       var client = new HttpClient();
       var tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
         {
@@ -48,7 +49,7 @@ public class ClientCredentials{
          throw new ApiException(500, tokenResponse.Error);
       }
 
-      return tokenResponse.AccessToken;
+      return $"Bearer {tokenResponse.AccessToken}";
    }
 
 }

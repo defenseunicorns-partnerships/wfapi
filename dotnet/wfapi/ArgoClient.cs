@@ -13,8 +13,7 @@ public class ArgoClient
     /// </summary>
     /// <param name="varNamespace"></param>
     /// <param name="configuration"></param>
-    /// <param name="OidcClient"></param>
-    public ArgoClient(string varNamespace, Configuration configuration, ClientCredentials OidcClient)
+    public ArgoClient(string varNamespace, Configuration configuration)
     {
         this.Namespace = varNamespace;
         this.WorkflowServiceApi = new WorkflowServiceApi(configuration);

@@ -12,6 +12,7 @@ using Org.OpenAPITools.Client;
 using Swashbuckle.AspNetCore.Annotations;
 using wfapi.V1.Models;
 using Org.OpenAPITools.Model;
+using System.Threading.Tasks;
 
 namespace wfapi.V1.Controllers;
 
@@ -23,8 +24,9 @@ namespace wfapi.V1.Controllers;
 [ApiVersion(1.0)]
 [Route("api/v{version:apiVersion}/workflows")]
 [Tags("Workflows")]
-public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogger<WorkflowsController> log) : ControllerBase
+public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ClientCredentials OidcClient, ILogger<WorkflowsController> log) : ControllerBase
 {
+
     private const string FilesPrefix = "files/";
 
     /// <summary>
@@ -208,7 +210,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
      )]
     [SwaggerOperation(OperationId = "SubmitWorkflow")]
     [Consumes(MediaTypeNames.Application.Json)]
-    public IActionResult SubmitWorkflow([FromBody] WorkflowSubmission submission)
+    public async Task<IActionResult> SubmitWorkflow([FromBody] WorkflowSubmission submission)
     {
         string template = submission.TemplateName;
         string ClientWorkflowPrefix = PrefixBuilder.New(User.Claims, null);
@@ -232,8 +234,9 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
             body.SubmitOptions.Parameters.Add(parameter.Name + "=" + parameter.Value);
         }
 
-        var submitResult = argoClient.WorkflowServiceApi.WorkflowServiceSubmitWorkflow(argoClient.Namespace, body);
-        var getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
+        var authHeader = await OidcClient.GetClientCredentialToken();
+        var submitResult = argoClient.WorkflowServiceApi.WorkflowServiceSubmitWorkflow(argoClient.Namespace, body, authHeader);
+        var getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name, authHeader);
         // Initialize the start time for timeout
         var startTime = DateTime.Now;
         var timeout = TimeSpan.FromSeconds(2);
@@ -244,7 +247,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
             Thread.Sleep(50);
 
             // Fetch the workflow status again
-            getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name);
+            getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, submitResult.Metadata.Name, authHeader);
         }
         if (string.IsNullOrWhiteSpace(getResult.Status.Phase))
         {
@@ -281,12 +284,14 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, ILogg
          "The requested workflow was not found."
      )]
     [SwaggerOperation(OperationId = "GetWorkflowInfo")]
-    public IActionResult GetWorkflowInfo(string workflowName)
+    public async Task<IActionResult> GetWorkflowInfo(string workflowName)
     {
+
+        string authHeader = await OidcClient.GetClientCredentialToken();
         IoArgoprojWorkflowV1alpha1Workflow getResult;
         try
         {
-            getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, workflowName);
+            getResult = argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflow(argoClient.Namespace, workflowName, authHeader);
         }
         catch (ApiException e)
         {

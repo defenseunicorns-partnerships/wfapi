@@ -142,11 +142,7 @@ try
     {
         BasePath = builder.Configuration.GetValue<string>("Argo:ApiUrl") ?? throw new InvalidOperationException()
     };
-    string identityPath = builder.Configuration.GetValue<string>("Auth:Jwt:Token") ?? throw new InvalidOperationException();
-    string ClientId = builder.Configuration.GetValue<string>("clientId") ?? throw new InvalidOperationException();
-    string ClientSecret = builder.Configuration.GetValue<string>("secret") ?? throw new InvalidOperationException();
     var token = builder.Configuration.GetValue<string>("Argo:Token");
-    ClientCredentials OidcClient = new ClientCredentials(identityPath, ClientId, ClientSecret);
     if (String.IsNullOrWhiteSpace(token))
     {
         token = File.ReadAllText("/var/run/secrets/kubernetes.io/serviceaccount/token");
@@ -159,8 +155,7 @@ try
     //argoConfig.AddApiKey("Authorization", token);
     //argoConfig.AddApiKeyPrefix("Authorization", "Bearer");
     var varNamespace = builder.Configuration.GetValue<string>("Argo:Namespace") ?? throw new InvalidOperationException();
-    builder.Services.AddSingleton(new ArgoClient(varNamespace, argoConfig, OidcClient));
-
+    builder.Services.AddSingleton(new ArgoClient(varNamespace, argoConfig));
     // Object Storage setup. Officially supported object storage providers are AWS S3 and MinIO.
     var bucketRegion = builder.Configuration.GetValue<string>("Bucket:Region") ?? throw new InvalidOperationException();
     var bucketServiceUrl = builder.Configuration.GetValue<string>("Bucket:ServiceUrl") ?? throw new InvalidOperationException();
@@ -179,6 +174,11 @@ try
             )
         )
     );
+
+    string identityPath = builder.Configuration.GetValue<string>("Auth:Jwt:Token") ?? throw new InvalidOperationException();
+    string ClientId = builder.Configuration.GetValue<string>("clientId") ?? throw new InvalidOperationException();
+    string ClientSecret = builder.Configuration.GetValue<string>("secret") ?? throw new InvalidOperationException();
+    builder.Services.AddSingleton(new ClientCredentials(identityPath, ClientId, ClientSecret));
 
     var app = builder.Build();
 
