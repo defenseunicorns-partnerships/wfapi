@@ -16,6 +16,7 @@ public interface IWorkflowServiceSseApiAsync
     /// <param name="varNamespace"></param>
     /// <param name="name"></param>
     /// <param name="podName"> (optional)</param>
+    /// <param name="authHeader"></param>
     /// <param name="logOptionsContainer">The container for which to stream logs. Defaults to only container if there is one container in the pod. +optional. (optional)</param>
     /// <param name="logOptionsFollow">Follow the log stream of the pod. Defaults to false. +optional. (optional)</param>
     /// <param name="logOptionsPrevious">Return previous terminated container logs. Defaults to false. +optional. (optional)</param>
@@ -34,6 +35,7 @@ public interface IWorkflowServiceSseApiAsync
     IAsyncEnumerable<StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry> WorkflowServiceWorkflowLogsAsync(
         string varNamespace,
         string name,
+        string authHeader,
         string? podName = default(string?),
         string? logOptionsContainer = default(string?),
         bool? logOptionsFollow = default(bool?),
@@ -58,6 +60,7 @@ public interface IWorkflowServiceSseApiAsync
     /// <param name="varNamespace"></param>
     /// <param name="name"></param>
     /// <param name="podName"> (optional)</param>
+    /// <param name="authHeader"></param>
     /// <param name="logOptionsContainer">The container for which to stream logs. Defaults to only container if there is one container in the pod. +optional. (optional)</param>
     /// <param name="logOptionsFollow">Follow the log stream of the pod. Defaults to false. +optional. (optional)</param>
     /// <param name="logOptionsPrevious">Return previous terminated container logs. Defaults to false. +optional. (optional)</param>
@@ -75,6 +78,7 @@ public interface IWorkflowServiceSseApiAsync
     IAsyncEnumerable<ApiResponse<StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry>>
         WorkflowServiceWorkflowLogsWithHttpInfoAsync(string varNamespace,
             string name,
+            string authHeader,
             string? podName = default(string?),
             string? logOptionsContainer = default(string?),
             bool? logOptionsFollow = default(bool?),

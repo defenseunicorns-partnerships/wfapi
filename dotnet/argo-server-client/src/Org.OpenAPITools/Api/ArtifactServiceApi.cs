@@ -169,9 +169,10 @@ namespace Org.OpenAPITools.Api
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
         /// <param name="artifactDiscriminator"></param>
+        /// <param name="authHeader"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
-        System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetArtifactFileAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetArtifactFileAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, string authHeader, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get an artifact.
@@ -186,9 +187,10 @@ namespace Org.OpenAPITools.Api
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
         /// <param name="artifactDiscriminator"></param>
+        /// <param name="authHeader"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FileParameter>> ArtifactServiceGetArtifactFileWithHttpInfoAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<FileParameter>> ArtifactServiceGetArtifactFileWithHttpInfoAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, string authHeader, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get an input artifact.
         /// </summary>
@@ -619,11 +621,12 @@ namespace Org.OpenAPITools.Api
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
         /// <param name="artifactDiscriminator"></param>
+        /// <param name="authHeader"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileParameter</returns>
-        public async System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetArtifactFileAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<FileParameter> ArtifactServiceGetArtifactFileAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, string authHeader, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<FileParameter> localVarResponse = await ArtifactServiceGetArtifactFileWithHttpInfoAsync(varNamespace, idDiscriminator, id, nodeId, artifactName, artifactDiscriminator, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<FileParameter> localVarResponse = await ArtifactServiceGetArtifactFileWithHttpInfoAsync(varNamespace, idDiscriminator, id, nodeId, artifactName, artifactDiscriminator, authHeader, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -637,9 +640,10 @@ namespace Org.OpenAPITools.Api
         /// <param name="nodeId"></param>
         /// <param name="artifactName"></param>
         /// <param name="artifactDiscriminator"></param>
+        /// <param name="authHeader"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileParameter)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<FileParameter>> ArtifactServiceGetArtifactFileWithHttpInfoAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<FileParameter>> ArtifactServiceGetArtifactFileWithHttpInfoAsync(string varNamespace, string idDiscriminator, string id, string nodeId, string artifactName, string artifactDiscriminator, string authHeader, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
@@ -691,10 +695,7 @@ namespace Org.OpenAPITools.Api
             localVarRequestOptions.PathParameters.Add("artifactDiscriminator", Org.OpenAPITools.Client.ClientUtils.ParameterToString(artifactDiscriminator)); // path parameter
 
             // authentication (BearerToken) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
+            localVarRequestOptions.HeaderParameters.Add("Authorization", authHeader);
 
             // make the HTTP request
 

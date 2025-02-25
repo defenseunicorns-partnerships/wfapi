@@ -15,6 +15,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
+using Duende.IdentityModel.Client;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
 
@@ -589,11 +590,13 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
+        /// <param name="authHeader"></param>
         /// <param name="getOptionsResourceVersion">resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)</param>
         /// <param name="fields">Fields to be included or excluded in the response. e.g. \&quot;spec,status.phase\&quot;, \&quot;-status.nodes\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1Workflow</returns>
-        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1Workflow> WorkflowServiceGetWorkflowAsync(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), string? fields = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1Workflow> WorkflowServiceGetWorkflowAsync(string varNamespace, string name, string authHeader,
+                                                                string? getOptionsResourceVersion = default(string?), string? fields = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         ///
@@ -604,11 +607,13 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
+        /// <param name="authHeader"></param>
         /// <param name="getOptionsResourceVersion">resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)</param>
         /// <param name="fields">Fields to be included or excluded in the response. e.g. \&quot;spec,status.phase\&quot;, \&quot;-status.nodes\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1Workflow)</returns>
-        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1Workflow>> WorkflowServiceGetWorkflowWithHttpInfoAsync(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), string? fields = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<IoArgoprojWorkflowV1alpha1Workflow>> WorkflowServiceGetWorkflowWithHttpInfoAsync(string varNamespace, string name, string authHeader,
+                                                                string? getOptionsResourceVersion = default(string?), string? fields = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         ///
         /// </summary>
@@ -1738,13 +1743,16 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
+        /// <param name="authHeader"></param>
         /// <param name="getOptionsResourceVersion">resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)</param>
         /// <param name="fields">Fields to be included or excluded in the response. e.g. \&quot;spec,status.phase\&quot;, \&quot;-status.nodes\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of IoArgoprojWorkflowV1alpha1Workflow</returns>
-        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1Workflow> WorkflowServiceGetWorkflowAsync(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), string? fields = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<IoArgoprojWorkflowV1alpha1Workflow> WorkflowServiceGetWorkflowAsync(string varNamespace, string name, string authHeader,
+                                                string? getOptionsResourceVersion = default(string?), string? fields = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Workflow> localVarResponse = await WorkflowServiceGetWorkflowWithHttpInfoAsync(varNamespace, name, getOptionsResourceVersion, fields, cancellationToken).ConfigureAwait(false);
+            Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Workflow> localVarResponse = await WorkflowServiceGetWorkflowWithHttpInfoAsync(varNamespace, name, authHeader,
+                                                getOptionsResourceVersion, fields, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1754,11 +1762,13 @@ namespace Org.OpenAPITools.Api
         /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="varNamespace"></param>
         /// <param name="name"></param>
+        /// <param name="authHeader"></param>
         /// <param name="getOptionsResourceVersion">resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)</param>
         /// <param name="fields">Fields to be included or excluded in the response. e.g. \&quot;spec,status.phase\&quot;, \&quot;-status.nodes\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (IoArgoprojWorkflowV1alpha1Workflow)</returns>
-        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Workflow>> WorkflowServiceGetWorkflowWithHttpInfoAsync(string varNamespace, string name, string? getOptionsResourceVersion = default(string?), string? fields = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.OpenAPITools.Client.ApiResponse<IoArgoprojWorkflowV1alpha1Workflow>> WorkflowServiceGetWorkflowWithHttpInfoAsync(string varNamespace, string name, string authHeader,
+                                                string? getOptionsResourceVersion = default(string?), string? fields = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'varNamespace' is set
             if (varNamespace == null)
@@ -1798,10 +1808,8 @@ namespace Org.OpenAPITools.Api
             }
 
             // authentication (BearerToken) required
-            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-            }
+
+            localVarRequestOptions.HeaderParameters.Add("Authorization", authHeader);
 
             // make the HTTP request
 

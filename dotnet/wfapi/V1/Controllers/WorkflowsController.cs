@@ -340,6 +340,8 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, Clien
         // Istio strips the connection header, so adding this doesn't do anything useful.
         // Response.Headers.Connection = "keep-alive";
 
+        string authHeader = await OidcClient.GetClientCredentialToken();
+
         // If the workflow is still active, we'll get the log stream from the active pod
         try
         {
@@ -347,6 +349,7 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, Clien
                                varNamespace: argoClient.Namespace,
                                name: workflowName,
                                podName: podName,
+                               authHeader: authHeader,
                                logOptionsContainer: "main",
                                logOptionsFollow: true,
                                cancellationToken: cancellationToken
@@ -366,10 +369,10 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, Clien
                 try
                 {
                     var workflow = await argoClient.WorkflowServiceApi.WorkflowServiceGetWorkflowAsync(
-                        argoClient.Namespace, workflowName,
+                        argoClient.Namespace, workflowName, authHeader,
                         cancellationToken: cancellationToken);
                     var logFile = await argoClient.ArtifactServiceApi.ArtifactServiceGetArtifactFileAsync(argoClient.Namespace,
-                        "archived-workflows", workflow.Metadata.Uid, podName, "main-logs", "outputs",
+                        "archived-workflows", workflow.Metadata.Uid, podName, "main-logs", "outputs", authHeader,
                         cancellationToken: cancellationToken);
                     using var reader = new StreamReader(logFile.Content);
                     while (!reader.EndOfStream && !cancellationToken.IsCancellationRequested)
