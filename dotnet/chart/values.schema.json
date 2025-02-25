@@ -98,6 +98,14 @@
                 "string"
               ]
             },
+            "Auth__Jwt__Token": {
+              "default": "https://sso.uds.dev/realms/uds/protocol/openid-connect/token",
+              "description": "Token endpoint to get client credentials",
+              "title": "Auth__Jwt__Token",
+              "type": [
+                "string"
+              ]
+            },
             "Auth__Jwt__ValidateIssuer": {
               "default": "true",
               "description": "Whether to validate the JWT issuer",
@@ -163,6 +171,7 @@
             "Auth__Jwt__Audience",
             "Auth__Jwt__RequireHttpsMetadata",
             "Auth__Jwt__ValidateIssuer",
+            "Auth__Jwt__Token",
             "Argo__ApiUrl",
             "Argo__Token",
             "Argo__Namespace",
@@ -174,6 +183,27 @@
             "Swagger__Enable"
           ],
           "title": "env",
+          "type": [
+            "object"
+          ]
+        },
+        "envFromSecrets": {
+          "additionalProperties": false,
+          "description": "Environment variabels to mount from secrets form secretName: key. Ref: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables",
+          "properties": {
+            "argoClient": {
+              "default": "",
+              "description": "SecretName to mount for client secret, needs clientId and secret fields",
+              "title": "argoClient",
+              "type": [
+                "string"
+              ]
+            }
+          },
+          "required": [
+            "argoClient"
+          ],
+          "title": "envFromSecrets",
           "type": [
             "object"
           ]
@@ -905,6 +935,7 @@
         "nameOverride",
         "fullnameOverride",
         "env",
+        "envFromSecrets",
         "serviceAccount",
         "roleBinding",
         "udsPackage",

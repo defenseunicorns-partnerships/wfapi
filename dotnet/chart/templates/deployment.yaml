@@ -41,6 +41,9 @@ spec:
               value: {{ $val | quote }}
             {{- end }}
             {{- end }}
+          envFrom:
+            - secretRef:
+                name: {{ .Values.wfapi.envFromSecrets.argoClient }}
           ports:
             - name: http
               containerPort: {{ .Values.wfapi.service.port }}

@@ -55,7 +55,8 @@ public class WorkflowServiceSseApiAsync : IWorkflowServiceSseApiAsync
     }
 
     /// <inheritdoc />
-    public async IAsyncEnumerable<StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry> WorkflowServiceWorkflowLogsAsync(string varNamespace, string name, string? podName = default(string?),
+    public async IAsyncEnumerable<StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry> WorkflowServiceWorkflowLogsAsync(string varNamespace, string name, string authHeader,
+        string? podName = default(string?),
         string? logOptionsContainer = default(string?), bool? logOptionsFollow = default(bool?),
         bool? logOptionsPrevious = default(bool?), string? logOptionsSinceSeconds = default(string?),
         string? logOptionsSinceTimeSeconds = default(string?), int? logOptionsSinceTimeNanos = default(int?),
@@ -66,28 +67,29 @@ public class WorkflowServiceSseApiAsync : IWorkflowServiceSseApiAsync
         [EnumeratorCancellation] CancellationToken cancellationToken = default(CancellationToken))
     {
         await foreach (var apiResponse in WorkflowServiceWorkflowLogsWithHttpInfoAsync(varNamespace,
-                           name,
-                           podName,
-                           logOptionsContainer,
-                           logOptionsFollow,
-                           logOptionsPrevious,
-                           logOptionsSinceSeconds,
-                           logOptionsSinceTimeSeconds,
-                           logOptionsSinceTimeNanos,
-                           logOptionsTimestamps,
-                           logOptionsTailLines,
-                           logOptionsLimitBytes,
-                           logOptionsInsecureSkipTLSVerifyBackend,
-                           grep,
-                           selector,
-                           cancellationToken).ConfigureAwait(false))
+                        name,
+                        authHeader,
+                        podName,
+                        logOptionsContainer,
+                        logOptionsFollow,
+                        logOptionsPrevious,
+                        logOptionsSinceSeconds,
+                        logOptionsSinceTimeSeconds,
+                        logOptionsSinceTimeNanos,
+                        logOptionsTimestamps,
+                        logOptionsTailLines,
+                        logOptionsLimitBytes,
+                        logOptionsInsecureSkipTLSVerifyBackend,
+                        grep,
+                        selector,
+                        cancellationToken).ConfigureAwait(false))
         {
             yield return apiResponse.Data;
         }
     }
 
     /// <inheritdoc />
-    public async IAsyncEnumerable<ApiResponse<StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry>> WorkflowServiceWorkflowLogsWithHttpInfoAsync(string varNamespace, string name,
+    public async IAsyncEnumerable<ApiResponse<StreamResultOfIoArgoprojWorkflowV1alpha1LogEntry>> WorkflowServiceWorkflowLogsWithHttpInfoAsync(string varNamespace, string name, string authHeader,
         string? podName = default(string?), string? logOptionsContainer = default(string?),
         bool? logOptionsFollow = default(bool?), bool? logOptionsPrevious = default(bool?),
         string? logOptionsSinceSeconds = default(string?), string? logOptionsSinceTimeSeconds = default(string?),
@@ -179,10 +181,8 @@ public class WorkflowServiceSseApiAsync : IWorkflowServiceSseApiAsync
         }
 
         // authentication (BearerToken) required
-        if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("Authorization")))
-        {
-            localVarRequestOptions.HeaderParameters.Add("Authorization", this.Configuration.GetApiKeyWithPrefix("Authorization"));
-        }
+        localVarRequestOptions.HeaderParameters.Add("Authorization", authHeader);
+
 
         // make the HTTP request
 
