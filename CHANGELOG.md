@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.0.23](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.22...0.0.23) (2025-02-25)
+
+
+### Features
+
+* Keycloak ServiceAccounts ([#134](https://github.com/defenseunicorns-partnerships/wfapi/issues/134)) ([84a1bbd](https://github.com/defenseunicorns-partnerships/wfapi/commit/84a1bbdc08dcd1b30029115f894c0b9e96fc75c3))
+
+
+### Miscellaneous Chores
+
+* **deps:** update stable ([#131](https://github.com/defenseunicorns-partnerships/wfapi/issues/131)) ([a1ca3fe](https://github.com/defenseunicorns-partnerships/wfapi/commit/a1ca3feab12ede91ffb8207644d447664954cf73))
+
 ## [0.0.22](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.21...0.0.22) (2025-02-04)
 
 
