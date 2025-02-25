@@ -67,22 +67,22 @@ public class WorkflowServiceSseApiAsync : IWorkflowServiceSseApiAsync
         [EnumeratorCancellation] CancellationToken cancellationToken = default(CancellationToken))
     {
         await foreach (var apiResponse in WorkflowServiceWorkflowLogsWithHttpInfoAsync(varNamespace,
-                           name,
-                           podName,
-                           authHeader,
-                           logOptionsContainer,
-                           logOptionsFollow,
-                           logOptionsPrevious,
-                           logOptionsSinceSeconds,
-                           logOptionsSinceTimeSeconds,
-                           logOptionsSinceTimeNanos,
-                           logOptionsTimestamps,
-                           logOptionsTailLines,
-                           logOptionsLimitBytes,
-                           logOptionsInsecureSkipTLSVerifyBackend,
-                           grep,
-                           selector,
-                           cancellationToken).ConfigureAwait(false))
+                        name,
+                        authHeader,
+                        podName,
+                        logOptionsContainer,
+                        logOptionsFollow,
+                        logOptionsPrevious,
+                        logOptionsSinceSeconds,
+                        logOptionsSinceTimeSeconds,
+                        logOptionsSinceTimeNanos,
+                        logOptionsTimestamps,
+                        logOptionsTailLines,
+                        logOptionsLimitBytes,
+                        logOptionsInsecureSkipTLSVerifyBackend,
+                        grep,
+                        selector,
+                        cancellationToken).ConfigureAwait(false))
         {
             yield return apiResponse.Data;
         }

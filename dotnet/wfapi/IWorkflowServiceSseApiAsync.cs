@@ -59,8 +59,8 @@ public interface IWorkflowServiceSseApiAsync
     /// <exception cref="Org.OpenAPITools.Client.ApiException">Thrown when fails to make API call</exception>
     /// <param name="varNamespace"></param>
     /// <param name="name"></param>
-    /// <param name="podName"> (optional)</param>
     /// <param name="authHeader"></param>
+    /// <param name="podName"> (optional)</param>
     /// <param name="logOptionsContainer">The container for which to stream logs. Defaults to only container if there is one container in the pod. +optional. (optional)</param>
     /// <param name="logOptionsFollow">Follow the log stream of the pod. Defaults to false. +optional. (optional)</param>
     /// <param name="logOptionsPrevious">Return previous terminated container logs. Defaults to false. +optional. (optional)</param>

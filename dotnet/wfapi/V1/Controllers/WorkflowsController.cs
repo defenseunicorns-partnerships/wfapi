@@ -346,13 +346,13 @@ public class WorkflowsController(ArgoClient argoClient, S3Client s3Client, Clien
         try
         {
             await foreach (var logEntry in argoClient.WorkflowServiceSseApiAsync.WorkflowServiceWorkflowLogsAsync(
-                               varNamespace: argoClient.Namespace,
-                               name: workflowName,
-                               podName: podName,
-                               authHeader: authHeader,
-                               logOptionsContainer: "main",
-                               logOptionsFollow: true,
-                               cancellationToken: cancellationToken
+                            varNamespace: argoClient.Namespace,
+                            name: workflowName,
+                            authHeader: authHeader,
+                            podName: podName,
+                            logOptionsContainer: "main",
+                            logOptionsFollow: true,
+                            cancellationToken: cancellationToken
                            ))
             {
                 // log.LogInformation(JsonConvert.SerializeObject(logEntry));
