@@ -138,8 +138,8 @@ tasks:
             -H 'Content-Type: application/json' \
             -H "Authorization: Bearer ${JWT}" \
             -d '{
-            "templateName": "hello-world-template",
-            "generateName": "hello-world-",
+            "templateName": "wfapi-api-hello-world-template",
+            "generateName": "wfapi-api-hello-world-",
             "parameters": []
             }'
   - name: submit-dev-workflow
