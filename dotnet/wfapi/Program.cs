@@ -76,7 +76,7 @@ try
     });
 
     // SSO
-    string jwt_auds = builder.Configuration.GetValue<string>("Auth:Jwt:Audience");
+    string jwt_auds = builder.Configuration.GetValue<string>("Auth:Jwt:Audience") ?? throw new InvalidOperationException();;
     Log.Information($"Audiences: {jwt_auds}");
     builder.Services.AddAuthentication(options =>
         {
@@ -117,13 +117,13 @@ try
                     // THIS IS THE PART TO CHANGE
                     // We've seen Keycloak put roles in the `resource_access` claim. It scopes them to the ClientID.
                     // We've also seen JWTs without roles, but with a `groups` block. We can use that instead, we'll just need to update this code block.
-                    var client_id = claimsIdentity.FindFirst("client_id")?.Value ?? null;
+                    var presenter = claimsIdentity.FindFirst("azp")?.Value ?? null;
                     // ^^^^^^^^^ CHANGE THIS STUFF ^^^^^^^^^
 
-                    if (client_id == null) return Task.CompletedTask;
+                    if (presenter == null) return Task.CompletedTask;
                     else
                     {
-                        claimsIdentity.AddClaim(new Claim(claimsIdentity.RoleClaimType, client_id));
+                        claimsIdentity.AddClaim(new Claim(claimsIdentity.RoleClaimType, presenter));
                     }
                     return Task.CompletedTask;
                 }
