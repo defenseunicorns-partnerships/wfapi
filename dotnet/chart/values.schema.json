@@ -897,12 +897,21 @@
               "description": "Redirect URI for Keycloak client",
               "title": "redirectURI",
               "type": "string"
+            },
+            "s3Port": {
+              "default": 9000,
+              "description": "Egress allowed on the port to connect to S3",
+              "title": "s3Port",
+              "type": [
+                "number"
+              ]
             }
           },
           "required": [
             "enabled",
             "expose",
-            "redirectURI"
+            "redirectURI",
+            "s3Port"
           ],
           "title": "udsPackage",
           "type": [

@@ -21,6 +21,7 @@ UDS package settings
 | [enabled](#enabled)         | `boolean` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-udspackage-properties-enabled.md "values.yaml#/properties/wfapi/properties/udsPackage/properties/enabled")         |
 | [expose](#expose)           | `object`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-udspackage-properties-expose.md "values.yaml#/properties/wfapi/properties/udsPackage/properties/expose")           |
 | [redirectURI](#redirecturi) | `string`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-udspackage-properties-redirecturi.md "values.yaml#/properties/wfapi/properties/udsPackage/properties/redirectURI") |
+| [s3Port](#s3port)           | `number`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-udspackage-properties-s3port.md "values.yaml#/properties/wfapi/properties/udsPackage/properties/s3Port")           |
 
 ## enabled
 
@@ -90,4 +91,30 @@ The default value is:
 
 ```json
 "https://wfapi.uds.dev/auth"
+```
+
+## s3Port
+
+Egress allowed on the port to connect to S3
+
+`s3Port`
+
+* is required
+
+* Type: `number` ([s3Port](values-properties-wfapi-properties-udspackage-properties-s3port.md))
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-udspackage-properties-s3port.md "values.yaml#/properties/wfapi/properties/udsPackage/properties/s3Port")
+
+### s3Port Type
+
+`number` ([s3Port](values-properties-wfapi-properties-udspackage-properties-s3port.md))
+
+### s3Port Default Value
+
+The default value is:
+
+```json
+9000
 ```

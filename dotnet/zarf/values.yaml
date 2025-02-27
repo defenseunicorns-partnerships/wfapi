@@ -44,6 +44,7 @@ wfapi:
     expose:
       host: "###ZARF_VAR_UDS_PACKAGE_EXPOSE_HOST###"
     redirectURI: "###ZARF_VAR_UDS_PACKAGE_REDIRECT_URI###"
+    s3Port: !!int "###ZARF_VAR_S3_PORT###"
 
   podAnnotations: {}
   podLabels: {}

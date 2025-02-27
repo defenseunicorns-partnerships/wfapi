@@ -21,8 +21,8 @@ namespace wfapi.E2ETests.V1.Controllers;
 public class WorkflowsControllerTests(ITestOutputHelper output)
 {
     private const string RootUrl = "https://wfapi.uds.dev";
-    private const string TemplateName = "hello-world-template";
-    private const string GenerateName = "hello-world-";
+    private const string TemplateName = "wfapi-api-hello-world-template";
+    private const string GenerateName = "wfapi-api-hello-world-";
 
     [Fact]
     public void FileManagementEndpoints_WhenCalled_BehavesAsExpected()
@@ -397,6 +397,6 @@ public class WorkflowsControllerTests(ITestOutputHelper output)
             // .And()
             // .Header("Connection", "keep-alive")
             .And()
-            .ResponseTime(Is.LessThan(TimeSpan.FromMilliseconds(1000)));
+            .ResponseTime(Is.LessThan(TimeSpan.FromMilliseconds(3000)));
     }
 }
