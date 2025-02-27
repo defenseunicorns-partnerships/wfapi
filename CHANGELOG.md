@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.1.0...0.1.1) (2025-02-27)
+
+
+### Bug Fixes
+
+* azp claim ([#136](https://github.com/defenseunicorns-partnerships/wfapi/issues/136)) ([1886346](https://github.com/defenseunicorns-partnerships/wfapi/commit/1886346b74a875933d75fd394dc1e76177d30132))
+
 ## [0.1.0](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.22...0.1.0) (2025-02-25)
 
 
