@@ -92,6 +92,10 @@ variables:
     default: "true"
     sensitive: false
     pattern: "^(true|false)$"
+  - name: S3_PORT
+    description: Port to expose for S3 comms
+    default: "9000"
+    sensitive: false
   - name: UDS_PACKAGE_EXPOSE_HOST
     description: The hostname to use when creating the VirtualService
     default: "wfapi"
