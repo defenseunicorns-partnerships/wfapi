@@ -2,6 +2,8 @@ package:
   deploy:
     set:
       DEPLOY_POSTGRESQL: true
+      DEV_DEPLOYMENT: true
+      POSTGRES_EGRESS: false
       PG_USER: argo
       PG_USER_PASSWORD: argo
       PG_DB: argo_workflows

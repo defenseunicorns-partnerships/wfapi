@@ -151,7 +151,7 @@ tasks:
             -H 'accept: application/json' \
             -H 'Content-Type: application/json' \
             -d '{
-            "templateName": "hello-world-template",
-            "generateName": "hello-world-",
+            "templateName": "wfapi-api-hello-world-template",
+            "generateName": "wfapi-api-hello-world-",
             "parameters": [{"name": "waitSeconds", "value": "30"}]
             }'
