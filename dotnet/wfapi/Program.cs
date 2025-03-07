@@ -176,8 +176,8 @@ try
     );
 
     string identityPath = builder.Configuration.GetValue<string>("Auth:Jwt:Token") ?? throw new InvalidOperationException();
-    string ClientId = builder.Configuration.GetValue<string>("clientId") ?? throw new InvalidOperationException();
-    string ClientSecret = builder.Configuration.GetValue<string>("secret") ?? throw new InvalidOperationException();
+    string ClientId = builder.Configuration.GetValue<string>("Auth:Server:ClientId") ?? throw new InvalidOperationException();
+    string ClientSecret = builder.Configuration.GetValue<string>("Auth:Server:ClientSecret") ?? throw new InvalidOperationException();
     builder.Services.AddSingleton(new ClientCredentials(identityPath, ClientId, ClientSecret));
 
     var app = builder.Build();

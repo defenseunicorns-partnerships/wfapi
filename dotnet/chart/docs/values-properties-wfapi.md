@@ -20,7 +20,6 @@ wfapi chart settings
 | :---------------------------------------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
 | [affinity](#affinity)                     | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-affinity.md "values.yaml#/properties/wfapi/properties/affinity")                     |
 | [env](#env)                               | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env.md "values.yaml#/properties/wfapi/properties/env")                               |
-| [envFromSecrets](#envfromsecrets)         | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-envfromsecrets.md "values.yaml#/properties/wfapi/properties/envFromSecrets")         |
 | [fullnameOverride](#fullnameoverride)     | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-fullnameoverride.md "values.yaml#/properties/wfapi/properties/fullnameOverride")     |
 | [image](#image)                           | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-image.md "values.yaml#/properties/wfapi/properties/image")                           |
 | [imagePullSecrets](#imagepullsecrets)     | `array`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-imagepullsecrets.md "values.yaml#/properties/wfapi/properties/imagePullSecrets")     |
@@ -36,7 +35,7 @@ wfapi chart settings
 | [roleBinding](#rolebinding)               | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-rolebinding.md "values.yaml#/properties/wfapi/properties/roleBinding")               |
 | [securityContext](#securitycontext)       | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-securitycontext.md "values.yaml#/properties/wfapi/properties/securityContext")       |
 | [service](#service)                       | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-service.md "values.yaml#/properties/wfapi/properties/service")                       |
-| [serviceAccount](#serviceaccount)         | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-serviceaccount.md "values.yaml#/properties/wfapi/properties/serviceAccount")         |
+| [serviceAccount](#serviceaccount)         | `object` | Optional | cannot be null | [values.yaml](values-properties-wfapi-properties-serviceaccount.md "values.yaml#/properties/wfapi/properties/serviceAccount")         |
 | [startupProbe](#startupprobe)             | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-startupprobe.md "values.yaml#/properties/wfapi/properties/startupProbe")             |
 | [tolerations](#tolerations)               | `array`  | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-tolerations.md "values.yaml#/properties/wfapi/properties/tolerations")               |
 | [udsPackage](#udspackage)                 | `object` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-udspackage.md "values.yaml#/properties/wfapi/properties/udsPackage")                 |
@@ -86,24 +85,6 @@ Environment variables to set in the container. Ref: <https://kubernetes.io/docs/
 ### env Type
 
 `object` ([env](values-properties-wfapi-properties-env.md))
-
-## envFromSecrets
-
-Environment variabels to mount from secrets form secretName: key. Ref: <https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables>
-
-`envFromSecrets`
-
-* is required
-
-* Type: `object` ([envFromSecrets](values-properties-wfapi-properties-envfromsecrets.md))
-
-* cannot be null
-
-* defined in: [values.yaml](values-properties-wfapi-properties-envfromsecrets.md "values.yaml#/properties/wfapi/properties/envFromSecrets")
-
-### envFromSecrets Type
-
-`object` ([envFromSecrets](values-properties-wfapi-properties-envfromsecrets.md))
 
 ## fullnameOverride
 
@@ -431,7 +412,7 @@ Service account settings
 
 `serviceAccount`
 
-* is required
+* is optional
 
 * Type: `object` ([serviceAccount](values-properties-wfapi-properties-serviceaccount.md))
 

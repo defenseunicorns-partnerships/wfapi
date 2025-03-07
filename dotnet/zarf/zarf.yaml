@@ -69,6 +69,14 @@ variables:
     description: The AWS secret access key. Leave as an empty string if using IRSA.
     default: ""
     sensitive: true
+  - name: ENV_SERVER_CLIENT_ID
+    description: Client Id for the Argo Server API
+    default: ""
+    sensitive: true
+  - name: ENV_SERVER_CLIENT_SECRET
+    description: Client Secret for the Argo Server API
+    default: ""
+    sensitive: true
   - name: ENV_SWAGGER__ENABLE
     description: Whether to enable the Swagger UI.
     default: "false"
@@ -127,12 +135,23 @@ components:
     charts:
       - name: wfapi
         localPath: ../chart
-        namespace: argo
+        namespace: wfapi
         version: 0.1.0 # x-release-please-version
         valuesFiles:
           - values.yaml
     actions:
       onDeploy:
+        before:
+          - cmd: ./zarf tools kubectl get secret -n argo argo-workflows-client -o jsonpath='{.data.clientId}' | base64 -d
+            mute: true
+            setVariables:
+              - name: ENV_SERVER_CLIENT_ID
+                sensitive: true
+          - cmd: ./zarf tools kubectl get secret -n argo argo-workflows-client -o jsonpath='{.data.secret}' | base64 -d
+            mute: true
+            setVariables:
+              - name: ENV_SERVER_CLIENT_SECRET
+                sensitive: true
         onSuccess:
           - description: Restart the deployment
             cmd: ./zarf tools kubectl rollout restart deployment wfapi -n argo

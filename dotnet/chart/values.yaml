@@ -19,7 +19,9 @@ wfapi: # @schema title: wfapi; type: [object]; description: wfapi chart settings
     Auth__Jwt__RequireHttpsMetadata: "true" # @schema title: Auth__Jwt__RequireHttpsMetadata; type: [string]; description: Require HTTPS when interfacing with the IDP; required: true; default: "true"
     Auth__Jwt__ValidateIssuer: "true" # @schema title: Auth__Jwt__ValidateIssuer; type: [string]; description: Whether to validate the JWT issuer; required: true; default: "true"
     Auth__Jwt__Token: "https://sso.uds.dev/realms/uds/protocol/openid-connect/token" # @schema title: Auth__Jwt__Token; type: [string]; description: Token endpoint to get client credentials; required: true; default: "https://sso.uds.dev/realms/uds/protocol/openid-connect/token"
-    Argo__ApiUrl: "http://argo-workflows-server:2746" # @schema title: Argo__ApiUrl; type: [string]; description: Argo API URL; required: true; default: "http://argo-workflows-server:2746"
+    Auth__Server__ClientId: "argo-client" # schema title: Auth__Server__ClientId; type: [string]; description: ClientId for the argo server api serviceaccount; required: true; default: "argo-client"
+    Auth__Server__ClientSecret: "secret" # schema title: Auth__Server__ClientSecret; type: [string]; description: ClientSecret for the argo server api serviceaccount; required: true; default: "secret"
+    Argo__ApiUrl: "http://argo-workflows-server.argo.svc.cluster.local:2746" # @schema title: Argo__ApiUrl; type: [string]; description: Argo API URL; required: true; default: "http://argo-workflows-server.argo.svc.cluster.local:2746"
     Argo__Token: "" # @schema title: Argo__Token; type: [string]; description: Optional Argo API token. Not necessary in most cases as the app will fetch the token that is mounted to the filesystem. Leave as an empty string.; required: true; default: ""
     Argo__Namespace: "argo" # @schema title: Argo__Namespace; type: [string]; description: Namespace where workflows should be created; required: true; default: "argo"
     Bucket__Region: "minio" # @schema title: Bucket__Region; type: [string]; description: Bucket region; required: true; default: "minio"
@@ -29,10 +31,7 @@ wfapi: # @schema title: wfapi; type: [object]; description: wfapi chart settings
     AWS_SECRET_ACCESS_KEY: "" # @schema title: AWS_SECRET_ACCESS_KEY; type: [string]; description: AWS secret access key. Leave as empty string if using IRSA; required: true; default: ""
     Swagger__Enable: "false" # @schema title: Swagger__Enable; type: [string]; description: Whether to enable Swagger. If true, the SwaggerUI can be reached at <url>/swagger; required: true; default: "false"
 
-  envFromSecrets: # @schema title: envFromSecrets; type: [object]; description: Environment variabels to mount from secrets form secretName: key. Ref: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables; required: true; additionalProperties: false
-    argoClient: "argo-workflows-client" # @schema title: argoClient; type: [string]; description: SecretName to mount for client secret, needs clientId and secret fields; required: true; default: ""
-
-  serviceAccount: # @schema title: serviceAccount; type: [object]; description: Service account settings; additionalProperties: false; required: true
+  serviceAccount: # @schema title: serviceAccount; type: [object]; description: Service account settings; additionalProperties: false; required:uri true
     create: true # @schema title: create; type: [boolean]; description: Specifies whether a service account should be created; required: true; default: true
     automount: true # @schema title: automount; type: [boolean]; description: Specifies whether a service account token should be mounted; required: true; default: true
     annotations: {} # @schema title: annotations; type: object; description: Annotations to add to the service account. Ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/; required: true; default: {}

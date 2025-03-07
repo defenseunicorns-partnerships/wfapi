@@ -51,7 +51,7 @@
               ]
             },
             "Argo__ApiUrl": {
-              "default": "http://argo-workflows-server:2746",
+              "default": "http://argo-workflows-server.argo.svc.cluster.local:2746",
               "description": "Argo API URL",
               "title": "Argo__ApiUrl",
               "type": [
@@ -122,6 +122,20 @@
                 "string"
               ]
             },
+            "Auth__Server__ClientId": {
+              "default": "argo-client",
+              "description": "ClientId for the argo server api serviceaccount",
+              "type": [
+                "string"
+              ]
+            },
+            "Auth__Server__ClientSecret": {
+              "default": "secret",
+              "description": "ClientSecret for the argo server api serviceaccount",
+              "type": [
+                "string"
+              ]
+            },
             "Bucket__Name": {
               "default": "argo",
               "description": "Bucket name",
@@ -172,6 +186,8 @@
             "Auth__Jwt__RequireHttpsMetadata",
             "Auth__Jwt__ValidateIssuer",
             "Auth__Jwt__Token",
+            "Auth__Server__ClientId",
+            "Auth__Server__ClientSecret",
             "Argo__ApiUrl",
             "Argo__Token",
             "Argo__Namespace",
@@ -183,27 +199,6 @@
             "Swagger__Enable"
           ],
           "title": "env",
-          "type": [
-            "object"
-          ]
-        },
-        "envFromSecrets": {
-          "additionalProperties": false,
-          "description": "Environment variabels to mount from secrets form secretName: key. Ref: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables",
-          "properties": {
-            "argoClient": {
-              "default": "",
-              "description": "SecretName to mount for client secret, needs clientId and secret fields",
-              "title": "argoClient",
-              "type": [
-                "string"
-              ]
-            }
-          },
-          "required": [
-            "argoClient"
-          ],
-          "title": "envFromSecrets",
           "type": [
             "object"
           ]
@@ -944,8 +939,6 @@
         "nameOverride",
         "fullnameOverride",
         "env",
-        "envFromSecrets",
-        "serviceAccount",
         "roleBinding",
         "udsPackage",
         "podAnnotations",

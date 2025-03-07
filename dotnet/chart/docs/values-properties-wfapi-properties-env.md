@@ -30,6 +30,8 @@ Environment variables to set in the container. Ref: <https://kubernetes.io/docs/
 | [Auth\_\_Jwt\_\_Token](#auth__jwt__token)                               | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__token.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__Token")                               |
 | [Auth\_\_Jwt\_\_ValidateIssuer](#auth__jwt__validateissuer)             | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__validateissuer.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__ValidateIssuer")             |
 | [Auth\_\_Jwt\_\_WellKnownConfig](#auth__jwt__wellknownconfig)           | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__jwt__wellknownconfig.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Jwt__WellKnownConfig")           |
+| [Auth\_\_Server\_\_ClientId](#auth__server__clientid)                   | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__server__clientid.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Server__ClientId")                   |
+| [Auth\_\_Server\_\_ClientSecret](#auth__server__clientsecret)           | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-auth__server__clientsecret.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Server__ClientSecret")           |
 | [Bucket\_\_Name](#bucket__name)                                         | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-bucket__name.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__Name")                                       |
 | [Bucket\_\_Region](#bucket__region)                                     | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-bucket__region.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__Region")                                   |
 | [Bucket\_\_ServiceUrl](#bucket__serviceurl)                             | `string` | Required | cannot be null | [values.yaml](values-properties-wfapi-properties-env-properties-bucket__serviceurl.md "values.yaml#/properties/wfapi/properties/env/properties/Bucket__ServiceUrl")                           |
@@ -131,7 +133,7 @@ Argo API URL
 The default value is:
 
 ```json
-"http://argo-workflows-server:2746"
+"http://argo-workflows-server.argo.svc.cluster.local:2746"
 ```
 
 ## Argo\_\_Namespace
@@ -332,6 +334,58 @@ The default value is:
 
 ```json
 "https://sso.uds.dev/realms/uds/.well-known/openid-configuration"
+```
+
+## Auth\_\_Server\_\_ClientId
+
+ClientId for the argo server api serviceaccount
+
+`Auth__Server__ClientId`
+
+* is required
+
+* Type: `string`
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-auth__server__clientid.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Server__ClientId")
+
+### Auth\_\_Server\_\_ClientId Type
+
+`string`
+
+### Auth\_\_Server\_\_ClientId Default Value
+
+The default value is:
+
+```json
+"argo-client"
+```
+
+## Auth\_\_Server\_\_ClientSecret
+
+ClientSecret for the argo server api serviceaccount
+
+`Auth__Server__ClientSecret`
+
+* is required
+
+* Type: `string`
+
+* cannot be null
+
+* defined in: [values.yaml](values-properties-wfapi-properties-env-properties-auth__server__clientsecret.md "values.yaml#/properties/wfapi/properties/env/properties/Auth__Server__ClientSecret")
+
+### Auth\_\_Server\_\_ClientSecret Type
+
+`string`
+
+### Auth\_\_Server\_\_ClientSecret Default Value
+
+The default value is:
+
+```json
+"secret"
 ```
 
 ## Bucket\_\_Name
