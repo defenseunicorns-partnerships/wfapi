@@ -39,7 +39,7 @@ variables:
     pattern: "^(true|false)$"
   - name: ENV_ARGO__APIURL
     description: Argo Server API URL.
-    default: "http://argo-workflows-server:2746"
+    default: "http://argo-workflows-server.argo.svc.cluster.local:2746"
     sensitive: false
   - name: ENV_ARGO__NAMESPACE
     description: The K8s namespace that workflows should be created in.
@@ -154,6 +154,6 @@ components:
                 sensitive: true
         onSuccess:
           - description: Restart the deployment
-            cmd: ./zarf tools kubectl rollout restart deployment wfapi -n argo
+            cmd: ./zarf tools kubectl rollout restart deployment wfapi -n wfapi
     images:
       - ghcr.io/defenseunicorns-partnerships/wfapi/containers/wfapi:0.1.0 # x-release-please-version
