@@ -18,6 +18,8 @@ wfapi:
     Auth__Jwt__Audience: "###ZARF_VAR_ENV_AUTH__JWT__AUDIENCE###"
     Auth__Jwt__RequireHttpsMetadata: "###ZARF_VAR_ENV_AUTH__JWT__REQUIREHTTPSMETADATA###"
     Auth__Jwt__ValidateIssuer: "###ZARF_VAR_ENV_AUTH__JWT__VALIDATEISSUER###"
+    Auth__Server__ClientId: "###ZARF_VAR_ENV_SERVER_CLIENT_ID###"
+    Auth__Server__ClientSecret: "###ZARF_VAR_ENV_SERVER_CLIENT_SECRET###"
     Argo__ApiUrl: "###ZARF_VAR_ENV_ARGO__APIURL###"
     Argo__Namespace: "###ZARF_VAR_ENV_ARGO__NAMESPACE###"
     Argo__Token: "###ZARF_VAR_ENV_ARGO__TOKEN###"

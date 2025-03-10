@@ -1,15 +1,23 @@
-# argoClient Schema
+# Untitled undefined type in values.yaml Schema
 
 ```txt
-values.yaml#/properties/wfapi/properties/envFromSecrets/properties/argoClient
+values.yaml#/properties/wfapi/properties/env/properties/Auth__Server__ClientId
 ```
 
-SecretName to mount for client secret, needs clientId and secret fields
+ClientId for the argo server api serviceaccount
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                           |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------- |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [values.schema.json\*](../values.schema.json "open original schema") |
 
-## argoClient Type
+## Auth\_\_Server\_\_ClientId Type
 
-`string` ([argoClient](values-properties-wfapi-properties-envfromsecrets-properties-argoclient.md))
+`string`
+
+## Auth\_\_Server\_\_ClientId Default Value
+
+The default value is:
+
+```json
+"argo-client"
+```

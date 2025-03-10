@@ -19,5 +19,5 @@ Argo API URL
 The default value is:
 
 ```json
-"http://argo-workflows-server:2746"
+"http://argo-workflows-server.argo.svc.cluster.local:2746"
 ```

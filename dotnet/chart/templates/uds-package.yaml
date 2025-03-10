@@ -57,6 +57,12 @@ spec:
         remoteNamespace: keycloak
         ports:
           - 8080
+      - direction: Egress
+        selector:
+          app.kubernetes.io/name: {{ include "wfapi.fullname" . }}
+        remoteNamespace: argo
+        ports:
+          - 2746
       #S3
       - direction: Egress
         description: Egress to S3 for WFAPI
