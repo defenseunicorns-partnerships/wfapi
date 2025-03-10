@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.1.1](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.1.0...0.1.1) (2025-03-10)
+
+
+### Features
+
+* wfapi namespace ([#138](https://github.com/defenseunicorns-partnerships/wfapi/issues/138)) ([6f97291](https://github.com/defenseunicorns-partnerships/wfapi/commit/6f97291f9b360bad8a3f2d279c1a74242fe8e514))
+
+
+### Bug Fixes
+
+* azp claim ([#136](https://github.com/defenseunicorns-partnerships/wfapi/issues/136)) ([1886346](https://github.com/defenseunicorns-partnerships/wfapi/commit/1886346b74a875933d75fd394dc1e76177d30132))
+
+
+### Miscellaneous Chores
+
+* **deps:** update stable ([#133](https://github.com/defenseunicorns-partnerships/wfapi/issues/133)) ([773127b](https://github.com/defenseunicorns-partnerships/wfapi/commit/773127bbb091a5ce5caa916db67fde5470178be1))
+
 ## [0.1.0](https://github.com/defenseunicorns-partnerships/wfapi/compare/0.0.22...0.1.0) (2025-02-25)
 
 
