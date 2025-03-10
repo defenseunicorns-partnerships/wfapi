@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: wfapi
   description: Deploy WFAPI
-  version: 0.1.0 # x-release-please-version
+  version: 0.1.1 # x-release-please-version
 
 variables:
   - name: ENV_ASPNETCORE_ENVIRONMENT
@@ -136,7 +136,7 @@ components:
       - name: wfapi
         localPath: ../chart
         namespace: wfapi
-        version: 0.1.0 # x-release-please-version
+        version: 0.1.1 # x-release-please-version
         valuesFiles:
           - values.yaml
     actions:
@@ -156,4 +156,4 @@ components:
           - description: Restart the deployment
             cmd: ./zarf tools kubectl rollout restart deployment wfapi -n wfapi
     images:
-      - ghcr.io/defenseunicorns-partnerships/wfapi/containers/wfapi:0.1.0 # x-release-please-version
+      - ghcr.io/defenseunicorns-partnerships/wfapi/containers/wfapi:0.1.1 # x-release-please-version
